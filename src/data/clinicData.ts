@@ -60,7 +60,6 @@ export const clinicData = {
     subhead: "I work with the mind, the body and the patterns connecting them.",
     cta: "Book Your Assessment",
     videoMontage: "/assets/hero/hero-main.mp4",
-    poster: "/assets/rethink/center-consultation.jpg",
   },
 
   proofStats: {

@@ -151,10 +151,12 @@ export const SynapticScrollSpine: React.FC = () => {
   });
 
   const nodesRef = useRef<NodeData[]>([]);
+  const boutonCacheRef = useRef<Map<string, HTMLElement>>(new Map());
 
   // ── 1. BUILD WAYPOINTS & SMOOTH BÉZIER SPLINES ──
   const buildNeuralNetwork = useCallback(() => {
     if (typeof document === "undefined" || !containerRef.current) return;
+    boutonCacheRef.current.clear();
 
     const mainEl = containerRef.current.parentElement;
     if (!mainEl) return;
@@ -195,16 +197,12 @@ export const SynapticScrollSpine: React.FC = () => {
       let bodyY: number;
 
       if (isMobile) {
-        // Mobile single-column flow:
-        // Follows the graceful central spinal corridor of the page (between 42% and 58% width).
-        // Never squished into the 16px screen bezel!
         headX = Math.round(docWidth * (sec.fallbackHeadingX || 0.48));
         headY = Math.round(secTop + Math.min(secRect.height * 0.12, 100));
 
         bodyX = Math.round(docWidth * (sec.fallbackBodyX || 0.52));
         bodyY = Math.round(secTop + secRect.height * 0.65);
       } else {
-        // Desktop multi-column flow:
         const hEl = secEl.querySelector(sec.headingSelector);
         if (hEl) {
           const hRect = hEl.getBoundingClientRect();
@@ -244,7 +242,6 @@ export const SynapticScrollSpine: React.FC = () => {
         r: isMobile ? 3.5 : 5.5,
       });
 
-      // Intermediate gentle waypoints for tall sections (PurposeHub) to preserve natural meander
       if (sec.id === "purpose" && secRect.height > 1200) {
         const midY1 = Math.round(secTop + secRect.height * 0.36);
         const midX1 = Math.round(docWidth * (isMobile ? 0.44 : 0.40));
@@ -264,7 +261,6 @@ export const SynapticScrollSpine: React.FC = () => {
       });
     }
 
-    // Terminal point at bottom
     waypoints.push({
       x: Math.round(docWidth * 0.5),
       y: docHeight,
@@ -274,7 +270,6 @@ export const SynapticScrollSpine: React.FC = () => {
 
     if (waypoints.length < 3) return;
 
-    // Generate smooth sinusoidal cubic Bézier splines
     const generateSpline = (offsetFn: (i: number, c: number, total: number) => number) => {
       let d = "";
 
@@ -340,6 +335,7 @@ export const SynapticScrollSpine: React.FC = () => {
 
   // ── 2. SAMPLE PATHS ONCE THEY ARE MOUNTED IN DOM ──
   const sampleAllPaths = useCallback(() => {
+    boutonCacheRef.current.clear();
     const sample = (pathEl: SVGPathElement | null) => {
       if (!pathEl) return { len: 0, samples: [] };
       const len = pathEl.getTotalLength();
@@ -356,7 +352,6 @@ export const SynapticScrollSpine: React.FC = () => {
         samples.push({ l: len, y: pt.y });
       }
 
-      // Initialize path stroke dash
       pathEl.style.strokeDasharray = `${len} ${len}`;
       pathEl.style.strokeDashoffset = `${len}px`;
 
@@ -378,32 +373,39 @@ export const SynapticScrollSpine: React.FC = () => {
     const { p1, p2, p3 } = pathDataRef.current;
     if (p1.len === 0) return;
 
-    // Lead Line 1: focal point at 72% down viewport (leads)
+    const isMobile = window.innerWidth < 768;
+
+    // Lead Line 1: focal point at 72% down viewport
     const targetY1 = sy + vh * 0.72;
-    // Follow Line 2: focal point at 64% down viewport (follows second)
-    const targetY2 = sy + vh * 0.64;
-    // Follow Line 3: focal point at 56% down viewport (follows third)
-    const targetY3 = sy + vh * 0.56;
-
     const l1 = getLengthForY(targetY1, p1.samples, p1.len);
-    const l2 = getLengthForY(targetY2, p2.samples, p2.len);
-    const l3 = getLengthForY(targetY3, p3.samples, p3.len);
-
     if (path1Ref.current) {
       path1Ref.current.style.strokeDashoffset = `${Math.max(0, p1.len - l1)}px`;
     }
-    if (path2Ref.current) {
-      path2Ref.current.style.strokeDashoffset = `${Math.max(0, p2.len - l2)}px`;
-    }
-    if (path3Ref.current) {
-      path3Ref.current.style.strokeDashoffset = `${Math.max(0, p3.len - l3)}px`;
+
+    // Only compute paired lines on desktop (hidden on mobile)
+    if (!isMobile) {
+      if (path2Ref.current && p2.len > 0) {
+        const targetY2 = sy + vh * 0.64;
+        const l2 = getLengthForY(targetY2, p2.samples, p2.len);
+        path2Ref.current.style.strokeDashoffset = `${Math.max(0, p2.len - l2)}px`;
+      }
+      if (path3Ref.current && p3.len > 0) {
+        const targetY3 = sy + vh * 0.56;
+        const l3 = getLengthForY(targetY3, p3.samples, p3.len);
+        path3Ref.current.style.strokeDashoffset = `${Math.max(0, p3.len - l3)}px`;
+      }
     }
 
-    // Update synaptic bouton nodes
+    // Update synaptic bouton nodes using cached elements
     const currentNodes = nodesRef.current;
+    const cache = boutonCacheRef.current;
     for (let i = 0; i < currentNodes.length; i++) {
       const node = currentNodes[i];
-      const el = document.getElementById(`bouton-${node.id}`);
+      let el = cache.get(node.id);
+      if (!el) {
+        el = document.getElementById(`bouton-${node.id}`) as HTMLElement | null || undefined;
+        if (el) cache.set(node.id, el);
+      }
       if (!el) continue;
 
       const delta = targetY1 - node.y;
@@ -435,7 +437,6 @@ export const SynapticScrollSpine: React.FC = () => {
         const main = containerRef.current.parentElement;
         const curH = main.scrollHeight;
         const curW = window.innerWidth;
-        // Only re-build if dimensions actually changed significantly (> 8px)
         if (Math.abs(curH - lastHeight) > 8 || Math.abs(curW - lastWidth) > 5) {
           lastHeight = curH;
           lastWidth = curW;
@@ -446,7 +447,6 @@ export const SynapticScrollSpine: React.FC = () => {
 
     window.addEventListener("resize", recompute, { passive: true });
 
-    // Smoothly adapt to content layout changes without jumpy timeouts
     let ro: ResizeObserver | null = null;
     if (typeof ResizeObserver !== "undefined" && containerRef.current?.parentElement) {
       ro = new ResizeObserver(() => {
@@ -455,20 +455,26 @@ export const SynapticScrollSpine: React.FC = () => {
       ro.observe(containerRef.current.parentElement);
     }
 
-    // Scroll listener: native window scroll + mobile touch
+    // Scroll listener with RAF throttling guard (zero lag, 120fps sync)
+    let ticking = false;
     const onScroll = () => {
-      requestAnimationFrame(updateScroll);
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(() => {
+          updateScroll();
+          ticking = false;
+        });
+      }
     };
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("touchmove", onScroll, { passive: true });
 
-    // Sync with Lenis smooth scroll if active
+    // Sync with Lenis smooth scroll if active (desktop only)
     let lenisUnsub: (() => void) | null = null;
     const checkLenis = setInterval(() => {
       const lenis = (window as unknown as { lenis?: { on: (event: string, cb: () => void) => () => void } }).lenis;
       if (lenis && lenis.on) {
         lenisUnsub = lenis.on("scroll", () => {
-          requestAnimationFrame(updateScroll);
+          onScroll();
         });
         clearInterval(checkLenis);
       }
@@ -480,7 +486,6 @@ export const SynapticScrollSpine: React.FC = () => {
       cancelAnimationFrame(resizeRaf);
       window.removeEventListener("resize", recompute);
       window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("touchmove", onScroll);
       if (ro) ro.disconnect();
       if (lenisUnsub) lenisUnsub();
       clearInterval(checkLenis);

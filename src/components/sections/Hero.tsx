@@ -21,7 +21,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAssessment }) => {
   };
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-start overflow-hidden bg-[#12140D] text-[#F6F1E4] pt-24 pb-16">
+    <section id="hero" className="relative min-h-[100svh] min-h-screen flex items-center justify-start overflow-hidden bg-[#12140D] text-[#F6F1E4] pt-24 pb-16">
       {/* Background Video Montage with Clean, Lightweight Overlay */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <video
@@ -30,8 +30,6 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAssessment }) => {
           loop
           muted
           playsInline
-          preload="metadata"
-          poster={clinicData.hero.poster}
           className="w-full h-full object-cover opacity-90 filter saturate-100 contrast-105"
         >
           <source src={clinicData.hero.videoMontage} type="video/mp4" />

@@ -22,24 +22,11 @@ export default function HomePage() {
   const [assessmentModalOpen, setAssessmentModalOpen] = useState(false);
   const [initialConcern, setInitialConcern] = useState("");
 
-  // Initialize Lenis smooth scroll with luxurious fluid momentum
+  // Initialize Lenis smooth scroll for desktop wheel while leaving mobile touch 100% native
   useEffect(() => {
-    const lenis = new Lenis({
-      duration: 0.8,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -12 * t)),
-      orientation: "vertical",
-      gestureOrientation: "vertical",
-      smoothWheel: true,
-      wheelMultiplier: 1.0,
-      syncTouch: true,
-      touchMultiplier: 1.0,
-      infinite: false,
-    });
+    const isTouch = typeof window !== "undefined" && ("ontouchstart" in window || navigator.maxTouchPoints > 0);
 
-    // Make lenis globally accessible for smooth anchor scrolling
-    (window as unknown as { lenis: Lenis }).lenis = lenis;
-
-    // Handle all internal anchor clicks through Lenis
+    // Handle all internal anchor clicks
     const handleAnchorClick = (e: MouseEvent) => {
       const target = (e.target as HTMLElement).closest("a");
       if (!target) return;
@@ -48,12 +35,38 @@ export default function HomePage() {
         const element = document.querySelector(href);
         if (element) {
           e.preventDefault();
-          lenis.scrollTo(element as HTMLElement, { offset: -60, duration: 1.4 });
+          const globalLenis = (window as unknown as { lenis?: Lenis }).lenis;
+          if (globalLenis && !isTouch) {
+            globalLenis.scrollTo(element as HTMLElement, { offset: -60, duration: 1.2 });
+          } else {
+            element.scrollIntoView({ behavior: "smooth" });
+          }
         }
       }
     };
 
     document.addEventListener("click", handleAnchorClick);
+
+    // On mobile touch devices, DO NOT hijack touch events!
+    // Native mobile 120Hz ProMotion touch scrolling is 100% fluid, responsive, and frictionless.
+    if (isTouch) {
+      return () => {
+        document.removeEventListener("click", handleAnchorClick);
+      };
+    }
+
+    const lenis = new Lenis({
+      duration: 1.0,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: "vertical",
+      gestureOrientation: "vertical",
+      smoothWheel: true,
+      wheelMultiplier: 1.0,
+      infinite: false,
+    });
+
+    // Make lenis globally accessible for smooth anchor scrolling on desktop
+    (window as unknown as { lenis: Lenis }).lenis = lenis;
 
     let rafId: number;
     function raf(time: number) {
