@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=general-sans@200,300,400,500,600,700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ink-950: #12140D;        /* Primary dark background */
+  --ink-900: #1B1E15;        /* Dark surface/card */
+  --parchment-50: #FAFAFA;   /* Primary clean white/off-white background */
+  --parchment-100: #F4F4F6;  /* Clean white surface/card */
+  --gold-500: #C79A45;       /* Primary accent: CTAs, emblem */
+  --sage-400: #93A579;       /* Secondary accent: step lettering, botanical marks */
+  --clay-700: #8C5B41;       /* Tertiary accent: subtle highlights, hovers */
+  --charcoal-ink: #1F2421;   /* Body text on light backgrounds */
+
+  --font-manrope: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-general-sans: 'General Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+html {
+  background-color: var(--ink-950);
+  color: var(--parchment-50);
+  font-family: var(--font-general-sans);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Lenis Smooth Scroll Engine */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-color: var(--ink-950);
+  color: var(--parchment-50);
+  font-family: var(--font-general-sans);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-manrope);
+}
+
+/* Custom selection */
+::selection {
+  background-color: rgba(199, 154, 69, 0.35);
+  color: #F6F1E4;
+}
+
+/* Accessible focus visible */
+*:focus-visible {
+  outline: 2px solid var(--gold-500);
+  outline-offset: 3px;
+}
+
+/* Smooth scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #12140D;
+}
+::-webkit-scrollbar-thumb {
+  background: #2D3320;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C79A45;
+}
+
+/* Washi Tape Strip Styling */
+.washi-tape-strip {
+  position: absolute;
+  width: 44px;
+  height: 14px;
+  z-index: 25;
+}
+
+/* Lenis smooth scrolling integration */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Synapse Thread Continuous Drawing & Glow */
+.synapse-path-main {
+  filter: drop-shadow(0 0 6px rgba(199, 154, 69, 0.6));
+}
+
+.synapse-pulse-dot {
+  filter: drop-shadow(0 0 6px rgba(199, 154, 69, 0.95)) drop-shadow(0 0 12px rgba(199, 154, 69, 0.6));
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
