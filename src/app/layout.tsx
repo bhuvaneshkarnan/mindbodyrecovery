@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://mindbodyrecovery.in"),
   title: "Mind Body Recovery | Integrative Wellness & Recovery Clinic | Dr. Sameer",
   description:
     "An integrative wellness clinic and training academy run by Dr. Sameer. Hands-on bodywork (acupuncture, cupping, reflexology, Ayurveda), somatic inquiry, and 2-day reset retreats in Chennai.",
