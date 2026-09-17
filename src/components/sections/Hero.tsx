@@ -30,6 +30,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAssessment }) => {
           loop
           muted
           playsInline
+          preload="metadata"
           poster={clinicData.hero.poster}
           className="w-full h-full object-cover opacity-90 filter saturate-100 contrast-105"
         >

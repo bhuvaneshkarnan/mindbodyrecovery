@@ -1,5 +1,20 @@
 import type { Metadata } from "next";
+import { Manrope, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
+
+const manrope = Manrope({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
+  variable: "--font-manrope",
+  display: "swap",
+});
+
+const sans = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-general-sans",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://mindbodyrecovery.in"),
@@ -42,8 +57,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark scroll-smooth">
-      <body className="bg-ink-950 text-parchment-50 min-h-screen antialiased selection:bg-gold-500/30 selection:text-parchment-50">
+    <html lang="en" className={`dark scroll-smooth ${manrope.variable} ${sans.variable}`}>
+      <body className="bg-ink-950 text-parchment-50 min-h-screen antialiased selection:bg-gold-500/30 selection:text-parchment-50 font-sans">
         {children}
       </body>
     </html>

@@ -167,11 +167,12 @@ export const PurposeHub: React.FC = () => {
                     className="w-full shadow-md group-hover:shadow-2xl transition-shadow duration-500"
                     innerClassName="p-2 sm:p-2.5 bg-white border border-[#E5E7EB] rounded-2xl"
                   >
-                    <div className="relative w-full overflow-hidden rounded-xl bg-white flex items-center justify-center">
+                    <div className="relative w-full aspect-[13/8] overflow-hidden rounded-xl bg-white flex items-center justify-center">
                       <img
                         src={TOP_PHOTOS[0].image}
                         alt={TOP_PHOTOS[0].alt}
-                        className="w-full h-auto object-contain filter saturate-95 contrast-105 block rounded-lg"
+                        loading="lazy"
+                        className="w-full h-full object-cover filter saturate-95 contrast-105 block rounded-lg"
                       />
                     </div>
                   </BandageFrame>
@@ -198,11 +199,12 @@ export const PurposeHub: React.FC = () => {
                     className="w-full shadow-md group-hover:shadow-2xl transition-shadow duration-500"
                     innerClassName="p-2 sm:p-2.5 bg-white border border-[#E5E7EB] rounded-2xl"
                   >
-                    <div className="relative w-full overflow-hidden rounded-xl bg-white flex items-center justify-center">
+                    <div className="relative w-full aspect-[13/8] overflow-hidden rounded-xl bg-white flex items-center justify-center">
                       <img
                         src={TOP_PHOTOS[1].image}
                         alt={TOP_PHOTOS[1].alt}
-                        className="w-full h-auto object-contain filter saturate-95 contrast-105 block rounded-lg"
+                        loading="lazy"
+                        className="w-full h-full object-cover filter saturate-95 contrast-105 block rounded-lg"
                       />
                     </div>
                   </BandageFrame>
@@ -235,11 +237,12 @@ export const PurposeHub: React.FC = () => {
                       className="w-full shadow-md group-hover:shadow-2xl transition-shadow duration-500"
                       innerClassName="p-2 sm:p-2.5 bg-white border border-[#E5E7EB] rounded-2xl"
                     >
-                      <div className="relative w-full overflow-hidden rounded-xl bg-white flex items-center justify-center">
+                      <div className="relative w-full aspect-[13/8] overflow-hidden rounded-xl bg-white flex items-center justify-center">
                         <img
                           src={item.image}
                           alt={item.alt}
-                          className="w-full h-auto object-contain filter saturate-95 contrast-105 block rounded-lg"
+                          loading="lazy"
+                          className="w-full h-full object-cover filter saturate-95 contrast-105 block rounded-lg"
                         />
                       </div>
                     </BandageFrame>
@@ -268,11 +271,12 @@ export const PurposeHub: React.FC = () => {
                     className="w-full shadow-2xl shadow-black/15 group-hover:shadow-2xl transition-shadow duration-500"
                     innerClassName="p-3 sm:p-4 bg-white border-2 border-[#C79A45]/50 rounded-2xl sm:rounded-3xl"
                   >
-                    <div className="relative w-full overflow-hidden rounded-xl sm:rounded-2xl bg-white flex items-center justify-center shadow-inner">
+                    <div className="relative w-full aspect-[13/8] overflow-hidden rounded-xl sm:rounded-2xl bg-white flex items-center justify-center shadow-inner">
                       <img
                         src={CENTER_HERO.image}
                         alt={CENTER_HERO.alt}
-                        className="w-full h-auto object-contain filter saturate-100 contrast-105 block rounded-lg sm:rounded-xl"
+                        loading="lazy"
+                        className="w-full h-full object-cover filter saturate-100 contrast-105 block rounded-lg sm:rounded-xl"
                       />
                     </div>
                   </BandageFrame>
@@ -302,11 +306,12 @@ export const PurposeHub: React.FC = () => {
                       className="w-full shadow-md group-hover:shadow-2xl transition-shadow duration-500"
                       innerClassName="p-2 sm:p-2.5 bg-white border border-[#E5E7EB] rounded-2xl"
                     >
-                      <div className="relative w-full overflow-hidden rounded-xl bg-white flex items-center justify-center">
+                      <div className="relative w-full aspect-[13/8] overflow-hidden rounded-xl bg-white flex items-center justify-center">
                         <img
                           src={item.image}
                           alt={item.alt}
-                          className="w-full h-auto object-contain filter saturate-95 contrast-105 block rounded-lg"
+                          loading="lazy"
+                          className="w-full h-full object-cover filter saturate-95 contrast-105 block rounded-lg"
                         />
                       </div>
                     </BandageFrame>
@@ -337,11 +342,12 @@ export const PurposeHub: React.FC = () => {
                     className="w-full shadow-md group-hover:shadow-2xl transition-shadow duration-500"
                     innerClassName="p-2 sm:p-2.5 bg-white border border-[#E5E7EB] rounded-2xl"
                   >
-                    <div className="relative w-full overflow-hidden rounded-xl bg-white flex items-center justify-center">
+                    <div className="relative w-full aspect-[13/8] overflow-hidden rounded-xl bg-white flex items-center justify-center">
                       <img
                         src={BOTTOM_PHOTOS[0].image}
                         alt={BOTTOM_PHOTOS[0].alt}
-                        className="w-full h-auto object-contain filter saturate-95 contrast-105 block rounded-lg"
+                        loading="lazy"
+                        className="w-full h-full object-cover filter saturate-95 contrast-105 block rounded-lg"
                       />
                     </div>
                   </BandageFrame>
@@ -368,11 +374,12 @@ export const PurposeHub: React.FC = () => {
                     className="w-full shadow-md group-hover:shadow-2xl transition-shadow duration-500"
                     innerClassName="p-2 sm:p-2.5 bg-white border border-[#E5E7EB] rounded-2xl"
                   >
-                    <div className="relative w-full overflow-hidden rounded-xl bg-white flex items-center justify-center">
+                    <div className="relative w-full aspect-[13/8] overflow-hidden rounded-xl bg-white flex items-center justify-center">
                       <img
                         src={BOTTOM_PHOTOS[1].image}
                         alt={BOTTOM_PHOTOS[1].alt}
-                        className="w-full h-auto object-contain filter saturate-95 contrast-105 block rounded-lg"
+                        loading="lazy"
+                        className="w-full h-full object-cover filter saturate-95 contrast-105 block rounded-lg"
                       />
                     </div>
                   </BandageFrame>
@@ -399,11 +406,12 @@ export const PurposeHub: React.FC = () => {
                     className="w-full shadow-md group-hover:shadow-2xl transition-shadow duration-500"
                     innerClassName="p-2 sm:p-2.5 bg-white border border-[#E5E7EB] rounded-2xl"
                   >
-                    <div className="relative w-full overflow-hidden rounded-xl bg-white flex items-center justify-center">
+                    <div className="relative w-full aspect-[13/8] overflow-hidden rounded-xl bg-white flex items-center justify-center">
                       <img
                         src={BOTTOM_PHOTOS[2].image}
                         alt={BOTTOM_PHOTOS[2].alt}
-                        className="w-full h-auto object-contain filter saturate-95 contrast-105 block rounded-lg"
+                        loading="lazy"
+                        className="w-full h-full object-cover filter saturate-95 contrast-105 block rounded-lg"
                       />
                     </div>
                   </BandageFrame>

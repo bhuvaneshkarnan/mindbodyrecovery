@@ -38,6 +38,7 @@ export const RealStories: React.FC = () => {
             <iframe
               src={`https://www.youtube.com/embed/${YOUTUBE_SHORTS_ID}?rel=0&modestbranding=1&playsinline=1`}
               title="Mind Body Recovery — Patient Review"
+              loading="lazy"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
               className="absolute inset-0 w-full h-full"

@@ -39,7 +39,7 @@ export const NeuronMobileSynapseGraph: React.FC<NeuronMobileSynapseGraphProps> =
 
   return (
     <svg
-      className={`absolute inset-0 w-full h-full pointer-events-none z-0 overflow-visible ${className}`}
+      className={`absolute inset-0 w-full h-full pointer-events-none z-0 overflow-hidden ${className}`}
       viewBox="0 0 360 520"
       preserveAspectRatio="none"
       fill="none"

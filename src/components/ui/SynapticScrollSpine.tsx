@@ -136,8 +136,8 @@ export const SynapticScrollSpine: React.FC = () => {
 
   const [paths, setPaths] = useState<{ p1: string; p2: string; p3: string }>({ p1: "", p2: "", p3: "" });
   const [nodes, setNodes] = useState<NodeData[]>([]);
-  const [svgHeight, setSvgHeight] = useState<number>(7500);
-  const [svgWidth, setSvgWidth] = useState<number>(1440);
+  const [svgHeight, setSvgHeight] = useState<number>(0);
+  const [svgWidth, setSvgWidth] = useState<number>(0);
 
   // Cached path geometry samples for 120fps instant lookup
   const pathDataRef = useRef<{
@@ -424,27 +424,36 @@ export const SynapticScrollSpine: React.FC = () => {
   useEffect(() => {
     buildNeuralNetwork();
 
-    const handleResize = () => {
-      buildNeuralNetwork();
-      setTimeout(() => {
-        sampleAllPaths();
-        updateScroll();
-      }, 50);
+    let resizeRaf: number;
+    let lastHeight = 0;
+    let lastWidth = 0;
+
+    const recompute = () => {
+      cancelAnimationFrame(resizeRaf);
+      resizeRaf = requestAnimationFrame(() => {
+        if (!containerRef.current?.parentElement) return;
+        const main = containerRef.current.parentElement;
+        const curH = main.scrollHeight;
+        const curW = window.innerWidth;
+        // Only re-build if dimensions actually changed significantly (> 8px)
+        if (Math.abs(curH - lastHeight) > 8 || Math.abs(curW - lastWidth) > 5) {
+          lastHeight = curH;
+          lastWidth = curW;
+          buildNeuralNetwork();
+        }
+      });
     };
 
-    window.addEventListener("resize", handleResize, { passive: true });
+    window.addEventListener("resize", recompute, { passive: true });
 
-    // Sample paths when ready
-    const t1 = setTimeout(() => {
-      buildNeuralNetwork();
-      sampleAllPaths();
-      updateScroll();
-    }, 150);
-
-    const t2 = setTimeout(() => {
-      sampleAllPaths();
-      updateScroll();
-    }, 600);
+    // Smoothly adapt to content layout changes without jumpy timeouts
+    let ro: ResizeObserver | null = null;
+    if (typeof ResizeObserver !== "undefined" && containerRef.current?.parentElement) {
+      ro = new ResizeObserver(() => {
+        recompute();
+      });
+      ro.observe(containerRef.current.parentElement);
+    }
 
     // Scroll listener: native window scroll + mobile touch
     const onScroll = () => {
@@ -468,16 +477,16 @@ export const SynapticScrollSpine: React.FC = () => {
     const stopLenisCheck = setTimeout(() => clearInterval(checkLenis), 3000);
 
     return () => {
-      window.removeEventListener("resize", handleResize);
+      cancelAnimationFrame(resizeRaf);
+      window.removeEventListener("resize", recompute);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("touchmove", onScroll);
+      if (ro) ro.disconnect();
       if (lenisUnsub) lenisUnsub();
       clearInterval(checkLenis);
       clearTimeout(stopLenisCheck);
-      clearTimeout(t1);
-      clearTimeout(t2);
     };
-  }, [buildNeuralNetwork, sampleAllPaths, updateScroll]);
+  }, [buildNeuralNetwork, updateScroll]);
 
   // When paths change, sample them and update scroll
   useEffect(() => {
@@ -491,7 +500,7 @@ export const SynapticScrollSpine: React.FC = () => {
     return (
       <svg
         ref={containerRef}
-        className="absolute inset-0 w-full pointer-events-none z-[5]"
+        className="absolute inset-0 w-full h-full pointer-events-none z-[5] overflow-hidden"
         aria-hidden="true"
       />
     );
@@ -501,8 +510,8 @@ export const SynapticScrollSpine: React.FC = () => {
     <svg
       ref={containerRef}
       // z-[5] positions safely BELOW all content & image cards (which sit at z-10/z-20)
-      className="absolute inset-0 w-full pointer-events-none z-[5] overflow-visible"
-      style={{ height: `${svgHeight}px`, width: `${svgWidth}px` }}
+      className="absolute inset-0 w-full h-full pointer-events-none z-[5] overflow-hidden"
+      style={{ width: "100%", height: svgHeight ? `${svgHeight}px` : "100%" }}
       aria-hidden="true"
     >
       <defs>

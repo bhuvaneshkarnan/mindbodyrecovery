@@ -25,13 +25,14 @@ export default function HomePage() {
   // Initialize Lenis smooth scroll with luxurious fluid momentum
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 0.6,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -14 * t)),
+      duration: 0.8,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -12 * t)),
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
       wheelMultiplier: 1.0,
-      touchMultiplier: 1.4,
+      syncTouch: true,
+      touchMultiplier: 1.0,
       infinite: false,
     });
 

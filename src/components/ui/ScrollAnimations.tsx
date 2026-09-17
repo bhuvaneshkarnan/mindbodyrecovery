@@ -33,7 +33,7 @@ export const FadeUp: React.FC<FadeUpProps> = ({
   <motion.div
     initial={{ opacity: 0, y: distance }}
     whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once, margin: "-40px" }}
+    viewport={{ once, margin: "0px" }}
     transition={{ duration, delay, ease: EASE_SMOOTH }}
     className={className}
   >
@@ -67,7 +67,7 @@ export const StaggerReveal: React.FC<StaggerProps> = ({
       variants={containerVariants}
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, margin: "-40px" }}
+      viewport={{ once: true, margin: "0px" }}
       className={className}
     >
       {React.Children.map(children, (child) => (
@@ -110,7 +110,7 @@ export const ClipReveal: React.FC<ClipRevealProps> = ({
     <motion.div
       initial={{ clipPath: clips[direction].hidden, opacity: 0.2 }}
       whileInView={{ clipPath: clips[direction].show, opacity: 1 }}
-      viewport={{ once: true, margin: "-40px" }}
+      viewport={{ once: true, margin: "0px" }}
       transition={{ duration, delay, ease: EASE_SMOOTH }}
       className={className}
     >
@@ -161,7 +161,7 @@ export const ZoomReveal: React.FC<ZoomRevealProps> = ({
     <motion.div
       initial={{ scale: 1.08, opacity: 0 }}
       whileInView={{ scale: 1, opacity: 1 }}
-      viewport={{ once: true, margin: "-40px" }}
+      viewport={{ once: true, margin: "0px" }}
       transition={{ duration, delay, ease: EASE_SMOOTH }}
     >
       {children}
@@ -207,7 +207,7 @@ export const SplitText: React.FC<SplitTextProps> = ({
         variants={container}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true, margin: "-40px" }}
+        viewport={{ once: true, margin: "0px" }}
       >
         {words.map((w, i) => (
           <motion.span
@@ -242,7 +242,7 @@ export const CountUp: React.FC<CountUpProps> = ({
   className = "",
 }) => {
   const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-30px" });
+  const isInView = useInView(ref, { once: true, margin: "0px" });
   const [count, setCount] = React.useState(0);
 
   React.useEffect(() => {
@@ -281,12 +281,12 @@ export const SlideIn: React.FC<SlideInProps> = ({
   delay = 0,
   duration = 0.95,
   className = "",
-  distance = 32,
+  distance = 20,
 }) => (
   <motion.div
     initial={{ opacity: 0, x: from === "left" ? -distance : distance }}
     whileInView={{ opacity: 1, x: 0 }}
-    viewport={{ once: true, margin: "-40px" }}
+    viewport={{ once: true, margin: "0px" }}
     transition={{ duration, delay, ease: EASE_SMOOTH }}
     className={className}
   >
