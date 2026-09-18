@@ -26,15 +26,6 @@ export const MeetDoctor: React.FC<MeetDoctorProps> = ({ onOpenAssessment }) => {
               decoding="async"
               className="w-full h-auto object-cover select-none transition-transform duration-700 group-hover:scale-[1.01]"
             />
-
-            {/* Interactive Clickable Hotspot on 'Explore my services' Pill Button */}
-            <a
-              href="#relax"
-              className="absolute bottom-[4%] sm:bottom-[5%] left-[2%] sm:left-[3%] w-[28%] sm:w-[25%] md:w-[22%] h-[12%] sm:h-[13%] rounded-full cursor-pointer transition-all duration-300 hover:ring-2 hover:ring-[#12140D]/40 active:scale-95 focus:outline-none"
-              aria-label="Explore my services"
-            >
-              <span className="sr-only">Explore my services</span>
-            </a>
           </div>
         </BlurReveal>
 
