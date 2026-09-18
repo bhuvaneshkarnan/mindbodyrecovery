@@ -80,10 +80,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAssessment }) => {
 
           <button
             onClick={onOpenAssessment}
-            className="px-5 py-2.5 bg-[#C79A45] hover:bg-[#D4A752] text-[#12140D] text-xs uppercase tracking-widest font-semibold transition-all duration-300 flex items-center space-x-2 rounded-[1px] shadow-lg active:scale-95"
+            className="px-4 py-2 bg-white hover:bg-[#F6F1E4] text-[#12140D] text-xs uppercase tracking-wider font-semibold transition-all duration-300 flex items-center gap-2 rounded-xl shadow-md hover:shadow-lg active:scale-95 group border border-white"
           >
-            <Calendar size={14} />
-            <span>Book Your Assessment</span>
+            <Calendar size={14} className="text-[#12140D] transition-transform duration-300 group-hover:scale-110" />
+            <span>Book Assessment</span>
+            <span className="font-sans text-xs transition-transform duration-300 group-hover:translate-x-0.5">&rarr;</span>
           </button>
         </div>
 
@@ -91,9 +92,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAssessment }) => {
         <div className="flex md:hidden items-center space-x-2">
           <button
             onClick={onOpenAssessment}
-            className="px-3 py-1.5 bg-[#C79A45] text-[#12140D] text-[11px] uppercase tracking-wider font-semibold rounded-[1px]"
+            className="px-3 py-1.5 bg-white text-[#12140D] text-[11px] uppercase tracking-wider font-semibold rounded-lg shadow-sm active:scale-95 border border-white inline-flex items-center gap-1"
           >
-            Assess
+            <span>Assess</span>
+            <span className="text-[10px]">&rarr;</span>
           </button>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -126,10 +128,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAssessment }) => {
                 setMobileMenuOpen(false);
                 onOpenAssessment();
               }}
-              className="w-full py-3 bg-[#C79A45] text-[#12140D] text-xs uppercase tracking-widest font-semibold text-center flex items-center justify-center space-x-2 rounded-[1px]"
+              className="w-full py-3 bg-white hover:bg-[#F6F1E4] text-[#12140D] text-xs uppercase tracking-wider font-semibold text-center flex items-center justify-center gap-2 rounded-xl shadow-md active:scale-95 border border-white group"
             >
               <Calendar size={15} />
               <span>Book Your Assessment</span>
+              <span className="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
             </button>
             <a
               href={`tel:${clinicData.phone}`}

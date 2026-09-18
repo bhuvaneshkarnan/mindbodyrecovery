@@ -70,10 +70,11 @@ export const MeetDoctor: React.FC<MeetDoctorProps> = ({ onOpenAssessment }) => {
             <div className="pt-4">
               <button
                 onClick={onOpenAssessment}
-                className="px-8 py-4 bg-[#C79A45] hover:bg-[#D4A752] text-[#12140D] font-semibold text-xs uppercase tracking-widest rounded-lg transition-all duration-300 flex items-center space-x-2.5 shadow-md active:scale-95"
+                className="inline-flex items-center gap-2.5 px-5 py-2.5 sm:px-6 sm:py-3 bg-[#C79A45] hover:bg-[#D4A752] text-[#12140D] font-semibold text-xs uppercase tracking-wider rounded-xl transition-all duration-300 shadow-md active:scale-95 group"
               >
-                <Calendar size={16} />
+                <Calendar size={15} className="transition-transform duration-300 group-hover:scale-110" />
                 <span>Book Your Assessment</span>
+                <span className="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
               </button>
             </div>
           </motion.div>

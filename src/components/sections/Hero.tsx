@@ -92,21 +92,23 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAssessment }) => {
             &ldquo;{clinicData.hero.subhead}&rdquo;
           </p>
 
-          {/* Primary CTA Buttons */}
-          <div className="hero-cta-group flex flex-col sm:flex-row items-stretch sm:items-center justify-start gap-4 sm:gap-6">
+          {/* Primary CTA Buttons (Clean, Compact, Rounded-xl style matching mockup) */}
+          <div className="hero-cta-group flex flex-row flex-wrap items-center justify-start gap-3 sm:gap-4">
             <button
               onClick={onOpenAssessment}
-              className="px-8 py-4 bg-[#C79A45] hover:bg-[#D4A752] text-[#12140D] font-semibold text-sm sm:text-base tracking-wide rounded-[1px] transition-all duration-300 flex items-center justify-center space-x-2.5 shadow-2xl active:scale-[0.98]"
+              className="inline-flex items-center justify-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 bg-white hover:bg-[#F6F1E4] text-[#12140D] font-semibold text-xs sm:text-sm uppercase tracking-wider rounded-xl transition-all duration-300 shadow-xl hover:shadow-[0_8px_24px_rgba(255,255,255,0.22)] active:scale-[0.97] group border border-white"
             >
-              <Calendar size={18} />
+              <Calendar size={15} className="text-[#12140D] transition-transform duration-300 group-hover:scale-110 shrink-0" />
               <span>{clinicData.hero.cta}</span>
+              <span className="font-sans text-sm transition-transform duration-300 group-hover:translate-x-1 shrink-0">&rarr;</span>
             </button>
 
             <a
               href="#purpose"
-              className="text-xs uppercase tracking-widest text-[#F6F1E4] hover:text-[#C79A45] py-3 px-4 transition-colors text-center sm:text-left drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
+              className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 sm:px-5 sm:py-3 rounded-xl border border-[#F6F1E4]/25 hover:border-white/60 bg-white/5 hover:bg-white/10 text-[#F6F1E4] hover:text-white text-xs sm:text-sm uppercase tracking-wider font-medium transition-all duration-300 backdrop-blur-md active:scale-[0.97] group"
             >
-              Explore The Philosophy
+              <span>Explore Philosophy</span>
+              <span className="text-xs transition-transform duration-300 group-hover:translate-x-1 opacity-70">&rarr;</span>
             </a>
           </div>
         </div>

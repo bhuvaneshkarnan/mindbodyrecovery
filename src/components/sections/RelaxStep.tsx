@@ -79,9 +79,10 @@ export const RelaxStep: React.FC<RelaxStepProps> = ({ onOpenAssessment }) => {
               <div>
                 <button
                   onClick={onOpenAssessment}
-                  className="px-6 py-3 rounded-lg bg-[#C79A45] hover:bg-[#D4A752] text-[#12140D] text-xs uppercase tracking-widest font-semibold transition-all duration-300 shadow-lg active:scale-95"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-xl bg-[#C79A45] hover:bg-[#D4A752] text-[#12140D] text-xs uppercase tracking-wider font-semibold transition-all duration-300 shadow-md active:scale-95 group"
                 >
-                  {clinicData.relax.cta}
+                  <span>{clinicData.relax.cta}</span>
+                  <span className="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
                 </button>
               </div>
             </FadeUp>

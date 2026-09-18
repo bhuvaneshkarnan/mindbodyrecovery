@@ -79,7 +79,7 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
           transition={{ type: "spring", duration: 0.5 }}
-          className="relative w-full max-w-lg bg-[#1B1E15] border border-[#C79A45]/40 rounded-[2px] p-6 sm:p-8 text-[#F6F1E4] shadow-2xl z-10 my-8"
+          className="relative w-full max-w-lg bg-[#1B1E15] border border-[#C79A45]/40 rounded-2xl p-6 sm:p-8 text-[#F6F1E4] shadow-2xl z-10 my-8"
         >
           {/* Close Button */}
           <button
@@ -124,7 +124,7 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
                         key={item}
                         type="button"
                         onClick={() => setSelectedConcern(item)}
-                        className={`w-full p-3.5 rounded-[1px] text-left text-sm font-sans flex items-center justify-between border transition-all ${
+                        className={`w-full p-3.5 rounded-xl text-left text-sm font-sans flex items-center justify-between border transition-all ${
                           selectedConcern === item
                             ? "bg-[#12140D] border-[#C79A45] text-[#C79A45] font-medium"
                             : "bg-[#12140D]/60 border-[#F6F1E4]/10 text-[#F6F1E4]/80 hover:bg-[#12140D]"
@@ -139,9 +139,10 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
                   <div className="pt-6">
                     <button
                       onClick={handleNext}
-                      className="w-full py-3.5 bg-[#C79A45] hover:bg-[#D4A752] text-[#12140D] text-xs uppercase tracking-widest font-semibold rounded-[1px] transition-all flex items-center justify-center space-x-2"
+                      className="group w-full py-3 bg-[#C79A45] hover:bg-[#D4A752] text-[#12140D] text-xs uppercase tracking-widest font-semibold rounded-xl transition-all shadow-md active:scale-[0.98] flex items-center justify-center space-x-2"
                     >
                       <span>Continue</span>
+                      <span className="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
                     </button>
                   </div>
                 </div>
@@ -159,7 +160,7 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
                         key={opt}
                         type="button"
                         onClick={() => setSelectedDuration(opt)}
-                        className={`w-full p-3.5 rounded-[1px] text-left text-sm font-sans flex items-center justify-between border transition-all ${
+                        className={`w-full p-3.5 rounded-xl text-left text-sm font-sans flex items-center justify-between border transition-all ${
                           selectedDuration === opt
                             ? "bg-[#12140D] border-[#C79A45] text-[#C79A45] font-medium"
                             : "bg-[#12140D]/60 border-[#F6F1E4]/10 text-[#F6F1E4]/80 hover:bg-[#12140D]"
@@ -174,16 +175,17 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
                   <div className="pt-6 flex items-center space-x-3">
                     <button
                       onClick={handleBack}
-                      className="px-4 py-3.5 border border-[#F6F1E4]/20 text-[#F6F1E4]/70 hover:text-[#F6F1E4] text-xs uppercase tracking-widest font-medium rounded-[1px] flex items-center space-x-1"
+                      className="px-4 py-3 border border-[#F6F1E4]/20 text-[#F6F1E4]/70 hover:text-[#F6F1E4] text-xs uppercase tracking-widest font-medium rounded-xl flex items-center space-x-1 transition-colors"
                     >
                       <ArrowLeft size={14} />
                       <span>Back</span>
                     </button>
                     <button
                       onClick={handleNext}
-                      className="flex-1 py-3.5 bg-[#C79A45] hover:bg-[#D4A752] text-[#12140D] text-xs uppercase tracking-widest font-semibold rounded-[1px] transition-all flex items-center justify-center space-x-2"
+                      className="group flex-1 py-3 bg-[#C79A45] hover:bg-[#D4A752] text-[#12140D] text-xs uppercase tracking-widest font-semibold rounded-xl transition-all shadow-md active:scale-[0.98] flex items-center justify-center space-x-2"
                     >
                       <span>Continue</span>
+                      <span className="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
                     </button>
                   </div>
                 </div>
@@ -196,7 +198,7 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
                     Where should we confirm your appointment?
                   </p>
 
-                  <div className="p-3 bg-[#12140D] border border-[#F6F1E4]/10 rounded-[1px] text-xs text-[#F6F1E4]/70 space-y-1 mb-2">
+                  <div className="p-3.5 bg-[#12140D] border border-[#F6F1E4]/10 rounded-xl text-xs text-[#F6F1E4]/70 space-y-1 mb-2">
                     <p><span className="text-[#C79A45] font-medium">Concern:</span> {selectedConcern}</p>
                     <p><span className="text-[#C79A45] font-medium">Duration:</span> {selectedDuration}</p>
                   </div>
@@ -211,7 +213,7 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
                       value={fullName}
                       onChange={(e) => setFullName(e.target.value)}
                       placeholder="e.g. Ramesh Krishnan"
-                      className="w-full px-3.5 py-2.5 bg-[#12140D] border border-[#F6F1E4]/20 text-[#F6F1E4] text-sm rounded-[1px] focus:outline-none focus:border-[#C79A45]"
+                      className="w-full px-3.5 py-2.5 bg-[#12140D] border border-[#F6F1E4]/20 text-[#F6F1E4] text-sm rounded-xl focus:outline-none focus:border-[#C79A45]"
                     />
                   </div>
 
@@ -225,7 +227,7 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       placeholder="+91 98765 43210"
-                      className="w-full px-3.5 py-2.5 bg-[#12140D] border border-[#F6F1E4]/20 text-[#F6F1E4] text-sm rounded-[1px] focus:outline-none focus:border-[#C79A45]"
+                      className="w-full px-3.5 py-2.5 bg-[#12140D] border border-[#F6F1E4]/20 text-[#F6F1E4] text-sm rounded-xl focus:outline-none focus:border-[#C79A45]"
                     />
                   </div>
 
@@ -233,17 +235,18 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
                     <button
                       type="button"
                       onClick={handleBack}
-                      className="px-4 py-3.5 border border-[#F6F1E4]/20 text-[#F6F1E4]/70 hover:text-[#F6F1E4] text-xs uppercase tracking-widest font-medium rounded-[1px] flex items-center space-x-1"
+                      className="px-4 py-3 border border-[#F6F1E4]/20 text-[#F6F1E4]/70 hover:text-[#F6F1E4] text-xs uppercase tracking-widest font-medium rounded-xl flex items-center space-x-1 transition-colors"
                     >
                       <ArrowLeft size={14} />
                       <span>Back</span>
                     </button>
                     <button
                       type="submit"
-                      className="flex-1 py-3.5 bg-[#C79A45] hover:bg-[#D4A752] text-[#12140D] text-xs uppercase tracking-widest font-semibold rounded-[1px] transition-all flex items-center justify-center space-x-2"
+                      className="group flex-1 py-3 bg-[#C79A45] hover:bg-[#D4A752] text-[#12140D] text-xs uppercase tracking-widest font-semibold rounded-xl transition-all shadow-md active:scale-[0.98] flex items-center justify-center space-x-2"
                     >
                       <Calendar size={14} />
                       <span>Confirm Assessment</span>
+                      <span className="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
                     </button>
                   </div>
                 </form>
@@ -267,7 +270,7 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
               <div className="pt-4">
                 <button
                   onClick={handleResetAndClose}
-                  className="px-6 py-2.5 border border-[#C79A45]/50 text-[#C79A45] hover:bg-[#C79A45] hover:text-[#12140D] text-xs uppercase tracking-widest font-medium transition-colors rounded-[1px]"
+                  className="px-6 py-2.5 border border-[#C79A45]/50 text-[#C79A45] hover:bg-[#C79A45] hover:text-[#12140D] text-xs uppercase tracking-widest font-medium transition-colors rounded-xl"
                 >
                   Close Window
                 </button>

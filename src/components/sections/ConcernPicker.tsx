@@ -183,9 +183,10 @@ export const ConcernPicker: React.FC<ConcernPickerProps> = ({ onSelectConcern })
         <FadeUp delay={0.2} className="flex flex-col items-center justify-center pt-4">
           <button
             onClick={() => onSelectConcern(activeCard.title)}
-            className="px-8 py-4 bg-[#C79A45] hover:bg-[#D4A752] text-[#12140D] font-semibold text-xs uppercase tracking-widest rounded-lg transition-all duration-300 shadow-md active:scale-95"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-[#C79A45] hover:bg-[#D4A752] text-[#12140D] font-semibold text-xs uppercase tracking-wider rounded-xl transition-all duration-300 shadow-md active:scale-95 group"
           >
-            {clinicData.concerns.cta}
+            <span>{clinicData.concerns.cta}</span>
+            <span className="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
           </button>
         </FadeUp>
 

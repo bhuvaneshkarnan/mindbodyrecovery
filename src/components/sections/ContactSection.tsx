@@ -110,9 +110,10 @@ export const ContactSection: React.FC<ContactSectionProps> = () => {
 
                   <button
                     type="submit"
-                    className="w-full py-4 bg-[#C79A45] hover:bg-[#D4A752] text-[#12140D] font-semibold text-xs uppercase tracking-widest rounded-md transition-all duration-300 shadow-md active:scale-95"
+                    className="w-full py-3.5 bg-[#C79A45] hover:bg-[#D4A752] text-[#12140D] font-semibold text-xs uppercase tracking-wider rounded-xl transition-all duration-300 shadow-md active:scale-95 inline-flex items-center justify-center gap-2 group"
                   >
-                    Submit Inquiry
+                    <span>Submit Inquiry</span>
+                    <span className="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
                   </button>
                 </form>
               ) : (
