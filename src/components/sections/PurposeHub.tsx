@@ -127,21 +127,10 @@ export const PurposeHub: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
         {/* Editorial Section Header */}
-        <BlurReveal className="text-center max-w-4xl mx-auto mb-16 lg:mb-20 space-y-4 relative" blur={10}>
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#C79A45]/30 shadow-sm">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#C79A45] animate-pulse" />
-            <span className="text-xs uppercase tracking-widest text-[#8C5B41] font-semibold">
-              OUR PURPOSE IN ACTION
-            </span>
-          </div>
-
+        <BlurReveal className="text-center max-w-4xl mx-auto mb-16 lg:mb-20 relative" blur={10}>
           <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl text-[#231F19] font-semibold italic tracking-tight leading-[1.12]">
             &ldquo;The hands that treat you also train the hands of others&rdquo;
           </h2>
-
-          <p className="font-sans text-base sm:text-lg text-[#231F19]/70 font-light max-w-xl mx-auto">
-            Knowledge shared. Hands empowered. Lives transformed.
-          </p>
         </BlurReveal>
 
         {/* Scattered Organic Constellation Layout */}

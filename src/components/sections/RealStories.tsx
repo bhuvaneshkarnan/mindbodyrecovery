@@ -79,16 +79,10 @@ export const RealStories: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
 
         {/* Header */}
-        <BlurReveal className="text-center max-w-3xl mx-auto mb-16 space-y-3 relative" blur={10}>
-          <span className="text-xs uppercase tracking-widest text-[#8C5B41] font-semibold block">
-            {clinicData.stories.eyebrow}
-          </span>
+        <BlurReveal className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 relative" blur={10}>
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl text-[#231F19] font-semibold tracking-tight leading-[1.08]">
             {clinicData.stories.headline}
           </h2>
-          <p className="font-sans text-lg sm:text-xl text-[#231F19]/80 max-w-xl mx-auto font-light">
-            {clinicData.stories.subhead}
-          </p>
         </BlurReveal>
 
         {/* YouTube Shorts Embed — Centred portrait 9:16 with zero-network click-to-play Facade */}
@@ -97,11 +91,6 @@ export const RealStories: React.FC = () => {
             <YouTubeFacade />
           </ZoomReveal>
         </div>
-
-        {/* Caption beneath embed */}
-        <p className="text-center text-xs text-[#231F19]/50 font-sans mt-6 tracking-wide">
-          Real patient experience — Mind Body Recovery
-        </p>
 
       </div>
     </section>
