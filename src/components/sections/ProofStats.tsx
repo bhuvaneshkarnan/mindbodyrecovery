@@ -4,7 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { clinicData } from "@/data/clinicData";
 import { Users, Award, Heart } from "lucide-react";
-import { ZoomReveal, SlideIn, FadeUp } from "@/components/ui/ScrollAnimations";
+import { ZoomReveal, SlideIn, FadeUp, BlurReveal } from "@/components/ui/ScrollAnimations";
 
 export const ProofStats: React.FC = () => {
   return (
@@ -14,9 +14,11 @@ export const ProofStats: React.FC = () => {
         {/* Top Header Split: Headline & Narrative (No Quotes) */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16 pb-8 border-b border-[#F6F1E4]/10">
           <SlideIn from="left" className="max-w-2xl relative">
-            <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl text-[#F6F1E4] font-semibold tracking-tight leading-[1.08]">
-              {clinicData.proofStats.headline}
-            </h2>
+            <BlurReveal delay={0.05}>
+              <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl text-[#F6F1E4] font-semibold tracking-tight leading-[1.08]">
+                {clinicData.proofStats.headline}
+              </h2>
+            </BlurReveal>
           </SlideIn>
 
           <SlideIn from="right" delay={0.15} className="max-w-md">

@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { clinicData } from "@/data/clinicData";
 import { Moon, Brain, Zap, Activity } from "lucide-react";
 import clsx from "clsx";
-import { FadeUp, StaggerReveal } from "@/components/ui/ScrollAnimations";
+import { FadeUp, StaggerReveal, BlurReveal } from "@/components/ui/ScrollAnimations";
 
 interface ConcernPickerProps {
   onSelectConcern: (concernTitle: string) => void;
@@ -35,14 +35,14 @@ export const ConcernPicker: React.FC<ConcernPickerProps> = ({ onSelectConcern })
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
         
         {/* Section Header */}
-        <FadeUp className="text-center max-w-3xl mx-auto mb-16">
+        <BlurReveal className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl text-[#231F19] font-semibold tracking-tight mb-4 leading-[1.1]">
             {clinicData.concerns.lead}
           </h2>
           <p className="font-sans text-xl sm:text-2xl text-[#231F19]/80 font-light">
             {clinicData.concerns.question}
           </p>
-        </FadeUp>
+        </BlurReveal>
 
         {/* 4 Concern Cards with Interconnecting Biological Synapse */}
         <div className="relative mb-12">

@@ -7,7 +7,7 @@ import { NeuronMobileSynapseGraph } from "@/components/ui/NeuronMobileSynapseGra
 import { NeuronHeadingConnector } from "@/components/ui/NeuronHeadingConnector";
 import { ShapedImageNode } from "@/components/ui/ShapedImageNode";
 import { clinicData } from "@/data/clinicData";
-import { FadeUp, SlideIn, ZoomReveal } from "@/components/ui/ScrollAnimations";
+import { FadeUp, SlideIn, ZoomReveal, BlurReveal } from "@/components/ui/ScrollAnimations";
 
 interface RelaxStepProps {
   onOpenAssessment: () => void;
@@ -47,7 +47,7 @@ export const RelaxStep: React.FC<RelaxStepProps> = ({ onOpenAssessment }) => {
           {/* Left Column: Narrative */}
           <SlideIn from="left" className="lg:col-span-4 space-y-6">
             <div>
-              <FadeUp delay={0.05}>
+              <BlurReveal delay={0.05}>
                 <div className="flex items-center gap-3.5 mb-2 relative">
                   <h2 className="font-display text-5xl sm:text-6xl text-[#F6F1E4] font-semibold tracking-tight leading-[0.95]">
                     RELAX
@@ -66,7 +66,7 @@ export const RelaxStep: React.FC<RelaxStepProps> = ({ onOpenAssessment }) => {
                 <p className="font-sans text-2xl sm:text-3xl text-[#F6F1E4] font-light leading-snug">
                   {clinicData.relax.headline}
                 </p>
-              </FadeUp>
+              </BlurReveal>
             </div>
 
             <FadeUp delay={0.15}>

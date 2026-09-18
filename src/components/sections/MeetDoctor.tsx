@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { clinicData } from "@/data/clinicData";
 import { BandageFrame } from "@/components/ui/BandageFrame";
 import { Calendar } from "lucide-react";
-import { ClipReveal, FadeUp, StaggerReveal } from "@/components/ui/ScrollAnimations";
+import { ClipReveal, FadeUp, StaggerReveal, BlurReveal } from "@/components/ui/ScrollAnimations";
 
 interface MeetDoctorProps {
   onOpenAssessment: () => void;
@@ -48,14 +48,14 @@ export const MeetDoctor: React.FC<MeetDoctorProps> = ({ onOpenAssessment }) => {
             transition={{ duration: 0.8 }}
             className="lg:col-span-7 space-y-6 relative z-20"
           >
-            <div>
+            <BlurReveal delay={0.1}>
               <h2 className="font-display text-4xl sm:text-5xl text-[#231F19] font-semibold tracking-tight mb-2">
                 {clinicData.doctor.name}
               </h2>
               <span className="text-xs uppercase tracking-widest text-[#8C5B41] font-semibold block">
                 {clinicData.doctor.title}
               </span>
-            </div>
+            </BlurReveal>
 
             {/* Sourced Bio Paragraphs */}
             <div className="space-y-4 text-base sm:text-lg text-[#231F19]/85 font-sans leading-relaxed">

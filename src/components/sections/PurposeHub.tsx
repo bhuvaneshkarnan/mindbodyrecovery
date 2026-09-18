@@ -3,7 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { BandageFrame } from "@/components/ui/BandageFrame";
-import { FadeUp } from "@/components/ui/ScrollAnimations";
+import { FadeUp, BlurReveal } from "@/components/ui/ScrollAnimations";
 
 // Center Featured Hero Photo: Dr. Sameer teaching at the whiteboard (media_1789555688592)
 const CENTER_HERO = {
@@ -127,7 +127,7 @@ export const PurposeHub: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
         {/* Editorial Section Header */}
-        <FadeUp className="text-center max-w-4xl mx-auto mb-16 lg:mb-20 space-y-4 relative">
+        <BlurReveal className="text-center max-w-4xl mx-auto mb-16 lg:mb-20 space-y-4 relative" blur={10}>
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#C79A45]/30 shadow-sm">
             <span className="w-1.5 h-1.5 rounded-full bg-[#C79A45] animate-pulse" />
             <span className="text-xs uppercase tracking-widest text-[#8C5B41] font-semibold">
@@ -142,7 +142,7 @@ export const PurposeHub: React.FC = () => {
           <p className="font-sans text-base sm:text-lg text-[#231F19]/70 font-light max-w-xl mx-auto">
             Knowledge shared. Hands empowered. Lives transformed.
           </p>
-        </FadeUp>
+        </BlurReveal>
 
         {/* Scattered Organic Constellation Layout */}
         <div className="relative w-full">
@@ -172,6 +172,7 @@ export const PurposeHub: React.FC = () => {
                         src={TOP_PHOTOS[0].image}
                         alt={TOP_PHOTOS[0].alt}
                         loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-cover filter saturate-95 contrast-105 block rounded-lg"
                       />
                     </div>
@@ -204,6 +205,7 @@ export const PurposeHub: React.FC = () => {
                         src={TOP_PHOTOS[1].image}
                         alt={TOP_PHOTOS[1].alt}
                         loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-cover filter saturate-95 contrast-105 block rounded-lg"
                       />
                     </div>
@@ -242,6 +244,7 @@ export const PurposeHub: React.FC = () => {
                           src={item.image}
                           alt={item.alt}
                           loading="lazy"
+                        decoding="async"
                           className="w-full h-full object-cover filter saturate-95 contrast-105 block rounded-lg"
                         />
                       </div>
@@ -276,6 +279,7 @@ export const PurposeHub: React.FC = () => {
                         src={CENTER_HERO.image}
                         alt={CENTER_HERO.alt}
                         loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-cover filter saturate-100 contrast-105 block rounded-lg sm:rounded-xl"
                       />
                     </div>
@@ -311,6 +315,7 @@ export const PurposeHub: React.FC = () => {
                           src={item.image}
                           alt={item.alt}
                           loading="lazy"
+                        decoding="async"
                           className="w-full h-full object-cover filter saturate-95 contrast-105 block rounded-lg"
                         />
                       </div>
@@ -347,6 +352,7 @@ export const PurposeHub: React.FC = () => {
                         src={BOTTOM_PHOTOS[0].image}
                         alt={BOTTOM_PHOTOS[0].alt}
                         loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-cover filter saturate-95 contrast-105 block rounded-lg"
                       />
                     </div>
@@ -379,6 +385,7 @@ export const PurposeHub: React.FC = () => {
                         src={BOTTOM_PHOTOS[1].image}
                         alt={BOTTOM_PHOTOS[1].alt}
                         loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-cover filter saturate-95 contrast-105 block rounded-lg"
                       />
                     </div>
@@ -411,6 +418,7 @@ export const PurposeHub: React.FC = () => {
                         src={BOTTOM_PHOTOS[2].image}
                         alt={BOTTOM_PHOTOS[2].alt}
                         loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-cover filter saturate-95 contrast-105 block rounded-lg"
                       />
                     </div>

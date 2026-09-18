@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { clinicData } from "@/data/clinicData";
 import { Phone, Mail, MapPin, CheckCircle2, Navigation } from "lucide-react";
-import { SlideIn, FadeUp } from "@/components/ui/ScrollAnimations";
+import { SlideIn, FadeUp, BlurReveal } from "@/components/ui/ScrollAnimations";
 
 interface ContactSectionProps {
   onOpenAssessment?: () => void;
@@ -36,9 +36,11 @@ export const ContactSection: React.FC<ContactSectionProps> = () => {
           {/* Intake Form Content in front of neural spine (z-10) */}
           <SlideIn from="left" className="relative z-10 flex flex-col justify-between h-full text-[#231F19]">
             <div>
-              <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl text-[#231F19] font-semibold tracking-tight mb-4 leading-[1.1]">
-                Ready to begin?
-              </h2>
+              <BlurReveal delay={0.08}>
+                <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl text-[#231F19] font-semibold tracking-tight mb-4 leading-[1.1]">
+                  Ready to begin?
+                </h2>
+              </BlurReveal>
 
               <p className="text-sm sm:text-base text-[#231F19]/80 font-sans mb-8 leading-relaxed font-light">
                 Schedule your assessment with Dr. Sameer&apos;s team in Chennai.

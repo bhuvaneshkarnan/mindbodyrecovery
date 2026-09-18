@@ -320,3 +320,61 @@ export const ScrollProgressBar: React.FC = () => {
     />
   );
 };
+
+/* ─── 11. BLUR REVEAL (Cinematic dreamy haze-to-sharp reveal) ─────── */
+interface BlurRevealProps {
+  children: React.ReactNode;
+  delay?: number;
+  duration?: number;
+  blur?: number;
+  y?: number;
+  className?: string;
+  once?: boolean;
+}
+export const BlurReveal: React.FC<BlurRevealProps> = ({
+  children,
+  delay = 0,
+  duration = 0.6,
+  blur = 8,
+  y = 16,
+  className = "",
+  once = true,
+}) => (
+  <motion.div
+    initial={{ opacity: 0.2, filter: `blur(${blur}px)`, y }}
+    whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+    viewport={{ once, margin: "140px 0px" }}
+    transition={{ duration: Math.min(duration, 0.65), delay: Math.min(delay, 0.1), ease: EASE_SMOOTH }}
+    className={className}
+    style={{ willChange: "filter, opacity, transform" }}
+  >
+    {children}
+  </motion.div>
+);
+
+/* ─── 12. INTERACTIVE 3D TILT CARD (Awwwards-grade subtle magnetic depth) ─── */
+interface InteractiveTiltProps {
+  children: React.ReactNode;
+  className?: string;
+}
+export const InteractiveTilt: React.FC<InteractiveTiltProps> = ({ children, className = "" }) => (
+  <motion.div
+    whileHover={{ y: -6, scale: 1.015, transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] } }}
+    whileTap={{ scale: 0.98 }}
+    className={`transition-shadow duration-500 hover:shadow-[0_12px_32px_rgba(199,154,69,0.18)] ${className}`}
+  >
+    {children}
+  </motion.div>
+);
+
+/* ─── 13. PULSE AURA (Gentle bioluminescent energetic breathing ring) ─── */
+interface PulseAuraProps {
+  children: React.ReactNode;
+  className?: string;
+}
+export const PulseAura: React.FC<PulseAuraProps> = ({ children, className = "" }) => (
+  <div className={`relative group ${className}`}>
+    <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-[#C79A45]/30 to-[#93A579]/30 blur-md opacity-40 group-hover:opacity-100 group-hover:blur-lg transition-all duration-700 animate-pulse pointer-events-none" />
+    <div className="relative">{children}</div>
+  </div>
+);

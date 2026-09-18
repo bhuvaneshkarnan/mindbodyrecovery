@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { clinicData } from "@/data/clinicData";
-import { FadeUp, ZoomReveal } from "@/components/ui/ScrollAnimations";
+import { FadeUp, ZoomReveal, BlurReveal } from "@/components/ui/ScrollAnimations";
 
 const YOUTUBE_SHORTS_ID = "Sye2NYdx6rk";
 
@@ -79,7 +79,7 @@ export const RealStories: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
 
         {/* Header */}
-        <FadeUp className="text-center max-w-3xl mx-auto mb-16 space-y-3 relative">
+        <BlurReveal className="text-center max-w-3xl mx-auto mb-16 space-y-3 relative" blur={10}>
           <span className="text-xs uppercase tracking-widest text-[#8C5B41] font-semibold block">
             {clinicData.stories.eyebrow}
           </span>
@@ -89,7 +89,7 @@ export const RealStories: React.FC = () => {
           <p className="font-sans text-lg sm:text-xl text-[#231F19]/80 max-w-xl mx-auto font-light">
             {clinicData.stories.subhead}
           </p>
-        </FadeUp>
+        </BlurReveal>
 
         {/* YouTube Shorts Embed — Centred portrait 9:16 with zero-network click-to-play Facade */}
         <div className="flex justify-center">

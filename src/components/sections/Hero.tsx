@@ -62,13 +62,14 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAssessment }) => {
             loop
             muted
             playsInline
+            preload="metadata"
             onPlaying={() => setVideoLoaded(true)}
             className={`absolute inset-0 w-full h-full object-cover filter saturate-100 contrast-105 transition-opacity duration-1000 ${
               videoLoaded ? "opacity-90" : "opacity-0"
             }`}
           >
-            <source src="/assets/hero/hero-mobile.mp4" type="video/mp4" media="(max-width: 768px)" />
-            <source src="/assets/hero/hero-main-opt.mp4" type="video/mp4" />
+            <source src="/assets/hero/hero-main.mp4" type="video/mp4" />
+            <source src="/assets/hero/20260722_191757_1.mp4" type="video/mp4" />
           </video>
         )}
 

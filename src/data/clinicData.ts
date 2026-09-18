@@ -59,8 +59,8 @@ export const clinicData = {
     headline: ["Relax", "Rethink", "Rebuild"],
     subhead: "I work with the mind, the body and the patterns connecting them.",
     cta: "Book Your Assessment",
-    videoMontage: "/assets/hero/hero-main-opt.mp4",
-    videoMobile: "/assets/hero/hero-mobile.mp4",
+    videoMontage: "/assets/hero/hero-main.mp4",
+    videoMobile: "/assets/hero/hero-main.mp4",
     poster: "/assets/hero/hero-poster.webp",
   },
 
