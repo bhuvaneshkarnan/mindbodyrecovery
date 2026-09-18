@@ -63,11 +63,6 @@ export const NeuronMobileSynapseGraph: React.FC<NeuronMobileSynapseGraphProps> =
           <stop offset="60%" stopColor={secondaryColor} stopOpacity={isDark ? "0.10" : "0.06"} />
           <stop offset="100%" stopColor={mainColor} stopOpacity="0" />
         </radialGradient>
-
-        <filter id={`mob-glow-${variant}`} x="-20%" y="-20%" width="140%" height="140%">
-          <feGaussianBlur stdDeviation="2" result="blur" />
-          <feComposite in="SourceGraphic" in2="blur" operator="over" />
-        </filter>
       </defs>
 
       {/* 1. SOMA GLOWING HALO & BIO-RHYTHM RINGS BEHIND PHOTO */}
@@ -93,7 +88,6 @@ export const NeuronMobileSynapseGraph: React.FC<NeuronMobileSynapseGraphProps> =
       />
 
       {/* 2. DENDRITIC FINE ARBORIZATIONS */}
-      {/* Upper dendrites branching outward from photo top */}
       <path
         d="M 120 40 C 95 25, 70 30, 45 15"
         stroke={faintColor}
@@ -108,7 +102,6 @@ export const NeuronMobileSynapseGraph: React.FC<NeuronMobileSynapseGraphProps> =
         strokeLinecap="round"
         vectorEffect="non-scaling-stroke"
       />
-      {/* Side dendrites */}
       <path
         d="M 65 105 C 45 100, 30 115, 10 110"
         stroke={faintColor}
@@ -124,16 +117,23 @@ export const NeuronMobileSynapseGraph: React.FC<NeuronMobileSynapseGraphProps> =
         vectorEffect="non-scaling-stroke"
       />
 
-      {/* 3. PRIMARY AXON FIBERS TO 4 THERAPY NODES */}
+      {/* 3. PRIMARY AXON FIBERS TO 4 THERAPY NODES (Hardware GPU Dual-Stroke) */}
       
-      {/* Axon 1 (To Node 1 - Arch) */}
+      {/* Axon 1 Glow & Core (To Node 1 - Arch) */}
+      <path
+        d={pathNode1}
+        stroke={mainColor}
+        strokeWidth="4.5"
+        strokeOpacity="0.22"
+        strokeLinecap="round"
+        vectorEffect="non-scaling-stroke"
+      />
       <path
         d={pathNode1}
         stroke={`url(#mob-grad-1-${variant})`}
         strokeWidth="2.2"
         strokeLinecap="round"
         vectorEffect="non-scaling-stroke"
-        filter={`url(#mob-glow-${variant})`}
       />
       {/* Axon 1 side twig */}
       <path
@@ -145,14 +145,21 @@ export const NeuronMobileSynapseGraph: React.FC<NeuronMobileSynapseGraphProps> =
         vectorEffect="non-scaling-stroke"
       />
 
-      {/* Axon 2 (To Node 2 - Circle) */}
+      {/* Axon 2 Glow & Core (To Node 2 - Circle) */}
+      <path
+        d={pathNode2}
+        stroke={mainColor}
+        strokeWidth="4.5"
+        strokeOpacity="0.22"
+        strokeLinecap="round"
+        vectorEffect="non-scaling-stroke"
+      />
       <path
         d={pathNode2}
         stroke={`url(#mob-grad-1-${variant})`}
         strokeWidth="2.2"
         strokeLinecap="round"
         vectorEffect="non-scaling-stroke"
-        filter={`url(#mob-glow-${variant})`}
       />
       {/* Axon 2 side twig */}
       <path
@@ -204,26 +211,30 @@ export const NeuronMobileSynapseGraph: React.FC<NeuronMobileSynapseGraphProps> =
         strokeOpacity="0.7"
       />
 
-      {/* 4. SYNAPTIC TERMINAL BOUTONS (Contact points at nodes) */}
+      {/* 4. SYNAPTIC TERMINAL BOUTONS (Hardware GPU Halos) */}
       {/* Bouton 1 */}
-      <circle cx="90" cy="295" r="4" fill={mainColor} filter={`url(#mob-glow-${variant})`} />
+      <circle cx="90" cy="295" r="7" fill={mainColor} opacity="0.3" />
+      <circle cx="90" cy="295" r="4" fill={mainColor} />
       <circle cx="90" cy="295" r="2" fill={sparkColor} />
 
       {/* Bouton 2 */}
-      <circle cx="270" cy="295" r="4" fill={mainColor} filter={`url(#mob-glow-${variant})`} />
+      <circle cx="270" cy="295" r="7" fill={mainColor} opacity="0.3" />
+      <circle cx="270" cy="295" r="4" fill={mainColor} />
       <circle cx="270" cy="295" r="2" fill={sparkColor} />
 
       {/* Bouton 3 */}
-      <circle cx="90" cy="435" r="3.5" fill={secondaryColor} filter={`url(#mob-glow-${variant})`} />
+      <circle cx="90" cy="435" r="6" fill={secondaryColor} opacity="0.3" />
+      <circle cx="90" cy="435" r="3.5" fill={secondaryColor} />
       <circle cx="90" cy="435" r="1.8" fill={sparkColor} />
 
       {/* Bouton 4 */}
-      <circle cx="270" cy="435" r="3.5" fill={secondaryColor} filter={`url(#mob-glow-${variant})`} />
+      <circle cx="270" cy="435" r="6" fill={secondaryColor} opacity="0.3" />
+      <circle cx="270" cy="435" r="3.5" fill={secondaryColor} />
       <circle cx="270" cy="435" r="1.8" fill={sparkColor} />
 
-      {/* 5. ACTION POTENTIAL FIRING SPARK PULSES */}
+      {/* 5. ACTION POTENTIAL FIRING SPARK PULSES (Pure Hardware SMIL, Zero Blur Filter) */}
       {/* Pulse 1: Down Axon 1 to Node 1 */}
-      <circle r="3" fill={sparkColor} filter={`url(#mob-glow-${variant})`}>
+      <circle r="2.8" fill={sparkColor}>
         <animateMotion
           dur="2.4s"
           repeatCount="indefinite"
@@ -232,7 +243,7 @@ export const NeuronMobileSynapseGraph: React.FC<NeuronMobileSynapseGraphProps> =
       </circle>
 
       {/* Pulse 2: Down Axon 2 to Node 2 */}
-      <circle r="3" fill={sparkColor} filter={`url(#mob-glow-${variant})`}>
+      <circle r="2.8" fill={sparkColor}>
         <animateMotion
           dur="2.6s"
           begin="0.6s"
@@ -242,7 +253,7 @@ export const NeuronMobileSynapseGraph: React.FC<NeuronMobileSynapseGraphProps> =
       </circle>
 
       {/* Pulse 3: Down Axon 3 to Node 3 */}
-      <circle r="2.5" fill={sparkColor} filter={`url(#mob-glow-${variant})`}>
+      <circle r="2.4" fill={sparkColor}>
         <animateMotion
           dur="3.0s"
           begin="1.2s"
@@ -252,7 +263,7 @@ export const NeuronMobileSynapseGraph: React.FC<NeuronMobileSynapseGraphProps> =
       </circle>
 
       {/* Pulse 4: Down Axon 4 to Node 4 */}
-      <circle r="2.5" fill={sparkColor} filter={`url(#mob-glow-${variant})`}>
+      <circle r="2.4" fill={sparkColor}>
         <animateMotion
           dur="2.8s"
           begin="1.8s"

@@ -131,6 +131,7 @@ function getLengthForY(targetY: number, samples: PathSample[], totalLen: number)
 export const SynapticScrollSpine: React.FC = () => {
   const containerRef = useRef<SVGSVGElement>(null);
   const path1Ref = useRef<SVGPathElement>(null);
+  const glowPath1Ref = useRef<SVGPathElement>(null);
   const path2Ref = useRef<SVGPathElement>(null);
   const path3Ref = useRef<SVGPathElement>(null);
 
@@ -378,8 +379,12 @@ export const SynapticScrollSpine: React.FC = () => {
     // Lead Line 1: focal point at 72% down viewport
     const targetY1 = sy + vh * 0.72;
     const l1 = getLengthForY(targetY1, p1.samples, p1.len);
+    const offset1 = `${Math.max(0, p1.len - l1)}px`;
     if (path1Ref.current) {
-      path1Ref.current.style.strokeDashoffset = `${Math.max(0, p1.len - l1)}px`;
+      path1Ref.current.style.strokeDashoffset = offset1;
+    }
+    if (glowPath1Ref.current) {
+      glowPath1Ref.current.style.strokeDashoffset = offset1;
     }
 
     // Only compute paired lines on desktop (hidden on mobile)
@@ -524,12 +529,6 @@ export const SynapticScrollSpine: React.FC = () => {
       aria-hidden="true"
     >
       <defs>
-        {/* Soft Bioluminescent Glow Filter */}
-        <filter id="spine-axon-glow" x="-30%" y="-30%" width="160%" height="160%">
-          <feGaussianBlur stdDeviation="2.0" result="blur" />
-          <feComposite in="SourceGraphic" in2="blur" operator="over" />
-        </filter>
-
         {/* Primary Gold Axon Gradient */}
         <linearGradient id="spine-gold-grad" x1="0%" y1="0%" x2="0%" y2="100%">
           <stop offset="0%" stopColor="#93A579" stopOpacity="0.80" />
@@ -592,14 +591,28 @@ export const SynapticScrollSpine: React.FC = () => {
         strokeLinejoin="round"
         fill="none"
         className="hidden md:block"
-        filter="url(#spine-axon-glow)"
         style={{
           opacity: 0.60,
           transition: "none",
         }}
       />
 
-      {/* Line 1: Primary Gold Axon (Single, refined, luminous living axon on mobile; lead axon on desktop) */}
+      {/* Hardware-Accelerated Bioluminescent Glow Stroke (120 FPS GPU native, zero-blur) */}
+      <path
+        ref={glowPath1Ref}
+        d={paths.p1}
+        stroke="#C79A45"
+        strokeWidth={svgWidth < 768 ? 5.2 : 6.8}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+        style={{
+          opacity: svgWidth < 768 ? 0.20 : 0.26,
+          transition: "none",
+        }}
+      />
+
+      {/* Line 1: Primary Gold Axon (Single, refined, luminous living axon) */}
       <path
         ref={path1Ref}
         d={paths.p1}
@@ -608,9 +621,8 @@ export const SynapticScrollSpine: React.FC = () => {
         strokeLinecap="round"
         strokeLinejoin="round"
         fill="none"
-        filter="url(#spine-axon-glow)"
         style={{
-          opacity: svgWidth < 768 ? 0.65 : 0.74,
+          opacity: svgWidth < 768 ? 0.75 : 0.85,
           transition: "none",
         }}
       />
@@ -627,13 +639,22 @@ export const SynapticScrollSpine: React.FC = () => {
             transition: "opacity 0.15s ease-out, transform 0.15s ease-out",
           }}
         >
+          {/* Outer soft halo */}
+          <circle
+            cx={node.x}
+            cy={node.y}
+            r={node.r * 1.7}
+            fill="#C79A45"
+            opacity={0.32}
+          />
+          {/* Core gold node */}
           <circle
             cx={node.x}
             cy={node.y}
             r={node.r}
             fill="#C79A45"
-            filter="url(#spine-axon-glow)"
           />
+          {/* Center luminous spark */}
           <circle
             cx={node.x}
             cy={node.y}

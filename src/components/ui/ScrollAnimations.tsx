@@ -13,7 +13,7 @@ import {
 const EASE_SMOOTH = [0.16, 1, 0.3, 1]; // Ultra-smooth deceleration curve (Apple / Awwwards standard)
 const EASE_CINEMATIC = [0.25, 1, 0.5, 1]; // Soft cinematic breathing curve
 
-/* ─── 1. FADE UP REVEAL (Subtle, organic vertical float) ──────────── */
+/* ─── 1. FADE UP REVEAL (Subtle, organic vertical float - Pre-triggered) ──────────── */
 interface FadeUpProps {
   children: React.ReactNode;
   delay?: number;
@@ -25,23 +25,23 @@ interface FadeUpProps {
 export const FadeUp: React.FC<FadeUpProps> = ({
   children,
   delay = 0,
-  duration = 0.85,
+  duration = 0.5,
   className = "",
   once = true,
-  distance = 24,
+  distance = 14,
 }) => (
   <motion.div
-    initial={{ opacity: 0, y: distance }}
+    initial={{ opacity: 0.75, y: distance }}
     whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once, margin: "0px" }}
-    transition={{ duration, delay, ease: EASE_SMOOTH }}
+    viewport={{ once, margin: "180px 0px" }}
+    transition={{ duration: Math.min(duration, 0.5), delay: Math.min(delay, 0.08), ease: EASE_SMOOTH }}
     className={className}
   >
     {children}
   </motion.div>
 );
 
-/* ─── 2. STAGGERED CHILDREN (Cascade reveal with soft easing) ─────── */
+/* ─── 2. STAGGERED CHILDREN (Cascade reveal with soft easing - Pre-triggered) ─────── */
 interface StaggerProps {
   children: React.ReactNode;
   staggerDelay?: number;
@@ -49,25 +49,25 @@ interface StaggerProps {
 }
 export const StaggerReveal: React.FC<StaggerProps> = ({
   children,
-  staggerDelay = 0.08,
+  staggerDelay = 0.04,
   className = "",
 }) => {
   const containerVariants = {
     hidden: {},
     show: {
-      transition: { staggerChildren: staggerDelay },
+      transition: { staggerChildren: Math.min(staggerDelay, 0.04) },
     },
   };
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: EASE_SMOOTH } },
+    hidden: { opacity: 0.75, y: 12 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: EASE_SMOOTH } },
   };
   return (
     <motion.div
       variants={containerVariants}
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, margin: "0px" }}
+      viewport={{ once: true, margin: "180px 0px" }}
       className={className}
     >
       {React.Children.map(children, (child) => (
@@ -77,7 +77,7 @@ export const StaggerReveal: React.FC<StaggerProps> = ({
   );
 };
 
-/* ─── 3. CLIP-PATH REVEAL (Curtain wipe effect) ───────────────────── */
+/* ─── 3. CLIP-PATH REVEAL (Curtain wipe effect - Pre-triggered) ───────────────────── */
 interface ClipRevealProps {
   children: React.ReactNode;
   direction?: "up" | "left" | "right";
@@ -89,7 +89,7 @@ export const ClipReveal: React.FC<ClipRevealProps> = ({
   children,
   direction = "up",
   delay = 0,
-  duration = 1.1,
+  duration = 0.55,
   className = "",
 }) => {
   const clips: Record<string, { hidden: string; show: string }> = {
@@ -108,10 +108,10 @@ export const ClipReveal: React.FC<ClipRevealProps> = ({
   };
   return (
     <motion.div
-      initial={{ clipPath: clips[direction].hidden, opacity: 0.2 }}
-      whileInView={{ clipPath: clips[direction].show, opacity: 1 }}
-      viewport={{ once: true, margin: "0px" }}
-      transition={{ duration, delay, ease: EASE_SMOOTH }}
+      initial={{ opacity: 0.8 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, margin: "180px 0px" }}
+      transition={{ duration: Math.min(duration, 0.5), delay: Math.min(delay, 0.08), ease: EASE_SMOOTH }}
       className={className}
     >
       {children}
@@ -144,7 +144,7 @@ export const ParallaxLayer: React.FC<ParallaxProps> = ({
   );
 };
 
-/* ─── 5. ZOOM REVEAL (Cinematic scale & opacity blend) ────────────── */
+/* ─── 5. ZOOM REVEAL (Cinematic scale & opacity blend - Pre-triggered) ────────────── */
 interface ZoomRevealProps {
   children: React.ReactNode;
   delay?: number;
@@ -154,15 +154,15 @@ interface ZoomRevealProps {
 export const ZoomReveal: React.FC<ZoomRevealProps> = ({
   children,
   delay = 0,
-  duration = 1.2,
+  duration = 0.55,
   className = "",
 }) => (
   <div className={`overflow-hidden ${className}`}>
     <motion.div
-      initial={{ scale: 1.08, opacity: 0 }}
+      initial={{ scale: 1.03, opacity: 0.75 }}
       whileInView={{ scale: 1, opacity: 1 }}
-      viewport={{ once: true, margin: "0px" }}
-      transition={{ duration, delay, ease: EASE_SMOOTH }}
+      viewport={{ once: true, margin: "180px 0px" }}
+      transition={{ duration: Math.min(duration, 0.5), delay: Math.min(delay, 0.08), ease: EASE_SMOOTH }}
     >
       {children}
     </motion.div>
@@ -279,15 +279,15 @@ export const SlideIn: React.FC<SlideInProps> = ({
   children,
   from = "left",
   delay = 0,
-  duration = 0.95,
+  duration = 0.5,
   className = "",
-  distance = 20,
+  distance = 12,
 }) => (
   <motion.div
-    initial={{ opacity: 0, x: from === "left" ? -distance : distance }}
+    initial={{ opacity: 0.75, x: from === "left" ? -distance : distance }}
     whileInView={{ opacity: 1, x: 0 }}
-    viewport={{ once: true, margin: "0px" }}
-    transition={{ duration, delay, ease: EASE_SMOOTH }}
+    viewport={{ once: true, margin: "180px 0px" }}
+    transition={{ duration: Math.min(duration, 0.5), delay: Math.min(delay, 0.08), ease: EASE_SMOOTH }}
     className={className}
   >
     {children}

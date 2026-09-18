@@ -48,7 +48,7 @@ export const BandageFrame: React.FC<BandageFrameProps> = ({
       {(tapePosition === "top-left-bottom-right" || tapePosition === "all-four") && (
         <div
           className={clsx(
-            "washi-tape-strip -top-2.5 -left-2.5 rounded-md backdrop-blur-[1px] border pointer-events-none transition-transform group-hover:rotate-0 duration-300",
+            "washi-tape-strip -top-2.5 -left-2.5 rounded-md border pointer-events-none transition-transform group-hover:rotate-0 duration-300",
             tapeClass
           )}
           style={{ transform: `rotate(-${tapeAngle}deg)` }}
@@ -65,7 +65,7 @@ export const BandageFrame: React.FC<BandageFrameProps> = ({
       {tapePosition === "top-right-bottom-left" && (
         <div
           className={clsx(
-            "washi-tape-strip -top-2.5 -right-2.5 rounded-md backdrop-blur-[1px] border pointer-events-none transition-transform group-hover:rotate-0 duration-300",
+            "washi-tape-strip -top-2.5 -right-2.5 rounded-md border pointer-events-none transition-transform group-hover:rotate-0 duration-300",
             tapeClass
           )}
           style={{ transform: `rotate(${tapeAngle}deg)` }}
@@ -81,7 +81,7 @@ export const BandageFrame: React.FC<BandageFrameProps> = ({
       {tapePosition === "top-center" && (
         <div
           className={clsx(
-            "washi-tape-strip -top-3 left-1/2 -translate-x-1/2 rounded-md backdrop-blur-[1px] border pointer-events-none transition-transform duration-300",
+            "washi-tape-strip -top-3 left-1/2 -translate-x-1/2 rounded-md border pointer-events-none transition-transform duration-300",
             tapeClass
           )}
           style={{ transform: `translateX(-50%) rotate(${tapeAngle}deg)` }}
@@ -113,7 +113,7 @@ export const BandageFrame: React.FC<BandageFrameProps> = ({
       {(tapePosition === "top-left-bottom-right" || tapePosition === "all-four") && (
         <div
           className={clsx(
-            "washi-tape-strip -bottom-2.5 -right-2.5 rounded-md backdrop-blur-[1px] border pointer-events-none transition-transform group-hover:rotate-0 duration-300",
+            "washi-tape-strip -bottom-2.5 -right-2.5 rounded-md border pointer-events-none transition-transform group-hover:rotate-0 duration-300",
             tapeClass
           )}
           style={{ transform: `rotate(-${tapeAngle}deg)` }}
@@ -130,7 +130,7 @@ export const BandageFrame: React.FC<BandageFrameProps> = ({
       {tapePosition === "top-right-bottom-left" && (
         <div
           className={clsx(
-            "washi-tape-strip -bottom-2.5 -left-2.5 rounded-md backdrop-blur-[1px] border pointer-events-none transition-transform group-hover:rotate-0 duration-300",
+            "washi-tape-strip -bottom-2.5 -left-2.5 rounded-md border pointer-events-none transition-transform group-hover:rotate-0 duration-300",
             tapeClass
           )}
           style={{ transform: `rotate(${tapeAngle}deg)` }}

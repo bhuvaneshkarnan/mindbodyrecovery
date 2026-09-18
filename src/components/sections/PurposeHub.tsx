@@ -150,10 +150,10 @@ export const PurposeHub: React.FC = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-6 lg:gap-8 mb-6 lg:-mb-4 items-end">
             <div className="col-span-1 lg:col-span-4 lg:col-start-2 flex justify-center lg:justify-end">
               <motion.div
-                initial={{ opacity: 0, y: 25 }}
+                initial={{ opacity: 0.8, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: 0.1 }}
+                viewport={{ once: true, margin: "180px 0px" }}
+                transition={{ duration: 0.45, delay: 0.04 }}
                 className={`w-full ${TOP_PHOTOS[0].widthClass} ${TOP_PHOTOS[0].offsetClass} group relative z-10 hover:z-30`}
               >
                 <div
@@ -182,10 +182,10 @@ export const PurposeHub: React.FC = () => {
 
             <div className="col-span-1 lg:col-span-4 lg:col-start-8 flex justify-center lg:justify-start">
               <motion.div
-                initial={{ opacity: 0, y: 25 }}
+                initial={{ opacity: 0.8, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: 0.2 }}
+                viewport={{ once: true, margin: "180px 0px" }}
+                transition={{ duration: 0.45, delay: 0.06 }}
                 className={`w-full ${TOP_PHOTOS[1].widthClass} ${TOP_PHOTOS[1].offsetClass} group relative z-10 hover:z-30`}
               >
                 <div
@@ -220,10 +220,10 @@ export const PurposeHub: React.FC = () => {
               {LEFT_PHOTOS.map((item, idx) => (
                 <motion.div
                   key={item.id}
-                  initial={{ opacity: 0, x: -25 }}
+                  initial={{ opacity: 0.8, x: -10 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.7, delay: 0.15 * idx }}
+                  viewport={{ once: true, margin: "180px 0px" }}
+                  transition={{ duration: 0.45, delay: 0.04 * idx }}
                   className={`w-full ${item.widthClass} ${item.offsetClass} group relative z-10 hover:z-30`}
                 >
                   <div
@@ -254,10 +254,10 @@ export const PurposeHub: React.FC = () => {
             {/* THE CENTER HERO PHOTO (BIGGER & ELEVATED) */}
             <div className="col-span-1 lg:col-span-6 flex justify-center order-1 lg:order-2 my-4 lg:my-0">
               <motion.div
-                initial={{ opacity: 0, scale: 0.94 }}
+                initial={{ opacity: 0.85, scale: 0.98 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+                viewport={{ once: true, margin: "180px 0px" }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                 className="w-full max-w-[560px] sm:max-w-[620px] lg:max-w-[660px] group relative z-20 hover:z-30"
               >
                 <div
@@ -289,10 +289,10 @@ export const PurposeHub: React.FC = () => {
               {RIGHT_PHOTOS.map((item, idx) => (
                 <motion.div
                   key={item.id}
-                  initial={{ opacity: 0, x: 25 }}
+                  initial={{ opacity: 0.8, x: 10 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.7, delay: 0.15 * idx }}
+                  viewport={{ once: true, margin: "180px 0px" }}
+                  transition={{ duration: 0.45, delay: 0.04 * idx }}
                   className={`w-full ${item.widthClass} ${item.offsetClass} group relative z-10 hover:z-30`}
                 >
                   <div
@@ -325,10 +325,10 @@ export const PurposeHub: React.FC = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
             <div className="col-span-1 sm:col-span-1 lg:col-span-4 flex justify-center lg:justify-start">
               <motion.div
-                initial={{ opacity: 0, y: 25 }}
+                initial={{ opacity: 0.8, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: 0.1 }}
+                viewport={{ once: true, margin: "180px 0px" }}
+                transition={{ duration: 0.45, delay: 0.04 }}
                 className={`w-full ${BOTTOM_PHOTOS[0].widthClass} ${BOTTOM_PHOTOS[0].offsetClass} group relative z-10 hover:z-30`}
               >
                 <div
@@ -357,10 +357,10 @@ export const PurposeHub: React.FC = () => {
 
             <div className="col-span-1 sm:col-span-1 lg:col-span-4 flex justify-center">
               <motion.div
-                initial={{ opacity: 0, y: 25 }}
+                initial={{ opacity: 0.8, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: 0.2 }}
+                viewport={{ once: true, margin: "180px 0px" }}
+                transition={{ duration: 0.45, delay: 0.06 }}
                 className={`w-full ${BOTTOM_PHOTOS[1].widthClass} ${BOTTOM_PHOTOS[1].offsetClass} group relative z-10 hover:z-30`}
               >
                 <div
@@ -389,10 +389,10 @@ export const PurposeHub: React.FC = () => {
 
             <div className="col-span-1 sm:col-span-2 lg:col-span-4 flex justify-center lg:justify-end">
               <motion.div
-                initial={{ opacity: 0, y: 25 }}
+                initial={{ opacity: 0.8, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: 0.3 }}
+                viewport={{ once: true, margin: "180px 0px" }}
+                transition={{ duration: 0.45, delay: 0.08 }}
                 className={`w-full ${BOTTOM_PHOTOS[2].widthClass} ${BOTTOM_PHOTOS[2].offsetClass} group relative z-10 hover:z-30`}
               >
                 <div

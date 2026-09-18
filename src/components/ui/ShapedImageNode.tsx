@@ -61,6 +61,8 @@ export const ShapedImageNode: React.FC<ShapedImageNodeProps> = ({
         <img
           src={imageSrc}
           alt={imageAlt}
+          width={isMobile ? 130 : 156}
+          height={isMobile ? 130 : 156}
           loading="lazy"
           decoding="async"
           className={clsx(
