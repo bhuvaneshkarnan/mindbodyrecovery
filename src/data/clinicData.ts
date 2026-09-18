@@ -50,10 +50,10 @@ export const clinicData = {
   tagline: "Holistic Wellness. Personalised Care.",
   phone: "+91 90949 24694",
   phoneDisplay: "+91 90949 24694",
-  email: "hello@mindbodyrecovery.in",
-  address: "Chennai, Tamil Nadu, India",
-  addressPlaceholder: "[TODO: final street address to be confirmed]",
-  googleMapsUrl: "https://maps.google.com/?q=Mind+Body+Recovery+Chennai",
+  email: "tamilnadutherapist@gmail.com",
+  address: "T Nagar, Chennai, Tamil Nadu",
+  addressPlaceholder: "",
+  googleMapsUrl: "https://maps.google.com/?q=T+Nagar+Chennai+Tamil+Nadu",
   
   hero: {
     headline: ["Relax", "Rethink", "Rebuild"],

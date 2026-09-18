@@ -130,7 +130,7 @@ export const ContactSection: React.FC<ContactSectionProps> = () => {
             </div>
 
             <div className="pt-8 border-t border-[#231F19]/15 flex items-center justify-between text-xs text-[#231F19]/70">
-              <span>Chennai, Tamil Nadu, India</span>
+              <span>T Nagar, Chennai, Tamil Nadu</span>
             </div>
           </SlideIn>
         </div>
@@ -194,10 +194,15 @@ export const ContactSection: React.FC<ContactSectionProps> = () => {
                     Location
                   </span>
                   <p className="font-sans text-sm text-[#F6F1E4]/80 leading-relaxed max-w-sm">
-                    {clinicData.address} <br />
-                    <span className="text-xs text-[#F6F1E4]/50 italic">
-                      {clinicData.addressPlaceholder}
-                    </span>
+                    {clinicData.address}
+                    {clinicData.addressPlaceholder ? (
+                      <>
+                        <br />
+                        <span className="text-xs text-[#F6F1E4]/50 italic">
+                          {clinicData.addressPlaceholder}
+                        </span>
+                      </>
+                    ) : null}
                   </p>
                   <a
                     href={clinicData.googleMapsUrl}
