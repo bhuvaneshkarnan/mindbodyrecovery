@@ -12,21 +12,24 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAssessment }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isMuted, setIsMuted] = useState(true);
   const [videoLoaded, setVideoLoaded] = useState(false);
-  const [canMountVideo, setCanMountVideo] = useState(false);
 
-  // Defer video initialization until after critical page load finishes
+  // Force immediate autoplay without waiting for deferred timers
   useEffect(() => {
-    const startVideo = () => setCanMountVideo(true);
-    if (typeof document !== "undefined" && document.readyState === "complete") {
-      const timer = setTimeout(startVideo, 800);
-      return () => clearTimeout(timer);
-    } else if (typeof window !== "undefined") {
-      window.addEventListener("load", startVideo, { once: true });
-      const fallbackTimer = setTimeout(startVideo, 2500);
-      return () => {
-        window.removeEventListener("load", startVideo);
-        clearTimeout(fallbackTimer);
-      };
+    if (videoRef.current) {
+      if (videoRef.current.readyState >= 2) {
+        setVideoLoaded(true);
+      }
+      const playPromise = videoRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => setVideoLoaded(true))
+          .catch(() => {
+            if (videoRef.current) {
+              videoRef.current.muted = true;
+              videoRef.current.play().catch(() => {});
+            }
+          });
+      }
     }
   }, []);
 
@@ -54,28 +57,31 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAssessment }) => {
           className="absolute inset-0 w-full h-full object-cover opacity-90 filter saturate-100 contrast-105"
         />
 
-        {/* 2. Seamless Cross-fade Background Video Montage (Mounted after initial paint) */}
-        {canMountVideo && (
-          <video
-            ref={videoRef}
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="metadata"
-            onPlaying={() => setVideoLoaded(true)}
-            className={`absolute inset-0 w-full h-full object-cover filter saturate-100 contrast-105 transition-opacity duration-1000 ${
-              videoLoaded ? "opacity-90" : "opacity-0"
-            }`}
-          >
-            <source src="/assets/hero/hero-main.mp4" type="video/mp4" />
-            <source src="/assets/hero/20260722_191757_1.mp4" type="video/mp4" />
-          </video>
-        )}
+        {/* 2. Instant Background Video Montage (Preload auto, faststart moov at byte 32) */}
+        <video
+          ref={videoRef}
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          onLoadedData={() => setVideoLoaded(true)}
+          onCanPlay={() => setVideoLoaded(true)}
+          onPlaying={() => setVideoLoaded(true)}
+          className={`absolute inset-0 w-full h-full object-cover filter saturate-100 contrast-105 transition-opacity duration-500 ${
+            videoLoaded ? "opacity-90" : "opacity-0"
+          }`}
+        >
+          <source src="/assets/hero/hero-mobile.mp4" media="(max-width: 640px)" type="video/mp4" />
+          <source src="/assets/hero/hero-main.mp4" type="video/mp4" />
+        </video>
 
-        {/* Minimal Directional Vignette for Text Readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#12140D]/80 via-[#12140D]/35 to-transparent pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#12140D]/65 via-transparent to-[#12140D]/20 pointer-events-none" />
+        {/* Dedicated Top Gradient Scrim to guarantee crystal-clear header visibility */}
+        <div className="absolute top-0 inset-x-0 h-48 bg-gradient-to-b from-[#12140D]/95 via-[#12140D]/60 to-transparent pointer-events-none z-10" />
+
+        {/* Directional Vignettes for Hero Text Readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#12140D]/85 via-[#12140D]/40 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#12140D]/75 via-transparent to-transparent pointer-events-none" />
       </div>
 
       {/* Main Content - Left Aligned (Pure CSS animations, zero hydration layout shift) */}
