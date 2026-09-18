@@ -59,13 +59,13 @@ export const ProofStats: React.FC = () => {
           {/* Hairline gold border frame */}
           <div className="border border-[#C79A45]/40 overflow-hidden shadow-2xl rounded-xl">
             <ZoomReveal>
-              <div className="relative aspect-[16/9] w-full overflow-hidden bg-black flex items-center justify-center">
+              <div className="relative aspect-[16/9] w-full overflow-hidden bg-[#12140D]">
                 <img
                   src={clinicData.proofStats.teamPhoto}
                   alt="Mind Body Recovery Team"
                   loading="lazy"
                   decoding="async"
-                  className="max-w-full max-h-full object-contain filter saturate-90 contrast-110"
+                  className="w-full h-full object-cover filter saturate-90 contrast-110"
                 />
               </div>
             </ZoomReveal>
