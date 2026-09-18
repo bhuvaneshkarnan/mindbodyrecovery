@@ -129,3 +129,11 @@ html.lenis, html.lenis body {
   animation: heroTextReveal 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.16s both;
 }
 
+/* Mobile 120fps Butter-Smooth Scroll: eliminate expensive GPU per-pixel blur shaders on mobile */
+@media (max-width: 768px) {
+  .motion-blur-layer {
+    filter: none !important;
+  }
+}
+
+

@@ -8,6 +8,7 @@ import {
   useInView,
   useSpring,
 } from "framer-motion";
+import clsx from "clsx";
 
 // Luxury Awwwards Easing Curves
 const EASE_SMOOTH = [0.16, 1, 0.3, 1]; // Ultra-smooth deceleration curve (Apple / Awwwards standard)
@@ -87,9 +88,9 @@ export const BlurReveal: React.FC<BlurRevealProps> = ({
         delay,
         ease: EASE_SMOOTH,
       }}
-      className={className}
+      className={clsx(className, "motion-blur-layer")}
       style={{
-        willChange: "filter, opacity, transform",
+        willChange: "opacity, transform",
         transform: "translateZ(0)",
       }}
     >
@@ -140,9 +141,9 @@ export const FadeUp: React.FC<FadeUpProps> = ({
       delay,
       ease: EASE_SMOOTH,
     }}
-    className={className}
+    className={clsx(className, "motion-blur-layer")}
     style={{
-      willChange: "filter, opacity, transform",
+      willChange: "opacity, transform",
       transform: "translateZ(0)",
     }}
   >
@@ -208,8 +209,9 @@ export const StaggerReveal: React.FC<StaggerProps> = ({
       {React.Children.map(children, (child) => (
         <motion.div
           variants={itemVariants}
+          className="motion-blur-layer"
           style={{
-            willChange: "filter, opacity, transform",
+            willChange: "opacity, transform",
             transform: "translateZ(0)",
           }}
         >
@@ -259,9 +261,9 @@ export const SlideIn: React.FC<SlideInProps> = ({
       delay,
       ease: EASE_SMOOTH,
     }}
-    className={className}
+    className={clsx(className, "motion-blur-layer")}
     style={{
-      willChange: "filter, opacity, transform",
+      willChange: "opacity, transform",
       transform: "translateZ(0)",
     }}
   >
@@ -305,8 +307,9 @@ export const ZoomReveal: React.FC<ZoomRevealProps> = ({
         delay,
         ease: EASE_SMOOTH,
       }}
+      className="motion-blur-layer"
       style={{
-        willChange: "filter, opacity, transform",
+        willChange: "opacity, transform",
         transform: "translateZ(0)",
       }}
     >
@@ -356,8 +359,8 @@ export const ClipReveal: React.FC<ClipRevealProps> = ({
         delay,
         ease: EASE_SMOOTH,
       }}
-      className={className}
-      style={{ willChange: "clip-path, opacity, filter" }}
+      className={clsx(className, "motion-blur-layer")}
+      style={{ willChange: "clip-path, opacity" }}
     >
       {children}
     </motion.div>

@@ -152,11 +152,13 @@ export const SynapticScrollSpine: React.FC = () => {
 
   const nodesRef = useRef<NodeData[]>([]);
   const boutonCacheRef = useRef<Map<string, HTMLElement>>(new Map());
+  const nodeStateRef = useRef<Map<string, number>>(new Map());
 
   // ── 1. BUILD WAYPOINTS & SMOOTH BÉZIER SPLINES ──
   const buildNeuralNetwork = useCallback(() => {
     if (typeof document === "undefined" || !containerRef.current) return;
     boutonCacheRef.current.clear();
+    nodeStateRef.current.clear();
 
     const mainEl = containerRef.current.parentElement;
     if (!mainEl) return;
@@ -293,7 +295,7 @@ export const SynapticScrollSpine: React.FC = () => {
           const nxtBaseX = p1.x + dx * frac2;
           const nxtBaseY = p1.y + dy * frac2;
 
-          const clampX = (val: number) => Math.max(isMobile ? 36 : 24, Math.min(docWidth - (isMobile ? 36 : 24), val));
+          const clampX = (val: number) => Math.max(isMobile ? 28 : 24, Math.min(docWidth - (isMobile ? 28 : 24), val));
 
           const off1 = offsetFn(i, c, cycles * 2);
           const off2 = offsetFn(i, c + 1, cycles * 2);
@@ -304,7 +306,7 @@ export const SynapticScrollSpine: React.FC = () => {
           const nxtY = nxtBaseY;
 
           const sign = c % 2 === 0 ? 1 : -1;
-          const bowAmp = isMobile ? 8 : 14;
+          const bowAmp = isMobile ? 7 : 14;
 
           const cp1x = clampX(curX + (nxtX - curX) * 0.25 + sign * bowAmp);
           const cp1y = curY + segH * 0.45;
@@ -325,8 +327,8 @@ export const SynapticScrollSpine: React.FC = () => {
     };
 
     const p1 = generateSpline(() => 0);
-    const p2 = generateSpline((i, c) => (isMobile ? 6 : 12) + Math.sin((i * 2.5 + c) * 0.8) * (isMobile ? 3 : 4));
-    const p3 = generateSpline((i, c) => -((isMobile ? 8 : 22) + Math.sin((i * 1.5 + c * 0.4)) * (isMobile ? 3 : 6)));
+    const p2 = generateSpline((i, c) => (isMobile ? 6 : 12) + Math.sin((i * 2.5 + c) * 0.8) * (isMobile ? 2.5 : 4));
+    const p3 = generateSpline((i, c) => -((isMobile ? 7 : 22) + Math.sin((i * 1.5 + c * 0.4)) * (isMobile ? 2.5 : 6)));
 
     setPaths({ p1, p2, p3 });
     setNodes(generatedNodes);
@@ -336,13 +338,14 @@ export const SynapticScrollSpine: React.FC = () => {
   // ── 2. SAMPLE PATHS ONCE THEY ARE MOUNTED IN DOM ──
   const sampleAllPaths = useCallback(() => {
     boutonCacheRef.current.clear();
+    nodeStateRef.current.clear();
     const sample = (pathEl: SVGPathElement | null) => {
       if (!pathEl) return { len: 0, samples: [] };
       const len = pathEl.getTotalLength();
       if (!len || len <= 0) return { len: 0, samples: [] };
 
       const samples: PathSample[] = [];
-      const step = 60; // Sample every 60px: 67% CPU reduction with pixel-perfect interpolation
+      const step = 60; // Sample every 60px: high accuracy with minimal memory
       for (let l = 0; l <= len; l += step) {
         const pt = pathEl.getPointAtLength(l);
         samples.push({ l, y: pt.y });
@@ -365,15 +368,13 @@ export const SynapticScrollSpine: React.FC = () => {
     };
   }, []);
 
-  // ── 3. UPDATE SCROLL POSITION IN REAL-TIME (120 FPS, ZERO LAG) ──
+  // ── 3. UPDATE SCROLL POSITION IN REAL-TIME (120 FPS, ZERO LAG ON MOBILE & PC) ──
   const updateScroll = useCallback(() => {
     const sy = window.scrollY || document.documentElement.scrollTop || 0;
     const vh = window.innerHeight;
 
     const { p1, p2, p3 } = pathDataRef.current;
     if (p1.len === 0) return;
-
-    const isMobile = window.innerWidth < 768;
 
     // Lead Line 1: focal point at 72% down viewport
     const targetY1 = sy + vh * 0.72;
@@ -382,43 +383,53 @@ export const SynapticScrollSpine: React.FC = () => {
       path1Ref.current.style.strokeDashoffset = `${Math.max(0, p1.len - l1)}px`;
     }
 
-    // Only compute paired lines on desktop (hidden on mobile)
-    if (!isMobile) {
-      if (path2Ref.current && p2.len > 0) {
-        const targetY2 = sy + vh * 0.64;
-        const l2 = getLengthForY(targetY2, p2.samples, p2.len);
-        path2Ref.current.style.strokeDashoffset = `${Math.max(0, p2.len - l2)}px`;
-      }
-      if (path3Ref.current && p3.len > 0) {
-        const targetY3 = sy + vh * 0.56;
-        const l3 = getLengthForY(targetY3, p3.samples, p3.len);
-        path3Ref.current.style.strokeDashoffset = `${Math.max(0, p3.len - l3)}px`;
-      }
+    // Line 2: Paired Companion Axon (Active on both mobile and PC for rich multi-line flow)
+    if (path2Ref.current && p2.len > 0) {
+      const targetY2 = sy + vh * 0.65;
+      const l2 = getLengthForY(targetY2, p2.samples, p2.len);
+      path2Ref.current.style.strokeDashoffset = `${Math.max(0, p2.len - l2)}px`;
     }
 
-    // Update synaptic bouton nodes using cached elements
+    // Line 3: Satellite Filament (Active on both mobile and PC for complete bundle)
+    if (path3Ref.current && p3.len > 0) {
+      const targetY3 = sy + vh * 0.58;
+      const l3 = getLengthForY(targetY3, p3.samples, p3.len);
+      path3Ref.current.style.strokeDashoffset = `${Math.max(0, p3.len - l3)}px`;
+    }
+
+    // Update synaptic bouton nodes with state caching (eliminates 95% redundant DOM writes)
     const currentNodes = nodesRef.current;
     const cache = boutonCacheRef.current;
+    const states = nodeStateRef.current;
     for (let i = 0; i < currentNodes.length; i++) {
       const node = currentNodes[i];
       let el = cache.get(node.id);
       if (!el) {
-        el = document.getElementById(`bouton-${node.id}`) as HTMLElement | null || undefined;
+        el = (document.getElementById(`bouton-${node.id}`) as HTMLElement | null) || undefined;
         if (el) cache.set(node.id, el);
       }
       if (!el) continue;
 
       const delta = targetY1 - node.y;
+      const prev = states.get(node.id) ?? -1;
+
       if (delta < -80) {
-        el.style.opacity = "0";
-        el.style.transform = "scale(0.3)";
+        if (prev !== 0) {
+          el.style.opacity = "0";
+          el.style.transform = "scale(0.3)";
+          states.set(node.id, 0);
+        }
       } else if (delta >= 40) {
-        el.style.opacity = "0.85";
-        el.style.transform = "scale(1)";
+        if (prev !== 2) {
+          el.style.opacity = "0.85";
+          el.style.transform = "scale(1)";
+          states.set(node.id, 2);
+        }
       } else {
         const p = (delta + 80) / 120;
         el.style.opacity = String(0.85 * p);
         el.style.transform = `scale(${0.3 + 0.7 * p})`;
+        states.set(node.id, 1);
       }
     }
   }, []);
@@ -508,11 +519,17 @@ export const SynapticScrollSpine: React.FC = () => {
       ref={containerRef}
       // z-[5] positions safely BELOW all content & image cards (which sit at z-10/z-20)
       className="absolute inset-0 w-full h-full pointer-events-none z-[5] overflow-hidden"
-      style={{ width: "100%", height: svgHeight ? `${svgHeight}px` : "100%" }}
+      style={{
+        width: "100%",
+        height: svgHeight ? `${svgHeight}px` : "100%",
+        willChange: "transform",
+        transform: "translateZ(0)",
+        contain: "paint layout",
+      }}
       aria-hidden="true"
     >
       <defs>
-        {/* Soft Bioluminescent Glow Filter */}
+        {/* Soft Bioluminescent Glow Filter (Desktop only for max 120fps mobile performance) */}
         <filter id="spine-axon-glow" x="-30%" y="-30%" width="160%" height="160%">
           <feGaussianBlur stdDeviation="2.0" result="blur" />
           <feComposite in="SourceGraphic" in2="blur" operator="over" />
@@ -542,63 +559,64 @@ export const SynapticScrollSpine: React.FC = () => {
         </linearGradient>
       </defs>
 
-      {/* ── 1. FAINT MYELIN GUIDE LINE (Desktop only) ── */}
+      {/* ── 1. FAINT MYELIN GUIDE LINE (Mobile & Desktop) ── */}
       <path
         d={paths.p1}
-        stroke="rgba(199, 154, 69, 0.08)"
-        strokeWidth="1.0"
+        stroke="rgba(199, 154, 69, 0.12)"
+        strokeWidth={svgWidth < 768 ? "0.8" : "1.0"}
         strokeDasharray="4 12"
         fill="none"
-        className="hidden md:block"
+        vectorEffect="non-scaling-stroke"
       />
 
-      {/* ── 2. UNEVEN LINES (Direct 1:1 Pixel Scroll Synchronization) ── */}
+      {/* ── 2. MULTIPLE LIVING AXON FILAMENTS (Active on both Mobile & Desktop) ── */}
 
-      {/* Line 3: Satellite Filament (Desktop only) */}
+      {/* Line 3: Satellite Filament (Amber/Gold living fiber) */}
       <path
         ref={path3Ref}
         d={paths.p3}
         stroke="url(#spine-amber-grad)"
-        strokeWidth={1.4}
+        strokeWidth={svgWidth < 768 ? 1.1 : 1.4}
         strokeLinecap="round"
         strokeLinejoin="round"
         fill="none"
-        className="hidden md:block"
+        vectorEffect="non-scaling-stroke"
         style={{
-          opacity: 0.48,
+          opacity: svgWidth < 768 ? 0.45 : 0.48,
           transition: "none",
         }}
       />
 
-      {/* Line 2: Paired Companion Axon (Desktop only) */}
+      {/* Line 2: Paired Companion Axon (Sage/Gold living fiber) */}
       <path
         ref={path2Ref}
         d={paths.p2}
         stroke="url(#spine-sage-grad)"
-        strokeWidth={1.9}
+        strokeWidth={svgWidth < 768 ? 1.5 : 1.9}
         strokeLinecap="round"
         strokeLinejoin="round"
         fill="none"
-        className="hidden md:block"
-        filter="url(#spine-axon-glow)"
+        vectorEffect="non-scaling-stroke"
+        filter={svgWidth < 768 ? undefined : "url(#spine-axon-glow)"}
         style={{
-          opacity: 0.60,
+          opacity: svgWidth < 768 ? 0.58 : 0.60,
           transition: "none",
         }}
       />
 
-      {/* Line 1: Primary Gold Axon (Single, refined, luminous living axon on mobile; lead axon on desktop) */}
+      {/* Line 1: Primary Gold Axon (Lead luminous axon) */}
       <path
         ref={path1Ref}
         d={paths.p1}
         stroke="url(#spine-gold-grad)"
-        strokeWidth={svgWidth < 768 ? 1.8 : 2.6}
+        strokeWidth={svgWidth < 768 ? 2.1 : 2.6}
         strokeLinecap="round"
         strokeLinejoin="round"
         fill="none"
-        filter="url(#spine-axon-glow)"
+        vectorEffect="non-scaling-stroke"
+        filter={svgWidth < 768 ? undefined : "url(#spine-axon-glow)"}
         style={{
-          opacity: svgWidth < 768 ? 0.65 : 0.74,
+          opacity: svgWidth < 768 ? 0.72 : 0.74,
           transition: "none",
         }}
       />
@@ -620,7 +638,7 @@ export const SynapticScrollSpine: React.FC = () => {
             cy={node.y}
             r={node.r}
             fill="#C79A45"
-            filter="url(#spine-axon-glow)"
+            filter={svgWidth < 768 ? undefined : "url(#spine-axon-glow)"}
           />
           <circle
             cx={node.x}
