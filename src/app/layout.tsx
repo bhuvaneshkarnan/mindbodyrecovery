@@ -58,6 +58,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`dark ${manrope.variable} ${sans.variable}`}>
+      <head>
+        <link
+          rel="preload"
+          as="image"
+          href="/assets/hero/hero-poster.webp"
+          type="image/webp"
+          // @ts-expect-error Next.js / React 18 supports fetchpriority on link
+          fetchpriority="high"
+        />
+      </head>
       <body className="bg-ink-950 text-parchment-50 min-h-screen antialiased selection:bg-gold-500/30 selection:text-parchment-50 font-sans">
         {children}
       </body>

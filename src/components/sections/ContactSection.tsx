@@ -140,7 +140,7 @@ export const ContactSection: React.FC<ContactSectionProps> = () => {
           <SlideIn from="right" delay={0.15} className="relative z-10 text-[#F6F1E4] flex flex-col justify-between h-full">
             <div>
             <div className="mb-8 space-y-2">
-              <img src="/assets/brand/logo-trimmed.webp" alt="Mind Body Recovery" loading="lazy" decoding="async" className="h-12 w-auto object-contain" />
+              <img src="/assets/brand/logo-trimmed.webp" alt="Mind Body Recovery" width={125} height={48} loading="lazy" decoding="async" className="h-12 w-auto object-contain" />
               <p className="text-xs text-[#F6F1E4]/60 uppercase tracking-widest font-sans">
                 {clinicData.tagline}
               </p>

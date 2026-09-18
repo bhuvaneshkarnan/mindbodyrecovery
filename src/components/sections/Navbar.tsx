@@ -48,6 +48,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAssessment }) => {
           <img
             src="/assets/brand/logo-trimmed.webp"
             alt="Mind Body Recovery"
+            width={125}
+            height={48}
             decoding="async"
             className="h-10 sm:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
           />

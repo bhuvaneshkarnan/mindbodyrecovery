@@ -15,6 +15,8 @@ export const Footer: React.FC = () => {
               <img
                 src="/assets/brand/logo-trimmed.webp"
                 alt="Mind Body Recovery"
+                width={146}
+                height={56}
                 loading="lazy"
                 decoding="async"
                 className="h-12 sm:h-14 w-auto object-contain mb-2"

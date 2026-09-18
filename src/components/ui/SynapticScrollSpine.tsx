@@ -424,7 +424,10 @@ export const SynapticScrollSpine: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    buildNeuralNetwork();
+    // Schedule initial calculation when main thread is idle to eliminate hydration blocking
+    const initTimer = setTimeout(() => {
+      buildNeuralNetwork();
+    }, 350);
 
     let resizeRaf: number;
     let lastHeight = 0;
@@ -483,6 +486,7 @@ export const SynapticScrollSpine: React.FC = () => {
     const stopLenisCheck = setTimeout(() => clearInterval(checkLenis), 3000);
 
     return () => {
+      clearTimeout(initTimer);
       cancelAnimationFrame(resizeRaf);
       window.removeEventListener("resize", recompute);
       window.removeEventListener("scroll", onScroll);
