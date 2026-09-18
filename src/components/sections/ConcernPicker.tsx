@@ -143,36 +143,37 @@ export const ConcernPicker: React.FC<ConcernPickerProps> = ({ onSelectConcern })
               const isSelected = card.id === selectedId;
 
               return (
-                <button
-                  key={card.id}
-                  type="button"
-                  onClick={() => setSelectedId(card.id)}
-                  className={clsx(
-                    "p-6 rounded-xl border text-left transition-all duration-300 relative flex flex-col justify-between min-h-[180px]",
-                    isSelected
-                      ? "bg-[#FFFFFF] border-[#C79A45] shadow-lg ring-1 ring-[#C79A45]/50 scale-[1.02]"
-                      : "bg-[#FFFFFF]/90 border-[#E5E7EB] hover:border-[#231F19]/35 hover:bg-[#FFFFFF] shadow-sm"
-                  )}
-                >
-                  <div>
-                    <div className="flex items-center justify-between w-full mb-3">
-                      <div className="p-2 rounded-xl bg-[#F4F4F6] border border-[#231F19]/10">
-                        {getConcernIcon(card.id)}
+                <BlurReveal key={card.id} delay={idx * 0.08} blur={12} y={22} className="h-full">
+                  <button
+                    type="button"
+                    onClick={() => setSelectedId(card.id)}
+                    className={clsx(
+                      "w-full h-full p-6 rounded-xl border text-left transition-all duration-300 relative flex flex-col justify-between min-h-[180px]",
+                      isSelected
+                        ? "bg-[#FFFFFF] border-[#C79A45] shadow-lg ring-1 ring-[#C79A45]/50 scale-[1.02]"
+                        : "bg-[#FFFFFF]/90 border-[#E5E7EB] hover:border-[#231F19]/35 hover:bg-[#FFFFFF] shadow-sm"
+                    )}
+                  >
+                    <div>
+                      <div className="flex items-center justify-between w-full mb-3">
+                        <div className="p-2 rounded-xl bg-[#F4F4F6] border border-[#231F19]/10">
+                          {getConcernIcon(card.id)}
+                        </div>
+                        <span className="text-xs font-display font-medium text-[#231F19]/50">
+                          0{idx + 1}
+                        </span>
                       </div>
-                      <span className="text-xs font-display font-medium text-[#231F19]/50">
-                        0{idx + 1}
-                      </span>
+
+                      <h3 className="font-display text-lg sm:text-xl font-semibold text-[#231F19] mb-2">
+                        {card.title}
+                      </h3>
+
+                      <p className="text-xs sm:text-sm text-[#231F19]/75 font-sans leading-relaxed">
+                        {card.description}
+                      </p>
                     </div>
-
-                    <h3 className="font-display text-lg sm:text-xl font-semibold text-[#231F19] mb-2">
-                      {card.title}
-                    </h3>
-
-                    <p className="text-xs sm:text-sm text-[#231F19]/75 font-sans leading-relaxed">
-                      {card.description}
-                    </p>
-                  </div>
-                </button>
+                  </button>
+                </BlurReveal>
               );
             })}
           </div>

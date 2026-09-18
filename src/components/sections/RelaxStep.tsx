@@ -7,7 +7,7 @@ import { NeuronMobileSynapseGraph } from "@/components/ui/NeuronMobileSynapseGra
 import { NeuronHeadingConnector } from "@/components/ui/NeuronHeadingConnector";
 import { ShapedImageNode } from "@/components/ui/ShapedImageNode";
 import { clinicData } from "@/data/clinicData";
-import { FadeUp, SlideIn, ZoomReveal, BlurReveal } from "@/components/ui/ScrollAnimations";
+import { FadeUp, SlideIn, ZoomReveal, BlurReveal, StaggerReveal } from "@/components/ui/ScrollAnimations";
 
 interface RelaxStepProps {
   onOpenAssessment: () => void;
@@ -229,20 +229,22 @@ export const RelaxStep: React.FC<RelaxStepProps> = ({ onOpenAssessment }) => {
               <NeuronMobileSynapseGraph variant="dark" />
 
               <div id="relax-soma-mobile" className="w-[280px] sm:w-[320px] mx-auto relative z-10">
-                <BandageFrame variant="gold" className="w-full" caption={clinicData.relax.centerCaption}>
-                  <div className="w-full h-[200px] overflow-hidden bg-black flex items-center justify-center rounded-lg">
-                    <img
-                      src={clinicData.relax.centerImage}
-                      alt="Dr. Sameer"
-                      loading="lazy"
-                      decoding="async"
-                      className="max-w-full max-h-full object-contain"
-                    />
-                  </div>
-                </BandageFrame>
+                <ZoomReveal delay={0.08} blur={12}>
+                  <BandageFrame variant="gold" className="w-full" caption={clinicData.relax.centerCaption}>
+                    <div className="w-full h-[200px] overflow-hidden bg-black flex items-center justify-center rounded-lg">
+                      <img
+                        src={clinicData.relax.centerImage}
+                        alt="Dr. Sameer"
+                        loading="lazy"
+                        decoding="async"
+                        className="max-w-full max-h-full object-contain"
+                      />
+                    </div>
+                  </BandageFrame>
+                </ZoomReveal>
               </div>
 
-              <div className="grid grid-cols-2 gap-4 place-items-center relative z-10">
+              <StaggerReveal staggerDelay={0.08} className="grid grid-cols-2 gap-4 place-items-center relative z-10">
                 <ShapedImageNode
                   shape="arch"
                   imageSrc="/assets/relax/shirodhara.webp"
@@ -276,7 +278,7 @@ export const RelaxStep: React.FC<RelaxStepProps> = ({ onOpenAssessment }) => {
                   objectPosition="object-top"
                   isMobile
                 />
-              </div>
+              </StaggerReveal>
             </div>
 
           </FadeUp>

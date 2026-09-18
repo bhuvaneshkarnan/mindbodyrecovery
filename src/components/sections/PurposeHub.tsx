@@ -149,11 +149,10 @@ export const PurposeHub: React.FC = () => {
           {/* 1. Top Scattered Tier (2 photos flanking above center) */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-6 lg:gap-8 mb-6 lg:-mb-4 items-end">
             <div className="col-span-1 lg:col-span-4 lg:col-start-2 flex justify-center lg:justify-end">
-              <motion.div
-                initial={{ opacity: 0.8, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "180px 0px" }}
-                transition={{ duration: 0.45, delay: 0.04 }}
+              <BlurReveal
+                direction="down"
+                delay={0.06}
+                blur={14}
                 className={`w-full ${TOP_PHOTOS[0].widthClass} ${TOP_PHOTOS[0].offsetClass} group relative z-10 hover:z-30`}
               >
                 <div
@@ -178,15 +177,14 @@ export const PurposeHub: React.FC = () => {
                     </div>
                   </BandageFrame>
                 </div>
-              </motion.div>
+              </BlurReveal>
             </div>
 
             <div className="col-span-1 lg:col-span-4 lg:col-start-8 flex justify-center lg:justify-start">
-              <motion.div
-                initial={{ opacity: 0.8, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "180px 0px" }}
-                transition={{ duration: 0.45, delay: 0.06 }}
+              <BlurReveal
+                direction="down"
+                delay={0.14}
+                blur={14}
                 className={`w-full ${TOP_PHOTOS[1].widthClass} ${TOP_PHOTOS[1].offsetClass} group relative z-10 hover:z-30`}
               >
                 <div
@@ -211,7 +209,7 @@ export const PurposeHub: React.FC = () => {
                     </div>
                   </BandageFrame>
                 </div>
-              </motion.div>
+              </BlurReveal>
             </div>
           </div>
 
@@ -220,12 +218,11 @@ export const PurposeHub: React.FC = () => {
             {/* Left Flank (2 photos stacked unevenly) */}
             <div className="col-span-1 lg:col-span-3 flex flex-col sm:flex-row lg:flex-col gap-6 lg:gap-10 items-center justify-center order-2 lg:order-1">
               {LEFT_PHOTOS.map((item, idx) => (
-                <motion.div
+                <BlurReveal
                   key={item.id}
-                  initial={{ opacity: 0.8, x: -10 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "180px 0px" }}
-                  transition={{ duration: 0.45, delay: 0.04 * idx }}
+                  direction="left"
+                  delay={0.08 * (idx + 1)}
+                  blur={14}
                   className={`w-full ${item.widthClass} ${item.offsetClass} group relative z-10 hover:z-30`}
                 >
                   <div
@@ -250,17 +247,18 @@ export const PurposeHub: React.FC = () => {
                       </div>
                     </BandageFrame>
                   </div>
-                </motion.div>
+                </BlurReveal>
               ))}
             </div>
 
             {/* THE CENTER HERO PHOTO (BIGGER & ELEVATED) */}
             <div className="col-span-1 lg:col-span-6 flex justify-center order-1 lg:order-2 my-4 lg:my-0">
-              <motion.div
-                initial={{ opacity: 0.85, scale: 0.98 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: "180px 0px" }}
-                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              <BlurReveal
+                direction="up"
+                delay={0.05}
+                blur={16}
+                scale={0.96}
+                duration={0.95}
                 className="w-full max-w-[560px] sm:max-w-[620px] lg:max-w-[660px] group relative z-20 hover:z-30"
               >
                 <div
@@ -285,18 +283,17 @@ export const PurposeHub: React.FC = () => {
                     </div>
                   </BandageFrame>
                 </div>
-              </motion.div>
+              </BlurReveal>
             </div>
 
             {/* Right Flank (2 photos stacked unevenly) */}
             <div className="col-span-1 lg:col-span-3 flex flex-col sm:flex-row lg:flex-col gap-6 lg:gap-10 items-center justify-center order-3 lg:order-3">
               {RIGHT_PHOTOS.map((item, idx) => (
-                <motion.div
+                <BlurReveal
                   key={item.id}
-                  initial={{ opacity: 0.8, x: 10 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "180px 0px" }}
-                  transition={{ duration: 0.45, delay: 0.04 * idx }}
+                  direction="right"
+                  delay={0.08 * (idx + 1)}
+                  blur={14}
                   className={`w-full ${item.widthClass} ${item.offsetClass} group relative z-10 hover:z-30`}
                 >
                   <div
@@ -321,7 +318,7 @@ export const PurposeHub: React.FC = () => {
                       </div>
                     </BandageFrame>
                   </div>
-                </motion.div>
+                </BlurReveal>
               ))}
             </div>
           </div>
@@ -329,11 +326,10 @@ export const PurposeHub: React.FC = () => {
           {/* 3. Bottom Scattered Tier (3 photos scattered unevenly below center) */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
             <div className="col-span-1 sm:col-span-1 lg:col-span-4 flex justify-center lg:justify-start">
-              <motion.div
-                initial={{ opacity: 0.8, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "180px 0px" }}
-                transition={{ duration: 0.45, delay: 0.04 }}
+              <BlurReveal
+                direction="up"
+                delay={0.06}
+                blur={14}
                 className={`w-full ${BOTTOM_PHOTOS[0].widthClass} ${BOTTOM_PHOTOS[0].offsetClass} group relative z-10 hover:z-30`}
               >
                 <div
@@ -358,15 +354,14 @@ export const PurposeHub: React.FC = () => {
                     </div>
                   </BandageFrame>
                 </div>
-              </motion.div>
+              </BlurReveal>
             </div>
 
             <div className="col-span-1 sm:col-span-1 lg:col-span-4 flex justify-center">
-              <motion.div
-                initial={{ opacity: 0.8, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "180px 0px" }}
-                transition={{ duration: 0.45, delay: 0.06 }}
+              <BlurReveal
+                direction="up"
+                delay={0.12}
+                blur={14}
                 className={`w-full ${BOTTOM_PHOTOS[1].widthClass} ${BOTTOM_PHOTOS[1].offsetClass} group relative z-10 hover:z-30`}
               >
                 <div
@@ -391,15 +386,14 @@ export const PurposeHub: React.FC = () => {
                     </div>
                   </BandageFrame>
                 </div>
-              </motion.div>
+              </BlurReveal>
             </div>
 
             <div className="col-span-1 sm:col-span-2 lg:col-span-4 flex justify-center lg:justify-end">
-              <motion.div
-                initial={{ opacity: 0.8, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "180px 0px" }}
-                transition={{ duration: 0.45, delay: 0.08 }}
+              <BlurReveal
+                direction="up"
+                delay={0.18}
+                blur={14}
                 className={`w-full ${BOTTOM_PHOTOS[2].widthClass} ${BOTTOM_PHOTOS[2].offsetClass} group relative z-10 hover:z-30`}
               >
                 <div
@@ -424,7 +418,7 @@ export const PurposeHub: React.FC = () => {
                     </div>
                   </BandageFrame>
                 </div>
-              </motion.div>
+              </BlurReveal>
             </div>
           </div>
         </div>

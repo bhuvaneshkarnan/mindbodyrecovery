@@ -7,7 +7,7 @@ import { NeuronMobileSynapseGraph } from "@/components/ui/NeuronMobileSynapseGra
 import { ShapedImageNode } from "@/components/ui/ShapedImageNode";
 import { NeuronHeadingConnector } from "@/components/ui/NeuronHeadingConnector";
 import { clinicData } from "@/data/clinicData";
-import { FadeUp, SlideIn, ZoomReveal, BlurReveal } from "@/components/ui/ScrollAnimations";
+import { FadeUp, SlideIn, ZoomReveal, BlurReveal, StaggerReveal } from "@/components/ui/ScrollAnimations";
 
 export const RethinkStep: React.FC = () => {
   return (
@@ -225,20 +225,22 @@ export const RethinkStep: React.FC = () => {
               <NeuronMobileSynapseGraph variant="light" />
 
               <div id="rethink-soma-mobile" className="w-[280px] sm:w-[320px] mx-auto relative z-10">
-                <BandageFrame variant="light" className="w-full" caption={clinicData.rethink.centerCaption}>
-                  <div className="w-full h-[200px] overflow-hidden bg-[#181C14] flex items-center justify-center rounded-lg">
-                    <img
-                      src={clinicData.rethink.centerImage}
-                      alt="Dr. Sameer Consultation"
-                      loading="lazy"
-                      decoding="async"
-                      className="max-w-full max-h-full object-contain"
-                    />
-                  </div>
-                </BandageFrame>
+                <ZoomReveal delay={0.08} blur={12}>
+                  <BandageFrame variant="light" className="w-full" caption={clinicData.rethink.centerCaption}>
+                    <div className="w-full h-[200px] overflow-hidden bg-[#181C14] flex items-center justify-center rounded-lg">
+                      <img
+                        src={clinicData.rethink.centerImage}
+                        alt="Dr. Sameer Consultation"
+                        loading="lazy"
+                        decoding="async"
+                        className="max-w-full max-h-full object-contain"
+                      />
+                    </div>
+                  </BandageFrame>
+                </ZoomReveal>
               </div>
 
-              <div className="grid grid-cols-2 gap-4 place-items-center relative z-10">
+              <StaggerReveal staggerDelay={0.08} className="grid grid-cols-2 gap-4 place-items-center relative z-10">
                 <ShapedImageNode
                   shape="arch"
                   imageSrc="/assets/rethink/reconnect.webp"
@@ -271,7 +273,7 @@ export const RethinkStep: React.FC = () => {
                   variant="light"
                   isMobile
                 />
-              </div>
+              </StaggerReveal>
             </div>
 
           </FadeUp>
