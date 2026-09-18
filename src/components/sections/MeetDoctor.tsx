@@ -32,6 +32,8 @@ export const MeetDoctor: React.FC<MeetDoctorProps> = ({ onOpenAssessment }) => {
                 <img
                   src={clinicData.doctor.portrait}
                   alt={clinicData.doctor.name}
+                  loading="lazy"
+                  decoding="async"
                   className="max-w-full max-h-full object-contain filter saturate-95 contrast-105"
                 />
               </div>

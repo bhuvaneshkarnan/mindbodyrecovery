@@ -117,6 +117,8 @@ export const RethinkStep: React.FC = () => {
                       <img
                         src={clinicData.rethink.centerImage}
                         alt="Consultation"
+                        loading="lazy"
+                        decoding="async"
                         className="max-w-full max-h-full object-contain filter saturate-95"
                       />
                       {/* Integrated Center Caption Badge */}
@@ -136,7 +138,7 @@ export const RethinkStep: React.FC = () => {
               <div className="absolute top-0 left-1/2 -translate-x-1/2 z-30">
                 <ShapedImageNode
                   shape="arch"
-                  imageSrc="/assets/rethink/reconnect.jpg"
+                  imageSrc="/assets/rethink/reconnect.webp"
                   imageAlt="Reconnect"
                   label="Reconnect"
                   variant="light"
@@ -166,7 +168,7 @@ export const RethinkStep: React.FC = () => {
               <div className="absolute top-1/2 -translate-y-1/2 left-[22px] z-30">
                 <ShapedImageNode
                   shape="circle"
-                  imageSrc="/assets/rethink/live-mindfully.jpg"
+                  imageSrc="/assets/rethink/live-mindfully.webp"
                   imageAlt="Live Mindfully"
                   label="Live Mindfully"
                   variant="light"
@@ -178,7 +180,7 @@ export const RethinkStep: React.FC = () => {
               <div className="absolute top-1/2 -translate-y-1/2 right-[32px] z-30">
                 <ShapedImageNode
                   shape="capsule"
-                  imageSrc="/assets/rethink/deeper-mind.jpg"
+                  imageSrc="/assets/rethink/deeper-mind.webp"
                   imageAlt="Deeper Mind"
                   label="Deeper Mind"
                   variant="light"
@@ -190,7 +192,7 @@ export const RethinkStep: React.FC = () => {
               <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-30">
                 <ShapedImageNode
                   shape="squircle"
-                  imageSrc="/assets/rethink/new-habits.jpg"
+                  imageSrc="/assets/rethink/new-habits.webp"
                   imageAlt="New Habits"
                   label="New Habits"
                   variant="light"
@@ -225,7 +227,13 @@ export const RethinkStep: React.FC = () => {
               <div id="rethink-soma-mobile" className="w-[280px] sm:w-[320px] mx-auto relative z-10">
                 <BandageFrame variant="light" className="w-full" caption={clinicData.rethink.centerCaption}>
                   <div className="w-full h-[200px] overflow-hidden bg-[#181C14] flex items-center justify-center rounded-lg">
-                    <img src={clinicData.rethink.centerImage} alt="Dr. Sameer Consultation" className="max-w-full max-h-full object-contain" />
+                    <img
+                      src={clinicData.rethink.centerImage}
+                      alt="Dr. Sameer Consultation"
+                      loading="lazy"
+                      decoding="async"
+                      className="max-w-full max-h-full object-contain"
+                    />
                   </div>
                 </BandageFrame>
               </div>
@@ -233,7 +241,7 @@ export const RethinkStep: React.FC = () => {
               <div className="grid grid-cols-2 gap-4 place-items-center relative z-10">
                 <ShapedImageNode
                   shape="arch"
-                  imageSrc="/assets/rethink/reconnect.jpg"
+                  imageSrc="/assets/rethink/reconnect.webp"
                   imageAlt="Reconnect"
                   label="Reconnect"
                   variant="light"
@@ -241,7 +249,7 @@ export const RethinkStep: React.FC = () => {
                 />
                 <ShapedImageNode
                   shape="circle"
-                  imageSrc="/assets/rethink/live-mindfully.jpg"
+                  imageSrc="/assets/rethink/live-mindfully.webp"
                   imageAlt="Live Mindfully"
                   label="Live Mindfully"
                   variant="light"
@@ -249,7 +257,7 @@ export const RethinkStep: React.FC = () => {
                 />
                 <ShapedImageNode
                   shape="capsule"
-                  imageSrc="/assets/rethink/deeper-mind.jpg"
+                  imageSrc="/assets/rethink/deeper-mind.webp"
                   imageAlt="Deeper Mind"
                   label="Deeper Mind"
                   variant="light"
@@ -257,7 +265,7 @@ export const RethinkStep: React.FC = () => {
                 />
                 <ShapedImageNode
                   shape="squircle"
-                  imageSrc="/assets/rethink/new-habits.jpg"
+                  imageSrc="/assets/rethink/new-habits.webp"
                   imageAlt="New Habits"
                   label="New Habits"
                   variant="light"

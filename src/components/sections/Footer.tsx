@@ -13,8 +13,10 @@ export const Footer: React.FC = () => {
           <div className="lg:col-span-2 space-y-4">
             <a href="#" className="inline-block focus:outline-none" aria-label="Mind Body Recovery">
               <img
-                src="/assets/brand/logo-trimmed.png"
+                src="/assets/brand/logo-trimmed.webp"
                 alt="Mind Body Recovery"
+                loading="lazy"
+                decoding="async"
                 className="h-12 sm:h-14 w-auto object-contain mb-2"
               />
             </a>

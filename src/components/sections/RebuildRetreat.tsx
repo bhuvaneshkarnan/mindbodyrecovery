@@ -126,6 +126,8 @@ export const RebuildRetreat: React.FC<RebuildRetreatProps> = ({ onOpenAssessment
                       <img
                         src={clinicData.retreat.centerImage}
                         alt="Sanctuary Living"
+                        loading="lazy"
+                        decoding="async"
                         className="max-w-full max-h-full object-contain filter saturate-95 contrast-105"
                       />
                       {/* Integrated Center Caption Badge */}
@@ -145,7 +147,7 @@ export const RebuildRetreat: React.FC<RebuildRetreatProps> = ({ onOpenAssessment
               <div className="absolute top-0 left-1/2 -translate-x-1/2 z-30">
                 <ShapedImageNode
                   shape="arch"
-                  imageSrc="/assets/rebuild/therapies.jpg"
+                  imageSrc="/assets/rebuild/therapies.webp"
                   imageAlt="Therapies"
                   label="Therapies"
                   variant="dark"
@@ -175,7 +177,7 @@ export const RebuildRetreat: React.FC<RebuildRetreatProps> = ({ onOpenAssessment
               <div className="absolute top-1/2 -translate-y-1/2 left-[22px] z-30">
                 <ShapedImageNode
                   shape="circle"
-                  imageSrc="/assets/rebuild/peaceful-stay.jpg"
+                  imageSrc="/assets/rebuild/peaceful-stay.webp"
                   imageAlt="Peaceful Stay"
                   label="Peaceful Stay"
                   variant="dark"
@@ -187,7 +189,7 @@ export const RebuildRetreat: React.FC<RebuildRetreatProps> = ({ onOpenAssessment
               <div className="absolute top-1/2 -translate-y-1/2 right-[32px] z-30">
                 <ShapedImageNode
                   shape="capsule"
-                  imageSrc="/assets/rebuild/yoga-breath.jpg"
+                  imageSrc="/assets/rebuild/yoga-breath.webp"
                   imageAlt="Yoga & Breathwork"
                   label="Yoga & Breath"
                   variant="dark"
@@ -199,7 +201,7 @@ export const RebuildRetreat: React.FC<RebuildRetreatProps> = ({ onOpenAssessment
               <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-30">
                 <ShapedImageNode
                   shape="squircle"
-                  imageSrc="/assets/rebuild/sattvic-meals.jpg"
+                  imageSrc="/assets/rebuild/sattvic-meals.webp"
                   imageAlt="Sattvic Meals"
                   label="Sattvic Meals"
                   variant="dark"
@@ -234,7 +236,13 @@ export const RebuildRetreat: React.FC<RebuildRetreatProps> = ({ onOpenAssessment
               <div id="rebuild-soma-mobile" className="w-[280px] sm:w-[320px] mx-auto relative z-10">
                 <BandageFrame variant="gold" className="w-full" caption={clinicData.retreat.centerCaption}>
                   <div className="w-full h-[200px] overflow-hidden bg-black flex items-center justify-center rounded-lg">
-                    <img src={clinicData.retreat.centerImage} alt="Sanctuary" className="max-w-full max-h-full object-contain" />
+                    <img
+                      src={clinicData.retreat.centerImage}
+                      alt="Sanctuary"
+                      loading="lazy"
+                      decoding="async"
+                      className="max-w-full max-h-full object-contain"
+                    />
                   </div>
                 </BandageFrame>
               </div>
@@ -242,7 +250,7 @@ export const RebuildRetreat: React.FC<RebuildRetreatProps> = ({ onOpenAssessment
               <div className="grid grid-cols-2 gap-4 place-items-center relative z-10">
                 <ShapedImageNode
                   shape="arch"
-                  imageSrc="/assets/rebuild/therapies.jpg"
+                  imageSrc="/assets/rebuild/therapies.webp"
                   imageAlt="Therapies"
                   label="Therapies"
                   variant="dark"
@@ -250,7 +258,7 @@ export const RebuildRetreat: React.FC<RebuildRetreatProps> = ({ onOpenAssessment
                 />
                 <ShapedImageNode
                   shape="circle"
-                  imageSrc="/assets/rebuild/peaceful-stay.jpg"
+                  imageSrc="/assets/rebuild/peaceful-stay.webp"
                   imageAlt="Peaceful Stay"
                   label="Peaceful Stay"
                   variant="dark"
@@ -258,7 +266,7 @@ export const RebuildRetreat: React.FC<RebuildRetreatProps> = ({ onOpenAssessment
                 />
                 <ShapedImageNode
                   shape="capsule"
-                  imageSrc="/assets/rebuild/yoga-breath.jpg"
+                  imageSrc="/assets/rebuild/yoga-breath.webp"
                   imageAlt="Yoga & Breath"
                   label="Yoga & Breath"
                   variant="dark"
@@ -266,7 +274,7 @@ export const RebuildRetreat: React.FC<RebuildRetreatProps> = ({ onOpenAssessment
                 />
                 <ShapedImageNode
                   shape="squircle"
-                  imageSrc="/assets/rebuild/sattvic-meals.jpg"
+                  imageSrc="/assets/rebuild/sattvic-meals.webp"
                   imageAlt="Sattvic Meals"
                   label="Sattvic Meals"
                   variant="dark"

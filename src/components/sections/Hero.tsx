@@ -30,10 +30,11 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAssessment }) => {
           loop
           muted
           playsInline
+          poster="/assets/hero/hero-poster.webp"
           className="w-full h-full object-cover opacity-90 filter saturate-100 contrast-105"
         >
-          <source src={clinicData.hero.videoMontage} type="video/mp4" />
-          <source src="/assets/hero/20260722_191757_1.mp4" type="video/mp4" />
+          <source src="/assets/hero/hero-mobile.mp4" type="video/mp4" media="(max-width: 768px)" />
+          <source src="/assets/hero/hero-main-opt.mp4" type="video/mp4" />
         </video>
 
         {/* Minimal Directional Vignette for Text Readability */}

@@ -61,6 +61,8 @@ export const ProofStats: React.FC = () => {
                 <img
                   src={clinicData.proofStats.teamPhoto}
                   alt="Mind Body Recovery Team"
+                  loading="lazy"
+                  decoding="async"
                   className="max-w-full max-h-full object-contain filter saturate-90 contrast-110"
                 />
               </div>

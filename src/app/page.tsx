@@ -1,13 +1,12 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 import Lenis from "lenis";
 import { ScrollProgressBar } from "@/components/ui/ScrollAnimations";
 import { SynapticScrollSpine } from "@/components/ui/SynapticScrollSpine";
-import { AssessmentModal } from "@/components/ui/AssessmentModal";
 import { Navbar } from "@/components/sections/Navbar";
 import { Hero } from "@/components/sections/Hero";
-import { RealStories } from "@/components/sections/RealStories";
 import { ProofStats } from "@/components/sections/ProofStats";
 import { PurposeHub } from "@/components/sections/PurposeHub";
 import { RelaxStep } from "@/components/sections/RelaxStep";
@@ -17,6 +16,17 @@ import { RebuildRetreat } from "@/components/sections/RebuildRetreat";
 import { MeetDoctor } from "@/components/sections/MeetDoctor";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { Footer } from "@/components/sections/Footer";
+
+// Dynamically split heavy interactive assessment modal and iframe section
+const AssessmentModal = dynamic(
+  () => import("@/components/ui/AssessmentModal").then((mod) => mod.AssessmentModal),
+  { ssr: false }
+);
+
+const RealStories = dynamic(
+  () => import("@/components/sections/RealStories").then((mod) => mod.RealStories),
+  { ssr: true }
+);
 
 export default function HomePage() {
   const [assessmentModalOpen, setAssessmentModalOpen] = useState(false);

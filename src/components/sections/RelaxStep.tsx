@@ -120,6 +120,8 @@ export const RelaxStep: React.FC<RelaxStepProps> = ({ onOpenAssessment }) => {
                       <img
                         src={clinicData.relax.centerImage}
                         alt="Dr. Sameer"
+                        loading="lazy"
+                        decoding="async"
                         className="max-w-full max-h-full object-contain filter saturate-95 contrast-105"
                       />
                       {/* Integrated Center Caption Badge (no bottom collision) */}
@@ -139,7 +141,7 @@ export const RelaxStep: React.FC<RelaxStepProps> = ({ onOpenAssessment }) => {
               <div className="absolute top-0 left-1/2 -translate-x-1/2 z-30">
                 <ShapedImageNode
                   shape="arch"
-                  imageSrc="/assets/relax/shirodhara.png"
+                  imageSrc="/assets/relax/shirodhara.webp"
                   imageAlt="Shirodhara"
                   label="Shirodhara"
                   variant="dark"
@@ -170,7 +172,7 @@ export const RelaxStep: React.FC<RelaxStepProps> = ({ onOpenAssessment }) => {
               <div className="absolute top-1/2 -translate-y-1/2 left-[22px] z-30">
                 <ShapedImageNode
                   shape="circle"
-                  imageSrc="/assets/relax/cupping.jpg"
+                  imageSrc="/assets/relax/cupping.webp"
                   imageAlt="Cupping"
                   label="Cupping"
                   variant="dark"
@@ -182,7 +184,7 @@ export const RelaxStep: React.FC<RelaxStepProps> = ({ onOpenAssessment }) => {
               <div className="absolute top-1/2 -translate-y-1/2 right-[32px] z-30">
                 <ShapedImageNode
                   shape="capsule"
-                  imageSrc="/assets/relax/foot-reflexology.jpg"
+                  imageSrc="/assets/relax/foot-reflexology.webp"
                   imageAlt="Foot Reflexology"
                   label="Reflexology"
                   variant="dark"
@@ -194,7 +196,7 @@ export const RelaxStep: React.FC<RelaxStepProps> = ({ onOpenAssessment }) => {
               <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-30">
                 <ShapedImageNode
                   shape="squircle"
-                  imageSrc="/assets/relax/Podikizhi.png"
+                  imageSrc="/assets/relax/Podikizhi.webp"
                   imageAlt="Podikizhi"
                   label="Podikizhi"
                   variant="dark"
@@ -229,7 +231,13 @@ export const RelaxStep: React.FC<RelaxStepProps> = ({ onOpenAssessment }) => {
               <div id="relax-soma-mobile" className="w-[280px] sm:w-[320px] mx-auto relative z-10">
                 <BandageFrame variant="gold" className="w-full" caption={clinicData.relax.centerCaption}>
                   <div className="w-full h-[200px] overflow-hidden bg-black flex items-center justify-center rounded-lg">
-                    <img src={clinicData.relax.centerImage} alt="Dr. Sameer" className="max-w-full max-h-full object-contain" />
+                    <img
+                      src={clinicData.relax.centerImage}
+                      alt="Dr. Sameer"
+                      loading="lazy"
+                      decoding="async"
+                      className="max-w-full max-h-full object-contain"
+                    />
                   </div>
                 </BandageFrame>
               </div>
@@ -237,7 +245,7 @@ export const RelaxStep: React.FC<RelaxStepProps> = ({ onOpenAssessment }) => {
               <div className="grid grid-cols-2 gap-4 place-items-center relative z-10">
                 <ShapedImageNode
                   shape="arch"
-                  imageSrc="/assets/relax/shirodhara.png"
+                  imageSrc="/assets/relax/shirodhara.webp"
                   imageAlt="Shirodhara"
                   label="Shirodhara"
                   variant="dark"
@@ -245,7 +253,7 @@ export const RelaxStep: React.FC<RelaxStepProps> = ({ onOpenAssessment }) => {
                 />
                 <ShapedImageNode
                   shape="circle"
-                  imageSrc="/assets/relax/cupping.jpg"
+                  imageSrc="/assets/relax/cupping.webp"
                   imageAlt="Cupping"
                   label="Cupping"
                   variant="dark"
@@ -253,7 +261,7 @@ export const RelaxStep: React.FC<RelaxStepProps> = ({ onOpenAssessment }) => {
                 />
                 <ShapedImageNode
                   shape="capsule"
-                  imageSrc="/assets/relax/foot-reflexology.jpg"
+                  imageSrc="/assets/relax/foot-reflexology.webp"
                   imageAlt="Foot Reflexology"
                   label="Reflexology"
                   variant="dark"
@@ -261,7 +269,7 @@ export const RelaxStep: React.FC<RelaxStepProps> = ({ onOpenAssessment }) => {
                 />
                 <ShapedImageNode
                   shape="squircle"
-                  imageSrc="/assets/relax/Podikizhi.png"
+                  imageSrc="/assets/relax/Podikizhi.webp"
                   imageAlt="Podikizhi"
                   label="Podikizhi"
                   variant="dark"

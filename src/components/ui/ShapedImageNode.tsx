@@ -61,6 +61,8 @@ export const ShapedImageNode: React.FC<ShapedImageNodeProps> = ({
         <img
           src={imageSrc}
           alt={imageAlt}
+          loading="lazy"
+          decoding="async"
           className={clsx(
             "w-full h-full object-cover transition-transform duration-500 group-hover:scale-105",
             objectPosition

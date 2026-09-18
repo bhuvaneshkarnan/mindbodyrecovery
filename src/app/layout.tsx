@@ -4,16 +4,16 @@ import "./globals.css";
 
 const manrope = Manrope({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
   variable: "--font-manrope",
   display: "swap",
+  preload: true,
 });
 
 const sans = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
   variable: "--font-general-sans",
   display: "swap",
+  preload: true,
 });
 
 export const metadata: Metadata = {
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     siteName: "Mind Body Recovery",
     images: [
       {
-        url: "/assets/team/20260826_153026.jpg",
+        url: "/assets/team/20260826_153026.webp",
         width: 1200,
         height: 630,
         alt: "Mind Body Recovery Team and Clinic",

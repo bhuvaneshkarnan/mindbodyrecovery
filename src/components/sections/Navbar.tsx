@@ -46,8 +46,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAssessment }) => {
           aria-label="Mind Body Recovery Home"
         >
           <img
-            src="/assets/brand/logo-trimmed.png"
+            src="/assets/brand/logo-trimmed.webp"
             alt="Mind Body Recovery"
+            decoding="async"
             className="h-10 sm:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
           />
         </a>
