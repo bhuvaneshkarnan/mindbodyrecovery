@@ -4,57 +4,25 @@ import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import Lenis from "lenis";
 import { ScrollProgressBar } from "@/components/ui/ScrollAnimations";
-// Critical above-the-fold components
+// Page sections & components (bundled in unified payload to eliminate network chunk waterfalls)
 import { Navbar } from "@/components/sections/Navbar";
 import { Hero } from "@/components/sections/Hero";
+import { RealStories } from "@/components/sections/RealStories";
 import { ProofStats } from "@/components/sections/ProofStats";
+import { PurposeHub } from "@/components/sections/PurposeHub";
+import { RelaxStep } from "@/components/sections/RelaxStep";
+import { RethinkStep } from "@/components/sections/RethinkStep";
+import { ConcernPicker } from "@/components/sections/ConcernPicker";
+import { RebuildRetreat } from "@/components/sections/RebuildRetreat";
+import { MeetDoctor } from "@/components/sections/MeetDoctor";
+import { ContactSection } from "@/components/sections/ContactSection";
+import { Footer } from "@/components/sections/Footer";
+import { SynapticScrollSpine } from "@/components/ui/SynapticScrollSpine";
 
-// Client-only deferred components
-const SynapticScrollSpine = dynamic(
-  () => import("@/components/ui/SynapticScrollSpine").then((mod) => mod.SynapticScrollSpine),
-  { ssr: false }
-);
-
+// Modal is kept client-only dynamic since it opens on user interaction
 const AssessmentModal = dynamic(
   () => import("@/components/ui/AssessmentModal").then((mod) => mod.AssessmentModal),
   { ssr: false }
-);
-
-// Below-the-fold code-split sections (SSR preserved for SEO)
-const RealStories = dynamic(
-  () => import("@/components/sections/RealStories").then((mod) => mod.RealStories)
-);
-
-const PurposeHub = dynamic(
-  () => import("@/components/sections/PurposeHub").then((mod) => mod.PurposeHub)
-);
-
-const RelaxStep = dynamic(
-  () => import("@/components/sections/RelaxStep").then((mod) => mod.RelaxStep)
-);
-
-const RethinkStep = dynamic(
-  () => import("@/components/sections/RethinkStep").then((mod) => mod.RethinkStep)
-);
-
-const ConcernPicker = dynamic(
-  () => import("@/components/sections/ConcernPicker").then((mod) => mod.ConcernPicker)
-);
-
-const RebuildRetreat = dynamic(
-  () => import("@/components/sections/RebuildRetreat").then((mod) => mod.RebuildRetreat)
-);
-
-const MeetDoctor = dynamic(
-  () => import("@/components/sections/MeetDoctor").then((mod) => mod.MeetDoctor)
-);
-
-const ContactSection = dynamic(
-  () => import("@/components/sections/ContactSection").then((mod) => mod.ContactSection)
-);
-
-const Footer = dynamic(
-  () => import("@/components/sections/Footer").then((mod) => mod.Footer)
 );
 
 export default function HomePage() {

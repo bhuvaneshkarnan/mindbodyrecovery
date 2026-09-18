@@ -14,14 +14,20 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAssessment }) => {
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [canMountVideo, setCanMountVideo] = useState(false);
 
-  // Defer video initialization until after critical first paint & hydration
+  // Defer video initialization until after critical page load finishes
   useEffect(() => {
-    // Delay video mount so network bandwidth is 100% dedicated to critical LCP assets & fonts
-    const timer = setTimeout(() => {
-      setCanMountVideo(true);
-    }, 400);
-
-    return () => clearTimeout(timer);
+    const startVideo = () => setCanMountVideo(true);
+    if (typeof document !== "undefined" && document.readyState === "complete") {
+      const timer = setTimeout(startVideo, 800);
+      return () => clearTimeout(timer);
+    } else if (typeof window !== "undefined") {
+      window.addEventListener("load", startVideo, { once: true });
+      const fallbackTimer = setTimeout(startVideo, 2500);
+      return () => {
+        window.removeEventListener("load", startVideo);
+        clearTimeout(fallbackTimer);
+      };
+    }
   }, []);
 
   const toggleSound = () => {

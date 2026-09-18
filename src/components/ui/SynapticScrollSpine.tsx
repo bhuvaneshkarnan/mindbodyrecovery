@@ -131,24 +131,18 @@ function getLengthForY(targetY: number, samples: PathSample[], totalLen: number)
 export const SynapticScrollSpine: React.FC = () => {
   const containerRef = useRef<SVGSVGElement>(null);
   const path1Ref = useRef<SVGPathElement>(null);
-  const glowPath1Ref = useRef<SVGPathElement>(null);
-  const path2Ref = useRef<SVGPathElement>(null);
-  const path3Ref = useRef<SVGPathElement>(null);
+  const coreGlowRef = useRef<SVGPathElement>(null);
+  const sparkDotRef = useRef<SVGGElement>(null);
 
-  const [paths, setPaths] = useState<{ p1: string; p2: string; p3: string }>({ p1: "", p2: "", p3: "" });
+  const [pathD, setPathD] = useState<string>("");
   const [nodes, setNodes] = useState<NodeData[]>([]);
   const [svgHeight, setSvgHeight] = useState<number>(0);
   const [svgWidth, setSvgWidth] = useState<number>(0);
 
   // Cached path geometry samples for 120fps instant lookup
-  const pathDataRef = useRef<{
-    p1: { len: number; samples: PathSample[] };
-    p2: { len: number; samples: PathSample[] };
-    p3: { len: number; samples: PathSample[] };
-  }>({
-    p1: { len: 0, samples: [] },
-    p2: { len: 0, samples: [] },
-    p3: { len: 0, samples: [] },
+  const pathDataRef = useRef<{ len: number; samples: PathSample[] }>({
+    len: 0,
+    samples: [],
   });
 
   const nodesRef = useRef<NodeData[]>([]);
@@ -326,44 +320,40 @@ export const SynapticScrollSpine: React.FC = () => {
     };
 
     const p1 = generateSpline(() => 0);
-    const p2 = generateSpline((i, c) => (isMobile ? 6 : 12) + Math.sin((i * 2.5 + c) * 0.8) * (isMobile ? 3 : 4));
-    const p3 = generateSpline((i, c) => -((isMobile ? 8 : 22) + Math.sin((i * 1.5 + c * 0.4)) * (isMobile ? 3 : 6)));
 
-    setPaths({ p1, p2, p3 });
+    setPathD(p1);
     setNodes(generatedNodes);
     nodesRef.current = generatedNodes;
   }, []);
 
-  // ── 2. SAMPLE PATHS ONCE THEY ARE MOUNTED IN DOM ──
+  // ── 2. SAMPLE PATH ONCE MOUNTED IN DOM ──
   const sampleAllPaths = useCallback(() => {
     boutonCacheRef.current.clear();
-    const sample = (pathEl: SVGPathElement | null) => {
-      if (!pathEl) return { len: 0, samples: [] };
-      const len = pathEl.getTotalLength();
-      if (!len || len <= 0) return { len: 0, samples: [] };
+    const pathEl = path1Ref.current;
+    if (!pathEl) return;
+    const len = pathEl.getTotalLength();
+    if (!len || len <= 0) return;
 
-      const samples: PathSample[] = [];
-      const step = 20; // Sample every 20px for high-precision interpolation
-      for (let l = 0; l <= len; l += step) {
-        const pt = pathEl.getPointAtLength(l);
-        samples.push({ l, y: pt.y });
-      }
-      if (samples.length === 0 || samples[samples.length - 1].l < len) {
-        const pt = pathEl.getPointAtLength(len);
-        samples.push({ l: len, y: pt.y });
-      }
+    const samples: PathSample[] = [];
+    const step = 20; // Sample every 20px for high-precision interpolation
+    for (let l = 0; l <= len; l += step) {
+      const pt = pathEl.getPointAtLength(l);
+      samples.push({ l, y: pt.y });
+    }
+    if (samples.length === 0 || samples[samples.length - 1].l < len) {
+      const pt = pathEl.getPointAtLength(len);
+      samples.push({ l: len, y: pt.y });
+    }
 
-      pathEl.style.strokeDasharray = `${len} ${len}`;
-      pathEl.style.strokeDashoffset = `${len}px`;
+    pathEl.style.strokeDasharray = `${len} ${len}`;
+    pathEl.style.strokeDashoffset = `${len}px`;
 
-      return { len, samples };
-    };
+    if (coreGlowRef.current) {
+      coreGlowRef.current.style.strokeDasharray = `${len} ${len}`;
+      coreGlowRef.current.style.strokeDashoffset = `${len}px`;
+    }
 
-    pathDataRef.current = {
-      p1: sample(path1Ref.current),
-      p2: sample(path2Ref.current),
-      p3: sample(path3Ref.current),
-    };
+    pathDataRef.current = { len, samples };
   }, []);
 
   // ── 3. UPDATE SCROLL POSITION IN REAL-TIME (120 FPS, ZERO LAG) ──
@@ -371,33 +361,29 @@ export const SynapticScrollSpine: React.FC = () => {
     const sy = window.scrollY || document.documentElement.scrollTop || 0;
     const vh = window.innerHeight;
 
-    const { p1, p2, p3 } = pathDataRef.current;
-    if (p1.len === 0) return;
+    const { len, samples } = pathDataRef.current;
+    if (len === 0) return;
 
-    const isMobile = window.innerWidth < 768;
-
-    // Lead Line 1: focal point at 72% down viewport
+    // Active focal point at 72% down viewport
     const targetY1 = sy + vh * 0.72;
-    const l1 = getLengthForY(targetY1, p1.samples, p1.len);
-    const offset1 = `${Math.max(0, p1.len - l1)}px`;
+    const l1 = getLengthForY(targetY1, samples, len);
+    const offset1 = `${Math.max(0, len - l1)}px`;
+
     if (path1Ref.current) {
       path1Ref.current.style.strokeDashoffset = offset1;
     }
-    if (glowPath1Ref.current) {
-      glowPath1Ref.current.style.strokeDashoffset = offset1;
+    if (coreGlowRef.current) {
+      coreGlowRef.current.style.strokeDashoffset = offset1;
     }
 
-    // Only compute paired lines on desktop (hidden on mobile)
-    if (!isMobile) {
-      if (path2Ref.current && p2.len > 0) {
-        const targetY2 = sy + vh * 0.64;
-        const l2 = getLengthForY(targetY2, p2.samples, p2.len);
-        path2Ref.current.style.strokeDashoffset = `${Math.max(0, p2.len - l2)}px`;
-      }
-      if (path3Ref.current && p3.len > 0) {
-        const targetY3 = sy + vh * 0.56;
-        const l3 = getLengthForY(targetY3, p3.samples, p3.len);
-        path3Ref.current.style.strokeDashoffset = `${Math.max(0, p3.len - l3)}px`;
+    // Traveling spark position at the leading edge of active scroll
+    if (sparkDotRef.current && path1Ref.current) {
+      if (l1 > 12 && l1 < len) {
+        const pt = path1Ref.current.getPointAtLength(l1);
+        sparkDotRef.current.setAttribute("transform", `translate(${pt.x}, ${pt.y})`);
+        sparkDotRef.current.style.opacity = "1";
+      } else {
+        sparkDotRef.current.style.opacity = "0";
       }
     }
 
@@ -408,31 +394,31 @@ export const SynapticScrollSpine: React.FC = () => {
       const node = currentNodes[i];
       let el = cache.get(node.id);
       if (!el) {
-        el = document.getElementById(`bouton-${node.id}`) as HTMLElement | null || undefined;
+        el = (document.getElementById(`bouton-${node.id}`) as HTMLElement | null) || undefined;
         if (el) cache.set(node.id, el);
       }
       if (!el) continue;
 
       const delta = targetY1 - node.y;
       if (delta < -80) {
-        el.style.opacity = "0";
-        el.style.transform = "scale(0.3)";
+        // Ahead of active pulse: calm, connected baseline node
+        el.style.opacity = "0.45";
+        el.style.transform = "scale(0.85)";
       } else if (delta >= 40) {
-        el.style.opacity = "0.85";
-        el.style.transform = "scale(1)";
+        // Reached: energized glowing node
+        el.style.opacity = "1";
+        el.style.transform = "scale(1.15)";
       } else {
         const p = (delta + 80) / 120;
-        el.style.opacity = String(0.85 * p);
-        el.style.transform = `scale(${0.3 + 0.7 * p})`;
+        el.style.opacity = String(0.45 + 0.55 * p);
+        el.style.transform = `scale(${0.85 + 0.3 * p})`;
       }
     }
   }, []);
 
   useEffect(() => {
-    // Schedule initial calculation when main thread is idle to eliminate hydration blocking
-    const initTimer = setTimeout(() => {
-      buildNeuralNetwork();
-    }, 350);
+    // Immediate build on mount for zero delay
+    buildNeuralNetwork();
 
     let resizeRaf: number;
     let lastHeight = 0;
@@ -491,7 +477,6 @@ export const SynapticScrollSpine: React.FC = () => {
     const stopLenisCheck = setTimeout(() => clearInterval(checkLenis), 3000);
 
     return () => {
-      clearTimeout(initTimer);
       cancelAnimationFrame(resizeRaf);
       window.removeEventListener("resize", recompute);
       window.removeEventListener("scroll", onScroll);
@@ -502,15 +487,15 @@ export const SynapticScrollSpine: React.FC = () => {
     };
   }, [buildNeuralNetwork, updateScroll]);
 
-  // When paths change, sample them and update scroll
+  // When path changes, sample it and update scroll
   useEffect(() => {
-    if (paths.p1) {
+    if (pathD) {
       sampleAllPaths();
       updateScroll();
     }
-  }, [paths, sampleAllPaths, updateScroll]);
+  }, [pathD, sampleAllPaths, updateScroll]);
 
-  if (!paths.p1) {
+  if (!pathD) {
     return (
       <svg
         ref={containerRef}
@@ -532,120 +517,89 @@ export const SynapticScrollSpine: React.FC = () => {
         {/* Primary Gold Axon Gradient */}
         <linearGradient id="spine-gold-grad" x1="0%" y1="0%" x2="0%" y2="100%">
           <stop offset="0%" stopColor="#93A579" stopOpacity="0.80" />
-          <stop offset="25%" stopColor="#C79A45" stopOpacity="0.88" />
-          <stop offset="50%" stopColor="#E5B842" stopOpacity="0.90" />
-          <stop offset="75%" stopColor="#B37B2E" stopOpacity="0.82" />
-          <stop offset="100%" stopColor="#C79A45" stopOpacity="0.85" />
-        </linearGradient>
-
-        {/* Secondary Filament Gradient */}
-        <linearGradient id="spine-sage-grad" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#C79A45" stopOpacity="0.75" />
-          <stop offset="50%" stopColor="#93A579" stopOpacity="0.80" />
-          <stop offset="100%" stopColor="#8C5B41" stopOpacity="0.70" />
-        </linearGradient>
-
-        {/* Satellite Filament Gradient */}
-        <linearGradient id="spine-amber-grad" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#B37B2E" stopOpacity="0.70" />
-          <stop offset="50%" stopColor="#E5B842" stopOpacity="0.72" />
-          <stop offset="100%" stopColor="#C79A45" stopOpacity="0.70" />
+          <stop offset="25%" stopColor="#C79A45" stopOpacity="0.90" />
+          <stop offset="50%" stopColor="#E5B842" stopOpacity="0.95" />
+          <stop offset="75%" stopColor="#B37B2E" stopOpacity="0.85" />
+          <stop offset="100%" stopColor="#C79A45" stopOpacity="0.90" />
         </linearGradient>
       </defs>
 
-      {/* ── 1. FAINT MYELIN GUIDE LINE (Desktop only) ── */}
+      {/* ── 1. ALWAYS CONNECTED LIVING NEURAL AXON (Continuous unbroken pathway from top to bottom) ── */}
       <path
-        d={paths.p1}
-        stroke="rgba(199, 154, 69, 0.08)"
-        strokeWidth="1.0"
-        strokeDasharray="4 12"
-        fill="none"
-        className="hidden md:block"
-      />
-
-      {/* ── 2. UNEVEN LINES (Direct 1:1 Pixel Scroll Synchronization) ── */}
-
-      {/* Line 3: Satellite Filament (Desktop only) */}
-      <path
-        ref={path3Ref}
-        d={paths.p3}
-        stroke="url(#spine-amber-grad)"
-        strokeWidth={1.4}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        fill="none"
-        className="hidden md:block"
-        style={{
-          opacity: 0.48,
-          transition: "none",
-        }}
-      />
-
-      {/* Line 2: Paired Companion Axon (Desktop only) */}
-      <path
-        ref={path2Ref}
-        d={paths.p2}
-        stroke="url(#spine-sage-grad)"
-        strokeWidth={1.9}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        fill="none"
-        className="hidden md:block"
-        style={{
-          opacity: 0.60,
-          transition: "none",
-        }}
-      />
-
-      {/* Hardware-Accelerated Bioluminescent Glow Stroke (120 FPS GPU native, zero-blur) */}
-      <path
-        ref={glowPath1Ref}
-        d={paths.p1}
-        stroke="#C79A45"
-        strokeWidth={svgWidth < 768 ? 5.2 : 6.8}
+        d={pathD}
+        stroke="url(#spine-gold-grad)"
+        strokeWidth={svgWidth < 768 ? 2.0 : 2.5}
         strokeLinecap="round"
         strokeLinejoin="round"
         fill="none"
         style={{
-          opacity: svgWidth < 768 ? 0.20 : 0.26,
+          opacity: 0.40,
           transition: "none",
         }}
       />
 
-      {/* Line 1: Primary Gold Axon (Single, refined, luminous living axon) */}
+      {/* ── 2. ACTIVE SCROLL-ENERGIZED ACTION POTENTIAL AXON ── */}
       <path
         ref={path1Ref}
-        d={paths.p1}
+        d={pathD}
         stroke="url(#spine-gold-grad)"
-        strokeWidth={svgWidth < 768 ? 1.8 : 2.6}
+        strokeWidth={svgWidth < 768 ? 2.6 : 3.4}
         strokeLinecap="round"
         strokeLinejoin="round"
         fill="none"
         style={{
-          opacity: svgWidth < 768 ? 0.75 : 0.85,
+          opacity: 0.95,
           transition: "none",
         }}
       />
 
-      {/* ── 3. DELICATE SYNAPTIC BOUTONS (Reveal in sync with lead axon) ── */}
+      {/* ── 3. INNER LUMINOUS WHITE SPARK CORE ── */}
+      <path
+        ref={coreGlowRef}
+        d={pathD}
+        stroke="#FFFFFF"
+        strokeWidth={svgWidth < 768 ? 1.0 : 1.4}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+        style={{
+          opacity: 0.85,
+          transition: "none",
+        }}
+      />
+
+      {/* ── 4. TRAVELING ACTION POTENTIAL LEADING SPARK ── */}
+      <g
+        ref={sparkDotRef}
+        style={{
+          opacity: 0,
+          transition: "opacity 0.2s ease-out",
+        }}
+      >
+        <circle cx={0} cy={0} r={svgWidth < 768 ? 8 : 10} fill="#C79A45" opacity={0.35} />
+        <circle cx={0} cy={0} r={svgWidth < 768 ? 4 : 5} fill="#C79A45" />
+        <circle cx={0} cy={0} r={svgWidth < 768 ? 1.8 : 2.2} fill="#FFFFFF" />
+      </g>
+
+      {/* ── 5. DELICATE SYNAPTIC BOUTONS (Always connected along the path) ── */}
       {nodes.map((node) => (
         <g
           key={node.id}
           id={`bouton-${node.id}`}
           style={{
-            opacity: 0,
-            transform: "scale(0.3)",
+            opacity: 0.45,
+            transform: "scale(0.85)",
             transformOrigin: `${node.x}px ${node.y}px`,
-            transition: "opacity 0.15s ease-out, transform 0.15s ease-out",
+            transition: "opacity 0.2s ease-out, transform 0.2s ease-out",
           }}
         >
           {/* Outer soft halo */}
           <circle
             cx={node.x}
             cy={node.y}
-            r={node.r * 1.7}
+            r={node.r * 1.6}
             fill="#C79A45"
-            opacity={0.32}
+            opacity={0.35}
           />
           {/* Core gold node */}
           <circle
