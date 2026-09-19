@@ -14,7 +14,7 @@ const RELAX_NODES = [
   // 1. Shirodhara (Very close top-left: nestled snug right above the center frame)
   // Shape: Half Cut Dome (flat bottom, rounded arch dome - 88% area)
   {
-    imageSrc: "/assets/relax/shirodhara.webp",
+    imageSrc: "/assets/relax/nodes/node-shirodhara.webp",
     alt: "Ayurvedic Shirodhara Oil Cascade",
     shapeIndex: 0,
     width: 120,
@@ -22,12 +22,12 @@ const RELAX_NODES = [
     tilt: 0,
     desktopPos: "top-[130px] left-[325px]",
     mobileSize: 110,
-    objectPosition: "object-top",
+    objectPosition: "object-center",
   },
   // 2. Pulse Diagnosis (Very close top-right: nestled snug at upper-right corner of center frame)
   // Shape: Crescent Moon Cut (generous lunar medallion with concave inner scoop - 80% area)
   {
-    imageSrc: "/assets/relax/pulse.webp",
+    imageSrc: "/assets/relax/nodes/node-pulse.webp",
     alt: "Pulse Assessment & Nadi Pariksha",
     shapeIndex: 1,
     width: 115,
@@ -40,7 +40,7 @@ const RELAX_NODES = [
   // 3. Podikizhi (Very close lower-left: nestled snug at lower-left corner of center frame)
   // Shape: Vertical Half Cut (flat vertical left edge, dome right - 88% area)
   {
-    imageSrc: "/assets/relax/Podikizhi.webp",
+    imageSrc: "/assets/relax/nodes/node-podikizhi.webp",
     alt: "Podikizhi Herbal Pouch Therapy",
     shapeIndex: 2,
     width: 115,
@@ -53,7 +53,7 @@ const RELAX_NODES = [
   // 4. Cupping Therapy (Medium distance: mid-left)
   // Shape: Teardrop Cut (pointed corner apex, bulbous droplet body - 90% area)
   {
-    imageSrc: "/assets/relax/cupping.webp",
+    imageSrc: "/assets/relax/nodes/node-cupping.webp",
     alt: "Cupping Suction Decompression",
     shapeIndex: 3,
     width: 120,
@@ -66,7 +66,7 @@ const RELAX_NODES = [
   // 5. Craniosacral Somatic Therapy (Medium distance: mid-lower-right)
   // Shape: Botanical Leaf / Lens (gentle pointed tips, wide curved convex arcs - 85% area)
   {
-    imageSrc: "/assets/relax/craniosacral.webp",
+    imageSrc: "/assets/relax/nodes/node-craniosacral.webp",
     alt: "Craniosacral Somatic Release",
     shapeIndex: 4,
     width: 120,
@@ -79,7 +79,7 @@ const RELAX_NODES = [
   // 6. Somatic Mat Movement (Medium distance: below center frame)
   // Shape: Cathedral Arch Window (dome top, straight vertical sides, flat bottom - 88% area)
   {
-    imageSrc: "/assets/relax/somatic-movement.webp",
+    imageSrc: "/assets/relax/nodes/node-somatic.webp",
     alt: "Somatic Inquiry & Mat Movement",
     shapeIndex: 5,
     width: 125,
@@ -92,7 +92,7 @@ const RELAX_NODES = [
   // 7. Clinical Facial Acupuncture (Far orbit: high upper-left)
   // Shape: Diagonal Sliced Wedge (sharp flat diagonal cut at top-right, rounded base - 88% area)
   {
-    imageSrc: "/assets/relax/file_0000000045d47206848bda62b98c5512.webp",
+    imageSrc: "/assets/relax/nodes/node-acupuncture.webp",
     alt: "Clinical Facial Acupuncture Care",
     shapeIndex: 6,
     width: 115,
@@ -105,7 +105,7 @@ const RELAX_NODES = [
   // 8. Osteopathic Joint Mobilization (Far orbit: high upper-right)
   // Shape: Waning Moon Pebble (gentle concave scoop on right, wide convex belly - 80% area)
   {
-    imageSrc: "/assets/relax/joint-mobilization.webp",
+    imageSrc: "/assets/relax/nodes/node-joint-mobilization.webp",
     alt: "Dr. Sameer Joint & Articular Mobilization",
     shapeIndex: 7,
     width: 115,
@@ -113,12 +113,12 @@ const RELAX_NODES = [
     tilt: 5,
     desktopPos: "top-[30px] right-[35px]",
     mobileSize: 100,
-    objectPosition: "object-top",
+    objectPosition: "object-center",
   },
   // 9. Sanctuary Garden Retreat (Far orbit: deep bottom-left)
   // Shape: Quarter Fan Cut (softened 90-degree corner, wide circular fan arc - 86% area)
   {
-    imageSrc: "/assets/rebuild/center-sanctuary.webp",
+    imageSrc: "/assets/relax/nodes/node-sanctuary.webp",
     alt: "Sanctuary Garden Restorative Retreat",
     shapeIndex: 8,
     width: 110,
@@ -131,7 +131,7 @@ const RELAX_NODES = [
   // 10. Restorative Breathwork & Pranayama (Far orbit: deep bottom-right)
   // Shape: Inverted Half Cut Dome (flat top horizontal edge, round dome bottom - 88% area)
   {
-    imageSrc: "/assets/rebuild/yoga-breath.webp",
+    imageSrc: "/assets/relax/nodes/node-yoga-breath.webp",
     alt: "Restorative Pranayama & Breathwork",
     shapeIndex: 9,
     width: 110,
@@ -139,7 +139,7 @@ const RELAX_NODES = [
     tilt: 4,
     desktopPos: "bottom-[25px] right-[25px]",
     mobileSize: 100,
-    objectPosition: "object-top",
+    objectPosition: "object-center",
   },
 ];
 
