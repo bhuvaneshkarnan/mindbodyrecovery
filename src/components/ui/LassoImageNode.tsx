@@ -14,66 +14,66 @@ export interface ShapeDefinition {
 // 10 distinct, dramatic cuts specifically matching the user's explicit request:
 // Half cuts (dome, vertical, inverted), moon cut (crescent), teardrop, leaf, arch window, diagonal wedge, gibbous moon, fan
 export const LASSO_SHAPE_DEFS: ShapeDefinition[] = [
-  // 0. Half Cut Dome (Straight flat bottom edge, semicircular arch dome top)
+  // 0. Half Cut Dome (Straight flat bottom edge, semicircular arch dome top - 88% area)
   {
     type: "border-radius",
-    borderRadius: "9999px 9999px 0 0",
+    borderRadius: "60px 60px 8px 8px",
     name: "Half Cut Dome",
   },
-  // 1. Crescent Moon Cut (Dramatic lunar arc with inner concave scoop)
+  // 1. Crescent Moon Cut (Wide lunar arc with gentle concave inner scoop - 80% area for full visibility)
   {
     type: "clip-path",
     clipPathId: "lasso-moon-crescent",
-    strokeD: "M 65 3 C 12 18, 12 82, 65 97 C 32 75, 32 25, 65 3 Z",
+    strokeD: "M 50 3 C 88 3, 98 25, 98 50 C 98 75, 88 97, 50 97 C 30 78, 22 65, 22 50 C 22 35, 30 22, 50 3 Z",
     name: "Crescent Moon Cut",
   },
-  // 2. Vertical Half Cut (Straight flat vertical left edge, semicircular arch dome right)
+  // 2. Vertical Half Cut (Straight flat vertical left edge, semicircular arch dome right - 88% area)
   {
     type: "border-radius",
-    borderRadius: "0 9999px 9999px 0",
+    borderRadius: "8px 65px 65px 8px",
     name: "Vertical Half Cut",
   },
-  // 3. Teardrop Cut (Sharp pointed apex corner, wide bulbous droplet base)
+  // 3. Teardrop Cut (Softened apex corner, wide bulbous droplet base - 90% area)
   {
     type: "border-radius",
-    borderRadius: "0 62% 62% 62%",
+    borderRadius: "14px 65px 65px 65px",
     name: "Teardrop Cut",
   },
-  // 4. Botanical Leaf / Eye Lens (Two sharp pointed opposite tips, two sweeping convex arcs)
+  // 4. Botanical Leaf / Eye Lens (Gentle pointed tips, wide curved convex arcs - 85% area)
   {
     type: "border-radius",
-    borderRadius: "0 100% 0 100%",
+    borderRadius: "20px 75px 20px 75px",
     name: "Botanical Leaf Cut",
   },
-  // 5. Cathedral Arch Window (Semicircular top, parallel straight vertical sides, flat bottom)
+  // 5. Cathedral Arch Window (Semicircular top, parallel straight vertical sides, flat bottom - 88% area)
   {
     type: "border-radius",
-    borderRadius: "9999px 9999px 12px 12px",
+    borderRadius: "65px 65px 12px 12px",
     name: "Arch Window Cut",
   },
-  // 6. Diagonal Sliced Wedge (Sharp flat diagonal cut at top-right, rounded base)
+  // 6. Diagonal Sliced Wedge (Sharp flat diagonal cut at top-right, rounded base - 88% area)
   {
     type: "border-radius",
-    borderRadius: "60px 4px 60px 60px",
+    borderRadius: "60px 8px 60px 40px",
     name: "Diagonal Wedge Cut",
   },
-  // 7. Waxing Gibbous Moon (Curved crescent indent on left, wide convex lunar belly right)
+  // 7. Waning Moon Pebble (Gentle concave scoop on right, wide convex lunar belly left - 80% area)
   {
     type: "clip-path",
     clipPathId: "lasso-moon-gibbous",
-    strokeD: "M 50 3 C 90 3, 98 25, 98 50 C 98 75, 90 97, 50 97 C 28 80, 18 65, 18 50 C 18 35, 28 20, 50 3 Z",
-    name: "Gibbous Moon Cut",
+    strokeD: "M 50 3 C 70 22, 78 35, 78 50 C 78 65, 70 78, 50 97 C 12 97, 2 75, 2 50 C 2 25, 12 3, 50 3 Z",
+    name: "Waning Moon Cut",
   },
-  // 8. Quarter-Circle Fan (One sharp 90-degree corner, wide sweeping circular arc)
+  // 8. Quarter-Circle Fan (Softened 90-degree corner, wide sweeping circular arc - 86% area)
   {
     type: "border-radius",
-    borderRadius: "100% 0 0 0",
+    borderRadius: "75px 14px 14px 75px",
     name: "Quarter Fan Cut",
   },
-  // 9. Inverted Half Cut Dome (Straight flat horizontal top edge, semicircular round dome bottom)
+  // 9. Inverted Half Cut Dome (Straight flat horizontal top edge, round bowl bottom - 88% area)
   {
     type: "border-radius",
-    borderRadius: "0 0 9999px 9999px",
+    borderRadius: "8px 8px 65px 65px",
     name: "Inverted Half Cut",
   },
 ];

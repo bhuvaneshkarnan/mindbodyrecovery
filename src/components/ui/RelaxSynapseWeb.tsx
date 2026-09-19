@@ -2,110 +2,156 @@
 
 import React from "react";
 
+function generateCurlyAxon(
+  xStart: number,
+  yStart: number,
+  xEnd: number,
+  yEnd: number,
+  amplitude: number = 18,
+  numWaves: number = 4
+): string {
+  const dx = xEnd - xStart;
+  const dy = yEnd - yStart;
+  const len = Math.hypot(dx, dy);
+  if (len < 10) return `M ${Math.round(xStart)} ${Math.round(yStart)} L ${Math.round(xEnd)} ${Math.round(yEnd)}`;
+
+  const ux = dx / len;
+  const uy = dy / len;
+  // Perpendicular normal vector for wave oscillation
+  const px = -uy;
+  const py = ux;
+
+  const segLen = len / numWaves;
+  let d = `M ${Math.round(xStart)} ${Math.round(yStart)}`;
+
+  for (let i = 0; i < numWaves; i++) {
+    const sign = i % 2 === 0 ? 1 : -1;
+    const startDist = i * segLen;
+    const endDist = (i + 1) * segLen;
+
+    // Sinusoidal taper so waves emerge gracefully from center frame and land right on bouton
+    const taper = Math.sin(((i + 0.5) / numWaves) * Math.PI);
+    const effAmp = amplitude * (0.6 + 0.4 * taper);
+
+    const cp1Dist = startDist + segLen * 0.36;
+    const cp1x = xStart + ux * cp1Dist + px * (sign * effAmp);
+    const cp1y = yStart + uy * cp1Dist + py * (sign * effAmp);
+
+    const cp2Dist = endDist - segLen * 0.36;
+    const cp2x = xStart + ux * cp2Dist + px * (sign * effAmp);
+    const cp2y = yStart + uy * cp2Dist + py * (sign * effAmp);
+
+    const segEndX = xStart + ux * endDist;
+    const segEndY = yStart + uy * endDist;
+
+    d += ` C ${Math.round(cp1x)} ${Math.round(cp1y)}, ${Math.round(cp2x)} ${Math.round(cp2y)}, ${Math.round(segEndX)} ${Math.round(segEndY)}`;
+  }
+  return d;
+}
+
 export const RelaxSynapseWeb: React.FC<{ className?: string }> = ({ className = "" }) => {
   const mainColor = "#C79A45";
   const secondaryColor = "#93A579";
   const faintColor = "rgba(199, 154, 69, 0.22)";
 
-  // Exactly synchronized axon neural dendritic paths connecting center Dr Sameer soma frame
-  // to each of the 10 scattered lasso therapy nodes:
-  // Node 0: Shirodhara (top-center/left) -> (380, 190)
-  // Node 1: Pulse Assessment (upper-right) -> (685, 267)
-  // Node 2: Podikizhi Herbal Pouch (lower-left) -> (222, 490)
-  // Node 3: Cupping Therapy (mid-left) -> (111, 371)
-  // Node 4: Foot Reflexology (mid-right) -> (761, 467)
-  // Node 5: Somatic Movement (bottom-center) -> (472, 660)
-  // Node 6: Facial Acupuncture (far top-left) -> (100, 82)
-  // Node 7: Joint Mobilization (far top-right) -> (775, 87)
-  // Node 8: Craniosacral Somatic Release (far bottom-left) -> (85, 665)
-  // Node 9: Pranayama Breathwork (far bottom-right) -> (782, 672)
+  // Biological curly wavy axon paths with harmonic sinusoidal undulations:
+  // Node 0: Shirodhara (top-center/left) -> (385, 185)
+  // Node 1: Pulse Assessment (upper-right) -> (692, 262)
+  // Node 2: Podikizhi Herbal Pouch (lower-left) -> (217, 495)
+  // Node 3: Cupping Therapy (mid-left) -> (110, 370)
+  // Node 4: Craniosacral Somatic Release (mid-right) -> (760, 460)
+  // Node 5: Somatic Mat Movement (bottom-center) -> (472, 660)
+  // Node 6: Facial Acupuncture (far top-left) -> (102, 82)
+  // Node 7: Joint Mobilization (far top-right) -> (767, 87)
+  // Node 8: Sanctuary Garden Retreat (far bottom-left) -> (85, 665)
+  // Node 9: Pranayama Breathwork (far bottom-right) -> (780, 670)
   const AXON_PATHS = [
     {
       id: "axon-0",
-      d: "M 395 265 C 390 235, 385 210, 380 190",
-      endX: 380,
-      endY: 190,
-      dur: "2.0s",
+      d: generateCurlyAxon(395, 272, 385, 185, 16, 3),
+      endX: 385,
+      endY: 185,
+      dur: "2.2s",
       delay: "0s",
     },
     {
       id: "axon-1",
-      d: "M 615 295 C 640 285, 665 275, 685 267",
-      endX: 685,
-      endY: 267,
-      dur: "2.2s",
+      d: generateCurlyAxon(610, 290, 692, 262, 18, 3),
+      endX: 692,
+      endY: 262,
+      dur: "2.4s",
       delay: "0.2s",
     },
     {
       id: "axon-2",
-      d: "M 250 445 C 240 462, 230 478, 222 490",
-      endX: 222,
-      endY: 490,
-      dur: "2.1s",
+      d: generateCurlyAxon(255, 445, 217, 495, 18, 3),
+      endX: 217,
+      endY: 495,
+      dur: "2.3s",
       delay: "0.4s",
     },
     {
       id: "axon-3",
-      d: "M 245 375 C 195 375, 150 373, 111 371",
-      endX: 111,
-      endY: 371,
-      dur: "2.4s",
+      d: generateCurlyAxon(250, 375, 110, 370, 22, 4),
+      endX: 110,
+      endY: 370,
+      dur: "2.6s",
       delay: "0.3s",
     },
     {
       id: "axon-4",
-      d: "M 615 410 C 665 428, 715 448, 761 467",
-      endX: 761,
-      endY: 467,
-      dur: "2.5s",
+      d: generateCurlyAxon(610, 415, 760, 460, 22, 4),
+      endX: 760,
+      endY: 460,
+      dur: "2.7s",
       delay: "0.5s",
     },
     {
       id: "axon-5",
-      d: "M 450 485 C 458 540, 465 600, 472 660",
+      d: generateCurlyAxon(450, 478, 472, 660, 20, 4),
       endX: 472,
       endY: 660,
-      dur: "2.6s",
+      dur: "2.8s",
       delay: "0.1s",
     },
     {
       id: "axon-6",
-      d: "M 265 265 C 205 195, 150 135, 100 82",
-      endX: 100,
+      d: generateCurlyAxon(270, 272, 102, 82, 24, 5),
+      endX: 102,
       endY: 82,
-      dur: "3.0s",
+      dur: "3.2s",
       delay: "0.6s",
     },
     {
       id: "axon-7",
-      d: "M 590 265 C 655 195, 715 135, 775 87",
-      endX: 775,
+      d: generateCurlyAxon(590, 272, 767, 87, 24, 5),
+      endX: 767,
       endY: 87,
-      dur: "3.1s",
+      dur: "3.3s",
       delay: "0.7s",
     },
     {
       id: "axon-8",
-      d: "M 250 475 C 190 535, 135 600, 85 665",
+      d: generateCurlyAxon(255, 475, 85, 665, 24, 5),
       endX: 85,
       endY: 665,
-      dur: "3.2s",
+      dur: "3.4s",
       delay: "0.8s",
     },
     {
       id: "axon-9",
-      d: "M 610 475 C 670 540, 730 605, 782 672",
-      endX: 782,
-      endY: 672,
-      dur: "2.9s",
+      d: generateCurlyAxon(605, 475, 780, 670, 24, 5),
+      endX: 780,
+      endY: 670,
+      dur: "3.1s",
       delay: "0.9s",
     },
   ];
 
-  // Subtle secondary dendritic filaments to quote cards
-  const pathQuote1 = "M 270 265 C 240 200, 200 120, 180 65";
-  const pathQuote2 = "M 560 265 C 550 190, 540 120, 530 65";
-  const pathQuote3 = "M 320 485 C 310 545, 300 605, 290 660";
+  // Subtle secondary curly filaments to quote cards
+  const pathQuote1 = generateCurlyAxon(270, 272, 180, 65, 14, 3);
+  const pathQuote2 = generateCurlyAxon(560, 272, 530, 65, 14, 3);
+  const pathQuote3 = generateCurlyAxon(320, 478, 290, 660, 14, 3);
 
   return (
     <svg
