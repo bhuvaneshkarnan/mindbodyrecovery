@@ -11,7 +11,7 @@ import { FadeUp, SlideIn, ZoomReveal, BlurReveal, StaggerReveal } from "@/compon
 import clsx from "clsx";
 
 const RELAX_NODES = [
-  // 1. Shirodhara (Very close top-left: nestled snug right above the center frame)
+  // 1. Shirodhara (Top-center: nestled above center frame - cy = 170)
   // Shape: Half Cut Dome (flat bottom, rounded arch dome - 88% area)
   {
     imageSrc: "/assets/relax/nodes/node-shirodhara.webp",
@@ -20,11 +20,11 @@ const RELAX_NODES = [
     width: 120,
     height: 110,
     tilt: 0,
-    desktopPos: "top-[130px] left-[325px]",
+    desktopPos: "top-[115px] left-[350px]",
     mobileSize: 110,
     objectPosition: "object-center",
   },
-  // 2. Pulse Diagnosis (Upper-right: pushed outward to right edge - UNEVEN RIGHT)
+  // 2. Pulse Diagnosis (Upper-right: pushed outward to outer edge - cy = 218)
   // Shape: Crescent Moon Cut (generous lunar medallion with concave inner scoop on left - 80% area)
   {
     imageSrc: "/assets/relax/nodes/node-pulse.webp",
@@ -33,11 +33,11 @@ const RELAX_NODES = [
     width: 115,
     height: 115,
     tilt: -5,
-    desktopPos: "top-[175px] right-[15px]",
+    desktopPos: "top-[160px] right-[15px]",
     mobileSize: 105,
     objectPosition: "object-center",
   },
-  // 3. Podikizhi (Very close lower-left: nestled snug at lower-left corner of center frame)
+  // 3. Podikizhi (Lower-left: snug under center frame - cy = 495)
   // Shape: Vertical Half Cut (flat vertical left edge, dome right - 88% area)
   {
     imageSrc: "/assets/relax/nodes/node-podikizhi.webp",
@@ -46,11 +46,11 @@ const RELAX_NODES = [
     width: 115,
     height: 110,
     tilt: 3,
-    desktopPos: "top-[430px] left-[165px]",
+    desktopPos: "top-[440px] left-[155px]",
     mobileSize: 105,
     objectPosition: "object-center",
   },
-  // 4. Cupping Therapy (Medium distance: mid-left)
+  // 4. Cupping Therapy (Mid-left: pulled inward from left edge - cy = 325)
   // Shape: Teardrop Cut (pointed corner apex, bulbous droplet body - 90% area)
   {
     imageSrc: "/assets/relax/nodes/node-cupping.webp",
@@ -59,11 +59,11 @@ const RELAX_NODES = [
     width: 120,
     height: 120,
     tilt: -7,
-    desktopPos: "top-[290px] left-[45px]",
+    desktopPos: "top-[265px] left-[75px]",
     mobileSize: 110,
     objectPosition: "object-center",
   },
-  // 5. Craniosacral Somatic Therapy (Lower-mid right: tucked inward snug to center frame - UNEVEN RIGHT)
+  // 5. Craniosacral Somatic Therapy (Lower-mid right: tucked deep inward snug to soma - cy = 405)
   // Shape: Botanical Leaf / Lens (gentle pointed tips, wide curved convex arcs - 85% area)
   {
     imageSrc: "/assets/relax/nodes/node-craniosacral.webp",
@@ -72,11 +72,11 @@ const RELAX_NODES = [
     width: 120,
     height: 120,
     tilt: 6,
-    desktopPos: "top-[355px] right-[125px]",
+    desktopPos: "top-[345px] right-[130px]",
     mobileSize: 110,
     objectPosition: "object-center",
   },
-  // 6. Somatic Mat Movement (Below center frame - UNEVEN HEIGHT: LOWEST POINT AT BOTTOM)
+  // 6. Somatic Mat Movement (Bottom-center: lowest point of entire stage - cy = 680)
   // Shape: Cathedral Arch Window (dome top, straight vertical sides, flat bottom - 88% area)
   {
     imageSrc: "/assets/relax/nodes/node-somatic.webp",
@@ -85,11 +85,11 @@ const RELAX_NODES = [
     width: 125,
     height: 110,
     tilt: -2,
-    desktopPos: "bottom-[18px] left-[400px]",
+    desktopPos: "bottom-[15px] left-[390px]",
     mobileSize: 110,
     objectPosition: "object-center",
   },
-  // 7. Clinical Facial Acupuncture (Far orbit: high upper-left)
+  // 7. Clinical Facial Acupuncture (Far top-left: dropped lower than joint mob - cy = 123)
   // Shape: Diagonal Sliced Wedge (sharp flat diagonal cut at top-right, rounded base - 88% area)
   {
     imageSrc: "/assets/relax/nodes/node-acupuncture.webp",
@@ -98,11 +98,11 @@ const RELAX_NODES = [
     width: 115,
     height: 115,
     tilt: 7,
-    desktopPos: "top-[25px] left-[45px]",
+    desktopPos: "top-[65px] left-[25px]",
     mobileSize: 100,
     objectPosition: "object-center",
   },
-  // 8. Osteopathic Joint Mobilization (Far orbit: top-right pulled inward - UNEVEN RIGHT)
+  // 8. Osteopathic Joint Mobilization (Top-right: highest point, pulled inward - cy = 73)
   // Shape: Inverted Half Cut Dome (flat top protects Sameer's head from clipping - 88% area)
   {
     imageSrc: "/assets/relax/nodes/node-joint-mobilization.webp",
@@ -111,11 +111,11 @@ const RELAX_NODES = [
     width: 115,
     height: 115,
     tilt: 4,
-    desktopPos: "top-[25px] right-[75px]",
+    desktopPos: "top-[15px] right-[100px]",
     mobileSize: 100,
     objectPosition: "object-center",
   },
-  // 9. Sanctuary Garden Retreat (Far orbit: UNEVEN HEIGHT: HIGHEST OF BOTTOM THREE)
+  // 9. Sanctuary Garden Retreat (Bottom-left: raised high above somatic - cy = 555)
   // Shape: Quarter Fan Cut (softened 90-degree corner, wide circular fan arc - 86% area)
   {
     imageSrc: "/assets/relax/nodes/node-sanctuary.webp",
@@ -124,11 +124,11 @@ const RELAX_NODES = [
     width: 110,
     height: 110,
     tilt: -6,
-    desktopPos: "bottom-[125px] left-[25px]",
+    desktopPos: "bottom-[140px] left-[15px]",
     mobileSize: 100,
     objectPosition: "object-center",
   },
-  // 10. Restorative Breathwork & Pranayama (Far orbit: UNEVEN HEIGHT: MID-LEVEL & UNEVEN RIGHT)
+  // 10. Restorative Breathwork & Pranayama (Bottom-right: mid-level height, stepped outward - cy = 610)
   // Shape: Waning Moon Cut (gentle scoop on right edge against back - 80% area)
   {
     imageSrc: "/assets/relax/nodes/node-yoga-breath.webp",
@@ -137,7 +137,7 @@ const RELAX_NODES = [
     width: 110,
     height: 110,
     tilt: 4,
-    desktopPos: "bottom-[65px] right-[30px]",
+    desktopPos: "bottom-[85px] right-[35px]",
     mobileSize: 100,
     objectPosition: "object-center",
   },
@@ -296,8 +296,8 @@ export const RelaxStep: React.FC<RelaxStepProps> = ({ onOpenAssessment }) => {
                 </div>
               ))}
 
-              {/* Quiet Floating Quote Accents in Open Constellation Pockets */}
-              <div className="absolute top-8 left-[175px] z-30 pointer-events-none">
+              {/* Quiet Floating Quote Accents in Open Constellation Pockets - STAGGERED */}
+              <div className="absolute top-[20px] left-[175px] z-30 pointer-events-none">
                 <div className="w-[125px] p-2 rounded-lg bg-[#141A10]/95 border border-[#C79A45]/30 text-left shadow-md">
                   <span className="text-[9px] text-[#93A579] font-medium block">Breathe In</span>
                   <p className="text-[10px] text-[#F6F1E4]/90 font-sans leading-tight">
@@ -306,7 +306,7 @@ export const RelaxStep: React.FC<RelaxStepProps> = ({ onOpenAssessment }) => {
                 </div>
               </div>
 
-              <div className="absolute top-8 left-[495px] z-30 pointer-events-none">
+              <div className="absolute top-[70px] left-[475px] z-30 pointer-events-none">
                 <div className="w-[130px] p-2 rounded-lg bg-[#141A10]/95 border border-[#C79A45]/30 text-left shadow-md">
                   <p className="font-sans text-[10px] text-[#F6F1E4] leading-tight">
                     Your body knows the way.
@@ -314,7 +314,7 @@ export const RelaxStep: React.FC<RelaxStepProps> = ({ onOpenAssessment }) => {
                 </div>
               </div>
 
-              <div className="absolute bottom-8 left-[255px] z-30 pointer-events-none">
+              <div className="absolute bottom-[40px] left-[225px] z-30 pointer-events-none">
                 <div className="w-[135px] p-2 rounded-lg bg-[#141A10]/95 border border-[#C79A45]/30 text-left shadow-md">
                   <p className="font-sans text-[10px] text-[#F6F1E4] leading-tight">
                     Relaxation is the foundation of healing.

@@ -54,104 +54,104 @@ export const RelaxSynapseWeb: React.FC<{ className?: string }> = ({ className = 
   const secondaryColor = "#93A579";
   const faintColor = "rgba(199, 154, 69, 0.22)";
 
-  // Biological curly wavy axon paths with harmonic sinusoidal undulations:
-  // Node 0: Shirodhara (top-center/left) -> (385, 185)
-  // Node 1: Pulse Assessment (upper-right: pushed outward to right edge) -> (788, 233)
-  // Node 2: Podikizhi Herbal Pouch (snug lower-left) -> (223, 485)
-  // Node 3: Cupping Therapy (mid-left) -> (105, 350)
-  // Node 4: Craniosacral Somatic Release (mid-lower-right: tucked inward snug) -> (675, 415)
-  // Node 5: Somatic Mat Movement (bottom-center lowest point) -> (463, 677)
-  // Node 6: Facial Acupuncture (far top-left) -> (103, 83)
-  // Node 7: Joint Mobilization (far top-right: pulled inward) -> (728, 83)
-  // Node 8: Sanctuary Garden Retreat (bottom-left highest point) -> (80, 570)
-  // Node 9: Pranayama Breathwork (bottom-right: stepped outward) -> (775, 630)
+  // Biological curly wavy axon paths with harmonic sinusoidal undulations (completely uneven constellation):
+  // Node 0: Shirodhara (top-center) -> (410, 170)
+  // Node 1: Pulse Assessment (upper-right outer) -> (788, 218)
+  // Node 2: Podikizhi Herbal Pouch (lower-left) -> (213, 495)
+  // Node 3: Cupping Therapy (mid-left inward) -> (135, 325)
+  // Node 4: Craniosacral Somatic Release (lower-mid right deep inward) -> (670, 405)
+  // Node 5: Somatic Mat Movement (bottom-center lowest point) -> (453, 680)
+  // Node 6: Facial Acupuncture (top-left dropped lower) -> (83, 123)
+  // Node 7: Joint Mobilization (top-right highest point) -> (703, 73)
+  // Node 8: Sanctuary Garden Retreat (bottom-left raised high) -> (70, 555)
+  // Node 9: Pranayama Breathwork (bottom-right mid-level) -> (770, 610)
   const AXON_PATHS = [
     {
       id: "axon-0",
-      d: generateCurlyAxon(395, 272, 385, 185, 16, 3),
-      endX: 385,
-      endY: 185,
+      d: generateCurlyAxon(405, 272, 410, 170, 16, 3),
+      endX: 410,
+      endY: 170,
       dur: "2.2s",
       delay: "0s",
     },
     {
       id: "axon-1",
-      d: generateCurlyAxon(605, 310, 788, 233, 20, 3),
+      d: generateCurlyAxon(605, 305, 788, 218, 20, 3),
       endX: 788,
-      endY: 233,
+      endY: 218,
       dur: "2.4s",
       delay: "0.2s",
     },
     {
       id: "axon-2",
-      d: generateCurlyAxon(255, 430, 223, 485, 18, 3),
-      endX: 223,
-      endY: 485,
+      d: generateCurlyAxon(255, 435, 213, 495, 18, 3),
+      endX: 213,
+      endY: 495,
       dur: "2.3s",
       delay: "0.4s",
     },
     {
       id: "axon-3",
-      d: generateCurlyAxon(250, 350, 105, 350, 22, 4),
-      endX: 105,
-      endY: 350,
+      d: generateCurlyAxon(250, 335, 135, 325, 20, 3),
+      endX: 135,
+      endY: 325,
       dur: "2.6s",
       delay: "0.3s",
     },
     {
       id: "axon-4",
-      d: generateCurlyAxon(605, 410, 675, 415, 12, 2),
-      endX: 675,
-      endY: 415,
+      d: generateCurlyAxon(605, 400, 670, 405, 12, 2),
+      endX: 670,
+      endY: 405,
       dur: "2.7s",
       delay: "0.5s",
     },
     {
       id: "axon-5",
-      d: generateCurlyAxon(440, 478, 463, 677, 20, 4),
-      endX: 463,
-      endY: 677,
+      d: generateCurlyAxon(435, 478, 453, 680, 20, 4),
+      endX: 453,
+      endY: 680,
       dur: "2.8s",
       delay: "0.1s",
     },
     {
       id: "axon-6",
-      d: generateCurlyAxon(270, 272, 103, 83, 24, 5),
-      endX: 103,
-      endY: 83,
+      d: generateCurlyAxon(265, 280, 83, 123, 24, 4),
+      endX: 83,
+      endY: 123,
       dur: "3.2s",
       delay: "0.6s",
     },
     {
       id: "axon-7",
-      d: generateCurlyAxon(580, 272, 728, 83, 22, 4),
-      endX: 728,
-      endY: 83,
+      d: generateCurlyAxon(575, 272, 703, 73, 22, 4),
+      endX: 703,
+      endY: 73,
       dur: "3.3s",
       delay: "0.7s",
     },
     {
       id: "axon-8",
-      d: generateCurlyAxon(255, 450, 80, 570, 22, 4),
-      endX: 80,
-      endY: 570,
+      d: generateCurlyAxon(255, 455, 70, 555, 24, 4),
+      endX: 70,
+      endY: 555,
       dur: "3.4s",
       delay: "0.8s",
     },
     {
       id: "axon-9",
-      d: generateCurlyAxon(595, 465, 775, 630, 24, 4),
-      endX: 775,
-      endY: 630,
+      d: generateCurlyAxon(595, 460, 770, 610, 22, 4),
+      endX: 770,
+      endY: 610,
       dur: "3.1s",
       delay: "0.9s",
     },
   ];
 
   // Subtle secondary curly filaments to quote cards
-  const pathQuote1 = generateCurlyAxon(270, 272, 180, 65, 14, 3);
-  const pathQuote2 = generateCurlyAxon(560, 272, 530, 65, 14, 3);
-  const pathQuote3 = generateCurlyAxon(320, 478, 290, 660, 14, 3);
+  const pathQuote1 = generateCurlyAxon(265, 272, 200, 35, 14, 3);
+  const pathQuote2 = generateCurlyAxon(550, 272, 505, 90, 14, 3);
+  const pathQuote3 = generateCurlyAxon(300, 478, 255, 685, 14, 3);
 
   return (
     <svg
