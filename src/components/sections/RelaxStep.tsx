@@ -2,12 +2,79 @@
 
 import React from "react";
 import { BandageFrame } from "@/components/ui/BandageFrame";
-import { NeuronSynapseGraph } from "@/components/ui/NeuronSynapseGraph";
+import { RelaxSynapseWeb } from "@/components/ui/RelaxSynapseWeb";
 import { NeuronMobileSynapseGraph } from "@/components/ui/NeuronMobileSynapseGraph";
 import { NeuronHeadingConnector } from "@/components/ui/NeuronHeadingConnector";
-import { ShapedImageNode } from "@/components/ui/ShapedImageNode";
+import { LassoImageNode } from "@/components/ui/LassoImageNode";
 import { clinicData } from "@/data/clinicData";
 import { FadeUp, SlideIn, ZoomReveal, BlurReveal, StaggerReveal } from "@/components/ui/ScrollAnimations";
+import clsx from "clsx";
+
+const RELAX_NODES = [
+  {
+    imageSrc: "/assets/relax/shirodhara.webp",
+    alt: "Ayurvedic Shirodhara Oil Pour",
+    shapeIndex: 0,
+    width: 155,
+    height: 140,
+    tilt: -3,
+    desktopPos: "top-[18px] left-[300px]",
+  },
+  {
+    imageSrc: "/assets/relax/pulse.webp",
+    alt: "Pulse Assessment & Diagnosis",
+    shapeIndex: 1,
+    width: 135,
+    height: 150,
+    tilt: 4,
+    desktopPos: "top-[35px] right-[75px]",
+  },
+  {
+    imageSrc: "/assets/relax/foot-reflexology.webp",
+    alt: "Foot Reflexology Therapy",
+    shapeIndex: 2,
+    width: 140,
+    height: 160,
+    tilt: -2,
+    desktopPos: "top-[250px] right-[15px]",
+  },
+  {
+    imageSrc: "/assets/relax/somatic-movement.webp",
+    alt: "Somatic Mat Reset & Movement",
+    shapeIndex: 3,
+    width: 160,
+    height: 130,
+    tilt: 3,
+    desktopPos: "bottom-[25px] right-[95px]",
+  },
+  {
+    imageSrc: "/assets/relax/Podikizhi.webp",
+    alt: "Podikizhi Herbal Pouch Massage",
+    shapeIndex: 4,
+    width: 140,
+    height: 145,
+    tilt: -4,
+    desktopPos: "bottom-[12px] left-[270px]",
+  },
+  {
+    imageSrc: "/assets/relax/cupping.webp",
+    alt: "Cupping Decompression",
+    shapeIndex: 5,
+    width: 150,
+    height: 140,
+    tilt: 5,
+    desktopPos: "top-[360px] left-[20px]",
+  },
+  {
+    imageSrc: "/assets/relax/VID-20260805-WA0000.webp",
+    alt: "Acupuncture Precision Care",
+    shapeIndex: 6,
+    width: 135,
+    height: 150,
+    tilt: -5,
+    desktopPos: "top-[50px] left-[80px]",
+  },
+];
 
 interface RelaxStepProps {
   onOpenAssessment: () => void;
@@ -101,14 +168,14 @@ export const RelaxStep: React.FC<RelaxStepProps> = ({ onOpenAssessment }) => {
           {/* Right Column: Expanded Synapse Orbit Stage with Visibly Bigger Images */}
           <FadeUp delay={0.2} className="lg:col-span-8 relative">
             
-            {/* Desktop Stage (840x640) */}
-            <div className="relative w-full h-[640px] max-w-[840px] mx-auto hidden md:block">
+            {/* Desktop Stage (860x700): Uneven Scattered Constellation */}
+            <div className="relative w-full h-[700px] max-w-[860px] mx-auto hidden md:block">
               
-              {/* Biological Neuron Dendritic Synapse Graph with Action Potential Animation */}
-              <NeuronSynapseGraph variant="dark" />
+              {/* Biological Neuron Dendritic Synapse Graph connecting to all 7 scattered nodes */}
+              <RelaxSynapseWeb />
 
-              {/* VISIBLY BIGGER CENTER PHOTO: Dr. Sameer (Hero Rectangular Frame) */}
-              <div id="relax-soma" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] z-20 flex flex-col items-center">
+              {/* CENTER PHOTO: Dr. Sameer (Hero Rectangular Frame, NO Top/Bottom Black Space, Natural 16:9 Aspect) */}
+              <div id="relax-soma" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[360px] z-20 flex flex-col items-center">
                 <ZoomReveal delay={0.35}>
                   <BandageFrame
                     variant="gold"
@@ -117,13 +184,13 @@ export const RelaxStep: React.FC<RelaxStepProps> = ({ onOpenAssessment }) => {
                     className="w-full shadow-2xl"
                     innerClassName="p-1.5 bg-[#12180E] border border-[#C79A45] rounded-xl"
                   >
-                    <div className="relative w-full h-[230px] overflow-hidden bg-black flex items-center justify-center rounded-lg">
+                    <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg">
                       <img
                         src={clinicData.relax.centerImage}
                         alt="Dr. Sameer"
                         loading="lazy"
                         decoding="async"
-                        className="max-w-full max-h-full object-contain filter saturate-95 contrast-105"
+                        className="w-full h-full object-cover filter saturate-95 contrast-105"
                       />
                       {/* Integrated Center Caption Badge (no bottom collision) */}
                       <div className="absolute bottom-2 left-1/2 -translate-x-1/2 px-3.5 py-0.5 rounded-full bg-[#12180E]/90 backdrop-blur-sm border border-[#C79A45]/40 text-center max-w-[92%] shadow-md">
@@ -136,23 +203,23 @@ export const RelaxStep: React.FC<RelaxStepProps> = ({ onOpenAssessment }) => {
                 </ZoomReveal>
               </div>
 
-              {/* SURROUNDING THERAPY NODES WITH DISTINCT HARMONIC SHAPES */}
+              {/* 7 UNEVEN SCATTERED THERAPY NODES WITH ORGANIC LASSO CROP (NO NAME LABELS) */}
+              {RELAX_NODES.map((node) => (
+                <div key={node.imageSrc} className={`absolute ${node.desktopPos} z-30`}>
+                  <LassoImageNode
+                    imageSrc={node.imageSrc}
+                    imageAlt={node.alt}
+                    shapeIndex={node.shapeIndex}
+                    width={node.width}
+                    height={node.height}
+                    tiltDeg={node.tilt}
+                  />
+                </div>
+              ))}
 
-              {/* 1. TOP: Shirodhara (Sanctuary Arch Shape) */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 z-30">
-                <ShapedImageNode
-                  shape="arch"
-                  imageSrc="/assets/relax/shirodhara.webp"
-                  imageAlt="Shirodhara"
-                  label="Shirodhara"
-                  variant="dark"
-                  objectPosition="object-center"
-                />
-              </div>
-
-              {/* 2. TOP LEFT: Quote */}
-              <div className="absolute top-2 left-6 z-30">
-                <div className="w-[145px] p-2.5 rounded-lg bg-[#141A10]/95 border border-[#C79A45]/30 text-left space-y-0.5 shadow-md">
+              {/* Quiet Floating Quote Accents */}
+              <div className="absolute top-4 left-[475px] z-30 pointer-events-none">
+                <div className="w-[145px] p-2.5 rounded-lg bg-[#141A10]/95 border border-[#C79A45]/30 text-left shadow-md">
                   <span className="text-[10px] text-[#93A579] font-medium block">Breathe In</span>
                   <p className="text-[11px] text-[#F6F1E4]/90 font-sans leading-tight">
                     Let go of what you can&apos;t control.
@@ -160,8 +227,7 @@ export const RelaxStep: React.FC<RelaxStepProps> = ({ onOpenAssessment }) => {
                 </div>
               </div>
 
-              {/* 3. TOP RIGHT: Quote */}
-              <div className="absolute top-2 right-6 z-30">
+              <div className="absolute bottom-4 left-6 z-30 pointer-events-none">
                 <div className="w-[145px] p-2.5 rounded-lg bg-[#141A10]/95 border border-[#C79A45]/30 text-left shadow-md">
                   <p className="font-sans text-[11px] text-[#F6F1E4] leading-tight">
                     Your body knows the way.
@@ -169,53 +235,7 @@ export const RelaxStep: React.FC<RelaxStepProps> = ({ onOpenAssessment }) => {
                 </div>
               </div>
 
-              {/* 4. LEFT: Cupping (Circular Harmonic Lens Shape) */}
-              <div className="absolute top-1/2 -translate-y-1/2 left-[22px] z-30">
-                <ShapedImageNode
-                  shape="circle"
-                  imageSrc="/assets/relax/cupping.webp"
-                  imageAlt="Cupping"
-                  label="Cupping"
-                  variant="dark"
-                  objectPosition="object-center"
-                />
-              </div>
-
-              {/* 5. RIGHT: Foot Reflexology (Vertical Elongated Capsule Shape) */}
-              <div className="absolute top-1/2 -translate-y-1/2 right-[32px] z-30">
-                <ShapedImageNode
-                  shape="capsule"
-                  imageSrc="/assets/relax/foot-reflexology.webp"
-                  imageAlt="Foot Reflexology"
-                  label="Reflexology"
-                  variant="dark"
-                  objectPosition="object-center"
-                />
-              </div>
-
-              {/* 6. BOTTOM: Podikizhi (Organic Rounded Squircle Shape) */}
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-30">
-                <ShapedImageNode
-                  shape="squircle"
-                  imageSrc="/assets/relax/Podikizhi.webp"
-                  imageAlt="Podikizhi"
-                  label="Podikizhi"
-                  variant="dark"
-                  objectPosition="object-top"
-                />
-              </div>
-
-              {/* 7. BOTTOM LEFT: Quote */}
-              <div className="absolute bottom-2 left-6 z-30">
-                <div className="w-[145px] p-2.5 rounded-lg bg-[#141A10]/95 border border-[#C79A45]/30 text-left shadow-md">
-                  <p className="font-sans text-[11px] text-[#F6F1E4] leading-tight">
-                    Slow down. Everything you need is within you.
-                  </p>
-                </div>
-              </div>
-
-              {/* 8. BOTTOM RIGHT: Quote */}
-              <div className="absolute bottom-2 right-6 z-30">
+              <div className="absolute bottom-4 right-6 z-30 pointer-events-none">
                 <div className="w-[145px] p-2.5 rounded-lg bg-[#141A10]/95 border border-[#C79A45]/30 text-left shadow-md">
                   <p className="font-sans text-[11px] text-[#F6F1E4] leading-tight">
                     Relaxation is the foundation of healing.
@@ -225,60 +245,44 @@ export const RelaxStep: React.FC<RelaxStepProps> = ({ onOpenAssessment }) => {
 
             </div>
 
-            {/* Mobile / Tablet View with Distinct Harmonic Shapes and Biological Synapse Graph */}
-            <div className="md:hidden space-y-6 relative py-4">
-              <NeuronMobileSynapseGraph variant="dark" />
-
+            {/* Mobile / Tablet View: Scattered Organic Constellation with Lasso Crop */}
+            <div className="md:hidden space-y-8 relative py-4">
               <div id="relax-soma-mobile" className="w-[280px] sm:w-[320px] mx-auto relative z-10">
                 <ZoomReveal delay={0.08} blur={12}>
                   <BandageFrame variant="gold" className="w-full" caption={clinicData.relax.centerCaption}>
-                    <div className="w-full h-[200px] overflow-hidden bg-black flex items-center justify-center rounded-lg">
+                    <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg">
                       <img
                         src={clinicData.relax.centerImage}
                         alt="Dr. Sameer"
                         loading="lazy"
                         decoding="async"
-                        className="max-w-full max-h-full object-contain"
+                        className="w-full h-full object-cover filter saturate-95 contrast-105"
                       />
                     </div>
                   </BandageFrame>
                 </ZoomReveal>
               </div>
 
-              <StaggerReveal staggerDelay={0.08} className="grid grid-cols-2 gap-4 place-items-center relative z-10">
-                <ShapedImageNode
-                  shape="arch"
-                  imageSrc="/assets/relax/shirodhara.webp"
-                  imageAlt="Shirodhara"
-                  label="Shirodhara"
-                  variant="dark"
-                  isMobile
-                />
-                <ShapedImageNode
-                  shape="circle"
-                  imageSrc="/assets/relax/cupping.webp"
-                  imageAlt="Cupping"
-                  label="Cupping"
-                  variant="dark"
-                  isMobile
-                />
-                <ShapedImageNode
-                  shape="capsule"
-                  imageSrc="/assets/relax/foot-reflexology.webp"
-                  imageAlt="Foot Reflexology"
-                  label="Reflexology"
-                  variant="dark"
-                  isMobile
-                />
-                <ShapedImageNode
-                  shape="squircle"
-                  imageSrc="/assets/relax/Podikizhi.webp"
-                  imageAlt="Podikizhi"
-                  label="Podikizhi"
-                  variant="dark"
-                  objectPosition="object-top"
-                  isMobile
-                />
+              <StaggerReveal staggerDelay={0.06} className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6 place-items-center relative z-10 px-2 pt-2">
+                {RELAX_NODES.map((node, i) => (
+                  <div
+                    key={node.imageSrc}
+                    className={clsx(
+                      "transition-transform duration-300",
+                      i % 2 === 1 ? "translate-y-3" : "-translate-y-1",
+                      i === 6 ? "col-span-2 sm:col-span-1 justify-self-center" : ""
+                    )}
+                  >
+                    <LassoImageNode
+                      imageSrc={node.imageSrc}
+                      imageAlt={node.alt}
+                      shapeIndex={node.shapeIndex}
+                      width={124}
+                      height={124}
+                      tiltDeg={node.tilt}
+                    />
+                  </div>
+                ))}
               </StaggerReveal>
             </div>
 
