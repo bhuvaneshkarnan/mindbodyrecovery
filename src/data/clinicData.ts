@@ -293,6 +293,7 @@ export const clinicData = {
     tagline: "Where tired bodies and overloaded minds come to recover",
     bio: [
       "Sameer brings together therapeutic foot reflexology, traditional healing practices, and a growing focus on mind-body recovery. His work is built around the belief that pain, stress, sleep, fatigue and emotional overload often live in both the body and the mind — and recovery needs to address both.",
+      "I don't believe every person needs the same therapy. I first try to understand the person, the patterns and what their body is communicating — then work with them from there.",
     ],
   },
 

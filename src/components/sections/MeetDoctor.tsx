@@ -1,9 +1,11 @@
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
 import { clinicData } from "@/data/clinicData";
-import { Calendar, ArrowRight } from "lucide-react";
-import { BlurReveal, FadeUp } from "@/components/ui/ScrollAnimations";
+import { BandageFrame } from "@/components/ui/BandageFrame";
+import { Calendar } from "lucide-react";
+import { ClipReveal, FadeUp, BlurReveal } from "@/components/ui/ScrollAnimations";
 
 interface MeetDoctorProps {
   onOpenAssessment: () => void;
@@ -11,127 +13,73 @@ interface MeetDoctorProps {
 
 export const MeetDoctor: React.FC<MeetDoctorProps> = ({ onOpenAssessment }) => {
   return (
-    <section id="doctor" className="relative py-20 sm:py-28 lg:py-32 bg-[#F7FED5] text-[#12140D] overflow-hidden border-b border-[#12140D]/10">
+    <section id="doctor" className="relative py-32 bg-[#FAFAFA] text-[#231F19] overflow-hidden border-b border-[#E5E7EB]">
       <div id="about-sameer" className="absolute -top-24 pointer-events-none" />
-      
-      {/* Decorative Golden Wavy Curves on Left Margin (Matching Mockup) */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 select-none" aria-hidden="true">
-        <svg
-          className="w-full h-full min-h-[900px]"
-          viewBox="0 0 1200 900"
-          fill="none"
-          preserveAspectRatio="none"
-        >
-          {/* Top-left descending fluid curve 1 */}
-          <path
-            d="M 280 0 C 260 90, 190 140, 140 220 C 90 300, 60 400, 80 500 C 100 600, 160 680, 200 750"
-            stroke="#C79A45"
-            strokeWidth="1.5"
-            strokeOpacity="0.45"
-            strokeLinecap="round"
-          />
-          {/* Parallel wavy curve 2 */}
-          <path
-            d="M 295 0 C 275 95, 205 145, 155 225 C 105 305, 75 405, 95 505 C 115 605, 175 685, 215 755"
-            stroke="#C79A45"
-            strokeWidth="1.2"
-            strokeOpacity="0.35"
-            strokeLinecap="round"
-          />
-          {/* Parallel wavy curve 3 */}
-          <path
-            d="M 310 0 C 290 100, 220 150, 170 230 C 120 310, 90 410, 110 510 C 130 610, 190 690, 230 760"
-            stroke="#C79A45"
-            strokeWidth="0.9"
-            strokeOpacity="0.25"
-            strokeLinecap="round"
-          />
-          {/* Accent flourish around 'Meet Sameer' */}
-          <path
-            d="M 60 420 C 40 480, 50 560, 90 620 C 130 680, 190 730, 240 780"
-            stroke="#C79A45"
-            strokeWidth="1.2"
-            strokeOpacity="0.4"
-            strokeLinecap="round"
-          />
-          <path
-            d="M 75 435 C 55 495, 65 575, 105 635 C 145 695, 205 745, 255 795"
-            stroke="#C79A45"
-            strokeWidth="0.8"
-            strokeOpacity="0.3"
-            strokeLinecap="round"
-          />
-        </svg>
-      </div>
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
         
-        {/* 1. Panoramic 4-Panel Photographic Collage Banner (Matching Mockup) */}
-        <BlurReveal delay={0.05} className="w-full mb-12 sm:mb-16 lg:mb-20">
-          <div className="relative w-full rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-[#12140D]/10 bg-[#12140D] group">
-            <img
-              src="/assets/doctor/sameer-banner@2x.webp"
-              alt="Sameer - Mind-Body Recovery Specialist"
-              width={1602}
-              height={884}
-              loading="lazy"
-              decoding="async"
-              className="w-full h-auto object-cover select-none transition-transform duration-700 group-hover:scale-[1.01]"
-            />
-          </div>
-        </BlurReveal>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
-        {/* 2. Editorial Profile Narrative (Two-Column Layout Matching Mockup) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start mb-14 sm:mb-20">
-          
-          {/* Left Column: Meet Sameer Title */}
-          <div className="lg:col-span-5">
-            <FadeUp delay={0.1}>
-              <h2 className="font-serif font-display text-5xl sm:text-6xl lg:text-7xl text-[#12140D] font-normal tracking-tight leading-[1.05]">
-                Meet <br />
-                Sameer
-              </h2>
-            </FadeUp>
-          </div>
-
-          {/* Right Column: Narrative Biography */}
-          <div className="lg:col-span-7 space-y-6">
-            <FadeUp delay={0.15}>
-              <p className="font-sans text-base sm:text-lg lg:text-xl text-[#12140D]/85 leading-relaxed font-light">
-                {clinicData.doctor.bioText}
-              </p>
-
-              {/* Action Buttons */}
-              <div className="pt-6 flex flex-wrap items-center gap-3.5">
-                <button
-                  onClick={onOpenAssessment}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 bg-[#12140D] hover:bg-[#2A2E22] text-[#F7FED5] font-semibold text-xs sm:text-sm uppercase tracking-wider rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95 group"
-                >
-                  <Calendar size={15} className="text-[#F7FED5] transition-transform duration-300 group-hover:scale-110" />
-                  <span>Book Your Assessment</span>
-                  <span className="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
-                </button>
-
-                <a
-                  href="#relax"
-                  className="inline-flex items-center gap-2 px-4 py-2.5 sm:px-5 sm:py-3 rounded-xl border border-[#12140D]/25 hover:border-[#12140D]/60 text-[#12140D] text-xs sm:text-sm uppercase tracking-wider font-semibold transition-all duration-300 hover:bg-[#12140D]/5 active:scale-95"
-                >
-                  <span>Explore Therapies</span>
-                  <ArrowRight size={14} />
-                </a>
+          {/* Left Column: Portrait & Sourced Quote (5 cols) */}
+          <ClipReveal direction="left" delay={0.1} className="lg:col-span-5 flex flex-col items-center lg:items-start relative z-20">
+            <BandageFrame
+              variant="light"
+              tapeAngle={3.5}
+              tapePosition="top-left-bottom-right"
+              className="w-full max-w-md"
+              innerClassName="p-3 bg-white border border-[#C79A45]/60 shadow-lg"
+              caption="Sameer — Founder & Lead Practitioner"
+            >
+              <div className="relative aspect-[4/5] w-full overflow-hidden rounded-lg bg-white shadow-inner flex items-center justify-center">
+                <img
+                  src={clinicData.doctor.portrait}
+                  alt={clinicData.doctor.name}
+                  loading="lazy"
+                  decoding="async"
+                  className="max-w-full max-h-full object-contain filter saturate-95 contrast-105"
+                />
               </div>
-            </FadeUp>
-          </div>
+            </BandageFrame>
+          </ClipReveal>
 
-        </div>
+          {/* Right Column: Sourced Narrative Bio (7 cols) */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="lg:col-span-7 space-y-6 relative z-20"
+          >
+            <BlurReveal delay={0.1}>
+              <h2 className="font-display text-4xl sm:text-5xl text-[#231F19] font-semibold tracking-tight mb-2">
+                {clinicData.doctor.name}
+              </h2>
+              <span className="text-xs uppercase tracking-widest text-[#8C5B41] font-semibold block">
+                {clinicData.doctor.title}
+              </span>
+            </BlurReveal>
 
-        {/* 3. Full-Width Signature Tagline Matching Mockup */}
-        <div className="border-t border-[#12140D]/15 pt-10 sm:pt-14">
-          <FadeUp delay={0.2}>
-            <p className="font-serif font-display italic text-2xl sm:text-3xl lg:text-4xl text-[#12140D] tracking-tight font-light leading-snug">
-              &ldquo;{clinicData.doctor.tagline}&rdquo;
-            </p>
-          </FadeUp>
+            {/* Sourced Bio Paragraphs */}
+            <div className="space-y-4 text-base sm:text-lg text-[#231F19]/85 font-sans leading-relaxed">
+              {clinicData.doctor.bio.map((paragraph, i) => (
+                <p key={i}>
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+
+            {/* CTA in Gold */}
+            <div className="pt-4">
+              <button
+                onClick={onOpenAssessment}
+                className="inline-flex items-center gap-2.5 px-5 py-2.5 sm:px-6 sm:py-3 bg-[#C79A45] hover:bg-[#D4A752] text-[#12140D] font-semibold text-xs uppercase tracking-wider rounded-xl transition-all duration-300 shadow-md active:scale-95 group"
+              >
+                <Calendar size={15} className="transition-transform duration-300 group-hover:scale-110" />
+                <span>Book Your Assessment</span>
+                <span className="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
+              </button>
+            </div>
+          </motion.div>
+
         </div>
 
       </div>
