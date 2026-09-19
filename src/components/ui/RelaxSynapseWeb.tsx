@@ -56,15 +56,15 @@ export const RelaxSynapseWeb: React.FC<{ className?: string }> = ({ className = 
 
   // Biological curly wavy axon paths with harmonic sinusoidal undulations:
   // Node 0: Shirodhara (top-center/left) -> (385, 185)
-  // Node 1: Pulse Assessment (upper-right) -> (692, 262)
-  // Node 2: Podikizhi Herbal Pouch (lower-left) -> (217, 495)
-  // Node 3: Cupping Therapy (mid-left) -> (110, 370)
-  // Node 4: Craniosacral Somatic Release (mid-right) -> (760, 460)
-  // Node 5: Somatic Mat Movement (bottom-center) -> (472, 660)
-  // Node 6: Facial Acupuncture (far top-left) -> (102, 82)
-  // Node 7: Joint Mobilization (far top-right) -> (767, 87)
-  // Node 8: Sanctuary Garden Retreat (far bottom-left) -> (85, 665)
-  // Node 9: Pranayama Breathwork (far bottom-right) -> (780, 670)
+  // Node 1: Pulse Assessment (upper-right) -> (693, 243)
+  // Node 2: Podikizhi Herbal Pouch (snug lower-left) -> (223, 485)
+  // Node 3: Cupping Therapy (mid-left) -> (105, 350)
+  // Node 4: Craniosacral Somatic Release (mid-right) -> (760, 420)
+  // Node 5: Somatic Mat Movement (bottom-center lowest point) -> (463, 677)
+  // Node 6: Facial Acupuncture (far top-left) -> (103, 83)
+  // Node 7: Joint Mobilization (far top-right) -> (768, 88)
+  // Node 8: Sanctuary Garden Retreat (bottom-left highest point) -> (80, 570)
+  // Node 9: Pranayama Breathwork (bottom-right mid-level point) -> (775, 620)
   const AXON_PATHS = [
     {
       id: "axon-0",
@@ -76,73 +76,73 @@ export const RelaxSynapseWeb: React.FC<{ className?: string }> = ({ className = 
     },
     {
       id: "axon-1",
-      d: generateCurlyAxon(610, 290, 692, 262, 18, 3),
-      endX: 692,
-      endY: 262,
+      d: generateCurlyAxon(610, 290, 693, 243, 18, 3),
+      endX: 693,
+      endY: 243,
       dur: "2.4s",
       delay: "0.2s",
     },
     {
       id: "axon-2",
-      d: generateCurlyAxon(255, 445, 217, 495, 18, 3),
-      endX: 217,
-      endY: 495,
+      d: generateCurlyAxon(255, 430, 223, 485, 18, 3),
+      endX: 223,
+      endY: 485,
       dur: "2.3s",
       delay: "0.4s",
     },
     {
       id: "axon-3",
-      d: generateCurlyAxon(250, 375, 110, 370, 22, 4),
-      endX: 110,
-      endY: 370,
+      d: generateCurlyAxon(250, 350, 105, 350, 22, 4),
+      endX: 105,
+      endY: 350,
       dur: "2.6s",
       delay: "0.3s",
     },
     {
       id: "axon-4",
-      d: generateCurlyAxon(610, 415, 760, 460, 22, 4),
+      d: generateCurlyAxon(610, 390, 760, 420, 20, 4),
       endX: 760,
-      endY: 460,
+      endY: 420,
       dur: "2.7s",
       delay: "0.5s",
     },
     {
       id: "axon-5",
-      d: generateCurlyAxon(450, 478, 472, 660, 20, 4),
-      endX: 472,
-      endY: 660,
+      d: generateCurlyAxon(440, 478, 463, 677, 20, 4),
+      endX: 463,
+      endY: 677,
       dur: "2.8s",
       delay: "0.1s",
     },
     {
       id: "axon-6",
-      d: generateCurlyAxon(270, 272, 102, 82, 24, 5),
-      endX: 102,
-      endY: 82,
+      d: generateCurlyAxon(270, 272, 103, 83, 24, 5),
+      endX: 103,
+      endY: 83,
       dur: "3.2s",
       delay: "0.6s",
     },
     {
       id: "axon-7",
-      d: generateCurlyAxon(590, 272, 767, 87, 24, 5),
-      endX: 767,
-      endY: 87,
+      d: generateCurlyAxon(590, 272, 768, 88, 24, 5),
+      endX: 768,
+      endY: 88,
       dur: "3.3s",
       delay: "0.7s",
     },
     {
       id: "axon-8",
-      d: generateCurlyAxon(255, 475, 85, 665, 24, 5),
-      endX: 85,
-      endY: 665,
+      d: generateCurlyAxon(255, 450, 80, 570, 22, 4),
+      endX: 80,
+      endY: 570,
       dur: "3.4s",
       delay: "0.8s",
     },
     {
       id: "axon-9",
-      d: generateCurlyAxon(605, 475, 780, 670, 24, 5),
-      endX: 780,
-      endY: 670,
+      d: generateCurlyAxon(605, 450, 775, 620, 22, 4),
+      endX: 775,
+      endY: 620,
       dur: "3.1s",
       delay: "0.9s",
     },

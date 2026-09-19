@@ -25,15 +25,15 @@ const RELAX_NODES = [
     objectPosition: "object-center",
   },
   // 2. Pulse Diagnosis (Very close top-right: nestled snug at upper-right corner of center frame)
-  // Shape: Crescent Moon Cut (generous lunar medallion with concave inner scoop - 80% area)
+  // Shape: Crescent Moon Cut (generous lunar medallion with concave inner scoop on left - 80% area)
   {
     imageSrc: "/assets/relax/nodes/node-pulse.webp",
     alt: "Pulse Assessment & Nadi Pariksha",
     shapeIndex: 1,
     width: 115,
     height: 115,
-    tilt: -6,
-    desktopPos: "top-[205px] left-[635px]",
+    tilt: -5,
+    desktopPos: "top-[185px] left-[635px]",
     mobileSize: 105,
     objectPosition: "object-center",
   },
@@ -46,7 +46,7 @@ const RELAX_NODES = [
     width: 115,
     height: 110,
     tilt: 3,
-    desktopPos: "top-[440px] left-[160px]",
+    desktopPos: "top-[430px] left-[165px]",
     mobileSize: 105,
     objectPosition: "object-center",
   },
@@ -58,8 +58,8 @@ const RELAX_NODES = [
     shapeIndex: 3,
     width: 120,
     height: 120,
-    tilt: -8,
-    desktopPos: "top-[310px] left-[50px]",
+    tilt: -7,
+    desktopPos: "top-[290px] left-[45px]",
     mobileSize: 110,
     objectPosition: "object-center",
   },
@@ -71,12 +71,12 @@ const RELAX_NODES = [
     shapeIndex: 4,
     width: 120,
     height: 120,
-    tilt: 8,
-    desktopPos: "top-[400px] right-[40px]",
+    tilt: 6,
+    desktopPos: "top-[360px] right-[40px]",
     mobileSize: 110,
     objectPosition: "object-center",
   },
-  // 6. Somatic Mat Movement (Medium distance: below center frame)
+  // 6. Somatic Mat Movement (Below center frame - UNEVEN HEIGHT: LOWEST POINT AT BOTTOM)
   // Shape: Cathedral Arch Window (dome top, straight vertical sides, flat bottom - 88% area)
   {
     imageSrc: "/assets/relax/nodes/node-somatic.webp",
@@ -85,7 +85,7 @@ const RELAX_NODES = [
     width: 125,
     height: 110,
     tilt: -2,
-    desktopPos: "bottom-[35px] left-[410px]",
+    desktopPos: "bottom-[18px] left-[400px]",
     mobileSize: 110,
     objectPosition: "object-center",
   },
@@ -97,25 +97,25 @@ const RELAX_NODES = [
     shapeIndex: 6,
     width: 115,
     height: 115,
-    tilt: 8,
+    tilt: 7,
     desktopPos: "top-[25px] left-[45px]",
     mobileSize: 100,
     objectPosition: "object-center",
   },
   // 8. Osteopathic Joint Mobilization (Far orbit: high upper-right)
-  // Shape: Waning Moon Pebble (gentle concave scoop on right, wide convex belly - 80% area)
+  // Shape: Inverted Half Cut Dome (flat top protects Dr. Sameer's head from clipping - 88% area)
   {
     imageSrc: "/assets/relax/nodes/node-joint-mobilization.webp",
     alt: "Dr. Sameer Joint & Articular Mobilization",
-    shapeIndex: 7,
+    shapeIndex: 9,
     width: 115,
     height: 115,
-    tilt: 5,
+    tilt: 4,
     desktopPos: "top-[30px] right-[35px]",
     mobileSize: 100,
     objectPosition: "object-center",
   },
-  // 9. Sanctuary Garden Retreat (Far orbit: deep bottom-left)
+  // 9. Sanctuary Garden Retreat (Far orbit: UNEVEN HEIGHT: HIGHEST OF BOTTOM THREE)
   // Shape: Quarter Fan Cut (softened 90-degree corner, wide circular fan arc - 86% area)
   {
     imageSrc: "/assets/relax/nodes/node-sanctuary.webp",
@@ -124,20 +124,20 @@ const RELAX_NODES = [
     width: 110,
     height: 110,
     tilt: -6,
-    desktopPos: "bottom-[30px] left-[30px]",
+    desktopPos: "bottom-[125px] left-[25px]",
     mobileSize: 100,
     objectPosition: "object-center",
   },
-  // 10. Restorative Breathwork & Pranayama (Far orbit: deep bottom-right)
-  // Shape: Inverted Half Cut Dome (flat top horizontal edge, round dome bottom - 88% area)
+  // 10. Restorative Breathwork & Pranayama (Far orbit: UNEVEN HEIGHT: MID-LEVEL OF BOTTOM THREE)
+  // Shape: Waning Moon Cut (gentle scoop on right edge against back - 80% area)
   {
     imageSrc: "/assets/relax/nodes/node-yoga-breath.webp",
     alt: "Restorative Pranayama & Breathwork",
-    shapeIndex: 9,
+    shapeIndex: 7,
     width: 110,
     height: 110,
     tilt: 4,
-    desktopPos: "bottom-[25px] right-[25px]",
+    desktopPos: "bottom-[75px] right-[30px]",
     mobileSize: 100,
     objectPosition: "object-center",
   },
