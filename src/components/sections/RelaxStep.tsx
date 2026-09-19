@@ -24,7 +24,7 @@ const RELAX_NODES = [
     mobileSize: 110,
     objectPosition: "object-center",
   },
-  // 2. Pulse Diagnosis (Very close top-right: nestled snug at upper-right corner of center frame)
+  // 2. Pulse Diagnosis (Upper-right: pushed outward to right edge - UNEVEN RIGHT)
   // Shape: Crescent Moon Cut (generous lunar medallion with concave inner scoop on left - 80% area)
   {
     imageSrc: "/assets/relax/nodes/node-pulse.webp",
@@ -33,7 +33,7 @@ const RELAX_NODES = [
     width: 115,
     height: 115,
     tilt: -5,
-    desktopPos: "top-[185px] left-[635px]",
+    desktopPos: "top-[175px] right-[15px]",
     mobileSize: 105,
     objectPosition: "object-center",
   },
@@ -63,7 +63,7 @@ const RELAX_NODES = [
     mobileSize: 110,
     objectPosition: "object-center",
   },
-  // 5. Craniosacral Somatic Therapy (Medium distance: mid-lower-right)
+  // 5. Craniosacral Somatic Therapy (Lower-mid right: tucked inward snug to center frame - UNEVEN RIGHT)
   // Shape: Botanical Leaf / Lens (gentle pointed tips, wide curved convex arcs - 85% area)
   {
     imageSrc: "/assets/relax/nodes/node-craniosacral.webp",
@@ -72,7 +72,7 @@ const RELAX_NODES = [
     width: 120,
     height: 120,
     tilt: 6,
-    desktopPos: "top-[360px] right-[40px]",
+    desktopPos: "top-[355px] right-[125px]",
     mobileSize: 110,
     objectPosition: "object-center",
   },
@@ -102,7 +102,7 @@ const RELAX_NODES = [
     mobileSize: 100,
     objectPosition: "object-center",
   },
-  // 8. Osteopathic Joint Mobilization (Far orbit: high upper-right)
+  // 8. Osteopathic Joint Mobilization (Far orbit: top-right pulled inward - UNEVEN RIGHT)
   // Shape: Inverted Half Cut Dome (flat top protects Sameer's head from clipping - 88% area)
   {
     imageSrc: "/assets/relax/nodes/node-joint-mobilization.webp",
@@ -111,7 +111,7 @@ const RELAX_NODES = [
     width: 115,
     height: 115,
     tilt: 4,
-    desktopPos: "top-[30px] right-[35px]",
+    desktopPos: "top-[25px] right-[75px]",
     mobileSize: 100,
     objectPosition: "object-center",
   },
@@ -128,7 +128,7 @@ const RELAX_NODES = [
     mobileSize: 100,
     objectPosition: "object-center",
   },
-  // 10. Restorative Breathwork & Pranayama (Far orbit: UNEVEN HEIGHT: MID-LEVEL OF BOTTOM THREE)
+  // 10. Restorative Breathwork & Pranayama (Far orbit: UNEVEN HEIGHT: MID-LEVEL & UNEVEN RIGHT)
   // Shape: Waning Moon Cut (gentle scoop on right edge against back - 80% area)
   {
     imageSrc: "/assets/relax/nodes/node-yoga-breath.webp",
@@ -137,7 +137,7 @@ const RELAX_NODES = [
     width: 110,
     height: 110,
     tilt: 4,
-    desktopPos: "bottom-[75px] right-[30px]",
+    desktopPos: "bottom-[65px] right-[30px]",
     mobileSize: 100,
     objectPosition: "object-center",
   },

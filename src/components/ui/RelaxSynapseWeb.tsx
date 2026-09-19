@@ -56,15 +56,15 @@ export const RelaxSynapseWeb: React.FC<{ className?: string }> = ({ className = 
 
   // Biological curly wavy axon paths with harmonic sinusoidal undulations:
   // Node 0: Shirodhara (top-center/left) -> (385, 185)
-  // Node 1: Pulse Assessment (upper-right) -> (693, 243)
+  // Node 1: Pulse Assessment (upper-right: pushed outward to right edge) -> (788, 233)
   // Node 2: Podikizhi Herbal Pouch (snug lower-left) -> (223, 485)
   // Node 3: Cupping Therapy (mid-left) -> (105, 350)
-  // Node 4: Craniosacral Somatic Release (mid-right) -> (760, 420)
+  // Node 4: Craniosacral Somatic Release (mid-lower-right: tucked inward snug) -> (675, 415)
   // Node 5: Somatic Mat Movement (bottom-center lowest point) -> (463, 677)
   // Node 6: Facial Acupuncture (far top-left) -> (103, 83)
-  // Node 7: Joint Mobilization (far top-right) -> (768, 88)
+  // Node 7: Joint Mobilization (far top-right: pulled inward) -> (728, 83)
   // Node 8: Sanctuary Garden Retreat (bottom-left highest point) -> (80, 570)
-  // Node 9: Pranayama Breathwork (bottom-right mid-level point) -> (775, 620)
+  // Node 9: Pranayama Breathwork (bottom-right: stepped outward) -> (775, 630)
   const AXON_PATHS = [
     {
       id: "axon-0",
@@ -76,9 +76,9 @@ export const RelaxSynapseWeb: React.FC<{ className?: string }> = ({ className = 
     },
     {
       id: "axon-1",
-      d: generateCurlyAxon(610, 290, 693, 243, 18, 3),
-      endX: 693,
-      endY: 243,
+      d: generateCurlyAxon(605, 310, 788, 233, 20, 3),
+      endX: 788,
+      endY: 233,
       dur: "2.4s",
       delay: "0.2s",
     },
@@ -100,9 +100,9 @@ export const RelaxSynapseWeb: React.FC<{ className?: string }> = ({ className = 
     },
     {
       id: "axon-4",
-      d: generateCurlyAxon(610, 390, 760, 420, 20, 4),
-      endX: 760,
-      endY: 420,
+      d: generateCurlyAxon(605, 410, 675, 415, 12, 2),
+      endX: 675,
+      endY: 415,
       dur: "2.7s",
       delay: "0.5s",
     },
@@ -124,9 +124,9 @@ export const RelaxSynapseWeb: React.FC<{ className?: string }> = ({ className = 
     },
     {
       id: "axon-7",
-      d: generateCurlyAxon(590, 272, 768, 88, 24, 5),
-      endX: 768,
-      endY: 88,
+      d: generateCurlyAxon(580, 272, 728, 83, 22, 4),
+      endX: 728,
+      endY: 83,
       dur: "3.3s",
       delay: "0.7s",
     },
@@ -140,9 +140,9 @@ export const RelaxSynapseWeb: React.FC<{ className?: string }> = ({ className = 
     },
     {
       id: "axon-9",
-      d: generateCurlyAxon(605, 450, 775, 620, 22, 4),
+      d: generateCurlyAxon(595, 465, 775, 630, 24, 4),
       endX: 775,
-      endY: 620,
+      endY: 630,
       dur: "3.1s",
       delay: "0.9s",
     },
