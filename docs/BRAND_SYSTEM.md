@@ -6,7 +6,7 @@
 
 ## 1. Clinic Identity & Positioning
 - **Clinic:** Mind Body Recovery
-- **Lead Practitioner:** Dr. Sameer
+- **Lead Practitioner:** Sameer
 - **Core Modalities:** Hands-on bodywork (acupuncture, cupping, foot reflexology, Ayurveda), mind/behaviour coaching, and an immersive 2-day retreat.
 - **Teaching Arm:** "The hands that treat you also train the hands of others" (Therapist academy & community workshops).
 - **Core Mission:** Trust-first, unhurried, clinical yet deeply human. Real people over stock photography, evidence over adjectives, restraint over hard-sell CTAs.
@@ -44,16 +44,16 @@
 ## 3. Page Structure & Content Inventory
 
 1. **Global Navigation:** Logo mark (Tree of life emblem), Links (About · Approach · Therapies · Retreat · Contact), Primary CTA: "Book Your Assessment".
-2. **Hero:** Full-bleed video background montage with Dr. Sameer. Headline: `RELAX · RETHINK · REBUILD`. Subhead: *"I work with the mind, the body and the patterns connecting them."* CTA: "Book Your Assessment".
+2. **Hero:** Full-bleed video background montage with Sameer. Headline: `RELAX · RETHINK · REBUILD`. Subhead: *"I work with the mind, the body and the patterns connecting them."* CTA: "Book Your Assessment".
 3. **Real Stories:** Eyebrow: `REAL STORIES`. Headline: *"You don't have to take **our word** for it."* Subhead: *"Hear it from the people who've experienced it."* Mix of vertical video testimonials and photo review cards with bandage frames.
 4. **Proof Stats:** Headline: *"A Stronger Team. A Greater Impact."* Stats: 30+ Therapists, 10+ Experts, 10,000+ Lives changing. Real clinic team photo.
-5. **Purpose Hub ("The hands that treat you..."):** Center portrait of Dr. Sameer + 5 radiating themes: Sharing Experience · Building Better Therapists · Creating A Ripple Of Change · Empowering Communities · Guiding With Purpose.
+5. **Purpose Hub ("The hands that treat you..."):** Center portrait of Sameer + 5 radiating themes: Sharing Experience · Building Better Therapists · Creating A Ripple Of Change · Empowering Communities · Guiding With Purpose.
 6. **Step 01: RELAX:** Headline: `RELAX` — *"First, you slow down."* Center treatment photo + radiating treatment nodes & restorative quotes.
 7. **Step 02: RETHINK:** Headline: `Rethink to Realign` — *"A Pause. A Perspective. A New Path."* Center consultation photo + radiating mind-body themes.
 8. **Concern Picker ("We work with both"):** *"When the mind is overwhelmed, the body often carries it. We work with both."* 4 active concerns: Sleep Problems, Stress & Overthinking, Mental Fatigue & Low Energy, Pain & Body Tension. CTA: "I want to feel better".
 9. **Step 03: REBUILD (The Retreat):** Headline: `2 Days to Rebuild You.` — *"A RESET FOR YOUR BODY, MIND & LIFE"*. 3 feature markers (2 Days, Holistic, Lifetime) + 5 pillars + real facility photography.
 10. **Mindful Reflection ("What are you fighting with?"):** Empathetic reframing of stress, tension, and fatigue without clinical pathologizing.
-11. **Meet Dr. Sameer:** Personal clinician story and holistic care philosophy.
+11. **Meet Sameer:** Personal clinician story and holistic care philosophy.
 12. **Contact & Location:** Assessment booking, phone (`+91 90949 24694`), interactive Google Map location.
 13. **Footer:** Emblem, navigation, therapies, retreat pillars, contact, copyright.
 

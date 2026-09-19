@@ -18,12 +18,12 @@ const sans = Plus_Jakarta_Sans({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://mindbodyrecovery.in"),
-  title: "Mind Body Recovery | Integrative Wellness & Recovery Clinic | Dr. Sameer",
+  title: "Mind Body Recovery | Integrative Wellness & Recovery Clinic | Sameer",
   description:
-    "An integrative wellness clinic and training academy run by Dr. Sameer. Hands-on bodywork (acupuncture, cupping, reflexology, Ayurveda), somatic inquiry, and 2-day reset retreats in Chennai.",
+    "An integrative wellness clinic and training academy run by Sameer. Hands-on bodywork (acupuncture, cupping, reflexology, Ayurveda), somatic inquiry, and 2-day reset retreats in Chennai.",
   keywords: [
     "Mind Body Recovery",
-    "Dr Sameer",
+    "Sameer",
     "Acupuncture Chennai",
     "Cupping Therapy",
     "Ayurveda",
@@ -31,9 +31,9 @@ export const metadata: Metadata = {
     "Wellness Retreat India",
     "Integrative Healing",
   ],
-  authors: [{ name: "Dr. Sameer" }],
+  authors: [{ name: "Sameer" }],
   openGraph: {
-    title: "Mind Body Recovery | Dr. Sameer",
+    title: "Mind Body Recovery | Sameer",
     description:
       "I work with the mind, the body and the patterns connecting them. Integrative therapy, retreat & training academy.",
     url: "https://mindbodyrecovery.in",
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mind Body Recovery | Dr. Sameer",
+    title: "Mind Body Recovery | Sameer",
     description:
       "I work with the mind, the body and the patterns connecting them. Integrative therapy, retreat & training academy.",
     images: ["/assets/brand/og-share.jpg"],

@@ -5,11 +5,11 @@ import { motion } from "framer-motion";
 import { BandageFrame } from "@/components/ui/BandageFrame";
 import { FadeUp, BlurReveal } from "@/components/ui/ScrollAnimations";
 
-// Center Featured Hero Photo: Dr. Sameer teaching at the whiteboard (media_1789555688592)
+// Center Featured Hero Photo: Sameer teaching at the whiteboard (media_1789555688592)
 const CENTER_HERO = {
   id: "hero-center",
   image: "/assets/purpose/rsw_1300h_800-3-1.webp",
-  alt: "Dr. Sameer Mentorship & Hands-on Clinical Training",
+  alt: "Sameer Mentorship & Hands-on Clinical Training",
 };
 
 // 9 Surrounding Photos scattered unevenly around the center image

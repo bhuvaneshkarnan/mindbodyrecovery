@@ -43,7 +43,7 @@ export const ContactSection: React.FC<ContactSectionProps> = () => {
               </BlurReveal>
 
               <p className="text-sm sm:text-base text-[#231F19]/80 font-sans mb-8 leading-relaxed font-light">
-                Schedule your assessment with Dr. Sameer&apos;s team in Chennai.
+                Schedule your assessment with Sameer&apos;s team in Chennai.
               </p>
 
               {!submitted ? (

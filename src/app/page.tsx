@@ -88,7 +88,7 @@ export default function HomePage() {
       {/* Section 8: Step 03 - REBUILD (The 2-Day Retreat) */}
       <RebuildRetreat onOpenAssessment={() => handleOpenAssessment("2-Day Reset Retreat")} />
 
-      {/* Section 9: Meet Dr. Sameer */}
+      {/* Section 9: Meet Sameer */}
       <MeetDoctor onOpenAssessment={() => handleOpenAssessment()} />
 
       {/* Section 11: Contact & Location */}

@@ -135,7 +135,7 @@ export const clinicData = {
     headline: "First, you slow down.",
     subhead: "A space to pause, release what you're carrying, and allow your mind and body to settle.",
     centerImage: "/assets/relax/dr-sameer.webp",
-    centerCaption: "Dr. Sameer facilitating hands-on restorative care.",
+    centerCaption: "Sameer facilitating hands-on restorative care.",
     floatingQuotes: [
       "Breathe In — Let go of what you can't control.",
       "Your body knows the way.",
@@ -282,7 +282,7 @@ export const clinicData = {
 
   doctor: {
     name: "Sameer",
-    fullName: "Dr. Sameer",
+    fullName: "Sameer",
     role: "Mind-Body Recovery Specialist",
     title: "Founder & Lead Integrative Practitioner",
     portraitBanner: "/assets/doctor/sameer-banner@2x.webp",

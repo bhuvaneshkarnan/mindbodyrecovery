@@ -19,7 +19,7 @@ export const MeetDoctor: React.FC<MeetDoctorProps> = ({ onOpenAssessment }) => {
           <div className="relative w-full rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-[#12140D]/10 bg-[#12140D] group">
             <img
               src="/assets/doctor/sameer-banner@2x.webp"
-              alt="Dr. Sameer - Mind-Body Recovery Specialist"
+              alt="Sameer - Mind-Body Recovery Specialist"
               width={1602}
               height={884}
               loading="lazy"

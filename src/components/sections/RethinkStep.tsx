@@ -231,7 +231,7 @@ export const RethinkStep: React.FC = () => {
                     <div className="w-full h-[200px] overflow-hidden bg-[#181C14] flex items-center justify-center rounded-lg">
                       <img
                         src={clinicData.rethink.centerImage}
-                        alt="Dr. Sameer Consultation"
+                        alt="Sameer Consultation"
                         loading="lazy"
                         decoding="async"
                         className="max-w-full max-h-full object-contain"

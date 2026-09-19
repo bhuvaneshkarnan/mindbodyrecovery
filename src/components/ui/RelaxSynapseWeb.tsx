@@ -182,7 +182,7 @@ export const RelaxSynapseWeb: React.FC<{ className?: string }> = ({ className = 
         </radialGradient>
       </defs>
 
-      {/* Central Soma Halo behind Dr Sameer */}
+      {/* Central Soma Halo behind Sameer */}
       <circle cx="430" cy="375" r="230" fill="url(#relax-soma-halo)" />
 
       {/* Concentric Bio-Rhythm Rings */}

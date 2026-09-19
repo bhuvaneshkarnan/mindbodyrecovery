@@ -12,7 +12,7 @@ const MILESTONES = [
   { id: "rethink",  label: "02 · Rethink (Somatic)",     short: "Rethink"   },
   { id: "concerns", label: "Mind & Body Concerns",       short: "Concerns"  },
   { id: "rebuild",  label: "03 · Rebuild (2-Day Reset)", short: "Rebuild"   },
-  { id: "doctor",   label: "Dr. Sameer · Lead Doctor",   short: "Dr. Sameer"},
+  { id: "doctor",   label: "Sameer · Founder & Practitioner",   short: "Sameer"},
   { id: "contact",  label: "Begin Consultation",         short: "Inquire"   },
 ];
 

@@ -103,10 +103,10 @@ const RELAX_NODES = [
     objectPosition: "object-center",
   },
   // 8. Osteopathic Joint Mobilization (Far orbit: high upper-right)
-  // Shape: Inverted Half Cut Dome (flat top protects Dr. Sameer's head from clipping - 88% area)
+  // Shape: Inverted Half Cut Dome (flat top protects Sameer's head from clipping - 88% area)
   {
     imageSrc: "/assets/relax/nodes/node-joint-mobilization.webp",
-    alt: "Dr. Sameer Joint & Articular Mobilization",
+    alt: "Sameer Joint & Articular Mobilization",
     shapeIndex: 9,
     width: 115,
     height: 115,
@@ -252,7 +252,7 @@ export const RelaxStep: React.FC<RelaxStepProps> = ({ onOpenAssessment }) => {
               {/* Biological Neuron Dendritic Synapse Graph connecting to all 10 scattered nodes */}
               <RelaxSynapseWeb />
 
-              {/* CENTER PHOTO: Dr. Sameer (Hero Rectangular Frame, NO Top/Bottom Black Space, Natural 16:9 Aspect) */}
+              {/* CENTER PHOTO: Sameer (Hero Rectangular Frame, NO Top/Bottom Black Space, Natural 16:9 Aspect) */}
               <div id="relax-soma" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[360px] z-20 flex flex-col items-center">
                 <ZoomReveal delay={0.35}>
                   <BandageFrame
@@ -265,7 +265,7 @@ export const RelaxStep: React.FC<RelaxStepProps> = ({ onOpenAssessment }) => {
                     <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg">
                       <img
                         src={clinicData.relax.centerImage}
-                        alt="Dr. Sameer"
+                        alt="Sameer"
                         loading="lazy"
                         decoding="async"
                         className="w-full h-full object-cover filter saturate-95 contrast-105"
@@ -332,7 +332,7 @@ export const RelaxStep: React.FC<RelaxStepProps> = ({ onOpenAssessment }) => {
                     <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg">
                       <img
                         src={clinicData.relax.centerImage}
-                        alt="Dr. Sameer"
+                        alt="Sameer"
                         loading="lazy"
                         decoding="async"
                         className="w-full h-full object-cover filter saturate-95 contrast-105"
