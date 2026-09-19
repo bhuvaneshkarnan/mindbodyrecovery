@@ -12,114 +12,124 @@ import clsx from "clsx";
 
 const RELAX_NODES = [
   // 1. Shirodhara (Very close top-left: nestled snug right above the center frame)
+  // Shape: Half Cut Dome (flat bottom, rounded arch dome)
   {
     imageSrc: "/assets/relax/shirodhara.webp",
     alt: "Ayurvedic Shirodhara Oil Cascade",
     shapeIndex: 0,
     width: 110,
     height: 100,
-    tilt: -3,
-    desktopPos: "top-[155px] left-[320px]",
-    mobileSize: 100,
+    tilt: 0,
+    desktopPos: "top-[140px] left-[325px]",
+    mobileSize: 105,
   },
   // 2. Pulse Diagnosis (Very close top-right: nestled snug at upper-right corner of center frame)
+  // Shape: Crescent Moon Cut (concave inner lunar curve)
   {
     imageSrc: "/assets/relax/pulse.webp",
     alt: "Pulse Assessment & Nadi Pariksha",
     shapeIndex: 1,
     width: 100,
     height: 105,
-    tilt: 6,
-    desktopPos: "top-[235px] left-[615px]",
-    mobileSize: 95,
+    tilt: -8,
+    desktopPos: "top-[215px] left-[635px]",
+    mobileSize: 100,
   },
   // 3. Podikizhi (Very close lower-left: nestled snug at lower-left corner of center frame)
+  // Shape: Vertical Half Cut (flat vertical left edge, dome right)
   {
     imageSrc: "/assets/relax/Podikizhi.webp",
     alt: "Podikizhi Herbal Pouch Therapy",
     shapeIndex: 2,
     width: 105,
-    height: 98,
-    tilt: -5,
-    desktopPos: "top-[445px] left-[175px]",
-    mobileSize: 105,
+    height: 100,
+    tilt: 3,
+    desktopPos: "top-[440px] left-[170px]",
+    mobileSize: 100,
   },
   // 4. Cupping Therapy (Medium distance: mid-left)
+  // Shape: Teardrop Cut (pointed corner apex, bulbous droplet body)
   {
     imageSrc: "/assets/relax/cupping.webp",
     alt: "Cupping Suction Decompression",
     shapeIndex: 3,
     width: 112,
     height: 112,
-    tilt: 7,
-    desktopPos: "top-[320px] left-[65px]",
-    mobileSize: 100,
+    tilt: -12,
+    desktopPos: "top-[315px] left-[55px]",
+    mobileSize: 105,
   },
   // 5. Foot Reflexology (Medium distance: mid-lower-right)
+  // Shape: Botanical Leaf / Lens (two pointed opposite tips, two sweeping convex arcs)
   {
     imageSrc: "/assets/relax/foot-reflexology.webp",
     alt: "Foot Reflexology Acupressure",
     shapeIndex: 4,
     width: 108,
-    height: 118,
-    tilt: -4,
-    desktopPos: "top-[410px] right-[55px]",
-    mobileSize: 95,
+    height: 115,
+    tilt: 15,
+    desktopPos: "top-[410px] right-[45px]",
+    mobileSize: 100,
   },
-  // 6. Somatic Mat Movement (Medium distance: below center)
+  // 6. Somatic Mat Movement (Medium distance: below center frame)
+  // Shape: Cathedral Arch Window (dome top, straight vertical sides, flat bottom)
   {
     imageSrc: "/assets/relax/somatic-movement.webp",
     alt: "Somatic Inquiry & Mat Movement",
     shapeIndex: 5,
-    width: 118,
-    height: 96,
-    tilt: 4,
-    desktopPos: "bottom-[45px] left-[420px]",
-    mobileSize: 110,
+    width: 115,
+    height: 100,
+    tilt: -2,
+    desktopPos: "bottom-[40px] left-[415px]",
+    mobileSize: 105,
   },
-  // 7. Clinical Acupuncture (Far orbit: high upper-left)
+  // 7. Clinical Facial Acupuncture (Far orbit: high upper-left)
+  // Shape: Diagonal Sliced Wedge (sharp flat diagonal cut at top-right, rounded base)
   {
-    imageSrc: "/assets/relax/VID-20260805-WA0000.webp",
-    alt: "Acupuncture Precision Needle Care",
+    imageSrc: "/assets/relax/file_0000000045d47206848bda62b98c5512.webp",
+    alt: "Clinical Facial Acupuncture Care",
     shapeIndex: 6,
-    width: 95,
+    width: 100,
     height: 105,
-    tilt: -7,
-    desktopPos: "top-[25px] left-[55px]",
-    mobileSize: 90,
-  },
-  // 8. Shiroabhyanga Head Massage (Far orbit: high upper-right)
-  {
-    imageSrc: "/assets/relax/head-massage.webp",
-    alt: "Ayurvedic Warm Herbal Head Massage",
-    shapeIndex: 7,
-    width: 95,
-    height: 95,
-    tilt: 8,
-    desktopPos: "top-[40px] right-[40px]",
+    tilt: 10,
+    desktopPos: "top-[30px] left-[50px]",
     mobileSize: 95,
   },
-  // 9. Deep Back Cupping (Far orbit: deep bottom-left)
+  // 8. Osteopathic Joint Mobilization (Far orbit: high upper-right)
+  // Shape: Waxing Gibbous Moon (curved crescent indent on left, wide convex belly right)
   {
-    imageSrc: "/assets/relax/cupping-back.webp",
-    alt: "Fascial Decompression Back Therapy",
+    imageSrc: "/assets/relax/joint-mobilization.webp",
+    alt: "Dr. Sameer Joint & Articular Mobilization",
+    shapeIndex: 7,
+    width: 100,
+    height: 105,
+    tilt: 6,
+    desktopPos: "top-[35px] right-[35px]",
+    mobileSize: 95,
+  },
+  // 9. Craniosacral Somatic Release (Far orbit: deep bottom-left)
+  // Shape: Quarter Fan Cut (one sharp 90-degree corner, wide circular fan arc)
+  {
+    imageSrc: "/assets/relax/craniosacral.webp",
+    alt: "Craniosacral Somatic Release",
     shapeIndex: 8,
-    width: 95,
-    height: 95,
-    tilt: -6,
-    desktopPos: "bottom-[35px] left-[40px]",
-    mobileSize: 90,
+    width: 100,
+    height: 100,
+    tilt: -10,
+    desktopPos: "bottom-[35px] left-[35px]",
+    mobileSize: 95,
   },
   // 10. Breathwork & Pranayama (Far orbit: deep bottom-right)
+  // Shape: Inverted Half Cut Dome (flat top horizontal edge, round dome bottom)
   {
     imageSrc: "/assets/rebuild/yoga-breath.webp",
     alt: "Restorative Pranayama & Breathwork",
     shapeIndex: 9,
-    width: 90,
-    height: 90,
-    tilt: 5,
-    desktopPos: "bottom-[20px] right-[25px]",
-    mobileSize: 90,
+    width: 95,
+    height: 95,
+    tilt: 4,
+    desktopPos: "bottom-[30px] right-[30px]",
+    mobileSize: 95,
   },
 ];
 
@@ -133,6 +143,17 @@ export const RelaxStep: React.FC<RelaxStepProps> = ({ onOpenAssessment }) => {
       id="relax"
       className="relative py-24 lg:py-32 bg-[#0B0F07] text-[#F6F1E4] overflow-hidden border-t border-[#F6F1E4]/10"
     >
+      {/* Global SVG Clip-Path Definitions for Moon & Gibbous Lasso Shapes */}
+      <svg className="absolute w-0 h-0 pointer-events-none" aria-hidden="true">
+        <defs>
+          <clipPath id="lasso-moon-crescent" clipPathUnits="objectBoundingBox">
+            <path d="M 0.65,0.03 C 0.12,0.18 0.12,0.82 0.65,0.97 C 0.32,0.75 0.32,0.25 0.65,0.03 Z" />
+          </clipPath>
+          <clipPath id="lasso-moon-gibbous" clipPathUnits="objectBoundingBox">
+            <path d="M 0.50,0.03 C 0.90,0.03 0.98,0.25 0.98,0.50 C 0.98,0.75 0.90,0.97 0.50,0.97 C 0.28,0.80 0.18,0.65 0.18,0.50 C 0.18,0.35 0.28,0.20 0.50,0.03 Z" />
+          </clipPath>
+        </defs>
+      </svg>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
         
         {/* Top Step Header */}
