@@ -53,11 +53,11 @@ const REBUILD_NODES = [
     mobileSize: 110,
     objectPosition: "object-center",
   },
-  // 4. Podikizhi Herbal Potli (Upper-Mid Right: pushed outward to outer edge - cy = 228)
+  // 4. Pulse Assessment & Clinical Review (Upper-Mid Right: pushed outward to outer edge - cy = 228)
   // Shape: Crescent Moon Cut (generous lunar medallion with concave inner scoop - 80% area)
   {
-    imageSrc: "/assets/rebuild/nodes/node-podikizhi.webp",
-    alt: "Podikizhi Herbal Pouch Therapy",
+    imageSrc: "/assets/rebuild/nodes/node-pulse-assessment.webp",
+    alt: "Pulse Assessment & Clinical Diagnostic Review",
     shapeIndex: 1,
     width: 115,
     height: 115,
@@ -92,11 +92,11 @@ const REBUILD_NODES = [
     mobileSize: 110,
     objectPosition: "object-center",
   },
-  // 7. Ayurvedic Scalp & Head Rejuvenation (Bottom-Left: raised high above bottom - cy = 565)
+  // 7. Outdoor Somatic Rest Under Garden Trees (Bottom-Left: raised high above bottom - cy = 565)
   // Shape: Quarter Fan Cut (softened 90-degree corner, wide circular fan arc - 86% area)
   {
-    imageSrc: "/assets/rebuild/nodes/node-head-massage.webp",
-    alt: "Ayurvedic Scalp & Head Rejuvenation Therapy",
+    imageSrc: "/assets/rebuild/nodes/node-outdoor-terrace.webp",
+    alt: "Sanctuary Outdoor Somatic Rest Under Garden Trees",
     shapeIndex: 8,
     width: 110,
     height: 110,
