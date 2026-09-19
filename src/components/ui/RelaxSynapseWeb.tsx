@@ -7,24 +7,28 @@ export const RelaxSynapseWeb: React.FC<{ className?: string }> = ({ className = 
   const secondaryColor = "#93A579";
   const faintColor = "rgba(199, 154, 69, 0.2)";
 
-  // Axon neural dendritic paths connecting center frame to 7 scattered lasso nodes
-  const pathNode1 = "M 375 250 C 390 220, 360 190, 375 160"; // Shirodhara (upper-center-left)
-  const pathNode2 = "M 560 250 C 585 200, 625 180, 645 140"; // Pulse (upper-right)
-  const pathNode3 = "M 605 330 C 635 310, 675 350, 705 330"; // Reflexology (mid-right)
-  const pathNode4 = "M 560 450 C 570 480, 625 510, 610 545"; // Somatic Movement (lower-right)
-  const pathNode5 = "M 340 450 C 320 480, 360 510, 340 543"; // Podikizhi (lower-center-left)
-  const pathNode6 = "M 255 380 C 220 370, 195 420, 170 430"; // Cupping (mid-lower-left)
-  const pathNode7 = "M 280 250 C 260 210, 210 190, 180 160"; // Acupuncture (upper-left)
+  // Axon neural dendritic paths connecting center frame to 10 scattered lasso nodes
+  // 3 Very Close, 3 Medium, 4 Far Orbit
+  const pathNode0 = "M 375 279 C 375 255, 375 240, 375 215"; // Shirodhara (very close top-left)
+  const pathNode1 = "M 600 300 C 620 295, 635 290, 645 285"; // Pulse (very close top-right)
+  const pathNode2 = "M 600 420 C 640 435, 675 450, 710 460"; // Reflexology (mid-right)
+  const pathNode3 = "M 475 470 C 475 510, 475 560, 475 615"; // Somatic Movement (medium bottom)
+  const pathNode4 = "M 260 450 C 240 465, 230 475, 220 490"; // Podikizhi (very close bottom-left)
+  const pathNode5 = "M 260 375 C 220 375, 180 375, 145 375"; // Cupping (medium mid-left)
+  const pathNode6 = "M 280 279 C 235 210, 175 145, 125 100"; // Acupuncture (far upper-left)
+  const pathNode7 = "M 580 279 C 625 210, 695 140, 745 95";  // Head Massage (far upper-right)
+  const pathNode8 = "M 260 465 C 200 525, 150 590, 110 635"; // Back Cupping (far bottom-left)
+  const pathNode9 = "M 600 465 C 655 525, 725 585, 765 630"; // Breathwork (far bottom-right)
 
-  // Paths to quiet quote accents
-  const pathQuoteTL = "M 260 260 C 230 200, 190 120, 150 65";
-  const pathQuoteBL = "M 260 430 C 230 490, 190 570, 160 635";
-  const pathQuoteTR = "M 580 260 C 610 200, 660 120, 720 65";
+  // Subtle secondary lines to quote accents
+  const pathQuote1 = "M 270 279 C 240 210, 200 120, 180 65";
+  const pathQuote2 = "M 560 279 C 550 200, 540 120, 530 65";
+  const pathQuote3 = "M 320 470 C 310 540, 300 600, 290 660";
 
   return (
     <svg
       className={`absolute inset-0 w-full h-full pointer-events-none z-10 ${className}`}
-      viewBox="0 0 860 700"
+      viewBox="0 0 860 750"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -56,35 +60,38 @@ export const RelaxSynapseWeb: React.FC<{ className?: string }> = ({ className = 
       </defs>
 
       {/* Central Soma Halo behind Dr Sameer */}
-      <circle cx="430" cy="350" r="220" fill="url(#relax-soma-halo)" />
+      <circle cx="430" cy="375" r="230" fill="url(#relax-soma-halo)" />
       
       {/* Concentric Bio-Rhythm Rings */}
       <circle
         cx="430"
-        cy="350"
-        r="210"
+        cy="375"
+        r="220"
         stroke={faintColor}
         strokeWidth="1"
         strokeDasharray="4 8"
       />
       <circle
         cx="430"
-        cy="350"
-        r="140"
+        cy="375"
+        r="150"
         stroke={faintColor}
         strokeWidth="1"
         strokeDasharray="3 6"
       />
 
-      {/* Connecting Axon Curves to 7 Scattered Lasso Nodes */}
+      {/* Connecting Axon Curves to 10 Scattered Lasso Nodes */}
       {[
-        { id: "axon-1", d: pathNode1, dur: "2.4s", delay: "0s" },
-        { id: "axon-2", d: pathNode2, dur: "2.8s", delay: "0.4s" },
-        { id: "axon-3", d: pathNode3, dur: "2.6s", delay: "0.8s" },
-        { id: "axon-4", d: pathNode4, dur: "3.0s", delay: "0.2s" },
-        { id: "axon-5", d: pathNode5, dur: "2.5s", delay: "1.0s" },
-        { id: "axon-6", d: pathNode6, dur: "2.7s", delay: "0.6s" },
-        { id: "axon-7", d: pathNode7, dur: "2.9s", delay: "1.2s" },
+        { id: "axon-0", d: pathNode0, dur: "1.9s", delay: "0s" },
+        { id: "axon-1", d: pathNode1, dur: "2.1s", delay: "0.2s" },
+        { id: "axon-2", d: pathNode2, dur: "2.5s", delay: "0.5s" },
+        { id: "axon-3", d: pathNode3, dur: "2.6s", delay: "0.3s" },
+        { id: "axon-4", d: pathNode4, dur: "2.0s", delay: "0.7s" },
+        { id: "axon-5", d: pathNode5, dur: "2.4s", delay: "0.4s" },
+        { id: "axon-6", d: pathNode6, dur: "3.0s", delay: "0.1s" },
+        { id: "axon-7", d: pathNode7, dur: "3.1s", delay: "0.6s" },
+        { id: "axon-8", d: pathNode8, dur: "3.2s", delay: "0.8s" },
+        { id: "axon-9", d: pathNode9, dur: "3.0s", delay: "0.9s" },
       ].map((axon) => (
         <g key={axon.id}>
           {/* Base synaptic path */}
@@ -118,7 +125,7 @@ export const RelaxSynapseWeb: React.FC<{ className?: string }> = ({ className = 
       ))}
 
       {/* Subtle secondary lines to quote accents */}
-      {[pathQuoteTL, pathQuoteBL, pathQuoteTR].map((d, idx) => (
+      {[pathQuote1, pathQuote2, pathQuote3].map((d, idx) => (
         <path
           key={idx}
           d={d}

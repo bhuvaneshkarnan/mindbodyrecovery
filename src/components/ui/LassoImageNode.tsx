@@ -3,22 +3,28 @@
 import React from "react";
 import clsx from "clsx";
 
-// 7 distinct organic lasso shapes (8-value border-radius pebbles / fluid contours)
+// 10 distinct, highly asymmetrical organic lasso shapes (every single image has a completely unique contour)
 export const LASSO_SHAPES = [
-  // 0. Organic River Stone / Oval pebble
-  "60% 40% 55% 45% / 45% 60% 40% 55%",
-  // 1. Asymmetric Botanical Leaf / Droplet
-  "40% 60% 35% 65% / 65% 35% 65% 35%",
-  // 2. Flowing Fluid Pebble
-  "65% 35% 50% 50% / 35% 65% 35% 65%",
-  // 3. Freehand Organic Contour
-  "35% 65% 60% 40% / 55% 35% 65% 45%",
-  // 4. Soft Mineral Slice
-  "68% 32% 45% 55% / 55% 45% 55% 45%",
-  // 5. Undulating Blob
-  "48% 52% 65% 35% / 40% 60% 40% 60%",
-  // 6. Natural Curved Pebble
-  "55% 45% 35% 65% / 62% 38% 62% 38%",
+  // 0. Organic River Pebble (tilted asymmetrical curve)
+  "74% 26% 62% 38% / 38% 72% 28% 62%",
+  // 1. Fluid Teardrop Contour (high pointed curve, wide belly)
+  "28% 72% 42% 58% / 72% 32% 68% 28%",
+  // 2. Asymmetric Mineral Slice (slanted flat cut with rounded bottom)
+  "62% 38% 28% 72% / 74% 34% 66% 26%",
+  // 3. Freehand Organic Kidney
+  "42% 58% 74% 26% / 28% 68% 32% 72%",
+  // 4. Slanted Botanical Drop
+  "32% 68% 36% 64% / 66% 38% 62% 34%",
+  // 5. Undulating River Stone
+  "68% 32% 58% 42% / 44% 66% 34% 56%",
+  // 6. Asymmetrical Fluid Pebble
+  "38% 62% 72% 28% / 58% 36% 64% 42%",
+  // 7. Organic Amoeba Slice
+  "60% 40% 38% 62% / 68% 32% 68% 32%",
+  // 8. Angled Organic Contour
+  "46% 54% 28% 72% / 36% 64% 36% 64%",
+  // 9. Natural Sea Pebble
+  "66% 34% 62% 38% / 44% 62% 38% 56%",
 ];
 
 interface LassoImageNodeProps {

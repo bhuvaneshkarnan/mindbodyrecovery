@@ -11,68 +11,115 @@ import { FadeUp, SlideIn, ZoomReveal, BlurReveal, StaggerReveal } from "@/compon
 import clsx from "clsx";
 
 const RELAX_NODES = [
+  // 1. Shirodhara (Very close top-left: nestled snug right above the center frame)
   {
     imageSrc: "/assets/relax/shirodhara.webp",
-    alt: "Ayurvedic Shirodhara Oil Pour",
+    alt: "Ayurvedic Shirodhara Oil Cascade",
     shapeIndex: 0,
-    width: 155,
-    height: 140,
+    width: 110,
+    height: 100,
     tilt: -3,
-    desktopPos: "top-[18px] left-[300px]",
+    desktopPos: "top-[155px] left-[320px]",
+    mobileSize: 100,
   },
+  // 2. Pulse Diagnosis (Very close top-right: nestled snug at upper-right corner of center frame)
   {
     imageSrc: "/assets/relax/pulse.webp",
-    alt: "Pulse Assessment & Diagnosis",
+    alt: "Pulse Assessment & Nadi Pariksha",
     shapeIndex: 1,
-    width: 135,
-    height: 150,
-    tilt: 4,
-    desktopPos: "top-[35px] right-[75px]",
+    width: 100,
+    height: 105,
+    tilt: 6,
+    desktopPos: "top-[235px] left-[615px]",
+    mobileSize: 95,
   },
-  {
-    imageSrc: "/assets/relax/foot-reflexology.webp",
-    alt: "Foot Reflexology Therapy",
-    shapeIndex: 2,
-    width: 140,
-    height: 160,
-    tilt: -2,
-    desktopPos: "top-[250px] right-[15px]",
-  },
-  {
-    imageSrc: "/assets/relax/somatic-movement.webp",
-    alt: "Somatic Mat Reset & Movement",
-    shapeIndex: 3,
-    width: 160,
-    height: 130,
-    tilt: 3,
-    desktopPos: "bottom-[25px] right-[95px]",
-  },
+  // 3. Podikizhi (Very close lower-left: nestled snug at lower-left corner of center frame)
   {
     imageSrc: "/assets/relax/Podikizhi.webp",
-    alt: "Podikizhi Herbal Pouch Massage",
-    shapeIndex: 4,
-    width: 140,
-    height: 145,
-    tilt: -4,
-    desktopPos: "bottom-[12px] left-[270px]",
+    alt: "Podikizhi Herbal Pouch Therapy",
+    shapeIndex: 2,
+    width: 105,
+    height: 98,
+    tilt: -5,
+    desktopPos: "top-[445px] left-[175px]",
+    mobileSize: 105,
   },
+  // 4. Cupping Therapy (Medium distance: mid-left)
   {
     imageSrc: "/assets/relax/cupping.webp",
-    alt: "Cupping Decompression",
-    shapeIndex: 5,
-    width: 150,
-    height: 140,
-    tilt: 5,
-    desktopPos: "top-[360px] left-[20px]",
+    alt: "Cupping Suction Decompression",
+    shapeIndex: 3,
+    width: 112,
+    height: 112,
+    tilt: 7,
+    desktopPos: "top-[320px] left-[65px]",
+    mobileSize: 100,
   },
+  // 5. Foot Reflexology (Medium distance: mid-lower-right)
+  {
+    imageSrc: "/assets/relax/foot-reflexology.webp",
+    alt: "Foot Reflexology Acupressure",
+    shapeIndex: 4,
+    width: 108,
+    height: 118,
+    tilt: -4,
+    desktopPos: "top-[410px] right-[55px]",
+    mobileSize: 95,
+  },
+  // 6. Somatic Mat Movement (Medium distance: below center)
+  {
+    imageSrc: "/assets/relax/somatic-movement.webp",
+    alt: "Somatic Inquiry & Mat Movement",
+    shapeIndex: 5,
+    width: 118,
+    height: 96,
+    tilt: 4,
+    desktopPos: "bottom-[45px] left-[420px]",
+    mobileSize: 110,
+  },
+  // 7. Clinical Acupuncture (Far orbit: high upper-left)
   {
     imageSrc: "/assets/relax/VID-20260805-WA0000.webp",
-    alt: "Acupuncture Precision Care",
+    alt: "Acupuncture Precision Needle Care",
     shapeIndex: 6,
-    width: 135,
-    height: 150,
-    tilt: -5,
-    desktopPos: "top-[50px] left-[80px]",
+    width: 95,
+    height: 105,
+    tilt: -7,
+    desktopPos: "top-[25px] left-[55px]",
+    mobileSize: 90,
+  },
+  // 8. Shiroabhyanga Head Massage (Far orbit: high upper-right)
+  {
+    imageSrc: "/assets/relax/head-massage.webp",
+    alt: "Ayurvedic Warm Herbal Head Massage",
+    shapeIndex: 7,
+    width: 95,
+    height: 95,
+    tilt: 8,
+    desktopPos: "top-[40px] right-[40px]",
+    mobileSize: 95,
+  },
+  // 9. Deep Back Cupping (Far orbit: deep bottom-left)
+  {
+    imageSrc: "/assets/relax/cupping-back.webp",
+    alt: "Fascial Decompression Back Therapy",
+    shapeIndex: 8,
+    width: 95,
+    height: 95,
+    tilt: -6,
+    desktopPos: "bottom-[35px] left-[40px]",
+    mobileSize: 90,
+  },
+  // 10. Breathwork & Pranayama (Far orbit: deep bottom-right)
+  {
+    imageSrc: "/assets/rebuild/yoga-breath.webp",
+    alt: "Restorative Pranayama & Breathwork",
+    shapeIndex: 9,
+    width: 90,
+    height: 90,
+    tilt: 5,
+    desktopPos: "bottom-[20px] right-[25px]",
+    mobileSize: 90,
   },
 ];
 
@@ -168,10 +215,10 @@ export const RelaxStep: React.FC<RelaxStepProps> = ({ onOpenAssessment }) => {
           {/* Right Column: Expanded Synapse Orbit Stage with Visibly Bigger Images */}
           <FadeUp delay={0.2} className="lg:col-span-8 relative">
             
-            {/* Desktop Stage (860x700): Uneven Scattered Constellation */}
-            <div className="relative w-full h-[700px] max-w-[860px] mx-auto hidden md:block">
+            {/* Desktop Stage (860x750): Uneven Scattered Constellation */}
+            <div className="relative w-full h-[750px] max-w-[860px] mx-auto hidden md:block">
               
-              {/* Biological Neuron Dendritic Synapse Graph connecting to all 7 scattered nodes */}
+              {/* Biological Neuron Dendritic Synapse Graph connecting to all 10 scattered nodes */}
               <RelaxSynapseWeb />
 
               {/* CENTER PHOTO: Dr. Sameer (Hero Rectangular Frame, NO Top/Bottom Black Space, Natural 16:9 Aspect) */}
@@ -203,7 +250,7 @@ export const RelaxStep: React.FC<RelaxStepProps> = ({ onOpenAssessment }) => {
                 </ZoomReveal>
               </div>
 
-              {/* 7 UNEVEN SCATTERED THERAPY NODES WITH ORGANIC LASSO CROP (NO NAME LABELS) */}
+              {/* 10 UNEVEN SCATTERED THERAPY NODES WITH ORGANIC LASSO CROP (NO NAME LABELS) */}
               {RELAX_NODES.map((node) => (
                 <div key={node.imageSrc} className={`absolute ${node.desktopPos} z-30`}>
                   <LassoImageNode
@@ -217,27 +264,27 @@ export const RelaxStep: React.FC<RelaxStepProps> = ({ onOpenAssessment }) => {
                 </div>
               ))}
 
-              {/* Quiet Floating Quote Accents */}
-              <div className="absolute top-4 left-[475px] z-30 pointer-events-none">
-                <div className="w-[145px] p-2.5 rounded-lg bg-[#141A10]/95 border border-[#C79A45]/30 text-left shadow-md">
-                  <span className="text-[10px] text-[#93A579] font-medium block">Breathe In</span>
-                  <p className="text-[11px] text-[#F6F1E4]/90 font-sans leading-tight">
+              {/* Quiet Floating Quote Accents in Open Constellation Pockets */}
+              <div className="absolute top-8 left-[175px] z-30 pointer-events-none">
+                <div className="w-[125px] p-2 rounded-lg bg-[#141A10]/95 border border-[#C79A45]/30 text-left shadow-md">
+                  <span className="text-[9px] text-[#93A579] font-medium block">Breathe In</span>
+                  <p className="text-[10px] text-[#F6F1E4]/90 font-sans leading-tight">
                     Let go of what you can&apos;t control.
                   </p>
                 </div>
               </div>
 
-              <div className="absolute bottom-4 left-6 z-30 pointer-events-none">
-                <div className="w-[145px] p-2.5 rounded-lg bg-[#141A10]/95 border border-[#C79A45]/30 text-left shadow-md">
-                  <p className="font-sans text-[11px] text-[#F6F1E4] leading-tight">
+              <div className="absolute top-8 left-[495px] z-30 pointer-events-none">
+                <div className="w-[130px] p-2 rounded-lg bg-[#141A10]/95 border border-[#C79A45]/30 text-left shadow-md">
+                  <p className="font-sans text-[10px] text-[#F6F1E4] leading-tight">
                     Your body knows the way.
                   </p>
                 </div>
               </div>
 
-              <div className="absolute bottom-4 right-6 z-30 pointer-events-none">
-                <div className="w-[145px] p-2.5 rounded-lg bg-[#141A10]/95 border border-[#C79A45]/30 text-left shadow-md">
-                  <p className="font-sans text-[11px] text-[#F6F1E4] leading-tight">
+              <div className="absolute bottom-8 left-[255px] z-30 pointer-events-none">
+                <div className="w-[135px] p-2 rounded-lg bg-[#141A10]/95 border border-[#C79A45]/30 text-left shadow-md">
+                  <p className="font-sans text-[10px] text-[#F6F1E4] leading-tight">
                     Relaxation is the foundation of healing.
                   </p>
                 </div>
@@ -263,22 +310,21 @@ export const RelaxStep: React.FC<RelaxStepProps> = ({ onOpenAssessment }) => {
                 </ZoomReveal>
               </div>
 
-              <StaggerReveal staggerDelay={0.06} className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6 place-items-center relative z-10 px-2 pt-2">
+              <StaggerReveal staggerDelay={0.05} className="grid grid-cols-2 sm:grid-cols-3 gap-4 place-items-center relative z-10 px-2 pt-2">
                 {RELAX_NODES.map((node, i) => (
                   <div
                     key={node.imageSrc}
                     className={clsx(
                       "transition-transform duration-300",
-                      i % 2 === 1 ? "translate-y-3" : "-translate-y-1",
-                      i === 6 ? "col-span-2 sm:col-span-1 justify-self-center" : ""
+                      i % 2 === 1 ? "translate-y-2.5" : "-translate-y-1"
                     )}
                   >
                     <LassoImageNode
                       imageSrc={node.imageSrc}
                       imageAlt={node.alt}
                       shapeIndex={node.shapeIndex}
-                      width={124}
-                      height={124}
+                      width={node.mobileSize || 95}
+                      height={node.mobileSize || 95}
                       tiltDeg={node.tilt}
                     />
                   </div>
