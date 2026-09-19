@@ -2,12 +2,119 @@
 
 import React from "react";
 import { BandageFrame } from "@/components/ui/BandageFrame";
-import { NeuronSynapseGraph } from "@/components/ui/NeuronSynapseGraph";
-import { NeuronMobileSynapseGraph } from "@/components/ui/NeuronMobileSynapseGraph";
-import { ShapedImageNode } from "@/components/ui/ShapedImageNode";
+import { RethinkSynapseWeb } from "@/components/ui/RethinkSynapseWeb";
+import { LassoImageNode } from "@/components/ui/LassoImageNode";
 import { NeuronHeadingConnector } from "@/components/ui/NeuronHeadingConnector";
 import { clinicData } from "@/data/clinicData";
 import { FadeUp, SlideIn, ZoomReveal, BlurReveal, StaggerReveal } from "@/components/ui/ScrollAnimations";
+import clsx from "clsx";
+
+const RETHINK_NODES = [
+  // 1. Cognitive Health Review (Top-Right: highest point on right - cy = 78)
+  // Shape: Half Cut Dome (flat bottom, arch dome top - 88% area)
+  {
+    imageSrc: "/assets/rethink/nodes/node-screen-review.webp",
+    alt: "Sameer Cognitive Health & Data Review",
+    shapeIndex: 0,
+    width: 115,
+    height: 115,
+    tilt: 4,
+    desktopPos: "top-[20px] right-[85px]",
+    mobileSize: 105,
+    objectPosition: "object-center",
+  },
+  // 2. Mindful Journaling & Reflection (Top-Left: dropped lower - cy = 118)
+  // Shape: Teardrop Cut (pointed corner apex, bulbous droplet body - 90% area)
+  {
+    imageSrc: "/assets/rethink/nodes/node-journaling.webp",
+    alt: "Personal Reflection & Mindful Inquiry",
+    shapeIndex: 3,
+    width: 115,
+    height: 115,
+    tilt: -6,
+    desktopPos: "top-[60px] left-[30px]",
+    mobileSize: 105,
+    objectPosition: "object-center",
+  },
+  // 3. Sameer Clinical Focus (Top-Center: above center frame - cy = 170)
+  // Shape: Cathedral Arch Window (dome top, straight sides, flat bottom - 88% area)
+  {
+    imageSrc: "/assets/rethink/nodes/node-sameer-focus.webp",
+    alt: "Sameer Clinical Assessment Focus",
+    shapeIndex: 5,
+    width: 120,
+    height: 110,
+    tilt: 0,
+    desktopPos: "top-[115px] left-[345px]",
+    mobileSize: 110,
+    objectPosition: "object-center",
+  },
+  // 4. New Habits & Practice (Upper-Mid Right: pushed outward to outer edge - cy = 223)
+  // Shape: Crescent Moon Cut (generous lunar medallion with concave inner scoop - 80% area)
+  {
+    imageSrc: "/assets/rethink/nodes/node-habits.webp",
+    alt: "Building New Physical & Mindful Habits",
+    shapeIndex: 1,
+    width: 115,
+    height: 115,
+    tilt: -5,
+    desktopPos: "top-[165px] right-[15px]",
+    mobileSize: 105,
+    objectPosition: "object-center",
+  },
+  // 5. Foot Reflexology Diagnostic (Mid-Left: pulled inward - cy = 330)
+  // Shape: Vertical Half Cut (flat vertical left edge, dome right - 88% area)
+  {
+    imageSrc: "/assets/rethink/nodes/node-reflexology.webp",
+    alt: "Foot Reflexology Diagnostic Assessment",
+    shapeIndex: 2,
+    width: 120,
+    height: 120,
+    tilt: -7,
+    desktopPos: "top-[270px] left-[70px]",
+    mobileSize: 110,
+    objectPosition: "object-center",
+  },
+  // 6. Craniosacral Somatic Release (Lower-Mid Right: tucked inward with clearance - cy = 405)
+  // Shape: Botanical Leaf / Lens (gentle pointed tips, wide curved convex arcs - 85% area)
+  {
+    imageSrc: "/assets/rethink/nodes/node-craniosacral.webp",
+    alt: "Craniosacral Somatic Alignment",
+    shapeIndex: 4,
+    width: 120,
+    height: 120,
+    tilt: 6,
+    desktopPos: "top-[345px] right-[80px]",
+    mobileSize: 110,
+    objectPosition: "object-center",
+  },
+  // 7. Balcony Somatic Rest (Bottom-Left: raised high above bottom - cy = 565)
+  // Shape: Quarter Fan Cut (softened 90-degree corner, wide circular fan arc - 86% area)
+  {
+    imageSrc: "/assets/rethink/nodes/node-balcony-somatic.webp",
+    alt: "Outdoor Somatic Inquiry & Rest",
+    shapeIndex: 8,
+    width: 110,
+    height: 110,
+    tilt: -6,
+    desktopPos: "bottom-[130px] left-[20px]",
+    mobileSize: 100,
+    objectPosition: "object-center",
+  },
+  // 8. 1-on-1 Consultation Dialogue (Bottom-Right: mid-level height, stepped outward - cy = 625)
+  // Shape: Waning Moon Cut (gentle scoop on right edge against back - 80% area)
+  {
+    imageSrc: "/assets/rethink/nodes/node-consultation.webp",
+    alt: "Sameer 1-on-1 Consultation Dialogue",
+    shapeIndex: 7,
+    width: 110,
+    height: 110,
+    tilt: 4,
+    desktopPos: "bottom-[70px] right-[35px]",
+    mobileSize: 100,
+    objectPosition: "object-center",
+  },
+];
 
 export const RethinkStep: React.FC = () => {
   return (
@@ -98,34 +205,34 @@ export const RethinkStep: React.FC = () => {
           {/* Right Column: Expanded Synapse Orbit Stage with Visibly Bigger Images */}
           <FadeUp delay={0.2} className="lg:col-span-8 relative">
             
-            {/* Desktop Stage (840x640) */}
-            <div className="relative w-full h-[640px] max-w-[840px] mx-auto hidden md:block">
+            {/* Desktop Stage (860x750): Uneven Scattered Constellation */}
+            <div className="relative w-full h-[750px] max-w-[860px] mx-auto hidden md:block">
               
-              {/* Biological Neuron Dendritic Synapse Graph with Action Potential Animation */}
-              <NeuronSynapseGraph variant="light" />
+              {/* Biological Neuron Dendritic Synapse Graph connecting to all scattered nodes */}
+              <RethinkSynapseWeb />
 
-              {/* VISIBLY BIGGER CENTER PHOTO: Consultation (Hero Rectangular Frame) */}
-              <div id="rethink-soma" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] z-20 flex flex-col items-center">
+              {/* CENTER PHOTO: Consultation (Hero Rectangular Frame, NO Top/Bottom Black Space, Natural 16:9 Aspect) */}
+              <div id="rethink-soma" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[360px] z-20 flex flex-col items-center">
                 <ZoomReveal delay={0.35}>
                   <BandageFrame
                     variant="light"
                     tapeAngle={-3}
                     tapePosition="top-right-bottom-left"
-                    className="w-full shadow-xl"
-                    innerClassName="p-1.5 bg-[#FFFFFF] border border-[#C79A45]"
+                    className="w-full shadow-2xl"
+                    innerClassName="p-1.5 bg-[#FFFFFF] border border-[#C79A45] rounded-xl"
                   >
-                    <div className="relative w-full h-[230px] overflow-hidden bg-[#181C14] flex items-center justify-center rounded-lg">
+                    <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg bg-[#181C14]">
                       <img
-                        src={clinicData.rethink.centerImage}
-                        alt="Consultation"
+                        src="/assets/rethink/center-rethink-hero.webp"
+                        alt="Sameer Consultation"
                         loading="lazy"
                         decoding="async"
-                        className="max-w-full max-h-full object-contain filter saturate-95"
+                        className="w-full h-full object-cover filter saturate-95"
                       />
                       {/* Integrated Center Caption Badge */}
                       <div className="absolute bottom-2 left-1/2 -translate-x-1/2 px-3.5 py-0.5 rounded-full bg-white/95 backdrop-blur-sm border border-[#C79A45]/50 text-center max-w-[92%] shadow-md">
                         <span className="text-[10.5px] text-[#231F19] font-sans truncate block font-medium">
-                          {clinicData.rethink.centerCaption}
+                          Sameer guiding a 1-on-1 somatic inquiry session.
                         </span>
                       </div>
                     </div>
@@ -133,87 +240,41 @@ export const RethinkStep: React.FC = () => {
                 </ZoomReveal>
               </div>
 
-              {/* SURROUNDING PILLAR NODES WITH DISTINCT HARMONIC SHAPES */}
+              {/* 8 UNEVEN SCATTERED THERAPY NODES WITH ORGANIC LASSO CROP (NO NAME LABELS) */}
+              {RETHINK_NODES.map((node) => (
+                <div key={node.imageSrc} className={`absolute ${node.desktopPos} z-30`}>
+                  <LassoImageNode
+                    imageSrc={node.imageSrc}
+                    imageAlt={node.alt}
+                    shapeIndex={node.shapeIndex}
+                    width={node.width}
+                    height={node.height}
+                    tiltDeg={node.tilt}
+                    objectPosition={node.objectPosition}
+                  />
+                </div>
+              ))}
 
-              {/* 1. TOP: Reconnect (Sanctuary Arch Shape) */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 z-30">
-                <ShapedImageNode
-                  shape="arch"
-                  imageSrc="/assets/rethink/reconnect.webp"
-                  imageAlt="Reconnect"
-                  label="Reconnect"
-                  variant="light"
-                  objectPosition="object-center"
-                />
-              </div>
-
-              {/* 2. TOP LEFT: Quote */}
-              <div className="absolute top-2 left-6 z-30">
+              {/* Quiet Floating Quote Accents in Open Constellation Pockets - STAGGERED */}
+              <div className="absolute top-[20px] left-[175px] z-30 pointer-events-none">
                 <div className="w-[145px] p-2.5 rounded-lg bg-[#FFFFFF] border border-[#C79A45]/40 text-left space-y-0.5 shadow-sm">
-                  <p className="text-[11px] text-[#231F19]/90 font-sans leading-tight font-medium">
+                  <p className="text-[10.5px] text-[#231F19]/90 font-sans leading-tight font-medium">
                     Make space for what heals you.
                   </p>
                 </div>
               </div>
 
-              {/* 3. TOP RIGHT: Quote */}
-              <div className="absolute top-2 right-6 z-30">
+              <div className="absolute top-[70px] left-[475px] z-30 pointer-events-none">
                 <div className="w-[145px] p-2.5 rounded-lg bg-[#FFFFFF] border border-[#C79A45]/40 text-left shadow-sm">
-                  <p className="font-sans text-[11px] text-[#231F19] leading-tight font-medium">
+                  <p className="font-sans text-[10.5px] text-[#231F19] leading-tight font-medium">
                     Awareness is the first step.
                   </p>
                 </div>
               </div>
 
-              {/* 4. LEFT: Live Mindfully (Circular Harmonic Lens Shape) */}
-              <div className="absolute top-1/2 -translate-y-1/2 left-[22px] z-30">
-                <ShapedImageNode
-                  shape="circle"
-                  imageSrc="/assets/rethink/live-mindfully.webp"
-                  imageAlt="Live Mindfully"
-                  label="Live Mindfully"
-                  variant="light"
-                  objectPosition="object-center"
-                />
-              </div>
-
-              {/* 5. RIGHT: Deeper Mind (Vertical Elongated Capsule Shape) */}
-              <div className="absolute top-1/2 -translate-y-1/2 right-[32px] z-30">
-                <ShapedImageNode
-                  shape="capsule"
-                  imageSrc="/assets/rethink/deeper-mind.webp"
-                  imageAlt="Deeper Mind"
-                  label="Deeper Mind"
-                  variant="light"
-                  objectPosition="object-center"
-                />
-              </div>
-
-              {/* 6. BOTTOM: New Habits (Organic Rounded Squircle Shape) */}
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-30">
-                <ShapedImageNode
-                  shape="squircle"
-                  imageSrc="/assets/rethink/new-habits.webp"
-                  imageAlt="New Habits"
-                  label="New Habits"
-                  variant="light"
-                  objectPosition="object-center"
-                />
-              </div>
-
-              {/* 7. BOTTOM LEFT: Quote */}
-              <div className="absolute bottom-2 left-6 z-30">
+              <div className="absolute bottom-[40px] left-[225px] z-30 pointer-events-none">
                 <div className="w-[145px] p-2.5 rounded-lg bg-[#FFFFFF] border border-[#C79A45]/40 text-left shadow-sm">
-                  <p className="font-sans text-[11px] text-[#231F19] leading-tight font-medium">
-                    You are becoming.
-                  </p>
-                </div>
-              </div>
-
-              {/* 8. BOTTOM RIGHT: Quote */}
-              <div className="absolute bottom-2 right-6 z-30">
-                <div className="w-[145px] p-2.5 rounded-lg bg-[#FFFFFF] border border-[#C79A45]/40 text-left shadow-sm">
-                  <p className="font-sans text-[11px] text-[#231F19] leading-tight font-medium">
+                  <p className="font-sans text-[10.5px] text-[#231F19] leading-tight font-medium">
                     Small shifts create big shifts.
                   </p>
                 </div>
@@ -221,59 +282,44 @@ export const RethinkStep: React.FC = () => {
 
             </div>
 
-            {/* Mobile / Tablet View with Distinct Harmonic Shapes and Biological Synapse Graph */}
-            <div className="md:hidden space-y-6 relative py-4">
-              <NeuronMobileSynapseGraph variant="light" />
-
+            {/* Mobile / Tablet View: Scattered Organic Constellation with Lasso Crop */}
+            <div className="md:hidden space-y-8 relative py-4">
               <div id="rethink-soma-mobile" className="w-[280px] sm:w-[320px] mx-auto relative z-10">
                 <ZoomReveal delay={0.08} blur={12}>
-                  <BandageFrame variant="light" className="w-full" caption={clinicData.rethink.centerCaption}>
-                    <div className="w-full h-[200px] overflow-hidden bg-[#181C14] flex items-center justify-center rounded-lg">
+                  <BandageFrame variant="light" className="w-full" caption="Sameer guiding a 1-on-1 somatic inquiry session.">
+                    <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg bg-[#181C14]">
                       <img
-                        src={clinicData.rethink.centerImage}
+                        src="/assets/rethink/center-rethink-hero.webp"
                         alt="Sameer Consultation"
                         loading="lazy"
                         decoding="async"
-                        className="max-w-full max-h-full object-contain"
+                        className="w-full h-full object-cover filter saturate-95"
                       />
                     </div>
                   </BandageFrame>
                 </ZoomReveal>
               </div>
 
-              <StaggerReveal staggerDelay={0.08} className="grid grid-cols-2 gap-4 place-items-center relative z-10">
-                <ShapedImageNode
-                  shape="arch"
-                  imageSrc="/assets/rethink/reconnect.webp"
-                  imageAlt="Reconnect"
-                  label="Reconnect"
-                  variant="light"
-                  isMobile
-                />
-                <ShapedImageNode
-                  shape="circle"
-                  imageSrc="/assets/rethink/live-mindfully.webp"
-                  imageAlt="Live Mindfully"
-                  label="Live Mindfully"
-                  variant="light"
-                  isMobile
-                />
-                <ShapedImageNode
-                  shape="capsule"
-                  imageSrc="/assets/rethink/deeper-mind.webp"
-                  imageAlt="Deeper Mind"
-                  label="Deeper Mind"
-                  variant="light"
-                  isMobile
-                />
-                <ShapedImageNode
-                  shape="squircle"
-                  imageSrc="/assets/rethink/new-habits.webp"
-                  imageAlt="New Habits"
-                  label="New Habits"
-                  variant="light"
-                  isMobile
-                />
+              <StaggerReveal staggerDelay={0.05} className="grid grid-cols-2 sm:grid-cols-4 gap-4 place-items-center relative z-10 px-2 pt-2">
+                {RETHINK_NODES.map((node, i) => (
+                  <div
+                    key={node.imageSrc}
+                    className={clsx(
+                      "transition-transform duration-300",
+                      i % 2 === 1 ? "translate-y-2.5" : "-translate-y-1"
+                    )}
+                  >
+                    <LassoImageNode
+                      imageSrc={node.imageSrc}
+                      imageAlt={node.alt}
+                      shapeIndex={node.shapeIndex}
+                      width={node.mobileSize || 95}
+                      height={node.mobileSize || 95}
+                      tiltDeg={node.tilt}
+                      objectPosition={node.objectPosition}
+                    />
+                  </div>
+                ))}
               </StaggerReveal>
             </div>
 

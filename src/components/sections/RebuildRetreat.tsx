@@ -2,16 +2,123 @@
 
 import React from "react";
 import { BandageFrame } from "@/components/ui/BandageFrame";
-import { NeuronSynapseGraph } from "@/components/ui/NeuronSynapseGraph";
-import { NeuronMobileSynapseGraph } from "@/components/ui/NeuronMobileSynapseGraph";
+import { RebuildSynapseWeb } from "@/components/ui/RebuildSynapseWeb";
+import { LassoImageNode } from "@/components/ui/LassoImageNode";
 import { NeuronHeadingConnector } from "@/components/ui/NeuronHeadingConnector";
-import { ShapedImageNode } from "@/components/ui/ShapedImageNode";
 import { clinicData } from "@/data/clinicData";
 import { FadeUp, SlideIn, ZoomReveal, BlurReveal, StaggerReveal } from "@/components/ui/ScrollAnimations";
+import clsx from "clsx";
 
 interface RebuildRetreatProps {
   onOpenAssessment: () => void;
 }
+
+const REBUILD_NODES = [
+  // 1. Retreat Welcome / Block A Checkered Floor (Top-Right: highest point on right - cy = 73)
+  // Shape: Half Cut Dome (flat bottom, rounded arch dome - 88% area)
+  {
+    imageSrc: "/assets/rebuild/nodes/node-block-a.webp",
+    alt: "Sanctuary Block A Living & Facility Welcome",
+    shapeIndex: 0,
+    width: 115,
+    height: 115,
+    tilt: 4,
+    desktopPos: "top-[15px] right-[95px]",
+    mobileSize: 105,
+    objectPosition: "object-center",
+  },
+  // 2. Ayurvedic Retreat Bodywork (Top-Left: dropped lower - cy = 123)
+  // Shape: Vertical Half Cut (flat vertical left edge, dome right - 88% area)
+  {
+    imageSrc: "/assets/rebuild/nodes/node-therapies.webp",
+    alt: "Retreat Herbal Oil Bodywork on Droni Table",
+    shapeIndex: 2,
+    width: 115,
+    height: 115,
+    tilt: -6,
+    desktopPos: "top-[65px] left-[30px]",
+    mobileSize: 105,
+    objectPosition: "object-center",
+  },
+  // 3. Shirodhara Stream (Top-Center: above center frame - cy = 170)
+  // Shape: Cathedral Arch Window (dome top, straight vertical sides, flat bottom - 88% area)
+  {
+    imageSrc: "/assets/rebuild/nodes/node-shirodhara.webp",
+    alt: "Ayurvedic Shirodhara Oil Cascade",
+    shapeIndex: 5,
+    width: 120,
+    height: 110,
+    tilt: 0,
+    desktopPos: "top-[115px] left-[350px]",
+    mobileSize: 110,
+    objectPosition: "object-center",
+  },
+  // 4. Podikizhi Herbal Potli (Upper-Mid Right: pushed outward to outer edge - cy = 228)
+  // Shape: Crescent Moon Cut (generous lunar medallion with concave inner scoop - 80% area)
+  {
+    imageSrc: "/assets/rebuild/nodes/node-podikizhi.webp",
+    alt: "Podikizhi Herbal Pouch Therapy",
+    shapeIndex: 1,
+    width: 115,
+    height: 115,
+    tilt: -5,
+    desktopPos: "top-[170px] right-[15px]",
+    mobileSize: 105,
+    objectPosition: "object-center",
+  },
+  // 5. Cupping Decompression (Mid-Left: pulled inward - cy = 330)
+  // Shape: Teardrop Cut (pointed corner apex, bulbous droplet body - 90% area)
+  {
+    imageSrc: "/assets/rebuild/nodes/node-cupping.webp",
+    alt: "Cupping Suction Decompression",
+    shapeIndex: 3,
+    width: 120,
+    height: 120,
+    tilt: -7,
+    desktopPos: "top-[270px] left-[70px]",
+    mobileSize: 110,
+    objectPosition: "object-center",
+  },
+  // 6. Somatic Movement Alignment (Lower-Mid Right: tucked inward with clearance - cy = 405)
+  // Shape: Botanical Leaf / Lens (gentle pointed tips, wide curved convex arcs - 85% area)
+  {
+    imageSrc: "/assets/rebuild/nodes/node-somatic-mat.webp",
+    alt: "Somatic Movement & Posture Alignment",
+    shapeIndex: 4,
+    width: 120,
+    height: 120,
+    tilt: 6,
+    desktopPos: "top-[345px] right-[80px]",
+    mobileSize: 110,
+    objectPosition: "object-center",
+  },
+  // 7. Balcony Garden Trees (Bottom-Left: raised high above bottom - cy = 565)
+  // Shape: Quarter Fan Cut (softened 90-degree corner, wide circular fan arc - 86% area)
+  {
+    imageSrc: "/assets/rebuild/nodes/node-balcony-trees.webp",
+    alt: "Sanctuary Garden Trees & Restorative Balcony",
+    shapeIndex: 8,
+    width: 110,
+    height: 110,
+    tilt: -6,
+    desktopPos: "bottom-[130px] left-[20px]",
+    mobileSize: 100,
+    objectPosition: "object-center",
+  },
+  // 8. Morning Pranayama & Breathwork (Bottom-Right: mid-level height, stepped outward - cy = 625)
+  // Shape: Waning Moon Cut (gentle scoop on right edge against back - 80% area)
+  {
+    imageSrc: "/assets/rebuild/nodes/node-yoga-breath.webp",
+    alt: "Morning Pranayama & Restorative Breathwork",
+    shapeIndex: 7,
+    width: 110,
+    height: 110,
+    tilt: 4,
+    desktopPos: "bottom-[70px] right-[35px]",
+    mobileSize: 100,
+    objectPosition: "object-center",
+  },
+];
 
 export const RebuildRetreat: React.FC<RebuildRetreatProps> = ({ onOpenAssessment }) => {
   return (
@@ -107,34 +214,34 @@ export const RebuildRetreat: React.FC<RebuildRetreatProps> = ({ onOpenAssessment
           {/* Right Column: Expanded Synapse Orbit Stage with Visibly Bigger Images */}
           <FadeUp delay={0.2} className="lg:col-span-8 relative">
             
-            {/* Desktop Stage (840x640) */}
-            <div className="relative w-full h-[640px] max-w-[840px] mx-auto hidden md:block">
+            {/* Desktop Stage (860x750): Uneven Scattered Constellation */}
+            <div className="relative w-full h-[750px] max-w-[860px] mx-auto hidden md:block">
               
-              {/* Biological Neuron Dendritic Synapse Graph with Action Potential Animation */}
-              <NeuronSynapseGraph variant="dark" />
+              {/* Biological Neuron Dendritic Synapse Graph connecting to all scattered nodes */}
+              <RebuildSynapseWeb />
 
-              {/* VISIBLY BIGGER CENTER PHOTO: Sanctuary Facility (Hero Rectangular Frame) */}
-              <div id="rebuild-soma" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] z-20 flex flex-col items-center">
+              {/* CENTER PHOTO: Sanctuary Facility (Hero Rectangular Frame, NO Top/Bottom Black Space, Natural 16:9 Aspect) */}
+              <div id="rebuild-soma" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[360px] z-20 flex flex-col items-center">
                 <ZoomReveal delay={0.35}>
                   <BandageFrame
                     variant="gold"
                     tapeAngle={3}
                     tapePosition="top-left-bottom-right"
                     className="w-full shadow-2xl"
-                    innerClassName="p-1.5 bg-[#141A10] rounded-lg border border-[#C79A45] rounded-xl"
+                    innerClassName="p-1.5 bg-[#141A10] border border-[#C79A45] rounded-xl"
                   >
-                    <div className="relative w-full h-[230px] overflow-hidden bg-black flex items-center justify-center rounded-lg">
+                    <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg bg-black">
                       <img
-                        src={clinicData.retreat.centerImage}
+                        src="/assets/rebuild/center-rebuild-hero.webp"
                         alt="Sanctuary Living"
                         loading="lazy"
                         decoding="async"
-                        className="max-w-full max-h-full object-contain filter saturate-95 contrast-105"
+                        className="w-full h-full object-cover filter saturate-95 contrast-105"
                       />
                       {/* Integrated Center Caption Badge */}
                       <div className="absolute bottom-2 left-1/2 -translate-x-1/2 px-3.5 py-0.5 rounded-full bg-[#141A10]/90 backdrop-blur-sm border border-[#C79A45]/40 text-center max-w-[92%] shadow-md">
                         <span className="text-[10.5px] text-[#F6F1E4]/90 font-sans truncate block">
-                          {clinicData.retreat.centerCaption}
+                          The 2-Day Reset Sanctuary Retreat.
                         </span>
                       </div>
                     </div>
@@ -142,87 +249,41 @@ export const RebuildRetreat: React.FC<RebuildRetreatProps> = ({ onOpenAssessment
                 </ZoomReveal>
               </div>
 
-              {/* SURROUNDING PILLAR NODES WITH DISTINCT HARMONIC SHAPES */}
+              {/* 8 UNEVEN SCATTERED THERAPY NODES WITH ORGANIC LASSO CROP (NO NAME LABELS) */}
+              {REBUILD_NODES.map((node) => (
+                <div key={node.imageSrc} className={`absolute ${node.desktopPos} z-30`}>
+                  <LassoImageNode
+                    imageSrc={node.imageSrc}
+                    imageAlt={node.alt}
+                    shapeIndex={node.shapeIndex}
+                    width={node.width}
+                    height={node.height}
+                    tiltDeg={node.tilt}
+                    objectPosition={node.objectPosition}
+                  />
+                </div>
+              ))}
 
-              {/* 1. TOP: Therapies (Sanctuary Arch Shape) */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 z-30">
-                <ShapedImageNode
-                  shape="arch"
-                  imageSrc="/assets/rebuild/therapies.webp"
-                  imageAlt="Therapies"
-                  label="Therapies"
-                  variant="dark"
-                  objectPosition="object-center"
-                />
-              </div>
-
-              {/* 2. TOP LEFT: Rejuvenate */}
-              <div className="absolute top-2 left-6 z-30">
+              {/* Quiet Floating Quote Accents in Open Constellation Pockets - STAGGERED */}
+              <div className="absolute top-[20px] left-[175px] z-30 pointer-events-none">
                 <div className="w-[145px] p-2.5 rounded-lg bg-[#141A10]/95 border border-[#C79A45]/30 text-left space-y-0.5 shadow-md">
-                  <p className="text-[11px] text-[#F6F1E4]/90 font-sans leading-tight">
+                  <p className="text-[10.5px] text-[#F6F1E4]/90 font-sans leading-tight">
                     Daily herbal bodywork & detox.
                   </p>
                 </div>
               </div>
 
-              {/* 3. TOP RIGHT: Balance */}
-              <div className="absolute top-2 right-6 z-30">
+              <div className="absolute top-[70px] left-[475px] z-30 pointer-events-none">
                 <div className="w-[145px] p-2.5 rounded-lg bg-[#141A10]/95 border border-[#C79A45]/30 text-left shadow-md">
-                  <p className="font-sans text-[11px] text-[#F6F1E4] leading-tight">
+                  <p className="font-sans text-[10.5px] text-[#F6F1E4] leading-tight">
                     Balance & energize vitality.
                   </p>
                 </div>
               </div>
 
-              {/* 4. LEFT: Peaceful Stay (Circular Harmonic Lens Shape) */}
-              <div className="absolute top-1/2 -translate-y-1/2 left-[22px] z-30">
-                <ShapedImageNode
-                  shape="circle"
-                  imageSrc="/assets/rebuild/peaceful-stay.webp"
-                  imageAlt="Peaceful Stay"
-                  label="Peaceful Stay"
-                  variant="dark"
-                  objectPosition="object-center"
-                />
-              </div>
-
-              {/* 5. RIGHT: Yoga & Breath (Vertical Elongated Capsule Shape) */}
-              <div className="absolute top-1/2 -translate-y-1/2 right-[32px] z-30">
-                <ShapedImageNode
-                  shape="capsule"
-                  imageSrc="/assets/rebuild/yoga-breath.webp"
-                  imageAlt="Yoga & Breathwork"
-                  label="Yoga & Breath"
-                  variant="dark"
-                  objectPosition="object-center"
-                />
-              </div>
-
-              {/* 6. BOTTOM: Sattvic Meals (Organic Rounded Squircle Shape) */}
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-30">
-                <ShapedImageNode
-                  shape="squircle"
-                  imageSrc="/assets/rebuild/sattvic-meals.webp"
-                  imageAlt="Sattvic Meals"
-                  label="Sattvic Meals"
-                  variant="dark"
-                  objectPosition="object-center"
-                />
-              </div>
-
-              {/* 7. BOTTOM LEFT: Cleanse */}
-              <div className="absolute bottom-2 left-6 z-30">
+              <div className="absolute bottom-[40px] left-[225px] z-30 pointer-events-none">
                 <div className="w-[145px] p-2.5 rounded-lg bg-[#141A10]/95 border border-[#C79A45]/30 text-left shadow-md">
-                  <p className="font-sans text-[11px] text-[#F6F1E4] leading-tight">
-                    Cleanse gut & ignite vitality.
-                  </p>
-                </div>
-              </div>
-
-              {/* 8. BOTTOM RIGHT: Return Stronger */}
-              <div className="absolute bottom-2 right-6 z-30">
-                <div className="w-[145px] p-2.5 rounded-lg bg-[#141A10]/95 border border-[#C79A45]/30 text-left shadow-md">
-                  <p className="font-sans text-[11px] text-[#F6F1E4] leading-tight">
+                  <p className="font-sans text-[10.5px] text-[#F6F1E4] leading-tight">
                     Return stronger to your life.
                   </p>
                 </div>
@@ -230,60 +291,44 @@ export const RebuildRetreat: React.FC<RebuildRetreatProps> = ({ onOpenAssessment
 
             </div>
 
-            {/* Mobile / Tablet View with Distinct Harmonic Shapes and Biological Synapse Graph */}
-            <div className="md:hidden space-y-6 relative py-4">
-              <NeuronMobileSynapseGraph variant="dark" />
-
+            {/* Mobile / Tablet View: Scattered Organic Constellation with Lasso Crop */}
+            <div className="md:hidden space-y-8 relative py-4">
               <div id="rebuild-soma-mobile" className="w-[280px] sm:w-[320px] mx-auto relative z-10">
                 <ZoomReveal delay={0.08} blur={12}>
-                  <BandageFrame variant="gold" className="w-full" caption={clinicData.retreat.centerCaption}>
-                    <div className="w-full h-[200px] overflow-hidden bg-black flex items-center justify-center rounded-lg">
+                  <BandageFrame variant="gold" className="w-full" caption="The 2-Day Reset Sanctuary Retreat.">
+                    <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg bg-black">
                       <img
-                        src={clinicData.retreat.centerImage}
+                        src="/assets/rebuild/center-rebuild-hero.webp"
                         alt="Sanctuary"
                         loading="lazy"
                         decoding="async"
-                        className="max-w-full max-h-full object-contain"
+                        className="w-full h-full object-cover"
                       />
                     </div>
                   </BandageFrame>
                 </ZoomReveal>
               </div>
 
-              <StaggerReveal staggerDelay={0.08} className="grid grid-cols-2 gap-4 place-items-center relative z-10">
-                <ShapedImageNode
-                  shape="arch"
-                  imageSrc="/assets/rebuild/therapies.webp"
-                  imageAlt="Therapies"
-                  label="Therapies"
-                  variant="dark"
-                  isMobile
-                />
-                <ShapedImageNode
-                  shape="circle"
-                  imageSrc="/assets/rebuild/peaceful-stay.webp"
-                  imageAlt="Peaceful Stay"
-                  label="Peaceful Stay"
-                  variant="dark"
-                  isMobile
-                />
-                <ShapedImageNode
-                  shape="capsule"
-                  imageSrc="/assets/rebuild/yoga-breath.webp"
-                  imageAlt="Yoga & Breath"
-                  label="Yoga & Breath"
-                  variant="dark"
-                  isMobile
-                />
-                <ShapedImageNode
-                  shape="squircle"
-                  imageSrc="/assets/rebuild/sattvic-meals.webp"
-                  imageAlt="Sattvic Meals"
-                  label="Sattvic Meals"
-                  variant="dark"
-                  objectPosition="object-top"
-                  isMobile
-                />
+              <StaggerReveal staggerDelay={0.05} className="grid grid-cols-2 sm:grid-cols-4 gap-4 place-items-center relative z-10 px-2 pt-2">
+                {REBUILD_NODES.map((node, i) => (
+                  <div
+                    key={node.imageSrc}
+                    className={clsx(
+                      "transition-transform duration-300",
+                      i % 2 === 1 ? "translate-y-2.5" : "-translate-y-1"
+                    )}
+                  >
+                    <LassoImageNode
+                      imageSrc={node.imageSrc}
+                      imageAlt={node.alt}
+                      shapeIndex={node.shapeIndex}
+                      width={node.mobileSize || 95}
+                      height={node.mobileSize || 95}
+                      tiltDeg={node.tilt}
+                      objectPosition={node.objectPosition}
+                    />
+                  </div>
+                ))}
               </StaggerReveal>
             </div>
 
