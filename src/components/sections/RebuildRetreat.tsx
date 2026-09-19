@@ -238,8 +238,8 @@ export const RebuildRetreat: React.FC<RebuildRetreatProps> = ({ onOpenAssessment
                         decoding="async"
                         className="w-full h-full object-cover filter saturate-95 contrast-105"
                       />
-                      {/* Integrated Center Caption Badge */}
-                      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 px-3.5 py-0.5 rounded-full bg-[#141A10]/90 backdrop-blur-sm border border-[#C79A45]/40 text-center max-w-[92%] shadow-md">
+                      {/* Integrated Center Caption Badge (Positioned over tree foliage to keep person unobstructed) */}
+                      <div className="absolute bottom-2.5 left-3 px-3.5 py-0.5 rounded-full bg-[#141A10]/90 backdrop-blur-sm border border-[#C79A45]/40 text-left max-w-[70%] shadow-md">
                         <span className="text-[10.5px] text-[#F6F1E4]/90 font-sans truncate block">
                           The 2-Day Reset Sanctuary Retreat.
                         </span>
