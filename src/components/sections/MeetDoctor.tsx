@@ -12,6 +12,58 @@ interface MeetDoctorProps {
 export const MeetDoctor: React.FC<MeetDoctorProps> = ({ onOpenAssessment }) => {
   return (
     <section id="doctor" className="relative py-20 sm:py-28 lg:py-32 bg-[#F7FED5] text-[#12140D] overflow-hidden border-b border-[#12140D]/10">
+      <div id="about-sameer" className="absolute -top-24 pointer-events-none" />
+      
+      {/* Decorative Golden Wavy Curves on Left Margin (Matching Mockup) */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 select-none" aria-hidden="true">
+        <svg
+          className="w-full h-full min-h-[900px]"
+          viewBox="0 0 1200 900"
+          fill="none"
+          preserveAspectRatio="none"
+        >
+          {/* Top-left descending fluid curve 1 */}
+          <path
+            d="M 280 0 C 260 90, 190 140, 140 220 C 90 300, 60 400, 80 500 C 100 600, 160 680, 200 750"
+            stroke="#C79A45"
+            strokeWidth="1.5"
+            strokeOpacity="0.45"
+            strokeLinecap="round"
+          />
+          {/* Parallel wavy curve 2 */}
+          <path
+            d="M 295 0 C 275 95, 205 145, 155 225 C 105 305, 75 405, 95 505 C 115 605, 175 685, 215 755"
+            stroke="#C79A45"
+            strokeWidth="1.2"
+            strokeOpacity="0.35"
+            strokeLinecap="round"
+          />
+          {/* Parallel wavy curve 3 */}
+          <path
+            d="M 310 0 C 290 100, 220 150, 170 230 C 120 310, 90 410, 110 510 C 130 610, 190 690, 230 760"
+            stroke="#C79A45"
+            strokeWidth="0.9"
+            strokeOpacity="0.25"
+            strokeLinecap="round"
+          />
+          {/* Accent flourish around 'Meet Sameer' */}
+          <path
+            d="M 60 420 C 40 480, 50 560, 90 620 C 130 680, 190 730, 240 780"
+            stroke="#C79A45"
+            strokeWidth="1.2"
+            strokeOpacity="0.4"
+            strokeLinecap="round"
+          />
+          <path
+            d="M 75 435 C 55 495, 65 575, 105 635 C 145 695, 205 745, 255 795"
+            stroke="#C79A45"
+            strokeWidth="0.8"
+            strokeOpacity="0.3"
+            strokeLinecap="round"
+          />
+        </svg>
+      </div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
         
         {/* 1. Panoramic 4-Panel Photographic Collage Banner (Matching Mockup) */}

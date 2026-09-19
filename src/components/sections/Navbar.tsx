@@ -22,7 +22,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAssessment }) => {
   }, []);
 
   const navLinks = [
-    { label: "About", href: "#about" },
+    { label: "About", href: "#doctor" },
     { label: "Approach", href: "#purpose" },
     { label: "Therapies", href: "#relax" },
     { label: "Retreat", href: "#rebuild" },
