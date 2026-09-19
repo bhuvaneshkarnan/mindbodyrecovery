@@ -92,11 +92,11 @@ const REBUILD_NODES = [
     mobileSize: 110,
     objectPosition: "object-center",
   },
-  // 7. Balcony Garden Trees (Bottom-Left: raised high above bottom - cy = 565)
+  // 7. Ayurvedic Scalp & Head Rejuvenation (Bottom-Left: raised high above bottom - cy = 565)
   // Shape: Quarter Fan Cut (softened 90-degree corner, wide circular fan arc - 86% area)
   {
-    imageSrc: "/assets/rebuild/nodes/node-balcony-trees.webp",
-    alt: "Sanctuary Garden Trees & Restorative Balcony",
+    imageSrc: "/assets/rebuild/nodes/node-head-massage.webp",
+    alt: "Ayurvedic Scalp & Head Rejuvenation Therapy",
     shapeIndex: 8,
     width: 110,
     height: 110,
