@@ -63,7 +63,7 @@ const RELAX_NODES = [
     mobileSize: 110,
     objectPosition: "object-center",
   },
-  // 5. Craniosacral Somatic Therapy (Lower-mid right: tucked deep inward snug to soma - cy = 405)
+  // 5. Craniosacral Somatic Therapy (Lower-mid right: cleared from center frame - cy = 405)
   // Shape: Botanical Leaf / Lens (gentle pointed tips, wide curved convex arcs - 85% area)
   {
     imageSrc: "/assets/relax/nodes/node-craniosacral.webp",
@@ -72,7 +72,7 @@ const RELAX_NODES = [
     width: 120,
     height: 120,
     tilt: 6,
-    desktopPos: "top-[345px] right-[130px]",
+    desktopPos: "top-[345px] right-[80px]",
     mobileSize: 110,
     objectPosition: "object-center",
   },

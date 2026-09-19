@@ -59,7 +59,7 @@ export const RelaxSynapseWeb: React.FC<{ className?: string }> = ({ className = 
   // Node 1: Pulse Assessment (upper-right outer) -> (788, 218)
   // Node 2: Podikizhi Herbal Pouch (lower-left) -> (213, 495)
   // Node 3: Cupping Therapy (mid-left inward) -> (135, 325)
-  // Node 4: Craniosacral Somatic Release (lower-mid right deep inward) -> (670, 405)
+  // Node 4: Craniosacral Somatic Release (lower-mid right) -> (720, 405)
   // Node 5: Somatic Mat Movement (bottom-center lowest point) -> (453, 680)
   // Node 6: Facial Acupuncture (top-left dropped lower) -> (83, 123)
   // Node 7: Joint Mobilization (top-right highest point) -> (703, 73)
@@ -100,8 +100,8 @@ export const RelaxSynapseWeb: React.FC<{ className?: string }> = ({ className = 
     },
     {
       id: "axon-4",
-      d: generateCurlyAxon(605, 400, 670, 405, 12, 2),
-      endX: 670,
+      d: generateCurlyAxon(605, 395, 720, 405, 14, 3),
+      endX: 720,
       endY: 405,
       dur: "2.7s",
       delay: "0.5s",
