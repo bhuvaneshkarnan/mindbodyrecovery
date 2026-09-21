@@ -55,7 +55,7 @@ export const MeetDoctor: React.FC<MeetDoctorProps> = ({ onOpenAssessment }) => {
               </h2>
 
               {/* Curly Script Name with Clean & Minimal Underline */}
-              <div className="inline-flex flex-col items-start mt-1 sm:mt-2 mb-3 sm:mb-4">
+              <div className="inline-flex flex-col items-start mt-1 sm:mt-2 mb-2">
                 <span className="font-script text-5xl sm:text-6xl text-[#C79A45] font-bold tracking-wide select-none leading-none">
                   Sameer
                 </span>
@@ -73,10 +73,6 @@ export const MeetDoctor: React.FC<MeetDoctorProps> = ({ onOpenAssessment }) => {
                   />
                 </svg>
               </div>
-
-              <span className="text-xs uppercase tracking-widest text-[#8C5B41] font-semibold block">
-                {clinicData.doctor.title}
-              </span>
             </BlurReveal>
 
             {/* Concise Impactful Description */}
