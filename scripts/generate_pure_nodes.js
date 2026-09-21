@@ -211,10 +211,15 @@ async function run() {
     outPath: path.join(rebuildDir, 'node-somatic-mat.webp')
   });
 
-  // 7. Outdoor Terrace / Sanctuary Grounds
+  // 7. Peaceful Sanctuary Suite Stay
   await cropPureSquare({
-    src: path.join(__dirname, '../public/assets/rebuild/center-sanctuary.jpg'),
-    extract: { left: 0, top: 400, width: 2160, height: 2160 },
+    src: path.join(__dirname, '../public/assets/rebuild/peaceful-room.jpg'),
+    extract: { left: 350, top: 380, width: 2250, height: 2250 },
+    outPath: path.join(rebuildDir, 'node-peaceful-room.webp')
+  });
+  await cropPureSquare({
+    src: path.join(__dirname, '../public/assets/rebuild/peaceful-room.jpg'),
+    extract: { left: 350, top: 380, width: 2250, height: 2250 },
     outPath: path.join(rebuildDir, 'node-outdoor-terrace.webp')
   });
 

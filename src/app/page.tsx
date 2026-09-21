@@ -17,6 +17,7 @@ import { MeetDoctor } from "@/components/sections/MeetDoctor";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { Footer } from "@/components/sections/Footer";
 import { SynapticScrollSpine } from "@/components/ui/SynapticScrollSpine";
+import { BackgroundAudio } from "@/components/ui/BackgroundAudio";
 
 // Modal is kept client-only dynamic since it opens on user interaction
 const AssessmentModal = dynamic(
@@ -57,6 +58,9 @@ export default function HomePage() {
     <main className="relative min-h-screen bg-ink-950 text-parchment-50 selection:bg-gold-500/30 overflow-x-hidden">
       {/* Continuous Scroll-Driven Neuron Synaptic Spine (Flows from Top to End) */}
       <SynapticScrollSpine />
+
+      {/* Ambient Low-Volume Background Audio with Floating Controls */}
+      <BackgroundAudio />
 
       {/* Gold scroll progress bar across top */}
       <ScrollProgressBar />

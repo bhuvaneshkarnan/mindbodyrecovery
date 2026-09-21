@@ -92,11 +92,11 @@ const REBUILD_NODES = [
     mobileSize: 110,
     objectPosition: "object-center",
   },
-  // 7. Outdoor Somatic Rest Under Garden Trees (Bottom-Left - cy = 572)
-  // Compact (115x115) - peaceful guest resting on balcony overlooking garden trees
+  // 7. Peaceful Sanctuary Suite Stay (Bottom-Left - cy = 572)
+  // Compact (115x115) - tranquil retreat guest suite with warm cane beds & ambient lighting
   {
-    imageSrc: "/assets/rebuild/nodes/node-outdoor-terrace.webp",
-    alt: "Sanctuary Outdoor Somatic Rest Under Garden Trees",
+    imageSrc: "/assets/rebuild/nodes/node-peaceful-room.webp",
+    alt: "Sanctuary Retreat Living & Rest Suite",
     shapeIndex: 8,
     width: 115,
     height: 115,
