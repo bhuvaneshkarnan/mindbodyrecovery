@@ -14,7 +14,7 @@ interface BandageFrameProps {
   onClick?: () => void;
 }
 
-interface BandageStripProps {
+export interface BandageStripProps {
   variant?: "dark" | "light" | "gold" | "parchment";
   className?: string;
 }
@@ -23,7 +23,7 @@ interface BandageStripProps {
  * Authentic medical adhesive plaster
  * Refined proportion: cleanly straddles corner vertex with natural scale.
  */
-const BandageStrip: React.FC<BandageStripProps> = ({
+export const BandageStrip: React.FC<BandageStripProps> = ({
   variant = "gold",
   className = "",
 }) => {
