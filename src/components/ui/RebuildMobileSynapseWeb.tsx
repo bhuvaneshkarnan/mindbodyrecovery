@@ -2,6 +2,55 @@
 
 import React from "react";
 
+/**
+ * Generates an authentic, sweeping curly sinusoidal axon path
+ * with smooth Bézier curvature.
+ */
+function generateCurlyAxon(
+  xStart: number,
+  yStart: number,
+  xEnd: number,
+  yEnd: number,
+  amplitude: number = 22,
+  numWaves: number = 2
+): string {
+  const dx = xEnd - xStart;
+  const dy = yEnd - yStart;
+  const len = Math.hypot(dx, dy);
+  if (len < 10) return `M ${Math.round(xStart)} ${Math.round(yStart)} L ${Math.round(xEnd)} ${Math.round(yEnd)}`;
+
+  const ux = dx / len;
+  const uy = dy / len;
+  const px = -uy;
+  const py = ux;
+
+  const segLen = len / numWaves;
+  let d = `M ${Math.round(xStart)} ${Math.round(yStart)}`;
+
+  for (let i = 0; i < numWaves; i++) {
+    const sign = i % 2 === 0 ? 1 : -1;
+    const startDist = i * segLen;
+    const endDist = (i + 1) * segLen;
+
+    const taper = Math.sin(((i + 0.5) / numWaves) * Math.PI);
+    const effAmp = amplitude * (0.75 + 0.25 * taper);
+
+    const cp1Dist = startDist + segLen * 0.32;
+    const cp1x = xStart + ux * cp1Dist + px * (sign * effAmp);
+    const cp1y = yStart + uy * cp1Dist + py * (sign * effAmp);
+
+    const cp2Dist = endDist - segLen * 0.32;
+    const cp2x = xStart + ux * cp2Dist + px * (sign * effAmp);
+    const cp2y = yStart + uy * cp2Dist + py * (sign * effAmp);
+
+    const segEndX = xStart + ux * endDist;
+    const segEndY = yStart + uy * endDist;
+
+    d += ` C ${Math.round(cp1x)} ${Math.round(cp1y)}, ${Math.round(cp2x)} ${Math.round(cp2y)}, ${Math.round(segEndX)} ${Math.round(segEndY)}`;
+  }
+  return d;
+}
+
 export const RebuildMobileSynapseWeb: React.FC<{ className?: string }> = ({ className = "" }) => {
   // Radiant gold & sage neural palette for sanctuary dark background
   const mainColor = "#F0C76C";      // Luminous Warm Gold
@@ -9,112 +58,106 @@ export const RebuildMobileSynapseWeb: React.FC<{ className?: string }> = ({ clas
   const faintColor = "rgba(199, 154, 69, 0.35)";
   const sparkColor = "#FFFFFF";
 
-  // 1. Central Neural Spine / Axon Trunk (Soma base descending through the midline)
-  const centralTrunk =
-    "M 180 185 C 176 235, 184 285, 180 340 C 176 395, 184 445, 180 500 C 176 555, 184 605, 180 660 C 176 700, 182 730, 180 745";
+  // 1. Visibly Curly Central Neural Trunk (Undulating down the dark canvas)
+  const centralTrunk = generateCurlyAxon(180, 185, 180, 745, 22, 5);
 
-  // 2. Dendritic Axon Branches (Branching organically to all 8 retreat nodes)
+  // 2. Visibly Curly Dendritic Axon Branches (Sweeping S-curves reaching each retreat card)
   const BRANCHES = [
     // Row 1 Left (Node 0 - Sanctuary Block A)
     {
       id: "rebuild-b-0",
-      path: "M 180 205 C 160 215, 125 240, 108 275",
-      endX: 108,
-      endY: 275,
+      path: generateCurlyAxon(170, 195, 115, 285, 24, 2),
+      endX: 115,
+      endY: 285,
       dur: "2.4s",
       delay: "0s",
     },
     // Row 1 Right (Node 1 - Bodywork Therapies)
     {
       id: "rebuild-b-1",
-      path: "M 180 205 C 200 215, 235 240, 252 275",
-      endX: 252,
-      endY: 275,
+      path: generateCurlyAxon(190, 195, 245, 285, -24, 2),
+      endX: 245,
+      endY: 285,
       dur: "2.5s",
       delay: "0.2s",
     },
     // Row 2 Left (Node 2 - Shirodhara)
     {
       id: "rebuild-b-2",
-      path: "M 180 355 C 160 375, 125 395, 108 425",
-      endX: 108,
-      endY: 425,
+      path: generateCurlyAxon(170, 350, 115, 440, 26, 2),
+      endX: 115,
+      endY: 440,
       dur: "2.7s",
       delay: "0.4s",
     },
     // Row 2 Right (Node 3 - Pulse Assessment)
     {
       id: "rebuild-b-3",
-      path: "M 180 355 C 200 375, 235 395, 252 425",
-      endX: 252,
-      endY: 425,
+      path: generateCurlyAxon(190, 350, 245, 440, -26, 2),
+      endX: 245,
+      endY: 440,
       dur: "2.8s",
       delay: "0.6s",
     },
     // Row 3 Left (Node 4 - Cupping)
     {
       id: "rebuild-b-4",
-      path: "M 180 515 C 160 535, 125 555, 108 580",
-      endX: 108,
-      endY: 580,
+      path: generateCurlyAxon(170, 510, 115, 595, 26, 2),
+      endX: 115,
+      endY: 595,
       dur: "2.6s",
       delay: "0.8s",
     },
     // Row 3 Right (Node 5 - Somatic Mat)
     {
       id: "rebuild-b-5",
-      path: "M 180 515 C 200 535, 235 555, 252 580",
-      endX: 252,
-      endY: 580,
+      path: generateCurlyAxon(190, 510, 245, 595, -26, 2),
+      endX: 245,
+      endY: 595,
       dur: "2.5s",
       delay: "1.0s",
     },
     // Row 4 Left (Node 6 - Peaceful Room)
     {
       id: "rebuild-b-6",
-      path: "M 180 670 C 160 690, 125 710, 108 735",
-      endX: 108,
-      endY: 735,
+      path: generateCurlyAxon(170, 670, 115, 750, 26, 2),
+      endX: 115,
+      endY: 750,
       dur: "2.8s",
       delay: "1.2s",
     },
     // Row 4 Right (Node 7 - Morning Pranayama)
     {
       id: "rebuild-b-7",
-      path: "M 180 670 C 200 690, 235 710, 252 735",
-      endX: 252,
-      endY: 735,
+      path: generateCurlyAxon(190, 670, 245, 750, -26, 2),
+      endX: 245,
+      endY: 750,
       dur: "2.9s",
       delay: "1.4s",
     },
   ];
 
-  // 3. Delicate Dendritic Arborizations (Fine natural twigs sprouting at branch bifurcations)
-  const DENDRITIC_TWIGS = [
-    // Top Apical Dendrites (Spreading above the cell body)
-    "M 140 45 C 115 25, 85 30, 50 15",
-    "M 100 28 C 85 15, 70 12, 45 4",
-    "M 220 45 C 245 25, 275 30, 310 15",
-    "M 260 28 C 275 15, 290 12, 315 4",
-    // Level 1 twigs
-    "M 145 225 C 130 220, 115 208, 95 212",
-    "M 215 225 C 230 220, 245 208, 265 212",
-    // Level 2 twigs
-    "M 145 385 C 125 385, 110 375, 90 378",
-    "M 215 385 C 235 385, 250 375, 270 378",
-    // Level 3 twigs
-    "M 145 540 C 125 540, 110 530, 90 534",
-    "M 215 540 C 235 540, 250 530, 270 534",
-    // Level 4 terminal arbor
-    "M 180 690 C 160 700, 145 710, 135 725",
-    "M 180 690 C 200 700, 215 710, 225 725",
+  // 3. Visibly Curly Side Tendrils & Apical Dendrites (Zero straight lines)
+  const CURLY_TENDRILS = [
+    // Top Apical Curly Dendrites
+    generateCurlyAxon(140, 50, 35, 12, 22, 3),
+    generateCurlyAxon(220, 50, 325, 12, -22, 3),
+    generateCurlyAxon(95, 30, 35, 5, 15, 2),
+    generateCurlyAxon(265, 30, 325, 5, -15, 2),
+    // Side Curly Twigs at each tier
+    generateCurlyAxon(140, 220, 65, 205, 20, 2),
+    generateCurlyAxon(220, 220, 295, 205, -20, 2),
+    generateCurlyAxon(140, 375, 65, 360, 20, 2),
+    generateCurlyAxon(220, 375, 295, 360, -20, 2),
+    generateCurlyAxon(140, 535, 65, 520, 20, 2),
+    generateCurlyAxon(220, 535, 295, 520, -20, 2),
   ];
 
-  // 4. Subtle Inter-Synaptic Horizontal Bridges
+  // 4. Curly Horizontal Synaptic Bridges
   const BRIDGES = [
-    "M 115 315 C 150 330, 210 330, 245 315",
-    "M 115 465 C 150 480, 210 480, 245 465",
-    "M 115 615 C 150 630, 210 630, 245 615",
+    generateCurlyAxon(115, 315, 245, 315, 18, 2),
+    generateCurlyAxon(115, 465, 245, 465, -18, 2),
+    generateCurlyAxon(115, 615, 245, 615, 18, 2),
   ];
 
   return (
@@ -127,13 +170,13 @@ export const RebuildMobileSynapseWeb: React.FC<{ className?: string }> = ({ clas
       aria-hidden="true"
     >
       <defs>
-        <linearGradient id="rebuild-bio-axon-v" x1="0%" y1="0%" x2="0%" y2="100%">
+        <linearGradient id="rebuild-curly-axon-v" x1="0%" y1="0%" x2="0%" y2="100%">
           <stop offset="0%" stopColor={secondaryColor} stopOpacity="0.95" />
           <stop offset="50%" stopColor={mainColor} stopOpacity="1" />
           <stop offset="100%" stopColor={secondaryColor} stopOpacity="0.9" />
         </linearGradient>
 
-        <radialGradient id="rebuild-soma-halo-v4" cx="50%" cy="50%" r="50%">
+        <radialGradient id="rebuild-soma-halo-v5" cx="50%" cy="50%" r="50%">
           <stop offset="0%" stopColor="#C79A45" stopOpacity="0.30" />
           <stop offset="65%" stopColor="#93A579" stopOpacity="0.10" />
           <stop offset="100%" stopColor="#C79A45" stopOpacity="0" />
@@ -141,7 +184,7 @@ export const RebuildMobileSynapseWeb: React.FC<{ className?: string }> = ({ clas
       </defs>
 
       {/* 1. SOMA (CELL BODY) RADIAL BIO-HALO & CONCENTRIC RINGS */}
-      <circle cx="180" cy="110" r="115" fill="url(#rebuild-soma-halo-v4)" />
+      <circle cx="180" cy="110" r="115" fill="url(#rebuild-soma-halo-v5)" />
 
       <circle
         cx="180"
@@ -174,31 +217,29 @@ export const RebuildMobileSynapseWeb: React.FC<{ className?: string }> = ({ clas
         strokeDasharray="3 5"
       />
 
-      {/* 2. DELICATE DENDRITIC TWIGS & ARBORIZATIONS */}
-      {DENDRITIC_TWIGS.map((d, idx) => (
+      {/* 2. CURLY APICAL DENDRITES & SIDE TENDRILS */}
+      {CURLY_TENDRILS.map((d, idx) => (
         <path
-          key={`twig-${idx}`}
+          key={`curly-tendril-${idx}`}
+          d={d}
+          stroke={faintColor}
+          strokeWidth="1.2"
+          strokeLinecap="round"
+        />
+      ))}
+
+      {/* 3. CURLY INTER-SYNAPTIC BRIDGES */}
+      {BRIDGES.map((d, idx) => (
+        <path
+          key={`curly-bridge-${idx}`}
           d={d}
           stroke={faintColor}
           strokeWidth="1.1"
           strokeLinecap="round"
-          strokeLinejoin="round"
         />
       ))}
 
-      {/* 3. INTER-SYNAPTIC BRIDGES */}
-      {BRIDGES.map((d, idx) => (
-        <path
-          key={`bridge-${idx}`}
-          d={d}
-          stroke={faintColor}
-          strokeWidth="1"
-          strokeLinecap="round"
-          strokeDasharray="3 4"
-        />
-      ))}
-
-      {/* 4. MAIN CENTRAL NEURAL TRUNK (Smooth continuous nerve axon) */}
+      {/* 4. CURLY CENTRAL NEURAL TRUNK (Undulating wave down the dark canvas) */}
       <path
         d={centralTrunk}
         stroke={secondaryColor}
@@ -208,13 +249,13 @@ export const RebuildMobileSynapseWeb: React.FC<{ className?: string }> = ({ clas
       />
       <path
         d={centralTrunk}
-        stroke="url(#rebuild-bio-axon-v)"
+        stroke="url(#rebuild-curly-axon-v)"
         strokeWidth="1.8"
         strokeLinecap="round"
         opacity="0.9"
       />
 
-      {/* Central Trunk Action Potential Spark */}
+      {/* Action potential spark undulating down the curly central trunk */}
       <circle r="3.5" fill={mainColor} opacity="0.75">
         <animateMotion
           dur="4.5s"
@@ -230,7 +271,7 @@ export const RebuildMobileSynapseWeb: React.FC<{ className?: string }> = ({ clas
         />
       </circle>
 
-      {/* 5. PRIMARY DENDRITIC AXON BRANCHES */}
+      {/* 5. VISIBLY CURLY AXON BRANCHES */}
       {BRANCHES.map((b) => (
         <g key={b.id}>
           {/* Outer soft ambient glow */}
@@ -242,16 +283,16 @@ export const RebuildMobileSynapseWeb: React.FC<{ className?: string }> = ({ clas
             opacity="0.28"
           />
 
-          {/* Continuous core nerve axon — smooth, fine biological line */}
+          {/* Core smooth, voluptuous curly axon */}
           <path
             d={b.path}
-            stroke="url(#rebuild-bio-axon-v)"
-            strokeWidth="1.6"
+            stroke="url(#rebuild-curly-axon-v)"
+            strokeWidth="1.7"
             strokeLinecap="round"
             opacity="0.9"
           />
 
-          {/* Bioluminescent Action Potential Pulse */}
+          {/* Action Potential Spark (Dancing along the curly wave) */}
           <circle r="3.5" fill={mainColor} opacity="0.75">
             <animateMotion
               dur={b.dur}
@@ -269,17 +310,17 @@ export const RebuildMobileSynapseWeb: React.FC<{ className?: string }> = ({ clas
             />
           </circle>
 
-          {/* Synaptic Terminal Bouton Bulb */}
+          {/* Terminal Synaptic Bouton at card connection point */}
           <circle
             cx={b.endX}
             cy={b.endY}
-            r="6"
+            r="5"
             fill={mainColor}
             opacity="0.28"
           >
             <animate
               attributeName="r"
-              values="4.5;6.5;4.5"
+              values="4;6;4"
               dur="3s"
               repeatCount="indefinite"
             />
@@ -287,7 +328,7 @@ export const RebuildMobileSynapseWeb: React.FC<{ className?: string }> = ({ clas
           <circle
             cx={b.endX}
             cy={b.endY}
-            r="3.2"
+            r="2.8"
             fill={mainColor}
             stroke="#FFFFFF"
             strokeWidth="0.8"
@@ -295,7 +336,7 @@ export const RebuildMobileSynapseWeb: React.FC<{ className?: string }> = ({ clas
           <circle
             cx={b.endX}
             cy={b.endY}
-            r="1.4"
+            r="1.2"
             fill={sparkColor}
           />
         </g>
