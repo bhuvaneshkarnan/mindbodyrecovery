@@ -201,13 +201,13 @@ export const RethinkStep: React.FC = () => {
 
               {/* CENTER PHOTO: Consultation (Hero Rectangular Frame, NO Top/Bottom Black Space, Natural 16:9 Aspect) */}
               <div id="rethink-soma" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[360px] z-20 flex flex-col items-center">
-                <ZoomReveal delay={0.35}>
-                  <BandageFrame
-                    variant="light"
-                    tapePosition="top-right-bottom-left"
-                    className="w-full shadow-2xl"
-                    innerClassName="p-1.5 bg-[#FFFFFF] border border-[#C79A45] rounded-xl"
-                  >
+                <BandageFrame
+                  variant="light"
+                  tapePosition="top-left-bottom-right"
+                  className="w-full shadow-2xl"
+                  innerClassName="p-1.5 bg-[#FFFFFF] border border-[#C79A45] rounded-xl"
+                >
+                  <ZoomReveal delay={0.35}>
                     <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg bg-[#181C14]">
                       <img
                         src="/assets/rethink/center-rethink-hero.webp"
@@ -223,8 +223,8 @@ export const RethinkStep: React.FC = () => {
                         </span>
                       </div>
                     </div>
-                  </BandageFrame>
-                </ZoomReveal>
+                  </ZoomReveal>
+                </BandageFrame>
               </div>
 
               {/* 8 UNEVEN SCATTERED THERAPY NODES WITH ORGANIC LASSO CROP (NO NAME LABELS) */}
@@ -270,13 +270,18 @@ export const RethinkStep: React.FC = () => {
             </div>
 
             {/* Mobile / Tablet View: Scattered Organic Constellation with Lasso Crop */}
-            <div className="md:hidden space-y-8 relative py-4">
+            <div className="md:hidden relative py-4">
               {/* Biological Neuron Synapse Web for Mobile */}
               <RethinkMobileSynapseWeb />
 
-              <div id="rethink-soma-mobile" className="w-[280px] sm:w-[320px] mx-auto relative z-10">
-                <ZoomReveal delay={0.08} blur={12}>
-                  <BandageFrame variant="light" className="w-full" caption="Sameer guiding a 1-on-1 somatic inquiry session.">
+              <div id="rethink-soma-mobile" className="w-[280px] sm:w-[320px] mx-auto relative z-20 mb-8">
+                <BandageFrame
+                  variant="light"
+                  tapePosition="top-left-bottom-right"
+                  className="w-full"
+                  caption="Sameer guiding a 1-on-1 somatic inquiry session."
+                >
+                  <ZoomReveal delay={0.08} blur={12}>
                     <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg bg-[#181C14]">
                       <img
                         src="/assets/rethink/center-rethink-hero.webp"
@@ -286,11 +291,11 @@ export const RethinkStep: React.FC = () => {
                         className="w-full h-full object-cover filter saturate-95"
                       />
                     </div>
-                  </BandageFrame>
-                </ZoomReveal>
+                  </ZoomReveal>
+                </BandageFrame>
               </div>
 
-              <StaggerReveal staggerDelay={0.05} className="grid grid-cols-2 sm:grid-cols-4 gap-4 place-items-center relative z-10 px-2 pt-2">
+              <StaggerReveal staggerDelay={0.05} className="grid grid-cols-2 sm:grid-cols-4 gap-4 place-items-center relative z-20 px-2 pt-2">
                 {RETHINK_NODES.map((node, i) => (
                   <div
                     key={node.imageSrc}
