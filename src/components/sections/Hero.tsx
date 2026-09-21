@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef, useState, useEffect } from "react";
-import { Calendar, Volume2, VolumeX } from "lucide-react";
+import { Calendar } from "lucide-react";
 import { clinicData } from "@/data/clinicData";
 
 interface HeroProps {
@@ -10,7 +10,6 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onOpenAssessment }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [isMuted, setIsMuted] = useState(true);
   const [videoLoaded, setVideoLoaded] = useState(false);
 
   // Force immediate autoplay without waiting for deferred timers
@@ -19,6 +18,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAssessment }) => {
       if (videoRef.current.readyState >= 2) {
         setVideoLoaded(true);
       }
+      videoRef.current.muted = true;
       const playPromise = videoRef.current.play();
       if (playPromise !== undefined) {
         playPromise
@@ -32,13 +32,6 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAssessment }) => {
       }
     }
   }, []);
-
-  const toggleSound = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !isMuted;
-      setIsMuted(!isMuted);
-    }
-  };
 
   return (
     <section
@@ -119,19 +112,6 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAssessment }) => {
           </div>
         </div>
       </div>
-
-      {/* Video Audio Control */}
-      {videoLoaded && (
-        <div className="absolute bottom-6 right-6 z-20 hidden sm:block">
-          <button
-            onClick={toggleSound}
-            className="p-2.5 rounded-full bg-[#1B1E15]/80 border border-[#F6F1E4]/30 text-[#F6F1E4] hover:text-[#C79A45] transition-colors shadow-2xl backdrop-blur-md"
-            aria-label={isMuted ? "Unmute video montage" : "Mute video"}
-          >
-            {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
-          </button>
-        </div>
-      )}
     </section>
   );
 };

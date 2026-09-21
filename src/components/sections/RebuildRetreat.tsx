@@ -225,7 +225,6 @@ export const RebuildRetreat: React.FC<RebuildRetreatProps> = ({ onOpenAssessment
                 <ZoomReveal delay={0.35}>
                   <BandageFrame
                     variant="gold"
-                    tapeAngle={3}
                     tapePosition="top-left-bottom-right"
                     className="w-full shadow-2xl"
                     innerClassName="p-1.5 bg-[#141A10] border border-[#C79A45] rounded-xl"

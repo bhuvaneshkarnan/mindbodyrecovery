@@ -14,26 +14,101 @@ interface BandageFrameProps {
   onClick?: () => void;
 }
 
+interface BandageStripProps {
+  variant?: "dark" | "light" | "gold" | "parchment";
+  className?: string;
+}
+
+/**
+ * Authentic medical adhesive bandage (plaster)
+ * Featuring breathable micropore perforated wings and a sterile cushioned center gauze pad.
+ */
+const BandageStrip: React.FC<BandageStripProps> = ({
+  variant = "gold",
+  className = "",
+}) => {
+  const isDark = variant === "dark";
+  const isGold = variant === "gold";
+
+  // Warm honey-tan medical plaster tones
+  const plasterBg = isGold
+    ? "bg-gradient-to-r from-[#C79A45] via-[#DEB86A] to-[#C79A45] border-t border-b border-[#F5DC9A]/75"
+    : isDark
+    ? "bg-gradient-to-r from-[#A77B28] via-[#BF933B] to-[#976C20] border-t border-b border-[#DDB35A]/50"
+    : "bg-gradient-to-r from-[#D4A752] via-[#E2BE70] to-[#C79A45] border-t border-b border-[#FDF0D0]/80";
+
+  return (
+    <div
+      className={clsx(
+        "relative flex items-center justify-center select-none",
+        "w-[94px] sm:w-[112px] h-[26px] sm:h-[30px] rounded-[5px]",
+        "shadow-[0_4px_12px_rgba(0,0,0,0.22),0_1px_3px_rgba(0,0,0,0.12)]",
+        "transition-transform duration-300 group-hover:scale-105",
+        plasterBg,
+        className
+      )}
+      aria-hidden="true"
+    >
+      {/* Breathable micropore perforated dots on adhesive wings */}
+      <div
+        className="absolute inset-0 opacity-20 rounded-[5px] pointer-events-none"
+        style={{
+          backgroundImage: "radial-gradient(circle, #000 0.8px, transparent 0.8px)",
+          backgroundSize: "4.5px 4.5px",
+        }}
+      />
+
+      {/* Central Cushioned Gauze Pad - Unmistakable Medical Plaster Feature */}
+      <div
+        className="relative z-10 w-[34px] sm:w-[42px] h-[18px] sm:h-[22px] rounded-[2px] bg-[#FAF5E9]/95 border border-[#C79A45]/40 flex items-center justify-center overflow-hidden pointer-events-none"
+        style={{
+          boxShadow: "inset 0 1px 2px rgba(0,0,0,0.12), 0 1px 2px rgba(255,255,255,0.4)",
+        }}
+      >
+        {/* Sterile gauze cross-weave texture */}
+        <div
+          className="w-full h-full opacity-25"
+          style={{
+            backgroundImage:
+              "linear-gradient(45deg, #8C5B41 25%, transparent 25%), linear-gradient(-45deg, #8C5B41 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #8C5B41 75%), linear-gradient(-45deg, transparent 75%, #8C5B41 75%)",
+            backgroundSize: "4px 4px",
+            backgroundPosition: "0 0, 0 2px, 2px -2px, -2px 0px",
+          }}
+        />
+        {/* Subtle center sterile fold */}
+        <div className="absolute inset-y-0 w-px bg-[#8C5B41]/25" />
+      </div>
+
+      {/* Subtle end seams */}
+      <div className="absolute left-1.5 top-0 bottom-0 w-px bg-black/10" />
+      <div className="absolute right-1.5 top-0 bottom-0 w-px bg-black/10" />
+    </div>
+  );
+};
+
 export const BandageFrame: React.FC<BandageFrameProps> = ({
   children,
   variant = "dark",
   tapePosition = "top-left-bottom-right",
-  tapeAngle = 4,
+  tapeAngle,
   className = "",
   innerClassName = "",
   caption,
   onClick,
 }) => {
   const isDark = variant === "dark";
-  const isGold = variant === "gold";
   const isLight = variant === "light" || variant === "parchment";
 
-  // Tape corner styles based on variant - golden washi tape / organic medical bandage style
-  const tapeClass = isGold
-    ? "bg-[#C79A45]/90 border border-[#E5B85C] shadow-md text-[#12140D]"
-    : isDark
-    ? "bg-[#C79A45]/70 border border-[#C79A45] shadow-sm text-[#12140D]"
-    : "bg-[#C79A45]/85 border border-[#B88A35] shadow-md text-[#12140D]";
+  // Compute effective diagonal angle across 90-deg corners (~42 degrees)
+  const computeCornerAngle = (angleOverride?: number): number => {
+    if (angleOverride === undefined) return 42;
+    if (Math.abs(angleOverride) >= 20) return Math.abs(angleOverride);
+    // If a small angle (e.g. 3 or -3) was passed, interpret it as a subtle variation around 42°
+    return 42 + angleOverride;
+  };
+
+  const cornerAngle = computeCornerAngle(tapeAngle);
+  const centerAngle = tapeAngle !== undefined && Math.abs(tapeAngle) < 20 ? tapeAngle : 1;
 
   return (
     <figure
@@ -44,54 +119,45 @@ export const BandageFrame: React.FC<BandageFrameProps> = ({
         className
       )}
     >
-      {/* Tape Strip 1 */}
+      {/* Top-Left Diagonal Corner Bandage */}
       {(tapePosition === "top-left-bottom-right" || tapePosition === "all-four") && (
         <div
-          className={clsx(
-            "washi-tape-strip -top-3 -left-3 rounded-md border pointer-events-none transition-transform group-hover:rotate-0 duration-300",
-            tapeClass
-          )}
-          style={{ transform: `rotate(-${tapeAngle}deg)` }}
-          aria-hidden="true"
+          className="absolute z-30 pointer-events-none"
+          style={{
+            top: "14px",
+            left: "14px",
+            transform: `translate(-50%, -50%) rotate(-${cornerAngle}deg)`,
+          }}
         >
-          <div className="w-full h-full opacity-40 flex justify-around items-center px-1.5">
-            <span className="w-px h-2.5 bg-black/40" />
-            <span className="w-px h-2.5 bg-black/40" />
-            <span className="w-px h-2.5 bg-black/40" />
-          </div>
+          <BandageStrip variant={variant} />
         </div>
       )}
 
-      {tapePosition === "top-right-bottom-left" && (
+      {/* Top-Right Diagonal Corner Bandage */}
+      {(tapePosition === "top-right-bottom-left" || tapePosition === "all-four") && (
         <div
-          className={clsx(
-            "washi-tape-strip -top-3 -right-3 rounded-md border pointer-events-none transition-transform group-hover:rotate-0 duration-300",
-            tapeClass
-          )}
-          style={{ transform: `rotate(${tapeAngle}deg)` }}
-          aria-hidden="true"
+          className="absolute z-30 pointer-events-none"
+          style={{
+            top: "14px",
+            right: "14px",
+            transform: `translate(50%, -50%) rotate(${cornerAngle}deg)`,
+          }}
         >
-          <div className="w-full h-full opacity-40 flex justify-around items-center px-1.5">
-            <span className="w-px h-2.5 bg-black/40" />
-            <span className="w-px h-2.5 bg-black/40" />
-            <span className="w-px h-2.5 bg-black/40" />
-          </div>
+          <BandageStrip variant={variant} />
         </div>
       )}
 
+      {/* Top-Center Horizontal Bandage */}
       {tapePosition === "top-center" && (
         <div
-          className={clsx(
-            "washi-tape-strip -top-3 left-1/2 -translate-x-1/2 rounded-md border pointer-events-none transition-transform duration-300",
-            tapeClass
-          )}
-          style={{ transform: `translateX(-50%) rotate(${tapeAngle}deg)` }}
-          aria-hidden="true"
+          className="absolute z-30 pointer-events-none"
+          style={{
+            top: "-8px",
+            left: "50%",
+            transform: `translateX(-50%) rotate(${centerAngle}deg)`,
+          }}
         >
-          <div className="w-full h-full opacity-35 flex justify-around items-center px-1">
-            <span className="w-px h-2 bg-current opacity-40" />
-            <span className="w-px h-2 bg-current opacity-40" />
-          </div>
+          <BandageStrip variant={variant} />
         </div>
       )}
 
@@ -110,42 +176,35 @@ export const BandageFrame: React.FC<BandageFrameProps> = ({
         {children}
       </div>
 
-      {/* Tape Strip 2 */}
+      {/* Bottom-Right Diagonal Corner Bandage */}
       {(tapePosition === "top-left-bottom-right" || tapePosition === "all-four") && (
         <div
-          className={clsx(
-            "washi-tape-strip -bottom-3 -right-3 rounded-md border pointer-events-none transition-transform group-hover:rotate-0 duration-300",
-            tapeClass
-          )}
-          style={{ transform: `rotate(-${tapeAngle}deg)` }}
-          aria-hidden="true"
+          className="absolute z-30 pointer-events-none"
+          style={{
+            bottom: "14px",
+            right: "14px",
+            transform: `translate(50%, 50%) rotate(-${cornerAngle}deg)`,
+          }}
         >
-          <div className="w-full h-full opacity-40 flex justify-around items-center px-1.5">
-            <span className="w-px h-2.5 bg-black/40" />
-            <span className="w-px h-2.5 bg-black/40" />
-            <span className="w-px h-2.5 bg-black/40" />
-          </div>
+          <BandageStrip variant={variant} />
         </div>
       )}
 
-      {tapePosition === "top-right-bottom-left" && (
+      {/* Bottom-Left Diagonal Corner Bandage */}
+      {(tapePosition === "top-right-bottom-left" || tapePosition === "all-four") && (
         <div
-          className={clsx(
-            "washi-tape-strip -bottom-3 -left-3 rounded-md border pointer-events-none transition-transform group-hover:rotate-0 duration-300",
-            tapeClass
-          )}
-          style={{ transform: `rotate(${tapeAngle}deg)` }}
-          aria-hidden="true"
+          className="absolute z-30 pointer-events-none"
+          style={{
+            bottom: "14px",
+            left: "14px",
+            transform: `translate(-50%, 50%) rotate(${cornerAngle}deg)`,
+          }}
         >
-          <div className="w-full h-full opacity-40 flex justify-around items-center px-1.5">
-            <span className="w-px h-2.5 bg-black/40" />
-            <span className="w-px h-2.5 bg-black/40" />
-            <span className="w-px h-2.5 bg-black/40" />
-          </div>
+          <BandageStrip variant={variant} />
         </div>
       )}
 
-      {/* Caption */}
+      {/* Optional Caption */}
       {caption && (
         <figcaption
           className={clsx(

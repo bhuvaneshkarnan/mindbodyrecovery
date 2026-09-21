@@ -203,7 +203,6 @@ export const RethinkStep: React.FC = () => {
                 <ZoomReveal delay={0.35}>
                   <BandageFrame
                     variant="light"
-                    tapeAngle={-3}
                     tapePosition="top-right-bottom-left"
                     className="w-full shadow-2xl"
                     innerClassName="p-1.5 bg-[#FFFFFF] border border-[#C79A45] rounded-xl"

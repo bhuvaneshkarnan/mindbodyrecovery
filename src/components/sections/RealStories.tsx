@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { clinicData } from "@/data/clinicData";
 import { FadeUp, ZoomReveal, BlurReveal } from "@/components/ui/ScrollAnimations";
+import { ReviewNeurons } from "@/components/ui/ReviewNeurons";
 
 const YOUTUBE_SHORTS_ID = "Sye2NYdx6rk";
 
@@ -76,6 +77,9 @@ export const RealStories: React.FC = () => {
       id="stories"
       className="relative py-24 lg:py-32 bg-[#FAFAFA] text-[#231F19] overflow-hidden border-t border-b border-[#E5E7EB]"
     >
+      {/* Animated low-opacity neurons on left and right whitespace */}
+      <ReviewNeurons />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
 
         {/* Header */}

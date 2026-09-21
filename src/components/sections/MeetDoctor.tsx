@@ -20,10 +20,9 @@ export const MeetDoctor: React.FC<MeetDoctorProps> = ({ onOpenAssessment }) => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
           {/* Left Column: Portrait & Sourced Quote (5 cols) */}
-          <ClipReveal direction="left" delay={0.1} className="lg:col-span-5 flex flex-col items-center lg:items-start relative z-20">
+          <FadeUp delay={0.1} className="lg:col-span-5 flex flex-col items-center lg:items-start relative z-20">
             <BandageFrame
               variant="gold"
-              tapeAngle={3.5}
               tapePosition="top-left-bottom-right"
               className="w-full max-w-md"
               innerClassName="p-1.5 bg-white border border-[#C79A45]/80 rounded-2xl shadow-2xl"
@@ -38,7 +37,7 @@ export const MeetDoctor: React.FC<MeetDoctorProps> = ({ onOpenAssessment }) => {
                 />
               </div>
             </BandageFrame>
-          </ClipReveal>
+          </FadeUp>
 
           {/* Right Column: Sourced Narrative Bio (7 cols) */}
           <motion.div
