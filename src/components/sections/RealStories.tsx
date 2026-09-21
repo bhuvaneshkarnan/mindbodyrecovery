@@ -56,14 +56,14 @@ const PhotoPolaroid: React.FC<PhotoPolaroidProps> = ({
         </div>
       )}
 
-      {/* Photo Frame */}
-      <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden bg-[#F0ECE1]">
+      {/* Photo Frame - Square 1:1 framing displays full faces edge-to-edge with zero cut-off */}
+      <div className="relative w-full aspect-square rounded-lg overflow-hidden bg-[#F0ECE1]">
         <img
           src={src}
           alt={alt}
           loading="lazy"
           decoding="async"
-          className="w-full h-full object-cover object-top filter saturate-95 group-hover:scale-105 transition-transform duration-500"
+          className="w-full h-full object-cover object-center filter saturate-95 group-hover:scale-105 transition-transform duration-500"
         />
       </div>
 
