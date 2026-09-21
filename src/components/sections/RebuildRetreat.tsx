@@ -41,11 +41,11 @@ const REBUILD_NODES = [
     mobileSize: 120,
     objectPosition: "object-center",
   },
-  // 3. Sanctuary Retreat Campus (Top-Center - cy = 150)
-  // HERO LARGE (155x140) - Lush outdoor garden sanctuary and campus retreat path
+  // 3. 1-on-1 Retreat Consultation & Care Plan (Top-Center - cy = 150)
+  // HERO LARGE (155x140) - 1-on-1 retreat consultation and clinical intake session
   {
-    imageSrc: "/assets/rebuild/nodes/node-sanctuary-campus.webp",
-    alt: "Sanctuary Retreat Living Campus & Garden",
+    imageSrc: "/assets/rebuild/nodes/node-retreat-consultation.webp",
+    alt: "Retreat 1-on-1 Consultation & Care Plan",
     shapeIndex: 5,
     width: 155,
     height: 140,
@@ -54,11 +54,11 @@ const REBUILD_NODES = [
     mobileSize: 120,
     objectPosition: "object-center",
   },
-  // 4. Doctor Welcome Consultation (Upper-Mid Right - cy = 230)
-  // HERO LARGE (150x150) - Doctor smiling warmly with welcome chart & clipboard
+  // 4. Clinical Welcome Consultation (Upper-Mid Right - cy = 230)
+  // HERO LARGE (150x150) - Practitioner smiling warmly with welcome chart & clipboard
   {
     imageSrc: "/assets/rebuild/nodes/node-doctor-welcome.webp",
-    alt: "Doctor Welcome Consultation & Chart Review",
+    alt: "Clinical Welcome Consultation & Chart Review",
     shapeIndex: 7,
     width: 150,
     height: 150,

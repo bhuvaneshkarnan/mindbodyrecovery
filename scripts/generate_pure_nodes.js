@@ -228,14 +228,21 @@ async function run() {
     outPath: path.join(rebuildDir, 'node-spine-mobilization.webp')
   });
 
-  // 7. Sanctuary Retreat Campus
+  // 7. 1-on-1 Retreat Consultation & Care Plan (NEW: 5.jpeg - 1-on-1 consultation across desk with male client, medical books, case notes)
   await cropPureSquare({
-    src: path.join(__dirname, '../public/assets/rebuild/center-sanctuary.jpg'),
-    extract: { left: 0, top: 400, width: 2160, height: 2160 },
+    src: path.join(newAssetsDir, '5.jpeg'),
+    extract: { left: 0, top: 280, width: 720, height: 720 },
+    outPath: path.join(rebuildDir, 'node-retreat-consultation.webp')
+  });
+
+  // Also overwrite legacy node-sanctuary-campus.webp so no cached duplicate remains
+  await cropPureSquare({
+    src: path.join(newAssetsDir, '5.jpeg'),
+    extract: { left: 0, top: 280, width: 720, height: 720 },
     outPath: path.join(rebuildDir, 'node-sanctuary-campus.webp')
   });
 
-  // 8. Doctor Welcome & Chart Consultation (NEW: 4.jpeg - Doctor smiling warmly with welcome chart & clipboard)
+  // 8. Welcome Consultation & Chart Review (NEW: 4.jpeg - Practitioner smiling warmly with welcome chart & clipboard)
   await cropPureSquare({
     src: path.join(newAssetsDir, '4.jpeg'),
     extract: { left: 0, top: 150, width: 720, height: 720 },
