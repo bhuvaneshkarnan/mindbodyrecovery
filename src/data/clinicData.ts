@@ -299,7 +299,7 @@ export const clinicData = {
 
   stories: {
     eyebrow: "REAL STORIES",
-    headline: "You don't have to take our word for it.",
+    headline: "Hear from the people who've experienced it.",
     subhead: "Hear it from the people who've experienced it.",
     items: [
       {
