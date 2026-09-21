@@ -50,21 +50,40 @@ export const MeetDoctor: React.FC<MeetDoctorProps> = ({ onOpenAssessment }) => {
             className="lg:col-span-7 space-y-6 relative z-20"
           >
             <BlurReveal delay={0.1}>
-              <h2 className="font-display text-4xl sm:text-5xl text-[#231F19] font-semibold tracking-tight mb-2">
-                {clinicData.doctor.name}
+              <h2 className="font-display text-4xl sm:text-5xl text-[#231F19] font-semibold tracking-tight leading-tight">
+                Meet the Founder
               </h2>
+
+              {/* Curly Script Name with Clean & Minimal Underline */}
+              <div className="inline-flex flex-col items-start mt-2 mb-3">
+                <span className="font-script text-3xl sm:text-4xl text-[#C79A45] font-bold tracking-wide select-none leading-none">
+                  Sameer
+                </span>
+                <svg
+                  className="w-24 sm:w-28 h-2 text-[#C79A45]/80 overflow-visible mt-1"
+                  viewBox="0 0 100 8"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M 2 5 C 28 1.5, 68 2, 98 5"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </div>
+
               <span className="text-xs uppercase tracking-widest text-[#8C5B41] font-semibold block">
                 {clinicData.doctor.title}
               </span>
             </BlurReveal>
 
-            {/* Sourced Bio Paragraphs */}
-            <div className="space-y-4 text-base sm:text-lg text-[#231F19]/85 font-sans leading-relaxed">
-              {clinicData.doctor.bio.map((paragraph, i) => (
-                <p key={i}>
-                  {paragraph}
-                </p>
-              ))}
+            {/* Concise Impactful Description */}
+            <div className="max-w-lg pt-1">
+              <p className="font-serif italic text-xl sm:text-2xl text-[#231F19]/90 font-light leading-relaxed">
+                &ldquo;Where tired bodies and overloaded minds come to recover.&rdquo;
+              </p>
             </div>
 
             {/* CTA in Gold */}
