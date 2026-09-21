@@ -11,69 +11,66 @@ export interface ShapeDefinition {
   name: string;
 }
 
-// 10 distinct, dramatic cuts specifically matching the user's explicit request:
-// Half cuts (dome, vertical, inverted), moon cut (crescent), teardrop, leaf, arch window, diagonal wedge, gibbous moon, fan
+// 10 distinct, organic cuts with generous surface area (88-94%) to ensure people's faces, gestures, and treatments remain completely visible:
 export const LASSO_SHAPE_DEFS: ShapeDefinition[] = [
-  // 0. Half Cut Dome (Straight flat bottom edge, semicircular arch dome top - 88% area)
+  // 0. Half Cut Arch Dome (Semicircular arch dome top, flat rounded base - 92% area)
   {
     type: "border-radius",
-    borderRadius: "60px 60px 8px 8px",
+    borderRadius: "50% 50% 12% 12%",
     name: "Half Cut Dome",
   },
-  // 1. Crescent Moon Cut (Wide lunar arc with gentle concave inner scoop - 80% area for full visibility)
-  {
-    type: "clip-path",
-    clipPathId: "lasso-moon-crescent",
-    strokeD: "M 50 3 C 88 3, 98 25, 98 50 C 98 75, 88 97, 50 97 C 30 78, 22 65, 22 50 C 22 35, 30 22, 50 3 Z",
-    name: "Crescent Moon Cut",
-  },
-  // 2. Vertical Half Cut (Straight flat vertical left edge, semicircular arch dome right - 88% area)
+  // 1. Sculpted Lunar Pebble (Soft organic pebble with generous lunar curvature - 94% area)
   {
     type: "border-radius",
-    borderRadius: "8px 65px 65px 8px",
+    borderRadius: "45% 55% 55% 45% / 55% 45% 45% 55%",
+    name: "Sculpted Lunar Pebble",
+  },
+  // 2. Vertical Half Cut (Straight vertical left edge, smooth dome curve right - 92% area)
+  {
+    type: "border-radius",
+    borderRadius: "14% 50% 50% 14%",
     name: "Vertical Half Cut",
   },
-  // 3. Teardrop Cut (Softened apex corner, wide bulbous droplet base - 90% area)
+  // 3. Soft Teardrop Cut (Rounded apex corner, bulbous droplet body - 93% area)
   {
     type: "border-radius",
-    borderRadius: "14px 65px 65px 65px",
+    borderRadius: "22% 50% 50% 50%",
     name: "Teardrop Cut",
   },
-  // 4. Botanical Leaf / Eye Lens (Gentle pointed tips, wide curved convex arcs - 85% area)
+  // 4. Botanical Leaf / Eye Lens (Pointed tips, wide curved convex arcs - 88% area)
   {
     type: "border-radius",
-    borderRadius: "20px 75px 20px 75px",
+    borderRadius: "50% 20% 50% 20% / 20% 50% 20% 50%",
     name: "Botanical Leaf Cut",
   },
-  // 5. Cathedral Arch Window (Semicircular top, parallel straight vertical sides, flat bottom - 88% area)
+  // 5. Cathedral Arch Window (Dome top, vertical straight sides, flat base - 92% area)
   {
     type: "border-radius",
-    borderRadius: "65px 65px 12px 12px",
+    borderRadius: "50% 50% 16% 16%",
     name: "Arch Window Cut",
   },
-  // 6. Diagonal Sliced Wedge (Sharp flat diagonal cut at top-right, rounded base - 88% area)
+  // 6. Diagonal Sliced Wedge (Sculpted diagonal facet with soft corners - 91% area)
   {
     type: "border-radius",
-    borderRadius: "60px 8px 60px 40px",
+    borderRadius: "50% 18% 50% 40% / 40% 50% 18% 50%",
     name: "Diagonal Wedge Cut",
   },
-  // 7. Waning Moon Pebble (Gentle concave scoop on right, wide convex lunar belly left - 80% area)
-  {
-    type: "clip-path",
-    clipPathId: "lasso-moon-gibbous",
-    strokeD: "M 50 3 C 70 22, 78 35, 78 50 C 78 65, 70 78, 50 97 C 12 97, 2 75, 2 50 C 2 25, 12 3, 50 3 Z",
-    name: "Waning Moon Cut",
-  },
-  // 8. Quarter-Circle Fan (Softened 90-degree corner, wide sweeping circular arc - 86% area)
+  // 7. Sculpted Organic Oval (Smooth asymmetrical contour, 94% area)
   {
     type: "border-radius",
-    borderRadius: "75px 14px 14px 75px",
+    borderRadius: "55% 45% 40% 60% / 50% 55% 45% 50%",
+    name: "Sculpted Organic Oval",
+  },
+  // 8. Quarter-Circle Fan (Soft 90-degree corner, wide circular fan sweep - 90% area)
+  {
+    type: "border-radius",
+    borderRadius: "50% 16% 16% 50%",
     name: "Quarter Fan Cut",
   },
-  // 9. Inverted Half Cut Dome (Straight flat horizontal top edge, round bowl bottom - 88% area)
+  // 9. Inverted Half Cut Dome (Straight flat top, rounded bowl bottom - 92% area)
   {
     type: "border-radius",
-    borderRadius: "8px 8px 65px 65px",
+    borderRadius: "14% 14% 50% 50%",
     name: "Inverted Half Cut",
   },
 ];

@@ -14,109 +14,109 @@ interface RebuildRetreatProps {
 }
 
 const REBUILD_NODES = [
-  // 1. Retreat Welcome / Block A Checkered Floor (Top-Right: highest point on right - cy = 73)
-  // Shape: Half Cut Dome (flat bottom, rounded arch dome - 88% area)
+  // 1. Retreat Welcome / Block A (Top-Right - cy = 80)
+  // Medium Tall Dome (125x135) - captures two guests walking into Block A
   {
     imageSrc: "/assets/rebuild/nodes/node-block-a.webp",
     alt: "Sanctuary Block A Living & Facility Welcome",
     shapeIndex: 0,
-    width: 115,
-    height: 115,
-    tilt: 4,
-    desktopPos: "top-[15px] right-[95px]",
-    mobileSize: 105,
-    objectPosition: "object-center",
+    width: 125,
+    height: 135,
+    tilt: 3,
+    desktopPos: "top-[12px] right-[85px]",
+    mobileSize: 110,
+    objectPosition: "object-[48%_38%]",
   },
-  // 2. Ayurvedic Retreat Bodywork (Top-Left: dropped lower - cy = 123)
-  // Shape: Vertical Half Cut (flat vertical left edge, dome right - 88% area)
+  // 2. Ayurvedic Retreat Bodywork (Top-Left - cy = 115)
+  // HERO LARGE (155x150) - clearly shows therapist in white, therapist in red, and client's facial massage
   {
     imageSrc: "/assets/rebuild/nodes/node-therapies.webp",
     alt: "Retreat Herbal Oil Bodywork on Droni Table",
-    shapeIndex: 2,
-    width: 115,
-    height: 115,
-    tilt: -6,
-    desktopPos: "top-[65px] left-[30px]",
-    mobileSize: 105,
-    objectPosition: "object-center",
+    shapeIndex: 7,
+    width: 155,
+    height: 150,
+    tilt: -4,
+    desktopPos: "top-[40px] left-[15px]",
+    mobileSize: 120,
+    objectPosition: "object-[45%_55%]",
   },
-  // 3. Shirodhara Stream (Top-Center: above center frame - cy = 170)
-  // Shape: Cathedral Arch Window (dome top, straight vertical sides, flat bottom - 88% area)
+  // 3. Shirodhara Stream (Top-Center - cy = 150)
+  // HERO LARGE (155x140) - captures hanging brass pot, cascading oil, therapist, and client's forehead
   {
     imageSrc: "/assets/rebuild/nodes/node-shirodhara.webp",
     alt: "Ayurvedic Shirodhara Oil Cascade",
     shapeIndex: 5,
-    width: 120,
-    height: 110,
+    width: 155,
+    height: 140,
     tilt: 0,
-    desktopPos: "top-[115px] left-[350px]",
-    mobileSize: 110,
-    objectPosition: "object-center",
+    desktopPos: "top-[80px] left-[345px]",
+    mobileSize: 120,
+    objectPosition: "object-[50%_35%]",
   },
-  // 4. Pulse Assessment & Clinical Review (Upper-Mid Right: pushed outward to outer edge - cy = 228)
-  // Shape: Crescent Moon Cut (generous lunar medallion with concave inner scoop - 80% area)
+  // 4. Pulse Assessment & Clinical Review (Upper-Mid Right - cy = 230)
+  // HERO LARGE (150x150) - Sameer's face, focused eyes, clipboard writing, and wrist pulse diagnostic 100% visible
   {
     imageSrc: "/assets/rebuild/nodes/node-pulse-assessment.webp",
     alt: "Pulse Assessment & Clinical Diagnostic Review",
     shapeIndex: 1,
-    width: 115,
-    height: 115,
-    tilt: -5,
-    desktopPos: "top-[170px] right-[15px]",
-    mobileSize: 105,
-    objectPosition: "object-center",
+    width: 150,
+    height: 150,
+    tilt: -3,
+    desktopPos: "top-[155px] right-[10px]",
+    mobileSize: 115,
+    objectPosition: "object-[50%_25%]",
   },
-  // 5. Cupping Decompression (Mid-Left: pulled inward - cy = 330)
-  // Shape: Teardrop Cut (pointed corner apex, bulbous droplet body - 90% area)
+  // 5. Cupping Decompression (Mid-Left - cy = 328)
+  // Medium (130x135) - therapist's focused face and cupping suction on back clearly framed
   {
     imageSrc: "/assets/rebuild/nodes/node-cupping.webp",
     alt: "Cupping Suction Decompression",
     shapeIndex: 3,
-    width: 120,
-    height: 120,
-    tilt: -7,
-    desktopPos: "top-[270px] left-[70px]",
+    width: 130,
+    height: 135,
+    tilt: -5,
+    desktopPos: "top-[260px] left-[50px]",
     mobileSize: 110,
-    objectPosition: "object-center",
+    objectPosition: "object-[55%_35%]",
   },
-  // 6. Somatic Movement Alignment (Lower-Mid Right: tucked inward with clearance - cy = 405)
-  // Shape: Botanical Leaf / Lens (gentle pointed tips, wide curved convex arcs - 85% area)
+  // 6. Somatic Movement Alignment (Lower-Mid Right - cy = 418)
+  // Medium Wide (145x115) - wide aspect ratio shows both instructor crouching and participant on red mat
   {
     imageSrc: "/assets/rebuild/nodes/node-somatic-mat.webp",
     alt: "Somatic Movement & Posture Alignment",
     shapeIndex: 4,
-    width: 120,
-    height: 120,
-    tilt: 6,
-    desktopPos: "top-[345px] right-[80px]",
+    width: 145,
+    height: 115,
+    tilt: 4,
+    desktopPos: "top-[360px] right-[65px]",
     mobileSize: 110,
-    objectPosition: "object-center",
+    objectPosition: "object-[45%_50%]",
   },
-  // 7. Outdoor Somatic Rest Under Garden Trees (Bottom-Left: raised high above bottom - cy = 565)
-  // Shape: Quarter Fan Cut (softened 90-degree corner, wide circular fan arc - 86% area)
+  // 7. Outdoor Somatic Rest Under Garden Trees (Bottom-Left - cy = 572)
+  // Compact (115x115) - Sameer crouched guiding client resting peacefully on outdoor terrace
   {
     imageSrc: "/assets/rebuild/nodes/node-outdoor-terrace.webp",
     alt: "Sanctuary Outdoor Somatic Rest Under Garden Trees",
     shapeIndex: 8,
-    width: 110,
-    height: 110,
-    tilt: -6,
-    desktopPos: "bottom-[130px] left-[20px]",
+    width: 115,
+    height: 115,
+    tilt: -4,
+    desktopPos: "bottom-[120px] left-[25px]",
     mobileSize: 100,
-    objectPosition: "object-center",
+    objectPosition: "object-[35%_35%]",
   },
-  // 8. Morning Pranayama & Breathwork (Bottom-Right: mid-level height, stepped outward - cy = 625)
-  // Shape: Waning Moon Cut (gentle scoop on right edge against back - 80% area)
+  // 8. Morning Pranayama & Breathwork (Bottom-Right - cy = 630)
+  // Compact-Medium (120x120) - instructor demonstrating Nadi Shodhana with thumb on nostril clearly framed on left
   {
     imageSrc: "/assets/rebuild/nodes/node-yoga-breath.webp",
     alt: "Morning Pranayama & Restorative Breathwork",
-    shapeIndex: 7,
-    width: 110,
-    height: 110,
-    tilt: 4,
-    desktopPos: "bottom-[70px] right-[35px]",
-    mobileSize: 100,
-    objectPosition: "object-center",
+    shapeIndex: 2,
+    width: 120,
+    height: 120,
+    tilt: 3,
+    desktopPos: "bottom-[60px] right-[40px]",
+    mobileSize: 105,
+    objectPosition: "object-[30%_30%]",
   },
 ];
 
@@ -265,7 +265,7 @@ export const RebuildRetreat: React.FC<RebuildRetreatProps> = ({ onOpenAssessment
               ))}
 
               {/* Quiet Floating Quote Accents in Open Constellation Pockets - STAGGERED */}
-              <div className="absolute top-[20px] left-[175px] z-30 pointer-events-none">
+              <div className="absolute top-[18px] left-[185px] z-30 pointer-events-none">
                 <div className="w-[145px] p-2.5 rounded-lg bg-[#141A10]/95 border border-[#C79A45]/30 text-left space-y-0.5 shadow-md">
                   <p className="text-[10.5px] text-[#F6F1E4]/90 font-sans leading-tight">
                     Daily herbal bodywork & detox.
@@ -273,7 +273,7 @@ export const RebuildRetreat: React.FC<RebuildRetreatProps> = ({ onOpenAssessment
                 </div>
               </div>
 
-              <div className="absolute top-[70px] left-[475px] z-30 pointer-events-none">
+              <div className="absolute top-[65px] left-[520px] z-30 pointer-events-none">
                 <div className="w-[145px] p-2.5 rounded-lg bg-[#141A10]/95 border border-[#C79A45]/30 text-left shadow-md">
                   <p className="font-sans text-[10.5px] text-[#F6F1E4] leading-tight">
                     Balance & energize vitality.
@@ -281,7 +281,7 @@ export const RebuildRetreat: React.FC<RebuildRetreatProps> = ({ onOpenAssessment
                 </div>
               </div>
 
-              <div className="absolute bottom-[40px] left-[225px] z-30 pointer-events-none">
+              <div className="absolute bottom-[35px] left-[260px] z-30 pointer-events-none">
                 <div className="w-[145px] p-2.5 rounded-lg bg-[#141A10]/95 border border-[#C79A45]/30 text-left shadow-md">
                   <p className="font-sans text-[10.5px] text-[#F6F1E4] leading-tight">
                     Return stronger to your life.

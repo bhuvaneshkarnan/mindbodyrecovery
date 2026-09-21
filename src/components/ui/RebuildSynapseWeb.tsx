@@ -53,85 +53,85 @@ export const RebuildSynapseWeb: React.FC<{ className?: string }> = ({ className 
   const faintColor = "rgba(199, 154, 69, 0.22)";
 
   // Biological curly wavy axon paths with harmonic sinusoidal undulations (completely uneven constellation):
-  // Node 0: Block A Welcome (top-right highest) -> (708, 73)
-  // Node 1: Ayurvedic Therapies (top-left dropped lower) -> (88, 123)
-  // Node 2: Shirodhara Stream (top-center) -> (410, 170)
-  // Node 3: Podikizhi Herbal Potli (upper-mid right outer) -> (788, 228)
-  // Node 4: Cupping Decompression (mid-left inward) -> (130, 330)
-  // Node 5: Somatic Movement (lower-mid right) -> (720, 405)
-  // Node 6: Garden Trees & Balcony (bottom-left raised high) -> (75, 565)
-  // Node 7: Morning Pranayama (bottom-right mid-level) -> (770, 625)
+  // Node 0: Block A Welcome (top-right) -> (712, 80)
+  // Node 1: Ayurvedic Therapies (top-left hero) -> (93, 115)
+  // Node 2: Shirodhara Stream (top-center hero) -> (422, 150)
+  // Node 3: Pulse Assessment (upper-mid right hero) -> (775, 230)
+  // Node 4: Cupping Decompression (mid-left) -> (115, 328)
+  // Node 5: Somatic Movement (lower-mid right) -> (722, 418)
+  // Node 6: Garden Trees & Terrace (bottom-left) -> (83, 572)
+  // Node 7: Morning Pranayama (bottom-right) -> (760, 630)
   const AXON_PATHS = [
     {
       id: "rebuild-axon-0",
-      d: generateCurlyAxon(575, 272, 708, 73, 22, 4),
-      endX: 708,
-      endY: 73,
+      d: generateCurlyAxon(580, 272, 712, 80, 22, 4),
+      endX: 712,
+      endY: 80,
       dur: "3.3s",
       delay: "0.2s",
     },
     {
       id: "rebuild-axon-1",
-      d: generateCurlyAxon(265, 280, 88, 123, 24, 4),
-      endX: 88,
-      endY: 123,
+      d: generateCurlyAxon(265, 280, 93, 115, 24, 4),
+      endX: 93,
+      endY: 115,
       dur: "3.1s",
       delay: "0s",
     },
     {
       id: "rebuild-axon-2",
-      d: generateCurlyAxon(405, 272, 410, 170, 16, 3),
-      endX: 410,
-      endY: 170,
+      d: generateCurlyAxon(420, 265, 422, 150, 16, 3),
+      endX: 422,
+      endY: 150,
       dur: "2.2s",
       delay: "0.4s",
     },
     {
       id: "rebuild-axon-3",
-      d: generateCurlyAxon(605, 305, 788, 228, 20, 3),
-      endX: 788,
-      endY: 228,
+      d: generateCurlyAxon(605, 305, 775, 230, 20, 3),
+      endX: 775,
+      endY: 230,
       dur: "2.5s",
       delay: "0.3s",
     },
     {
       id: "rebuild-axon-4",
-      d: generateCurlyAxon(250, 335, 130, 330, 20, 3),
-      endX: 130,
-      endY: 330,
+      d: generateCurlyAxon(250, 335, 115, 328, 20, 3),
+      endX: 115,
+      endY: 328,
       dur: "2.6s",
       delay: "0.5s",
     },
     {
       id: "rebuild-axon-5",
-      d: generateCurlyAxon(605, 395, 720, 405, 14, 3),
-      endX: 720,
-      endY: 405,
+      d: generateCurlyAxon(605, 395, 722, 418, 14, 3),
+      endX: 722,
+      endY: 418,
       dur: "2.7s",
       delay: "0.1s",
     },
     {
       id: "rebuild-axon-6",
-      d: generateCurlyAxon(255, 455, 75, 565, 24, 4),
-      endX: 75,
-      endY: 565,
+      d: generateCurlyAxon(255, 455, 83, 572, 24, 4),
+      endX: 83,
+      endY: 572,
       dur: "3.4s",
       delay: "0.6s",
     },
     {
       id: "rebuild-axon-7",
-      d: generateCurlyAxon(595, 460, 770, 625, 22, 4),
-      endX: 770,
-      endY: 625,
+      d: generateCurlyAxon(595, 460, 760, 630, 22, 4),
+      endX: 760,
+      endY: 630,
       dur: "3.2s",
       delay: "0.7s",
     },
   ];
 
   // Subtle secondary curly filaments to quote cards
-  const pathQuote1 = generateCurlyAxon(265, 272, 200, 35, 14, 3);
-  const pathQuote2 = generateCurlyAxon(550, 272, 505, 90, 14, 3);
-  const pathQuote3 = generateCurlyAxon(300, 478, 255, 685, 14, 3);
+  const pathQuote1 = generateCurlyAxon(265, 272, 245, 30, 14, 3);
+  const pathQuote2 = generateCurlyAxon(550, 272, 570, 75, 14, 3);
+  const pathQuote3 = generateCurlyAxon(300, 478, 320, 690, 14, 3);
 
   return (
     <svg
