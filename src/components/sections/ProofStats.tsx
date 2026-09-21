@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { clinicData } from "@/data/clinicData";
 import { Users, Award, Heart } from "lucide-react";
 import { ZoomReveal, SlideIn, FadeUp, BlurReveal } from "@/components/ui/ScrollAnimations";
+import { BandageFrame } from "@/components/ui/BandageFrame";
 
 export const ProofStats: React.FC = () => {
   return (
@@ -28,36 +29,14 @@ export const ProofStats: React.FC = () => {
           </SlideIn>
         </div>
 
-        {/* Central Panoramic Team Photo — ZoomReveal on scroll enter */}
+        {/* Central Panoramic Team Photo — ZoomReveal on scroll enter with authentic medical bandages */}
         <FadeUp className="relative mb-6">
-          {/* Top-left gold tape strip */}
-          <div
-            className="absolute -top-4 -left-4 z-30 w-14 h-5 rounded-md bg-[#C79A45]/50 border border-[#C79A45]/80 pointer-events-none"
-            style={{ transform: "rotate(-4deg)" }}
-            aria-hidden="true"
+          <BandageFrame
+            variant="gold"
+            tapePosition="top-left-bottom-right"
+            className="w-full shadow-2xl block"
+            innerClassName="border border-[#C79A45]/40 overflow-hidden rounded-xl bg-[#12140D]"
           >
-            <div className="w-full h-full flex justify-around items-center px-1.5">
-              <span className="w-px h-3 bg-[#C79A45] opacity-50" />
-              <span className="w-px h-3 bg-[#C79A45] opacity-50" />
-              <span className="w-px h-3 bg-[#C79A45] opacity-50" />
-            </div>
-          </div>
-
-          {/* Bottom-right gold tape strip */}
-          <div
-            className="absolute -bottom-4 -right-4 z-30 w-14 h-5 rounded-md bg-[#C79A45]/50 border border-[#C79A45]/80 pointer-events-none"
-            style={{ transform: "rotate(-4deg)" }}
-            aria-hidden="true"
-          >
-            <div className="w-full h-full flex justify-around items-center px-1.5">
-              <span className="w-px h-3 bg-[#C79A45] opacity-50" />
-              <span className="w-px h-3 bg-[#C79A45] opacity-50" />
-              <span className="w-px h-3 bg-[#C79A45] opacity-50" />
-            </div>
-          </div>
-
-          {/* Hairline gold border frame */}
-          <div className="border border-[#C79A45]/40 overflow-hidden shadow-2xl rounded-xl">
             <ZoomReveal>
               <div className="relative aspect-[16/9] w-full overflow-hidden bg-[#12140D]">
                 <img
@@ -69,7 +48,7 @@ export const ProofStats: React.FC = () => {
                 />
               </div>
             </ZoomReveal>
-          </div>
+          </BandageFrame>
         </FadeUp>
 
         {/* Biological Neural Synapse Connector (From Team Photo to 3 Stats) - Desktop */}
