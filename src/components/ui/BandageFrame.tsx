@@ -28,12 +28,12 @@ export const BandageFrame: React.FC<BandageFrameProps> = ({
   const isGold = variant === "gold";
   const isLight = variant === "light" || variant === "parchment";
 
-  // Tape corner styles based on variant
+  // Tape corner styles based on variant - golden washi tape / organic medical bandage style
   const tapeClass = isGold
-    ? "bg-gold-500/40 border-gold-500/70"
+    ? "bg-[#C79A45]/90 border border-[#E5B85C] shadow-md text-[#12140D]"
     : isDark
-    ? "bg-parchment-50/50 border-gold-500/50"
-    : "bg-ink-950/20 border-charcoal-ink/35";
+    ? "bg-[#C79A45]/70 border border-[#C79A45] shadow-sm text-[#12140D]"
+    : "bg-[#C79A45]/85 border border-[#B88A35] shadow-md text-[#12140D]";
 
   return (
     <figure
@@ -48,16 +48,16 @@ export const BandageFrame: React.FC<BandageFrameProps> = ({
       {(tapePosition === "top-left-bottom-right" || tapePosition === "all-four") && (
         <div
           className={clsx(
-            "washi-tape-strip -top-2.5 -left-2.5 rounded-md border pointer-events-none transition-transform group-hover:rotate-0 duration-300",
+            "washi-tape-strip -top-3 -left-3 rounded-md border pointer-events-none transition-transform group-hover:rotate-0 duration-300",
             tapeClass
           )}
           style={{ transform: `rotate(-${tapeAngle}deg)` }}
           aria-hidden="true"
         >
-          <div className="w-full h-full opacity-35 flex justify-around items-center px-1">
-            <span className="w-px h-2 bg-current opacity-40" />
-            <span className="w-px h-2 bg-current opacity-40" />
-            <span className="w-px h-2 bg-current opacity-40" />
+          <div className="w-full h-full opacity-40 flex justify-around items-center px-1.5">
+            <span className="w-px h-2.5 bg-black/40" />
+            <span className="w-px h-2.5 bg-black/40" />
+            <span className="w-px h-2.5 bg-black/40" />
           </div>
         </div>
       )}
@@ -65,15 +65,16 @@ export const BandageFrame: React.FC<BandageFrameProps> = ({
       {tapePosition === "top-right-bottom-left" && (
         <div
           className={clsx(
-            "washi-tape-strip -top-2.5 -right-2.5 rounded-md border pointer-events-none transition-transform group-hover:rotate-0 duration-300",
+            "washi-tape-strip -top-3 -right-3 rounded-md border pointer-events-none transition-transform group-hover:rotate-0 duration-300",
             tapeClass
           )}
           style={{ transform: `rotate(${tapeAngle}deg)` }}
           aria-hidden="true"
         >
-          <div className="w-full h-full opacity-35 flex justify-around items-center px-1">
-            <span className="w-px h-2 bg-current opacity-40" />
-            <span className="w-px h-2 bg-current opacity-40" />
+          <div className="w-full h-full opacity-40 flex justify-around items-center px-1.5">
+            <span className="w-px h-2.5 bg-black/40" />
+            <span className="w-px h-2.5 bg-black/40" />
+            <span className="w-px h-2.5 bg-black/40" />
           </div>
         </div>
       )}
@@ -113,16 +114,16 @@ export const BandageFrame: React.FC<BandageFrameProps> = ({
       {(tapePosition === "top-left-bottom-right" || tapePosition === "all-four") && (
         <div
           className={clsx(
-            "washi-tape-strip -bottom-2.5 -right-2.5 rounded-md border pointer-events-none transition-transform group-hover:rotate-0 duration-300",
+            "washi-tape-strip -bottom-3 -right-3 rounded-md border pointer-events-none transition-transform group-hover:rotate-0 duration-300",
             tapeClass
           )}
           style={{ transform: `rotate(-${tapeAngle}deg)` }}
           aria-hidden="true"
         >
-          <div className="w-full h-full opacity-35 flex justify-around items-center px-1">
-            <span className="w-px h-2 bg-current opacity-40" />
-            <span className="w-px h-2 bg-current opacity-40" />
-            <span className="w-px h-2 bg-current opacity-40" />
+          <div className="w-full h-full opacity-40 flex justify-around items-center px-1.5">
+            <span className="w-px h-2.5 bg-black/40" />
+            <span className="w-px h-2.5 bg-black/40" />
+            <span className="w-px h-2.5 bg-black/40" />
           </div>
         </div>
       )}
@@ -130,15 +131,16 @@ export const BandageFrame: React.FC<BandageFrameProps> = ({
       {tapePosition === "top-right-bottom-left" && (
         <div
           className={clsx(
-            "washi-tape-strip -bottom-2.5 -left-2.5 rounded-md border pointer-events-none transition-transform group-hover:rotate-0 duration-300",
+            "washi-tape-strip -bottom-3 -left-3 rounded-md border pointer-events-none transition-transform group-hover:rotate-0 duration-300",
             tapeClass
           )}
           style={{ transform: `rotate(${tapeAngle}deg)` }}
           aria-hidden="true"
         >
-          <div className="w-full h-full opacity-35 flex justify-around items-center px-1">
-            <span className="w-px h-2 bg-current opacity-40" />
-            <span className="w-px h-2 bg-current opacity-40" />
+          <div className="w-full h-full opacity-40 flex justify-around items-center px-1.5">
+            <span className="w-px h-2.5 bg-black/40" />
+            <span className="w-px h-2.5 bg-black/40" />
+            <span className="w-px h-2.5 bg-black/40" />
           </div>
         </div>
       )}

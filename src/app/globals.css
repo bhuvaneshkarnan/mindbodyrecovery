@@ -68,8 +68,8 @@ h1, h2, h3, h4, h5, h6 {
 /* Washi Tape Strip Styling */
 .washi-tape-strip {
   position: absolute;
-  width: 44px;
-  height: 14px;
+  width: 58px;
+  height: 20px;
   z-index: 25;
 }
 

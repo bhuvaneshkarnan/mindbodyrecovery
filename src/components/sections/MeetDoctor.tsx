@@ -22,20 +22,19 @@ export const MeetDoctor: React.FC<MeetDoctorProps> = ({ onOpenAssessment }) => {
           {/* Left Column: Portrait & Sourced Quote (5 cols) */}
           <ClipReveal direction="left" delay={0.1} className="lg:col-span-5 flex flex-col items-center lg:items-start relative z-20">
             <BandageFrame
-              variant="light"
+              variant="gold"
               tapeAngle={3.5}
               tapePosition="top-left-bottom-right"
               className="w-full max-w-md"
-              innerClassName="p-3 bg-white border border-[#C79A45]/60 shadow-lg"
-              caption="Sameer — Founder & Lead Practitioner"
+              innerClassName="p-1.5 bg-white border border-[#C79A45]/80 rounded-2xl shadow-2xl"
             >
-              <div className="relative aspect-[4/5] w-full overflow-hidden rounded-lg bg-white shadow-inner flex items-center justify-center">
+              <div className="relative aspect-[3/4] sm:aspect-[4/5] w-full overflow-hidden rounded-xl bg-[#1A1F16]">
                 <img
                   src={clinicData.doctor.portrait}
                   alt={clinicData.doctor.name}
                   loading="lazy"
                   decoding="async"
-                  className="max-w-full max-h-full object-contain filter saturate-95 contrast-105"
+                  className="w-full h-full object-cover object-[50%_15%] filter saturate-95 contrast-105"
                 />
               </div>
             </BandageFrame>
