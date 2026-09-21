@@ -15,7 +15,7 @@ interface RebuildRetreatProps {
 
 const REBUILD_NODES = [
   // 1. Retreat Welcome / Block A (Top-Right - cy = 80)
-  // Medium Tall Dome (125x135) - captures two guests walking into Block A
+  // Medium Tall Dome (125x135) - captures two guests walking into Block A with sign
   {
     imageSrc: "/assets/rebuild/nodes/node-block-a.webp",
     alt: "Sanctuary Block A Living & Facility Welcome",
@@ -25,7 +25,7 @@ const REBUILD_NODES = [
     tilt: 3,
     desktopPos: "top-[12px] right-[85px]",
     mobileSize: 110,
-    objectPosition: "object-[48%_38%]",
+    objectPosition: "object-center",
   },
   // 2. Ayurvedic Retreat Bodywork (Top-Left - cy = 115)
   // HERO LARGE (155x150) - clearly shows therapist in white, therapist in red, and client's facial massage
@@ -38,7 +38,7 @@ const REBUILD_NODES = [
     tilt: -4,
     desktopPos: "top-[40px] left-[15px]",
     mobileSize: 120,
-    objectPosition: "object-[45%_55%]",
+    objectPosition: "object-center",
   },
   // 3. Shirodhara Stream (Top-Center - cy = 150)
   // HERO LARGE (155x140) - captures hanging brass pot, cascading oil, therapist, and client's forehead
@@ -51,7 +51,7 @@ const REBUILD_NODES = [
     tilt: 0,
     desktopPos: "top-[80px] left-[345px]",
     mobileSize: 120,
-    objectPosition: "object-[50%_35%]",
+    objectPosition: "object-center",
   },
   // 4. Pulse Assessment & Clinical Review (Upper-Mid Right - cy = 230)
   // HERO LARGE (150x150) - Sameer's face, focused eyes, clipboard writing, and wrist pulse diagnostic 100% visible
@@ -64,7 +64,7 @@ const REBUILD_NODES = [
     tilt: -3,
     desktopPos: "top-[155px] right-[10px]",
     mobileSize: 115,
-    objectPosition: "object-[50%_25%]",
+    objectPosition: "object-center",
   },
   // 5. Cupping Decompression (Mid-Left - cy = 328)
   // Medium (130x135) - therapist's focused face and cupping suction on back clearly framed
@@ -77,7 +77,7 @@ const REBUILD_NODES = [
     tilt: -5,
     desktopPos: "top-[260px] left-[50px]",
     mobileSize: 110,
-    objectPosition: "object-[55%_35%]",
+    objectPosition: "object-center",
   },
   // 6. Somatic Movement Alignment (Lower-Mid Right - cy = 418)
   // Medium Wide (145x115) - wide aspect ratio shows both instructor crouching and participant on red mat
@@ -90,10 +90,10 @@ const REBUILD_NODES = [
     tilt: 4,
     desktopPos: "top-[360px] right-[65px]",
     mobileSize: 110,
-    objectPosition: "object-[45%_50%]",
+    objectPosition: "object-center",
   },
   // 7. Outdoor Somatic Rest Under Garden Trees (Bottom-Left - cy = 572)
-  // Compact (115x115) - Sameer crouched guiding client resting peacefully on outdoor terrace
+  // Compact (115x115) - peaceful guest resting on balcony overlooking garden trees
   {
     imageSrc: "/assets/rebuild/nodes/node-outdoor-terrace.webp",
     alt: "Sanctuary Outdoor Somatic Rest Under Garden Trees",
@@ -103,10 +103,10 @@ const REBUILD_NODES = [
     tilt: -4,
     desktopPos: "bottom-[120px] left-[25px]",
     mobileSize: 100,
-    objectPosition: "object-[35%_35%]",
+    objectPosition: "object-center",
   },
   // 8. Morning Pranayama & Breathwork (Bottom-Right - cy = 630)
-  // Compact-Medium (120x120) - instructor demonstrating Nadi Shodhana with thumb on nostril clearly framed on left
+  // Compact-Medium (120x120) - instructor demonstrating Nadi Shodhana with thumb on nostril clearly framed
   {
     imageSrc: "/assets/rebuild/nodes/node-yoga-breath.webp",
     alt: "Morning Pranayama & Restorative Breathwork",
@@ -116,7 +116,7 @@ const REBUILD_NODES = [
     tilt: 3,
     desktopPos: "bottom-[60px] right-[40px]",
     mobileSize: 105,
-    objectPosition: "object-[30%_30%]",
+    objectPosition: "object-center",
   },
 ];
 
