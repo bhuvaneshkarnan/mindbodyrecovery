@@ -11,7 +11,7 @@ async function cropPureSquare({ src, extract, outPath }) {
     pipe = pipe.extract(extract);
   }
 
-  // Resize directly to 600x600 pure photo edge-to-edge
+  // Resize directly to 600x600 pure photo edge-to-edge (no blur bars)
   await pipe
     .resize(600, 600, { fit: 'cover', position: 'center' })
     .webp({ quality: 92 })
@@ -21,7 +21,9 @@ async function cropPureSquare({ src, extract, outPath }) {
 }
 
 async function run() {
-  console.log('=== 1. GENERATING PURE RELAX NODES (Zero Blur / Edge-to-Edge) ===');
+  const newAssetsDir = path.join(__dirname, '../New image assets');
+
+  console.log('=== 1. GENERATING PURE RELAX NODES (Zero Repetition / Edge-to-Edge) ===');
   const relaxDir = path.join(__dirname, '../public/assets/relax/nodes');
 
   // 1. Shirodhara
@@ -31,10 +33,10 @@ async function run() {
     outPath: path.join(relaxDir, 'node-shirodhara.webp')
   });
 
-  // 2. Pulse Assessment
+  // 2. Pulse Assessment (Sameer with pen, handwriting on clipboard, and pulse check fully visible per user request)
   await cropPureSquare({
     src: path.join(__dirname, '../public/assets/relax/pulse.jpeg'),
-    extract: { left: 0, top: 50, width: 900, height: 900 },
+    extract: { left: 0, top: 380, width: 900, height: 900 },
     outPath: path.join(relaxDir, 'node-pulse.webp')
   });
 
@@ -45,128 +47,130 @@ async function run() {
     outPath: path.join(relaxDir, 'node-podikizhi.webp')
   });
 
-  // 4. Cupping Decompression
+  // 4. Fire Cupping Decompression (NEW: 13.jpeg - Sameer applying glass flame cup to client's back)
   await cropPureSquare({
-    src: path.join(__dirname, '../public/assets/relax/cupping.jpg'),
-    extract: { left: 200, top: 0, width: 853, height: 853 },
-    outPath: path.join(relaxDir, 'node-cupping.webp')
+    src: path.join(newAssetsDir, '13.jpeg'),
+    extract: { left: 0, top: 220, width: 720, height: 720 },
+    outPath: path.join(relaxDir, 'node-fire-cupping.webp')
   });
 
-  // 5. Craniosacral Somatic Therapy
+  // 5. Craniosacral Somatic Therapy (NEW: 16.jpeg - peaceful touch on forehead, client resting in white)
   await cropPureSquare({
-    src: path.join(__dirname, '../public/assets/rethink/deeper-mind.jpg'),
-    extract: { left: 0, top: 380, width: 1080, height: 1080 },
+    src: path.join(newAssetsDir, '16.jpeg'),
+    extract: { left: 0, top: 320, width: 720, height: 720 },
     outPath: path.join(relaxDir, 'node-craniosacral.webp')
   });
 
-  // 6. Somatic Mat Movement
+  // 6. Somatic Floor Movement
   await cropPureSquare({
     src: path.join(__dirname, '../Assets all/RELAX/vlcsnap-2026-08-28-12h16m43s490.png'),
     extract: { left: 300, top: 0, width: 1080, height: 1080 },
     outPath: path.join(relaxDir, 'node-somatic.webp')
   });
 
-  // 7. Acupuncture / Facial Care (Therapies table with Sameer & therapist)
+  // 7. Clinical Vitals & Intake (NEW: WhatsApp Image... - blood pressure check during intake)
   await cropPureSquare({
-    src: path.join(__dirname, '../public/assets/rebuild/therapies.jpg'),
-    extract: { left: 0, top: 250, width: 1080, height: 1080 },
-    outPath: path.join(relaxDir, 'node-acupuncture.webp')
+    src: path.join(newAssetsDir, 'WhatsApp Image 2026-09-21 at 7.52.35 PM.jpeg'),
+    extract: { left: 0, top: 260, width: 720, height: 720 },
+    outPath: path.join(relaxDir, 'node-intake-vitals.webp')
   });
 
-  // 8. Joint Mobilization
+  // 8. Osteopathic Leg & Foot Mobilization (NEW: 17.jpeg - full legs on pillow, feet, Sameer mobilising fully visible per user request)
   await cropPureSquare({
-    src: path.join(__dirname, '../public/assets/relax/joint-mobilization.webp'),
-    extract: { left: 0, top: 50, width: 600, height: 600 },
+    src: path.join(newAssetsDir, '17.jpeg'),
+    extract: { left: 0, top: 180, width: 720, height: 720 },
     outPath: path.join(relaxDir, 'node-joint-mobilization.webp')
   });
 
-  // 9. Sanctuary Garden Retreat
-  await cropPureSquare({
-    src: path.join(__dirname, '../public/assets/rebuild/center-sanctuary.jpg'),
-    extract: { left: 0, top: 400, width: 2160, height: 2160 },
-    outPath: path.join(relaxDir, 'node-sanctuary.webp')
-  });
-
-  // 10. Restorative Breathwork & Pranayama
+  // 9. Restorative Breathwork & Pranayama (yoga-breath.jpg with top: 650 - both people centered, zero excess wall per user request)
   await cropPureSquare({
     src: path.join(__dirname, '../public/assets/rebuild/yoga-breath.jpg'),
-    extract: { left: 0, top: 280, width: 1080, height: 1080 },
+    extract: { left: 0, top: 650, width: 1080, height: 1080 },
     outPath: path.join(relaxDir, 'node-yoga-breath.webp')
   });
 
-  console.log('\n=== 2. GENERATING PURE RETHINK NODES (Zero Blur / Edge-to-Edge) ===');
+  // 10. Restorative Leg Cupping & Acupressure (NEW: 15.jpeg - cups and acupuncture on calves & feet on droni)
+  await cropPureSquare({
+    src: path.join(newAssetsDir, '15.jpeg'),
+    extract: { left: 0, top: 320, width: 720, height: 720 },
+    outPath: path.join(relaxDir, 'node-leg-cupping.webp')
+  });
+
+  console.log('\n=== 2. GENERATING PURE RETHINK NODES (Zero Repetition / Edge-to-Edge) ===');
   const rethinkDir = path.join(__dirname, '../public/assets/rethink/nodes');
 
-  // 1. Screen Review / Cognitive Analysis
+  // 1. Brain Power Chart Analysis (NEW: 11.jpeg - Sameer & client analyzing Brain Power Chart on wall)
+  await cropPureSquare({
+    src: path.join(newAssetsDir, '11.jpeg'),
+    extract: { left: 0, top: 200, width: 720, height: 720 },
+    outPath: path.join(rethinkDir, 'node-brain-power.webp')
+  });
+
+  // 2. Cognitive Dialogue Consultation (NEW: 14.jpeg - Sameer in deep 1-on-1 dialogue with laptop & books)
+  await cropPureSquare({
+    src: path.join(newAssetsDir, '14.jpeg'),
+    extract: { left: 0, top: 120, width: 576, height: 576 },
+    outPath: path.join(rethinkDir, 'node-cognitive-dialogue.webp')
+  });
+
+  // 3. Meridian & Pathway Study (NEW: 10.jpeg - Clinician analyzing Acupuncture & Reflexology chart on wall)
+  await cropPureSquare({
+    src: path.join(newAssetsDir, '10.jpeg'),
+    extract: { left: 0, top: 220, width: 720, height: 720 },
+    outPath: path.join(rethinkDir, 'node-meridian-study.webp')
+  });
+
+  // 4. Screen Review / Cognitive Analysis
   await cropPureSquare({
     src: path.join(__dirname, '../public/assets/rebuild/0812 (2)(2).jpg'),
     extract: { left: 0, top: 600, width: 2160, height: 2160 },
     outPath: path.join(rethinkDir, 'node-screen-review.webp')
   });
 
-  // 2. Mindful Journaling & Reflection
+  // 5. Mindful Reading & Reflection (NEW: 7.jpeg - Doctor studying book in clinical library)
   await cropPureSquare({
-    src: path.join(__dirname, '../public/assets/rethink/live-mindfully.jpg'),
-    extract: { left: 0, top: 240, width: 1080, height: 1080 },
-    outPath: path.join(rethinkDir, 'node-journaling.webp')
+    src: path.join(newAssetsDir, '7.jpeg'),
+    extract: { left: 0, top: 320, width: 720, height: 720 },
+    outPath: path.join(rethinkDir, 'node-mindful-study.webp')
   });
 
-  // 3. Sameer Clinical Focus (Portrait)
+  // 6. Clinical Assessment Review (NEW: 2.jpeg - Doctor and client reviewing health assessment chart at desk)
   await cropPureSquare({
-    src: path.join(__dirname, '../public/assets/doctor/drsameer.jpg'),
-    extract: { left: 0, top: 280, width: 1080, height: 1080 },
-    outPath: path.join(rethinkDir, 'node-sameer-focus.webp')
+    src: path.join(newAssetsDir, '2.jpeg'),
+    extract: { left: 0, top: 260, width: 720, height: 720 },
+    outPath: path.join(rethinkDir, 'node-assessment-review.webp')
   });
 
-  // 4. New Habits & Practice
-  await cropPureSquare({
-    src: path.join(__dirname, '../public/assets/rethink/new-habits.jpg'),
-    extract: { left: 0, top: 280, width: 1080, height: 1080 },
-    outPath: path.join(rethinkDir, 'node-habits.webp')
-  });
-
-  // 5. Foot Reflexology Diagnostic
-  await cropPureSquare({
-    src: path.join(__dirname, '../public/assets/relax/Foot Reflexology.jpg'),
-    extract: { left: 0, top: 240, width: 1080, height: 1080 },
-    outPath: path.join(rethinkDir, 'node-reflexology.webp')
-  });
-
-  // 6. Craniosacral Somatic Release
-  await cropPureSquare({
-    src: path.join(__dirname, '../public/assets/rethink/deeper-mind.jpg'),
-    extract: { left: 0, top: 380, width: 1080, height: 1080 },
-    outPath: path.join(rethinkDir, 'node-craniosacral.webp')
-  });
-
-  // 7. Balcony Somatic Rest
+  // 7. Balcony Somatic Inquiry
   {
     const balconyPath = path.join(rethinkDir, 'node-balcony-somatic.webp');
-    const inputBuf = fs.readFileSync(balconyPath);
-    const meta = await sharp(inputBuf).metadata();
-    const minDim = Math.min(meta.width, meta.height);
-    const pureBuf = await sharp(inputBuf)
-      .extract({
-        left: Math.round((meta.width - minDim) / 2),
-        top: Math.round((meta.height - minDim) / 2),
-        width: minDim,
-        height: minDim
-      })
-      .resize(600, 600)
-      .webp({ quality: 92 })
-      .toBuffer();
-    fs.writeFileSync(balconyPath, pureBuf);
-    console.log('Generated pure photo: node-balcony-somatic.webp');
+    if (fs.existsSync(balconyPath)) {
+      const inputBuf = fs.readFileSync(balconyPath);
+      const meta = await sharp(inputBuf).metadata();
+      const minDim = Math.min(meta.width, meta.height);
+      const pureBuf = await sharp(inputBuf)
+        .extract({
+          left: Math.round((meta.width - minDim) / 2),
+          top: Math.round((meta.height - minDim) / 2),
+          width: minDim,
+          height: minDim
+        })
+        .resize(600, 600)
+        .webp({ quality: 92 })
+        .toBuffer();
+      fs.writeFileSync(balconyPath, pureBuf);
+      console.log('Processed pure photo: node-balcony-somatic.webp');
+    }
   }
 
-  // 8. 1-on-1 Consultation Dialogue
+  // 8. 1-on-1 Pulse Reading & Dialogue (NEW: 9.jpeg - Sameer conducting Nadi Pariksha across desk with patient)
   await cropPureSquare({
-    src: path.join(__dirname, '../public/assets/rethink/reconnect.jpg'),
-    extract: { left: 0, top: 300, width: 1080, height: 1080 },
-    outPath: path.join(rethinkDir, 'node-consultation.webp')
+    src: path.join(newAssetsDir, '9.jpeg'),
+    extract: { left: 0, top: 180, width: 591, height: 591 },
+    outPath: path.join(rethinkDir, 'node-pulse-dialogue.webp')
   });
 
-  console.log('\n=== 3. GENERATING PURE REBUILD NODES (Zero Blur / Edge-to-Edge) ===');
+  console.log('\n=== 3. GENERATING PURE REBUILD NODES (Zero Repetition / Edge-to-Edge) ===');
   const rebuildDir = path.join(__dirname, '../public/assets/rebuild/nodes');
 
   // 1. Block A Entrance
@@ -176,61 +180,69 @@ async function run() {
     outPath: path.join(rebuildDir, 'node-block-a.webp')
   });
 
-  // 2. Therapies (Facial & Herbal Oil)
+  // 2. Sensory Garden Sanctuary Walk (NEW: 12.jpeg - Sameer guiding client in outdoor garden retreat)
   await cropPureSquare({
-    src: path.join(__dirname, '../public/assets/rebuild/therapies.jpg'),
-    extract: { left: 0, top: 250, width: 1080, height: 1080 },
-    outPath: path.join(rebuildDir, 'node-therapies.webp')
+    src: path.join(newAssetsDir, '12.jpeg'),
+    extract: { left: 0, top: 320, width: 720, height: 720 },
+    outPath: path.join(rebuildDir, 'node-sensory-garden.webp')
   });
 
-  // 3. Shirodhara Stream
-  await cropPureSquare({
-    src: path.join(__dirname, '../public/assets/relax/shirodhara.png'),
-    extract: { left: 365, top: 0, width: 941, height: 941 },
-    outPath: path.join(rebuildDir, 'node-shirodhara.webp')
-  });
-
-  // 4. Pulse Assessment
-  await cropPureSquare({
-    src: path.join(__dirname, '../public/assets/relax/pulse.jpeg'),
-    extract: { left: 0, top: 50, width: 900, height: 900 },
-    outPath: path.join(rebuildDir, 'node-pulse-assessment.webp')
-  });
-
-  // 5. Cupping Decompression
-  await cropPureSquare({
-    src: path.join(__dirname, '../public/assets/relax/cupping.jpg'),
-    extract: { left: 200, top: 0, width: 853, height: 853 },
-    outPath: path.join(rebuildDir, 'node-cupping.webp')
-  });
-
-  // 6. Somatic Mat Movement
-  await cropPureSquare({
-    src: path.join(__dirname, '../Assets all/RELAX/vlcsnap-2026-08-28-12h16m43s490.png'),
-    extract: { left: 300, top: 0, width: 1080, height: 1080 },
-    outPath: path.join(rebuildDir, 'node-somatic-mat.webp')
-  });
-
-  // 7. Peaceful Sanctuary Suite Stay
+  // 3. Peaceful Suite Stay
   await cropPureSquare({
     src: path.join(__dirname, '../public/assets/rebuild/peaceful-room.jpg'),
     extract: { left: 350, top: 380, width: 2250, height: 2250 },
     outPath: path.join(rebuildDir, 'node-peaceful-room.webp')
   });
+
+  // 4. Sattvic Organic Nutrition
+  {
+    const sattvicSrc = path.join(__dirname, '../public/assets/rebuild/sattvic-meals.jpg');
+    if (fs.existsSync(sattvicSrc)) {
+      const meta = await sharp(sattvicSrc).metadata();
+      const minDim = Math.min(meta.width, meta.height);
+      await sharp(sattvicSrc)
+        .extract({
+          left: Math.round((meta.width - minDim) / 2),
+          top: Math.round((meta.height - minDim) / 2),
+          width: minDim,
+          height: minDim
+        })
+        .resize(600, 600)
+        .webp({ quality: 92 })
+        .toFile(path.join(rebuildDir, 'node-sattvic-meals.webp'));
+      console.log('Generated pure photo: node-sattvic-meals.webp');
+    }
+  }
+
+  // 5. Restorative Balcony Movement (NEW: 8.jpeg - Somatic instructor guiding leg movement with lush green view)
   await cropPureSquare({
-    src: path.join(__dirname, '../public/assets/rebuild/peaceful-room.jpg'),
-    extract: { left: 350, top: 380, width: 2250, height: 2250 },
-    outPath: path.join(rebuildDir, 'node-outdoor-terrace.webp')
+    src: path.join(newAssetsDir, '8.jpeg'),
+    extract: { left: 0, top: 140, width: 720, height: 720 },
+    outPath: path.join(rebuildDir, 'node-balcony-movement.webp')
   });
 
-  // 8. Pranayama Yoga Breath
+  // 6. Spinal & Osteopathic Alignment (NEW: 6.jpeg - Practitioner performing spine alignment on table)
   await cropPureSquare({
-    src: path.join(__dirname, '../public/assets/rebuild/yoga-breath.jpg'),
-    extract: { left: 0, top: 280, width: 1080, height: 1080 },
-    outPath: path.join(rebuildDir, 'node-yoga-breath.webp')
+    src: path.join(newAssetsDir, '6.jpeg'),
+    extract: { left: 0, top: 120, width: 720, height: 720 },
+    outPath: path.join(rebuildDir, 'node-spine-mobilization.webp')
   });
 
-  console.log('\nAll nodes for RELAX, RETHINK, and REBUILD successfully generated with 100% pure photographic fill and zero blur gaps!');
+  // 7. Sanctuary Retreat Campus
+  await cropPureSquare({
+    src: path.join(__dirname, '../public/assets/rebuild/center-sanctuary.jpg'),
+    extract: { left: 0, top: 400, width: 2160, height: 2160 },
+    outPath: path.join(rebuildDir, 'node-sanctuary-campus.webp')
+  });
+
+  // 8. Doctor Welcome & Chart Consultation (NEW: 4.jpeg - Doctor smiling warmly with welcome chart & clipboard)
+  await cropPureSquare({
+    src: path.join(newAssetsDir, '4.jpeg'),
+    extract: { left: 0, top: 150, width: 720, height: 720 },
+    outPath: path.join(rebuildDir, 'node-doctor-welcome.webp')
+  });
+
+  console.log('\nAll nodes for RELAX, RETHINK, and REBUILD successfully generated with 100% pure photographic fill, zero repetitions, and unzoomed framing!');
 }
 
 run().catch(console.error);

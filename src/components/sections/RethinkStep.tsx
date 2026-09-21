@@ -15,7 +15,7 @@ const RETHINK_NODES = [
   // HERO LARGE (150x140) - Sameer and client reviewing screen safely framed
   {
     imageSrc: "/assets/rethink/nodes/node-screen-review.webp",
-    alt: "Sameer Cognitive Health & Data Review",
+    alt: "Sameer Cognitive Health & Screening Data Review",
     shapeIndex: 0,
     width: 150,
     height: 140,
@@ -24,24 +24,24 @@ const RETHINK_NODES = [
     mobileSize: 120,
     objectPosition: "object-center",
   },
-  // 2. Mindful Journaling & Reflection (Top-Left: dropped lower - cy = 118)
-  // Compact (115x120) - mindful journaling safely framed
+  // 2. Brain Power Chart Analysis (Top-Left: dropped lower - cy = 118)
+  // Compact (120x120) - Sameer and patient analyzing brain anatomy chart on wall
   {
-    imageSrc: "/assets/rethink/nodes/node-journaling.webp",
-    alt: "Personal Reflection & Mindful Inquiry",
+    imageSrc: "/assets/rethink/nodes/node-brain-power.webp",
+    alt: "Brain Power Chart & Cognitive Pathway Analysis",
     shapeIndex: 3,
-    width: 115,
+    width: 120,
     height: 120,
     tilt: -6,
     desktopPos: "top-[58px] left-[30px]",
-    mobileSize: 100,
+    mobileSize: 105,
     objectPosition: "object-center",
   },
-  // 3. New Habits & Practice (Upper-Mid Right - cy = 223)
-  // Medium (135x135) - handshake with yoga mat safely framed
+  // 3. 1-on-1 Deep Clinical Dialogue (Upper-Mid Right - cy = 223)
+  // Medium (135x135) - Sameer in deep 1-on-1 consultation with laptop and reference books
   {
-    imageSrc: "/assets/rethink/nodes/node-habits.webp",
-    alt: "Building New Physical & Mindful Habits",
+    imageSrc: "/assets/rethink/nodes/node-cognitive-dialogue.webp",
+    alt: "Deep 1-on-1 Cognitive Uncoupling Dialogue",
     shapeIndex: 1,
     width: 135,
     height: 135,
@@ -50,11 +50,11 @@ const RETHINK_NODES = [
     mobileSize: 110,
     objectPosition: "object-center",
   },
-  // 5. Foot Reflexology Diagnostic (Mid-Left - cy = 330)
-  // Medium-Tall (135x140) - reflexology diagnostic pressure point session
+  // 4. Clinical Assessment Review (Mid-Left - cy = 330)
+  // Medium-Tall (135x140) - Doctor and patient reviewing health assessment chart at desk
   {
-    imageSrc: "/assets/rethink/nodes/node-reflexology.webp",
-    alt: "Foot Reflexology Diagnostic Assessment",
+    imageSrc: "/assets/rethink/nodes/node-assessment-review.webp",
+    alt: "Comprehensive Health & Symptom Assessment Review",
     shapeIndex: 2,
     width: 135,
     height: 140,
@@ -63,11 +63,11 @@ const RETHINK_NODES = [
     mobileSize: 110,
     objectPosition: "object-center",
   },
-  // 6. Craniosacral Somatic Release (Lower-Mid Right - cy = 405)
-  // Medium (130x130) - craniosacral release safely framed
+  // 5. 1-on-1 Pulse Reading Dialogue (Lower-Mid Right - cy = 405)
+  // Medium (130x130) - Sameer conducting Nadi Pariksha across consultation desk
   {
-    imageSrc: "/assets/rethink/nodes/node-craniosacral.webp",
-    alt: "Craniosacral Somatic Alignment",
+    imageSrc: "/assets/rethink/nodes/node-pulse-dialogue.webp",
+    alt: "1-on-1 Pulse Reading & Diagnostic Dialogue",
     shapeIndex: 4,
     width: 130,
     height: 130,
@@ -76,11 +76,11 @@ const RETHINK_NODES = [
     mobileSize: 110,
     objectPosition: "object-center",
   },
-  // 7. Balcony Somatic Rest (Bottom-Left - cy = 565)
-  // Compact-Medium (125x125) - Sameer crouching with client resting on balcony
+  // 6. Mindful Study & Reflection (Bottom-Left - cy = 565)
+  // Compact-Medium (125x125) - Doctor studying in clinic library
   {
-    imageSrc: "/assets/rethink/nodes/node-balcony-somatic.webp",
-    alt: "Outdoor Somatic Inquiry & Rest",
+    imageSrc: "/assets/rethink/nodes/node-mindful-study.webp",
+    alt: "Mindful Inquiry & Clinical Study",
     shapeIndex: 8,
     width: 125,
     height: 125,
@@ -89,11 +89,11 @@ const RETHINK_NODES = [
     mobileSize: 105,
     objectPosition: "object-center",
   },
-  // 8. 1-on-1 Consultation Dialogue (Bottom-Right - cy = 625)
-  // HERO LARGE (145x145) - Sameer 1-on-1 consultation desk dialogue
+  // 7. Meridian & Anatomical Chart Analysis (Bottom-Right - cy = 625)
+  // HERO LARGE (145x145) - Clinician analyzing Acupuncture & Reflexology chart on wall
   {
-    imageSrc: "/assets/rethink/nodes/node-consultation.webp",
-    alt: "Sameer 1-on-1 Consultation Dialogue",
+    imageSrc: "/assets/rethink/nodes/node-meridian-study.webp",
+    alt: "Neural Pathway & Meridian Study",
     shapeIndex: 7,
     width: 145,
     height: 145,

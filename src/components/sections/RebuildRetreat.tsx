@@ -28,12 +28,12 @@ const REBUILD_NODES = [
     mobileSize: 110,
     objectPosition: "object-center",
   },
-  // 2. Ayurvedic Retreat Bodywork (Top-Left - cy = 115)
-  // HERO LARGE (155x150) - clearly shows therapist in white, therapist in red, and client's facial massage
+  // 2. Sensory Garden Sanctuary Walk (Top-Left - cy = 115)
+  // HERO LARGE (155x150) - Sameer guiding client in outdoor garden sanctuary walk
   {
-    imageSrc: "/assets/rebuild/nodes/node-therapies.webp",
-    alt: "Retreat Herbal Oil Bodywork on Droni Table",
-    shapeIndex: 7,
+    imageSrc: "/assets/rebuild/nodes/node-sensory-garden.webp",
+    alt: "Outdoor Sensory Garden Walk & Grounding",
+    shapeIndex: 1,
     width: 155,
     height: 150,
     tilt: -4,
@@ -41,11 +41,11 @@ const REBUILD_NODES = [
     mobileSize: 120,
     objectPosition: "object-center",
   },
-  // 3. Shirodhara Stream (Top-Center - cy = 150)
-  // HERO LARGE (155x140) - captures hanging brass pot, cascading oil, therapist, and client's forehead
+  // 3. Sanctuary Retreat Campus (Top-Center - cy = 150)
+  // HERO LARGE (155x140) - Lush outdoor garden sanctuary and campus retreat path
   {
-    imageSrc: "/assets/rebuild/nodes/node-shirodhara.webp",
-    alt: "Ayurvedic Shirodhara Oil Cascade",
+    imageSrc: "/assets/rebuild/nodes/node-sanctuary-campus.webp",
+    alt: "Sanctuary Retreat Living Campus & Garden",
     shapeIndex: 5,
     width: 155,
     height: 140,
@@ -54,12 +54,12 @@ const REBUILD_NODES = [
     mobileSize: 120,
     objectPosition: "object-center",
   },
-  // 4. Pulse Assessment & Clinical Review (Upper-Mid Right - cy = 230)
-  // HERO LARGE (150x150) - Sameer's face, focused eyes, clipboard writing, and wrist pulse diagnostic 100% visible
+  // 4. Doctor Welcome Consultation (Upper-Mid Right - cy = 230)
+  // HERO LARGE (150x150) - Doctor smiling warmly with welcome chart & clipboard
   {
-    imageSrc: "/assets/rebuild/nodes/node-pulse-assessment.webp",
-    alt: "Pulse Assessment & Clinical Diagnostic Review",
-    shapeIndex: 1,
+    imageSrc: "/assets/rebuild/nodes/node-doctor-welcome.webp",
+    alt: "Doctor Welcome Consultation & Chart Review",
+    shapeIndex: 7,
     width: 150,
     height: 150,
     tilt: -3,
@@ -67,11 +67,11 @@ const REBUILD_NODES = [
     mobileSize: 115,
     objectPosition: "object-center",
   },
-  // 5. Cupping Decompression (Mid-Left - cy = 328)
-  // Medium (130x135) - therapist's focused face and cupping suction on back clearly framed
+  // 5. Spinal & Osteopathic Alignment (Mid-Left - cy = 328)
+  // Medium (130x135) - Practitioner performing spinal alignment & osteopathic release
   {
-    imageSrc: "/assets/rebuild/nodes/node-cupping.webp",
-    alt: "Cupping Suction Decompression",
+    imageSrc: "/assets/rebuild/nodes/node-spine-mobilization.webp",
+    alt: "Spinal & Osteopathic Posture Alignment",
     shapeIndex: 3,
     width: 130,
     height: 135,
@@ -80,11 +80,11 @@ const REBUILD_NODES = [
     mobileSize: 110,
     objectPosition: "object-center",
   },
-  // 6. Somatic Movement Alignment (Lower-Mid Right - cy = 418)
-  // Medium Wide (145x115) - wide aspect ratio shows both instructor crouching and participant on red mat
+  // 6. Restorative Balcony Movement (Lower-Mid Right - cy = 418)
+  // Medium Wide (145x115) - Somatic instructor guiding leg movement with lush tree view
   {
-    imageSrc: "/assets/rebuild/nodes/node-somatic-mat.webp",
-    alt: "Somatic Movement & Posture Alignment",
+    imageSrc: "/assets/rebuild/nodes/node-balcony-movement.webp",
+    alt: "Balcony Somatic Movement & Habit Practice",
     shapeIndex: 4,
     width: 145,
     height: 115,
@@ -106,11 +106,11 @@ const REBUILD_NODES = [
     mobileSize: 100,
     objectPosition: "object-center",
   },
-  // 8. Morning Pranayama & Breathwork (Bottom-Right - cy = 630)
-  // Compact-Medium (120x120) - instructor demonstrating Nadi Shodhana with thumb on nostril clearly framed
+  // 8. Sattvic Organic Nutrition (Bottom-Right - cy = 630)
+  // Compact-Medium (120x120) - Sattvic organic healing nutrition & retreat dining table
   {
-    imageSrc: "/assets/rebuild/nodes/node-yoga-breath.webp",
-    alt: "Morning Pranayama & Restorative Breathwork",
+    imageSrc: "/assets/rebuild/nodes/node-sattvic-meals.webp",
+    alt: "Sattvic Organic Nutrition & Healing Meals",
     shapeIndex: 2,
     width: 120,
     height: 120,

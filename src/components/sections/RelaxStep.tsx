@@ -25,7 +25,7 @@ const RELAX_NODES = [
     objectPosition: "object-center",
   },
   // 2. Pulse Diagnosis (Upper-right: outer edge - cy = 218)
-  // HERO LARGE (150x150) - Sameer head, clipboard, hands taking wrist pulse 100% visible
+  // HERO LARGE (150x150) - Sameer face, clipboard, handwriting, and pulse check fully visible
   {
     imageSrc: "/assets/relax/nodes/node-pulse.webp",
     alt: "Pulse Assessment & Nadi Pariksha",
@@ -50,11 +50,11 @@ const RELAX_NODES = [
     mobileSize: 115,
     objectPosition: "object-center",
   },
-  // 4. Cupping Therapy (Mid-left: pulled inward - cy = 325)
-  // Medium (135x135) - therapist in white shirt applying suction pump with cups on back
+  // 4. Fire Cupping Decompression (Mid-left: pulled inward - cy = 325)
+  // Medium (135x135) - Sameer applying traditional glass flame cupping on back
   {
-    imageSrc: "/assets/relax/nodes/node-cupping.webp",
-    alt: "Cupping Suction Decompression",
+    imageSrc: "/assets/relax/nodes/node-fire-cupping.webp",
+    alt: "Traditional Fire Cupping Decompression",
     shapeIndex: 3,
     width: 135,
     height: 135,
@@ -64,7 +64,7 @@ const RELAX_NODES = [
     objectPosition: "object-center",
   },
   // 5. Craniosacral Somatic Therapy (Lower-mid right - cy = 405)
-  // Medium (130x130) - gentle craniosacral touch and resting face
+  // Medium (130x130) - gentle craniosacral forehead touch and resting face in white
   {
     imageSrc: "/assets/relax/nodes/node-craniosacral.webp",
     alt: "Craniosacral Somatic Release",
@@ -89,11 +89,11 @@ const RELAX_NODES = [
     mobileSize: 115,
     objectPosition: "object-center",
   },
-  // 7. Clinical Facial Care & Therapies (Far top-left - cy = 123)
-  // Compact (115x115) - Sameer, therapist, and client on table safely framed
+  // 7. Clinical Vitals & Compassionate Intake (Far top-left - cy = 123)
+  // Compact (115x115) - Clinician taking blood pressure / vitals in reception
   {
-    imageSrc: "/assets/relax/nodes/node-acupuncture.webp",
-    alt: "Clinical Facial & Restorative Care",
+    imageSrc: "/assets/relax/nodes/node-intake-vitals.webp",
+    alt: "Clinical Vitals & Compassionate Intake",
     shapeIndex: 6,
     width: 115,
     height: 115,
@@ -102,21 +102,21 @@ const RELAX_NODES = [
     mobileSize: 100,
     objectPosition: "object-center",
   },
-  // 8. Osteopathic Joint Mobilization (Top-right highest point - cy = 73)
-  // Medium (125x125) - Sameer performing joint mobilization safely framed
+  // 8. Osteopathic Leg & Foot Mobilization (Top-right highest point - cy = 73)
+  // Medium (135x135) - Sameer performing articular mobilization; full legs, feet, and practitioner clearly visible
   {
     imageSrc: "/assets/relax/nodes/node-joint-mobilization.webp",
-    alt: "Sameer Joint & Articular Mobilization",
-    shapeIndex: 9,
-    width: 125,
-    height: 125,
+    alt: "Sameer Articular Leg & Foot Mobilization",
+    shapeIndex: 0,
+    width: 135,
+    height: 135,
     tilt: 4,
     desktopPos: "top-[10px] right-[95px]",
-    mobileSize: 105,
+    mobileSize: 110,
     objectPosition: "object-center",
   },
   // 9. Restorative Breathwork & Pranayama (Bottom-right - cy = 610)
-  // Medium (120x120) - Nadi Shodhana breathwork
+  // Medium (120x120) - Nadi Shodhana breathwork: two people centered, zero excess wall
   {
     imageSrc: "/assets/relax/nodes/node-yoga-breath.webp",
     alt: "Restorative Pranayama & Breathwork",
@@ -292,7 +292,7 @@ export const RelaxStep: React.FC<RelaxStepProps> = ({ onOpenAssessment }) => {
                 </div>
               </div>
 
-              <div className="absolute top-[70px] left-[475px] z-30 pointer-events-none">
+              <div className="absolute top-[75px] left-[425px] z-30 pointer-events-none">
                 <div className="w-[130px] p-2 rounded-lg bg-[#141A10]/95 border border-[#C79A45]/30 text-left shadow-md">
                   <p className="font-sans text-[10px] text-[#F6F1E4] leading-tight">
                     Your body knows the way.
