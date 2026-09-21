@@ -280,23 +280,23 @@ export const RealStories: React.FC = () => {
             </ZoomReveal>
           </div>
 
-          {/* ─── LEFT SCATTERED ELEMENTS (Small, uneven, separate photos & review notes) ─── */}
+          {/* ─── LEFT SCATTERED ELEMENTS (Small, uneven, separate photos & review notes with zero overlap) ─── */}
           
           {/* L1: Tala & Sameer Polaroid Photo */}
-          <div className="absolute top-[25px] left-[70px] w-[140px] z-20">
+          <div className="absolute top-[20px] left-[20px] w-[145px] z-20 hover:z-30">
             <SlideIn from="left" delay={0.1}>
               <PhotoPolaroid
                 src="/assets/reviews/review-tala.webp"
                 alt="Sameer with Tala Rashid"
                 caption="Tala & Sameer"
-                tilt={-5}
+                tilt={-4}
                 tapeCorner="top-left"
               />
             </SlideIn>
           </div>
 
           {/* L2: Tala Rashid Review Note */}
-          <div className="absolute top-[185px] left-[15px] w-[220px] z-20">
+          <div className="absolute top-[55px] left-[195px] w-[215px] z-20">
             <SlideIn from="left" delay={0.2}>
               <ReviewNote
                 quote="I was going through a very stressful phase and struggling with infertility. After consulting Sameer, my stress levels reduced. With his guidance, our IVF treatment was successful. Really grateful for his help."
@@ -309,24 +309,24 @@ export const RealStories: React.FC = () => {
           </div>
 
           {/* L3: Personal Emotional Recovery Story Note (Chennai Visit) */}
-          <div className="absolute top-[345px] left-[105px] w-[235px] z-20">
+          <div className="absolute top-[320px] left-[55px] w-[235px] z-20">
             <SlideIn from="left" delay={0.3}>
               <ReviewNote
                 quote="After my divorce, I found myself carrying emotional stress and couldn't sleep. Mind Body Recovery Center didn't rush—they listened and gave me a personalised plan. Every session left me calmer, lighter, and at peace."
                 author="Verified Client"
                 location="Chennai Visit"
                 tagline="Calmer & lighter"
-                tilt={-2.5}
+                tilt={-2}
                 variant="parchment"
                 tapeCorner="top-right"
               />
             </SlideIn>
           </div>
 
-          {/* ─── RIGHT SCATTERED ELEMENTS (Small, uneven, separate photos & review notes) ─── */}
+          {/* ─── RIGHT SCATTERED ELEMENTS (Small, uneven, separate photos & review notes with zero overlap) ─── */}
 
-          {/* R1: Choi & Sameer Polaroid Photo */}
-          <div className="absolute top-[20px] right-[135px] w-[140px] z-20">
+          {/* R1: Choi & Sameer Polaroid Photo (Clear of Choi review card) */}
+          <div className="absolute top-[20px] right-[245px] w-[145px] z-20 hover:z-30">
             <SlideIn from="right" delay={0.1}>
               <PhotoPolaroid
                 src="/assets/reviews/review-choi.webp"
@@ -338,8 +338,8 @@ export const RealStories: React.FC = () => {
             </SlideIn>
           </div>
 
-          {/* R2: Choi Review Note */}
-          <div className="absolute top-[75px] right-[15px] w-[220px] z-20">
+          {/* R2: Choi Review Note (Positioned to the right of Choi Polaroid so faces are 100% visible) */}
+          <div className="absolute top-[45px] right-[12px] w-[215px] z-20">
             <SlideIn from="right" delay={0.2}>
               <ReviewNote
                 quote="Dealing with neck and shoulder stiffness from long hours. The team took time to understand and explained everything clearly. I felt much more relaxed after sessions and definitely recommend."
@@ -352,21 +352,21 @@ export const RealStories: React.FC = () => {
           </div>
 
           {/* R3: Wright Review Note */}
-          <div className="absolute top-[265px] right-[165px] w-[215px] z-20">
+          <div className="absolute top-[265px] right-[220px] w-[210px] z-20">
             <SlideIn from="right" delay={0.25}>
               <ReviewNote
                 quote="I was feeling quite stressed and mentally tired. Sameer took the time to understand what I was going through. The sessions were very calming, and I left feeling much more relaxed."
                 author="Wright"
                 location="Restorative Care"
                 tagline="People. Progress. Wellness."
-                tilt={3}
+                tilt={2.5}
                 tapeCorner="top-left"
               />
             </SlideIn>
           </div>
 
-          {/* R4: Wright & Sameer Polaroid Photo */}
-          <div className="absolute top-[325px] right-[25px] w-[135px] z-20">
+          {/* R4: Wright & Sameer Polaroid Photo (Clear of Wright review card) */}
+          <div className="absolute top-[310px] right-[30px] w-[140px] z-20 hover:z-30">
             <SlideIn from="right" delay={0.3}>
               <PhotoPolaroid
                 src="/assets/reviews/review-wright.webp"
