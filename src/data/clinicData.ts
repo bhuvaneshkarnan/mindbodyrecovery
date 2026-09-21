@@ -79,7 +79,7 @@ export const clinicData = {
         sublabel: "experienced minds guiding care",
       },
       {
-        value: "2,356+",
+        value: "25,000+",
         label: "Lives changing",
         sublabel: "real transformations",
       },
