@@ -55,12 +55,12 @@ export const MeetDoctor: React.FC<MeetDoctorProps> = ({ onOpenAssessment }) => {
               </h2>
 
               {/* Curly Script Name with Clean & Minimal Underline */}
-              <div className="inline-flex flex-col items-start mt-2 mb-3">
-                <span className="font-script text-3xl sm:text-4xl text-[#C79A45] font-bold tracking-wide select-none leading-none">
+              <div className="inline-flex flex-col items-start mt-1 sm:mt-2 mb-3 sm:mb-4">
+                <span className="font-script text-5xl sm:text-6xl text-[#C79A45] font-bold tracking-wide select-none leading-none">
                   Sameer
                 </span>
                 <svg
-                  className="w-24 sm:w-28 h-2 text-[#C79A45]/80 overflow-visible mt-1"
+                  className="w-36 sm:w-44 h-2.5 text-[#C79A45]/80 overflow-visible mt-1"
                   viewBox="0 0 100 8"
                   fill="none"
                   aria-hidden="true"
@@ -68,7 +68,7 @@ export const MeetDoctor: React.FC<MeetDoctorProps> = ({ onOpenAssessment }) => {
                   <path
                     d="M 2 5 C 28 1.5, 68 2, 98 5"
                     stroke="currentColor"
-                    strokeWidth="2"
+                    strokeWidth="2.5"
                     strokeLinecap="round"
                   />
                 </svg>
