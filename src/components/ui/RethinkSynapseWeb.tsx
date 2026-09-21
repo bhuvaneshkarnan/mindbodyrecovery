@@ -79,14 +79,6 @@ export const RethinkSynapseWeb: React.FC<{ className?: string }> = ({ className 
       delay: "0s",
     },
     {
-      id: "rethink-axon-2",
-      d: generateCurlyAxon(405, 272, 405, 170, 16, 3),
-      endX: 405,
-      endY: 170,
-      dur: "2.2s",
-      delay: "0.4s",
-    },
-    {
       id: "rethink-axon-3",
       d: generateCurlyAxon(605, 305, 788, 223, 20, 3),
       endX: 788,

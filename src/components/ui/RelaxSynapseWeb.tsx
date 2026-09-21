@@ -131,14 +131,6 @@ export const RelaxSynapseWeb: React.FC<{ className?: string }> = ({ className = 
       delay: "0.7s",
     },
     {
-      id: "axon-8",
-      d: generateCurlyAxon(255, 455, 70, 555, 24, 4),
-      endX: 70,
-      endY: 555,
-      dur: "3.4s",
-      delay: "0.8s",
-    },
-    {
       id: "axon-9",
       d: generateCurlyAxon(595, 460, 770, 610, 22, 4),
       endX: 770,

@@ -273,8 +273,8 @@ export const RebuildRetreat: React.FC<RebuildRetreatProps> = ({ onOpenAssessment
                 </div>
               </div>
 
-              <div className="absolute top-[65px] left-[520px] z-30 pointer-events-none">
-                <div className="w-[145px] p-2.5 rounded-lg bg-[#141A10]/95 border border-[#C79A45]/30 text-left shadow-md">
+              <div className="absolute top-[175px] left-[525px] z-30 pointer-events-none">
+                <div className="w-[135px] p-2.5 rounded-lg bg-[#141A10]/95 border border-[#C79A45]/30 text-left shadow-md">
                   <p className="font-sans text-[10.5px] text-[#F6F1E4] leading-tight">
                     Balance & energize vitality.
                   </p>

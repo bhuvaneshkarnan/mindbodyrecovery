@@ -36,20 +36,7 @@ const RETHINK_NODES = [
     mobileSize: 100,
     objectPosition: "object-center",
   },
-  // 3. Sameer Clinical Focus (Top-Center: above center frame - cy = 170)
-  // HERO LARGE (150x140) - Sameer portrait with anatomical chart
-  {
-    imageSrc: "/assets/rethink/nodes/node-sameer-focus.webp",
-    alt: "Sameer Clinical Assessment Focus",
-    shapeIndex: 5,
-    width: 150,
-    height: 140,
-    tilt: 0,
-    desktopPos: "top-[100px] left-[330px]",
-    mobileSize: 120,
-    objectPosition: "object-center",
-  },
-  // 4. New Habits & Practice (Upper-Mid Right - cy = 223)
+  // 3. New Habits & Practice (Upper-Mid Right - cy = 223)
   // Medium (135x135) - handshake with yoga mat safely framed
   {
     imageSrc: "/assets/rethink/nodes/node-habits.webp",

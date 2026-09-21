@@ -115,20 +115,7 @@ const RELAX_NODES = [
     mobileSize: 105,
     objectPosition: "object-center",
   },
-  // 9. Sanctuary Garden Retreat (Bottom-left raised high - cy = 555)
-  // Compact (115x115) - guest looking into garden trees
-  {
-    imageSrc: "/assets/relax/nodes/node-sanctuary.webp",
-    alt: "Sanctuary Garden Restorative Retreat",
-    shapeIndex: 8,
-    width: 115,
-    height: 115,
-    tilt: -5,
-    desktopPos: "bottom-[137px] left-[12px]",
-    mobileSize: 100,
-    objectPosition: "object-center",
-  },
-  // 10. Restorative Breathwork & Pranayama (Bottom-right - cy = 610)
+  // 9. Restorative Breathwork & Pranayama (Bottom-right - cy = 610)
   // Medium (120x120) - Nadi Shodhana breathwork
   {
     imageSrc: "/assets/relax/nodes/node-yoga-breath.webp",

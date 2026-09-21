@@ -130,7 +130,7 @@ export const RebuildSynapseWeb: React.FC<{ className?: string }> = ({ className 
 
   // Subtle secondary curly filaments to quote cards
   const pathQuote1 = generateCurlyAxon(265, 272, 245, 30, 14, 3);
-  const pathQuote2 = generateCurlyAxon(550, 272, 570, 75, 14, 3);
+  const pathQuote2 = generateCurlyAxon(550, 272, 580, 195, 14, 3);
   const pathQuote3 = generateCurlyAxon(300, 478, 320, 690, 14, 3);
 
   return (
