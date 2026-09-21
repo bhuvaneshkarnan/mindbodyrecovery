@@ -16,11 +16,31 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
   initialConcern,
 }) => {
   const [step, setStep] = useState(1);
-  const [selectedConcern, setSelectedConcern] = useState(initialConcern || "Sleep Problems");
+  const [selectedConcerns, setSelectedConcerns] = useState<string[]>(
+    initialConcern ? [initialConcern] : ["Sleep Problems"]
+  );
   const [selectedDuration, setSelectedDuration] = useState("1–3 Months");
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
   const [submitted, setSubmitted] = useState(false);
+
+  React.useEffect(() => {
+    if (initialConcern) {
+      setSelectedConcerns((prev) =>
+        prev.includes(initialConcern) ? prev : [initialConcern, ...prev]
+      );
+    }
+  }, [initialConcern]);
+
+  const toggleConcern = (item: string) => {
+    setSelectedConcerns((prev) => {
+      if (prev.includes(item)) {
+        return prev.filter((c) => c !== item);
+      } else {
+        return [...prev, item];
+      }
+    });
+  };
 
   const concernsList = [
     "Sleep Problems",
@@ -38,6 +58,7 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
   ];
 
   const handleNext = () => {
+    if (step === 1 && selectedConcerns.length === 0) return;
     if (step < 3) setStep(step + 1);
   };
 
@@ -54,6 +75,7 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
   const handleResetAndClose = () => {
     setSubmitted(false);
     setStep(1);
+    setSelectedConcerns(initialConcern ? [initialConcern] : ["Sleep Problems"]);
     setFullName("");
     setPhone("");
     onClose();
@@ -112,38 +134,52 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
                 />
               </div>
 
-              {/* STEP 1: Concern Selection */}
+              {/* STEP 1: Concern Selection (Multi-select) */}
               {step === 1 && (
                 <div className="space-y-4">
-                  <p className="text-xs uppercase tracking-widest text-[#F6F1E4]/70 font-medium">
-                    What is the primary concern you want to address?
-                  </p>
+                  <div>
+                    <p className="text-xs uppercase tracking-widest text-[#F6F1E4]/70 font-medium">
+                      What is the primary concern you want to address?
+                    </p>
+                    <p className="text-[11px] text-[#C79A45]/80 font-sans mt-1">
+                      (Select one or more concerns)
+                    </p>
+                  </div>
                   <div className="space-y-2">
-                    {concernsList.map((item) => (
-                      <button
-                        key={item}
-                        type="button"
-                        onClick={() => setSelectedConcern(item)}
-                        className={`w-full p-3.5 rounded-xl text-left text-sm font-sans flex items-center justify-between border transition-all ${
-                          selectedConcern === item
-                            ? "bg-[#12140D] border-[#C79A45] text-[#C79A45] font-medium"
-                            : "bg-[#12140D]/60 border-[#F6F1E4]/10 text-[#F6F1E4]/80 hover:bg-[#12140D]"
-                        }`}
-                      >
-                        <span>{item}</span>
-                        {selectedConcern === item && <Check size={16} />}
-                      </button>
-                    ))}
+                    {concernsList.map((item) => {
+                      const isSelected = selectedConcerns.includes(item);
+                      return (
+                        <button
+                          key={item}
+                          type="button"
+                          onClick={() => toggleConcern(item)}
+                          className={`w-full p-3.5 rounded-xl text-left text-sm font-sans flex items-center justify-between border transition-all ${
+                            isSelected
+                              ? "bg-[#12140D] border-[#C79A45] text-[#C79A45] font-medium shadow-[0_0_12px_rgba(199,154,69,0.12)]"
+                              : "bg-[#12140D]/60 border-[#F6F1E4]/10 text-[#F6F1E4]/80 hover:bg-[#12140D]"
+                          }`}
+                        >
+                          <span>{item}</span>
+                          {isSelected && <Check size={16} className="text-[#C79A45] shrink-0" />}
+                        </button>
+                      );
+                    })}
                   </div>
 
                   <div className="pt-6">
                     <button
                       onClick={handleNext}
-                      className="group w-full py-3 bg-[#C79A45] hover:bg-[#D4A752] text-[#12140D] text-xs uppercase tracking-widest font-semibold rounded-xl transition-all shadow-md active:scale-[0.98] flex items-center justify-center space-x-2"
+                      disabled={selectedConcerns.length === 0}
+                      className="group w-full py-3 bg-[#C79A45] hover:bg-[#D4A752] disabled:opacity-40 disabled:cursor-not-allowed text-[#12140D] text-xs uppercase tracking-widest font-semibold rounded-xl transition-all shadow-md active:scale-[0.98] flex items-center justify-center space-x-2"
                     >
                       <span>Continue</span>
                       <span className="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
                     </button>
+                    {selectedConcerns.length === 0 && (
+                      <p className="text-center text-[11px] text-[#C79A45]/70 mt-2">
+                        Please select at least one concern
+                      </p>
+                    )}
                   </div>
                 </div>
               )}
@@ -199,7 +235,7 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
                   </p>
 
                   <div className="p-3.5 bg-[#12140D] border border-[#F6F1E4]/10 rounded-xl text-xs text-[#F6F1E4]/70 space-y-1 mb-2">
-                    <p><span className="text-[#C79A45] font-medium">Concern:</span> {selectedConcern}</p>
+                    <p><span className="text-[#C79A45] font-medium">{selectedConcerns.length > 1 ? "Concerns:" : "Concern:"}</span> {selectedConcerns.join(", ")}</p>
                     <p><span className="text-[#C79A45] font-medium">Duration:</span> {selectedDuration}</p>
                   </div>
 

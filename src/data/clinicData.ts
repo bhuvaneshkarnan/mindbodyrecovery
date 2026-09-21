@@ -48,8 +48,8 @@ export interface RetreatPillar {
 export const clinicData = {
   clinicName: "Mind Body Recovery",
   tagline: "Holistic Wellness. Personalised Care.",
-  phone: "+91 90949 24694",
-  phoneDisplay: "+91 90949 24694",
+  phone: "+919042561651",
+  phoneDisplay: "+91 90425 61651",
   email: "tamilnadutherapist@gmail.com",
   address: "T Nagar, Chennai, Tamil Nadu",
   addressPlaceholder: "",

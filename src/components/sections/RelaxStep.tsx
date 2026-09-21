@@ -12,133 +12,133 @@ import clsx from "clsx";
 
 const RELAX_NODES = [
   // 1. Shirodhara (Top-center: nestled above center frame - cy = 170)
-  // Shape: Half Cut Dome (flat bottom, rounded arch dome - 88% area)
+  // HERO LARGE (150x135) - captures brass vessel, cascading oil stream, client forehead
   {
     imageSrc: "/assets/relax/nodes/node-shirodhara.webp",
     alt: "Ayurvedic Shirodhara Oil Cascade",
     shapeIndex: 0,
-    width: 120,
-    height: 110,
+    width: 150,
+    height: 135,
     tilt: 0,
-    desktopPos: "top-[115px] left-[350px]",
-    mobileSize: 110,
+    desktopPos: "top-[102px] left-[335px]",
+    mobileSize: 120,
     objectPosition: "object-center",
   },
-  // 2. Pulse Diagnosis (Upper-right: pushed outward to outer edge - cy = 218)
-  // Shape: Crescent Moon Cut (generous lunar medallion with concave inner scoop on left - 80% area)
+  // 2. Pulse Diagnosis (Upper-right: outer edge - cy = 218)
+  // HERO LARGE (150x150) - Sameer head, clipboard, hands taking wrist pulse 100% visible
   {
     imageSrc: "/assets/relax/nodes/node-pulse.webp",
     alt: "Pulse Assessment & Nadi Pariksha",
     shapeIndex: 1,
-    width: 115,
-    height: 115,
-    tilt: -5,
-    desktopPos: "top-[160px] right-[15px]",
-    mobileSize: 105,
+    width: 150,
+    height: 150,
+    tilt: -4,
+    desktopPos: "top-[145px] right-[5px]",
+    mobileSize: 115,
     objectPosition: "object-center",
   },
-  // 3. Podikizhi (Lower-left: snug under center frame - cy = 495)
-  // Shape: Vertical Half Cut (flat vertical left edge, dome right - 88% area)
+  // 3. Podikizhi (Lower-left: under center frame - cy = 495)
+  // HERO LARGE (145x140) - therapist head, Sameer, and scalp oil massage
   {
     imageSrc: "/assets/relax/nodes/node-podikizhi.webp",
-    alt: "Podikizhi Herbal Pouch Therapy",
+    alt: "Podikizhi Herbal Scalp & Oil Therapy",
     shapeIndex: 2,
-    width: 115,
-    height: 110,
+    width: 145,
+    height: 140,
     tilt: 3,
-    desktopPos: "top-[440px] left-[155px]",
-    mobileSize: 105,
+    desktopPos: "top-[425px] left-[140px]",
+    mobileSize: 115,
     objectPosition: "object-center",
   },
-  // 4. Cupping Therapy (Mid-left: pulled inward from left edge - cy = 325)
-  // Shape: Teardrop Cut (pointed corner apex, bulbous droplet body - 90% area)
+  // 4. Cupping Therapy (Mid-left: pulled inward - cy = 325)
+  // Medium (135x135) - therapist in white shirt applying suction pump with cups on back
   {
     imageSrc: "/assets/relax/nodes/node-cupping.webp",
     alt: "Cupping Suction Decompression",
     shapeIndex: 3,
-    width: 120,
-    height: 120,
-    tilt: -7,
-    desktopPos: "top-[265px] left-[75px]",
+    width: 135,
+    height: 135,
+    tilt: -6,
+    desktopPos: "top-[258px] left-[68px]",
     mobileSize: 110,
     objectPosition: "object-center",
   },
-  // 5. Craniosacral Somatic Therapy (Lower-mid right: cleared from center frame - cy = 405)
-  // Shape: Botanical Leaf / Lens (gentle pointed tips, wide curved convex arcs - 85% area)
+  // 5. Craniosacral Somatic Therapy (Lower-mid right - cy = 405)
+  // Medium (130x130) - gentle craniosacral touch and resting face
   {
     imageSrc: "/assets/relax/nodes/node-craniosacral.webp",
     alt: "Craniosacral Somatic Release",
     shapeIndex: 4,
-    width: 120,
-    height: 120,
-    tilt: 6,
-    desktopPos: "top-[345px] right-[80px]",
+    width: 130,
+    height: 130,
+    tilt: 5,
+    desktopPos: "top-[340px] right-[75px]",
     mobileSize: 110,
     objectPosition: "object-center",
   },
-  // 6. Somatic Mat Movement (Bottom-center: lowest point of entire stage - cy = 680)
-  // Shape: Cathedral Arch Window (dome top, straight vertical sides, flat bottom - 88% area)
+  // 6. Somatic Mat Movement (Bottom-center lowest point - cy = 680)
+  // Medium-Wide (150x115) - wide aspect ratio frames instructor and client on mat
   {
     imageSrc: "/assets/relax/nodes/node-somatic.webp",
     alt: "Somatic Inquiry & Mat Movement",
     shapeIndex: 5,
-    width: 125,
-    height: 110,
+    width: 150,
+    height: 115,
     tilt: -2,
-    desktopPos: "bottom-[15px] left-[390px]",
-    mobileSize: 110,
+    desktopPos: "bottom-[12px] left-[378px]",
+    mobileSize: 115,
     objectPosition: "object-center",
   },
-  // 7. Clinical Facial Acupuncture (Far top-left: dropped lower than joint mob - cy = 123)
-  // Shape: Diagonal Sliced Wedge (sharp flat diagonal cut at top-right, rounded base - 88% area)
+  // 7. Clinical Facial Care & Therapies (Far top-left - cy = 123)
+  // Compact (115x115) - Sameer, therapist, and client on table safely framed
   {
     imageSrc: "/assets/relax/nodes/node-acupuncture.webp",
-    alt: "Clinical Facial Acupuncture Care",
+    alt: "Clinical Facial & Restorative Care",
     shapeIndex: 6,
     width: 115,
     height: 115,
-    tilt: 7,
+    tilt: 6,
     desktopPos: "top-[65px] left-[25px]",
     mobileSize: 100,
     objectPosition: "object-center",
   },
-  // 8. Osteopathic Joint Mobilization (Top-right: highest point, pulled inward - cy = 73)
-  // Shape: Inverted Half Cut Dome (flat top protects Sameer's head from clipping - 88% area)
+  // 8. Osteopathic Joint Mobilization (Top-right highest point - cy = 73)
+  // Medium (125x125) - Sameer performing joint mobilization safely framed
   {
     imageSrc: "/assets/relax/nodes/node-joint-mobilization.webp",
     alt: "Sameer Joint & Articular Mobilization",
     shapeIndex: 9,
-    width: 115,
-    height: 115,
+    width: 125,
+    height: 125,
     tilt: 4,
-    desktopPos: "top-[15px] right-[100px]",
-    mobileSize: 100,
+    desktopPos: "top-[10px] right-[95px]",
+    mobileSize: 105,
     objectPosition: "object-center",
   },
-  // 9. Sanctuary Garden Retreat (Bottom-left: raised high above somatic - cy = 555)
-  // Shape: Quarter Fan Cut (softened 90-degree corner, wide circular fan arc - 86% area)
+  // 9. Sanctuary Garden Retreat (Bottom-left raised high - cy = 555)
+  // Compact (115x115) - guest looking into garden trees
   {
     imageSrc: "/assets/relax/nodes/node-sanctuary.webp",
     alt: "Sanctuary Garden Restorative Retreat",
     shapeIndex: 8,
-    width: 110,
-    height: 110,
-    tilt: -6,
-    desktopPos: "bottom-[140px] left-[15px]",
+    width: 115,
+    height: 115,
+    tilt: -5,
+    desktopPos: "bottom-[137px] left-[12px]",
     mobileSize: 100,
     objectPosition: "object-center",
   },
-  // 10. Restorative Breathwork & Pranayama (Bottom-right: mid-level height, stepped outward - cy = 610)
-  // Shape: Waning Moon Cut (gentle scoop on right edge against back - 80% area)
+  // 10. Restorative Breathwork & Pranayama (Bottom-right - cy = 610)
+  // Medium (120x120) - Nadi Shodhana breathwork
   {
     imageSrc: "/assets/relax/nodes/node-yoga-breath.webp",
     alt: "Restorative Pranayama & Breathwork",
     shapeIndex: 7,
-    width: 110,
-    height: 110,
-    tilt: 4,
-    desktopPos: "bottom-[85px] right-[35px]",
-    mobileSize: 100,
+    width: 120,
+    height: 120,
+    tilt: 3,
+    desktopPos: "bottom-[80px] right-[30px]",
+    mobileSize: 105,
     objectPosition: "object-center",
   },
 ];

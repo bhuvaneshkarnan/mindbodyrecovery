@@ -54,7 +54,7 @@
 9. **Step 03: REBUILD (The Retreat):** Headline: `2 Days to Rebuild You.` — *"A RESET FOR YOUR BODY, MIND & LIFE"*. 3 feature markers (2 Days, Holistic, Lifetime) + 5 pillars + real facility photography.
 10. **Mindful Reflection ("What are you fighting with?"):** Empathetic reframing of stress, tension, and fatigue without clinical pathologizing.
 11. **Meet Sameer:** Personal clinician story and holistic care philosophy.
-12. **Contact & Location:** Assessment booking, phone (`+91 90949 24694`), interactive Google Map location.
+12. **Contact & Location:** Assessment booking, phone (`+91 90425 61651`), interactive Google Map location.
 13. **Footer:** Emblem, navigation, therapies, retreat pillars, contact, copyright.
 
 ---

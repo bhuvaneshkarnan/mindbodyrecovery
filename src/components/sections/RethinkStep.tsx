@@ -11,107 +11,107 @@ import clsx from "clsx";
 
 const RETHINK_NODES = [
   // 1. Cognitive Health Review (Top-Right: highest point on right - cy = 78)
-  // Shape: Half Cut Dome (flat bottom, arch dome top - 88% area)
+  // HERO LARGE (150x140) - Sameer and client reviewing screen safely framed
   {
     imageSrc: "/assets/rethink/nodes/node-screen-review.webp",
     alt: "Sameer Cognitive Health & Data Review",
     shapeIndex: 0,
-    width: 115,
-    height: 115,
+    width: 150,
+    height: 140,
     tilt: 4,
-    desktopPos: "top-[20px] right-[85px]",
-    mobileSize: 105,
+    desktopPos: "top-[8px] right-[67px]",
+    mobileSize: 120,
     objectPosition: "object-center",
   },
   // 2. Mindful Journaling & Reflection (Top-Left: dropped lower - cy = 118)
-  // Shape: Teardrop Cut (pointed corner apex, bulbous droplet body - 90% area)
+  // Compact (115x120) - mindful journaling safely framed
   {
     imageSrc: "/assets/rethink/nodes/node-journaling.webp",
     alt: "Personal Reflection & Mindful Inquiry",
     shapeIndex: 3,
     width: 115,
-    height: 115,
+    height: 120,
     tilt: -6,
-    desktopPos: "top-[60px] left-[30px]",
-    mobileSize: 105,
+    desktopPos: "top-[58px] left-[30px]",
+    mobileSize: 100,
     objectPosition: "object-center",
   },
   // 3. Sameer Clinical Focus (Top-Center: above center frame - cy = 170)
-  // Shape: Cathedral Arch Window (dome top, straight sides, flat bottom - 88% area)
+  // HERO LARGE (150x140) - Sameer portrait with anatomical chart
   {
     imageSrc: "/assets/rethink/nodes/node-sameer-focus.webp",
     alt: "Sameer Clinical Assessment Focus",
     shapeIndex: 5,
-    width: 120,
-    height: 110,
+    width: 150,
+    height: 140,
     tilt: 0,
-    desktopPos: "top-[115px] left-[345px]",
-    mobileSize: 110,
+    desktopPos: "top-[100px] left-[330px]",
+    mobileSize: 120,
     objectPosition: "object-center",
   },
-  // 4. New Habits & Practice (Upper-Mid Right: pushed outward to outer edge - cy = 223)
-  // Shape: Crescent Moon Cut (generous lunar medallion with concave inner scoop - 80% area)
+  // 4. New Habits & Practice (Upper-Mid Right - cy = 223)
+  // Medium (135x135) - handshake with yoga mat safely framed
   {
     imageSrc: "/assets/rethink/nodes/node-habits.webp",
     alt: "Building New Physical & Mindful Habits",
     shapeIndex: 1,
-    width: 115,
-    height: 115,
+    width: 135,
+    height: 135,
     tilt: -5,
-    desktopPos: "top-[165px] right-[15px]",
-    mobileSize: 105,
+    desktopPos: "top-[155px] right-[5px]",
+    mobileSize: 110,
     objectPosition: "object-center",
   },
-  // 5. Foot Reflexology Diagnostic (Mid-Left: pulled inward - cy = 330)
-  // Shape: Vertical Half Cut (flat vertical left edge, dome right - 88% area)
+  // 5. Foot Reflexology Diagnostic (Mid-Left - cy = 330)
+  // Medium-Tall (135x140) - reflexology diagnostic pressure point session
   {
     imageSrc: "/assets/rethink/nodes/node-reflexology.webp",
     alt: "Foot Reflexology Diagnostic Assessment",
     shapeIndex: 2,
-    width: 120,
-    height: 120,
+    width: 135,
+    height: 140,
     tilt: -7,
-    desktopPos: "top-[270px] left-[70px]",
+    desktopPos: "top-[260px] left-[62px]",
     mobileSize: 110,
     objectPosition: "object-center",
   },
-  // 6. Craniosacral Somatic Release (Lower-Mid Right: tucked inward with clearance - cy = 405)
-  // Shape: Botanical Leaf / Lens (gentle pointed tips, wide curved convex arcs - 85% area)
+  // 6. Craniosacral Somatic Release (Lower-Mid Right - cy = 405)
+  // Medium (130x130) - craniosacral release safely framed
   {
     imageSrc: "/assets/rethink/nodes/node-craniosacral.webp",
     alt: "Craniosacral Somatic Alignment",
     shapeIndex: 4,
-    width: 120,
-    height: 120,
+    width: 130,
+    height: 130,
     tilt: 6,
-    desktopPos: "top-[345px] right-[80px]",
+    desktopPos: "top-[340px] right-[75px]",
     mobileSize: 110,
     objectPosition: "object-center",
   },
-  // 7. Balcony Somatic Rest (Bottom-Left: raised high above bottom - cy = 565)
-  // Shape: Quarter Fan Cut (softened 90-degree corner, wide circular fan arc - 86% area)
+  // 7. Balcony Somatic Rest (Bottom-Left - cy = 565)
+  // Compact-Medium (125x125) - Sameer crouching with client resting on balcony
   {
     imageSrc: "/assets/rethink/nodes/node-balcony-somatic.webp",
     alt: "Outdoor Somatic Inquiry & Rest",
     shapeIndex: 8,
-    width: 110,
-    height: 110,
+    width: 125,
+    height: 125,
     tilt: -6,
-    desktopPos: "bottom-[130px] left-[20px]",
-    mobileSize: 100,
+    desktopPos: "bottom-[122px] left-[12px]",
+    mobileSize: 105,
     objectPosition: "object-center",
   },
-  // 8. 1-on-1 Consultation Dialogue (Bottom-Right: mid-level height, stepped outward - cy = 625)
-  // Shape: Waning Moon Cut (gentle scoop on right edge against back - 80% area)
+  // 8. 1-on-1 Consultation Dialogue (Bottom-Right - cy = 625)
+  // HERO LARGE (145x145) - Sameer 1-on-1 consultation desk dialogue
   {
     imageSrc: "/assets/rethink/nodes/node-consultation.webp",
     alt: "Sameer 1-on-1 Consultation Dialogue",
     shapeIndex: 7,
-    width: 110,
-    height: 110,
+    width: 145,
+    height: 145,
     tilt: 4,
-    desktopPos: "bottom-[70px] right-[35px]",
-    mobileSize: 100,
+    desktopPos: "bottom-[52px] right-[17px]",
+    mobileSize: 115,
     objectPosition: "object-center",
   },
 ];
