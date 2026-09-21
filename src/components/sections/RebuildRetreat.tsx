@@ -3,6 +3,7 @@
 import React from "react";
 import { BandageFrame } from "@/components/ui/BandageFrame";
 import { RebuildSynapseWeb } from "@/components/ui/RebuildSynapseWeb";
+import { RebuildMobileSynapseWeb } from "@/components/ui/RebuildMobileSynapseWeb";
 import { LassoImageNode } from "@/components/ui/LassoImageNode";
 import { NeuronHeadingConnector } from "@/components/ui/NeuronHeadingConnector";
 import { clinicData } from "@/data/clinicData";
@@ -292,6 +293,9 @@ export const RebuildRetreat: React.FC<RebuildRetreatProps> = ({ onOpenAssessment
 
             {/* Mobile / Tablet View: Scattered Organic Constellation with Lasso Crop */}
             <div className="md:hidden space-y-8 relative py-4">
+              {/* Biological Neuron Synapse Web for Mobile */}
+              <RebuildMobileSynapseWeb />
+
               <div id="rebuild-soma-mobile" className="w-[280px] sm:w-[320px] mx-auto relative z-10">
                 <ZoomReveal delay={0.08} blur={12}>
                   <BandageFrame variant="gold" className="w-full" caption="The 2-Day Reset Sanctuary Retreat.">

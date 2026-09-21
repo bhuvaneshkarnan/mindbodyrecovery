@@ -3,6 +3,7 @@
 import React from "react";
 import { BandageFrame } from "@/components/ui/BandageFrame";
 import { RethinkSynapseWeb } from "@/components/ui/RethinkSynapseWeb";
+import { RethinkMobileSynapseWeb } from "@/components/ui/RethinkMobileSynapseWeb";
 import { LassoImageNode } from "@/components/ui/LassoImageNode";
 import { NeuronHeadingConnector } from "@/components/ui/NeuronHeadingConnector";
 import { clinicData } from "@/data/clinicData";
@@ -270,6 +271,9 @@ export const RethinkStep: React.FC = () => {
 
             {/* Mobile / Tablet View: Scattered Organic Constellation with Lasso Crop */}
             <div className="md:hidden space-y-8 relative py-4">
+              {/* Biological Neuron Synapse Web for Mobile */}
+              <RethinkMobileSynapseWeb />
+
               <div id="rethink-soma-mobile" className="w-[280px] sm:w-[320px] mx-auto relative z-10">
                 <ZoomReveal delay={0.08} blur={12}>
                   <BandageFrame variant="light" className="w-full" caption="Sameer guiding a 1-on-1 somatic inquiry session.">

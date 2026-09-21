@@ -3,7 +3,7 @@
 import React from "react";
 import { BandageFrame } from "@/components/ui/BandageFrame";
 import { RelaxSynapseWeb } from "@/components/ui/RelaxSynapseWeb";
-import { NeuronMobileSynapseGraph } from "@/components/ui/NeuronMobileSynapseGraph";
+import { RelaxMobileSynapseWeb } from "@/components/ui/RelaxMobileSynapseWeb";
 import { NeuronHeadingConnector } from "@/components/ui/NeuronHeadingConnector";
 import { LassoImageNode } from "@/components/ui/LassoImageNode";
 import { clinicData } from "@/data/clinicData";
@@ -312,6 +312,9 @@ export const RelaxStep: React.FC<RelaxStepProps> = ({ onOpenAssessment }) => {
 
             {/* Mobile / Tablet View: Scattered Organic Constellation with Lasso Crop */}
             <div className="md:hidden space-y-8 relative py-4">
+              {/* Biological Neuron Synapse Web for Mobile */}
+              <RelaxMobileSynapseWeb />
+
               <div id="relax-soma-mobile" className="w-[280px] sm:w-[320px] mx-auto relative z-10">
                 <ZoomReveal delay={0.08} blur={12}>
                   <BandageFrame variant="gold" className="w-full" caption={clinicData.relax.centerCaption}>
