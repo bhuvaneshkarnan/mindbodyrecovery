@@ -279,13 +279,13 @@ export const RealStories: React.FC = () => {
 
           {/* ─── LEFT SCATTERED ELEMENTS (Small, uneven, separate photos & review notes with zero overlap) ─── */}
           
-          {/* L1: Tala & Sameer Polaroid Photo (Oman) */}
+          {/* L1: Tala & Sameer Polaroid Photo (Mauritius) */}
           <div className="absolute top-[15px] left-[15px] w-[115px] z-20 hover:z-30">
             <SlideIn from="left" delay={0.1}>
               <PhotoPolaroid
                 src="/assets/reviews/review-tala.webp"
-                alt="Sameer with patient from Oman"
-                caption="Oman"
+                alt="Sameer with patient from Mauritius"
+                caption="Mauritius"
                 tilt={-4}
                 clipPosition="top-left"
               />
@@ -434,13 +434,13 @@ export const RealStories: React.FC = () => {
             </SlideIn>
           </div>
 
-          {/* R6: Wright & Sameer Polaroid Photo (America) */}
+          {/* R6: Wright & Sameer Polaroid Photo (Singapore) */}
           <div className="absolute top-[415px] right-[25px] w-[115px] z-20 hover:z-30">
             <SlideIn from="right" delay={0.4}>
               <PhotoPolaroid
                 src="/assets/reviews/review-wright.webp"
-                alt="Sameer with Wright from America"
-                caption="America"
+                alt="Sameer with Wright from Singapore"
+                caption="Singapore"
                 tilt={3.5}
                 clipPosition="top-left"
               />
@@ -465,8 +465,8 @@ export const RealStories: React.FC = () => {
             <FadeUp delay={0.12}>
               <PhotoPolaroid
                 src="/assets/reviews/review-tala.webp"
-                alt="Sameer with patient from Oman"
-                caption="Oman"
+                alt="Sameer with patient from Mauritius"
+                caption="Mauritius"
                 tilt={-2}
                 clipPosition="top-left"
                 className="max-w-[150px] mx-auto"
@@ -577,8 +577,8 @@ export const RealStories: React.FC = () => {
             <FadeUp delay={0.52}>
               <PhotoPolaroid
                 src="/assets/reviews/review-wright.webp"
-                alt="Sameer with Wright from America"
-                caption="America"
+                alt="Sameer with Wright from Singapore"
+                caption="Singapore"
                 tilt={-2.5}
                 clipPosition="top-left"
                 className="max-w-[150px] mx-auto"
