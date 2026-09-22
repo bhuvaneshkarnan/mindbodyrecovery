@@ -279,26 +279,26 @@ export const RealStories: React.FC = () => {
 
           {/* ─── LEFT SCATTERED ELEMENTS (Small, uneven, separate photos & review notes with zero overlap) ─── */}
           
-          {/* L1: Tala & Sameer Polaroid Photo (Mauritius) */}
+          {/* L1: Tala & Sameer Polaroid Photo (Oman) */}
           <div className="absolute top-[15px] left-[15px] w-[115px] z-20 hover:z-30">
             <SlideIn from="left" delay={0.1}>
               <PhotoPolaroid
                 src="/assets/reviews/review-tala.webp"
-                alt="Sameer with patient from Mauritius"
-                caption="Mauritius"
+                alt="Sameer with patient from Oman"
+                caption="Oman"
                 tilt={-4}
                 clipPosition="top-left"
               />
             </SlideIn>
           </div>
 
-          {/* L2: Tala Rashid Review Note (Mauritius) */}
+          {/* L2: Tala Rashid Review Note (Oman) */}
           <div className="absolute top-[20px] left-[145px] w-[195px] z-20">
             <SlideIn from="left" delay={0.18}>
               <ReviewNote
                 quote="Preparing for IVF was overwhelming. Working with Sameer helped reduce my stress and support my body naturally through the journey. So grateful for his guidance."
                 author="Tala Rashid"
-                location="Mauritius"
+                location="Oman"
                 tagline="Holistic support"
                 tilt={2}
                 clipPosition="top-right"
@@ -420,13 +420,13 @@ export const RealStories: React.FC = () => {
             </SlideIn>
           </div>
 
-          {/* R5: Wright Review Note (Singapore) */}
+          {/* R5: Wright Review Note (America) */}
           <div className="absolute top-[410px] right-[155px] w-[205px] z-20">
             <SlideIn from="right" delay={0.35}>
               <ReviewNote
                 quote="I was feeling quite stressed and mentally tired. Sameer took the time to understand what I was going through. The sessions were very calming, and I left feeling relaxed."
                 author="Wright"
-                location="Singapore"
+                location="America"
                 tagline="People. Progress. Wellness."
                 tilt={-2}
                 clipPosition="top-left"
@@ -434,13 +434,13 @@ export const RealStories: React.FC = () => {
             </SlideIn>
           </div>
 
-          {/* R6: Wright & Sameer Polaroid Photo (Singapore) */}
+          {/* R6: Wright & Sameer Polaroid Photo (America) */}
           <div className="absolute top-[415px] right-[25px] w-[115px] z-20 hover:z-30">
             <SlideIn from="right" delay={0.4}>
               <PhotoPolaroid
                 src="/assets/reviews/review-wright.webp"
-                alt="Sameer with Wright from Singapore"
-                caption="Singapore"
+                alt="Sameer with Wright from America"
+                caption="America"
                 tilt={3.5}
                 clipPosition="top-left"
               />
@@ -465,8 +465,8 @@ export const RealStories: React.FC = () => {
             <FadeUp delay={0.12}>
               <PhotoPolaroid
                 src="/assets/reviews/review-tala.webp"
-                alt="Sameer with patient from Mauritius"
-                caption="Mauritius"
+                alt="Sameer with patient from Oman"
+                caption="Oman"
                 tilt={-2}
                 clipPosition="top-left"
                 className="max-w-[150px] mx-auto"
@@ -477,7 +477,7 @@ export const RealStories: React.FC = () => {
               <ReviewNote
                 quote="Preparing for IVF was overwhelming. Working with Sameer helped reduce my stress and support my body naturally through the journey. So grateful for his guidance."
                 author="Tala Rashid"
-                location="Mauritius"
+                location="Oman"
                 tagline="Holistic support"
                 tilt={1.5}
                 clipPosition="top-right"
@@ -577,8 +577,8 @@ export const RealStories: React.FC = () => {
             <FadeUp delay={0.52}>
               <PhotoPolaroid
                 src="/assets/reviews/review-wright.webp"
-                alt="Sameer with Wright from Singapore"
-                caption="Singapore"
+                alt="Sameer with Wright from America"
+                caption="America"
                 tilt={-2.5}
                 clipPosition="top-left"
                 className="max-w-[150px] mx-auto"
@@ -589,7 +589,7 @@ export const RealStories: React.FC = () => {
               <ReviewNote
                 quote="I was feeling quite stressed and mentally tired. Sameer took the time to understand what I was going through. The sessions were very calming, and I left feeling relaxed."
                 author="Wright"
-                location="Singapore"
+                location="America"
                 tagline="People. Progress. Wellness."
                 tilt={2}
                 clipPosition="top-left"
