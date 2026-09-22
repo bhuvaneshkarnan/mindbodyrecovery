@@ -16,9 +16,21 @@ export const CrmBookingWidget: React.FC<CrmBookingWidgetProps> = ({
   // Listen for postMessage height resize events from the CRM iframe
   useEffect(() => {
     const handleMessage = (e: MessageEvent) => {
-      if (e.data && e.data.type === "CRM_FRAME_RESIZE") {
-        if (iframeRef.current && e.data.height) {
-          iframeRef.current.style.height = `${e.data.height}px`;
+      let data = e.data;
+      if (typeof data === "string") {
+        try {
+          data = JSON.parse(data);
+        } catch {
+          // not JSON
+        }
+      }
+      if (data && data.type === "CRM_FRAME_RESIZE") {
+        if (iframeRef.current && data.height) {
+          iframeRef.current.style.height = `${data.height}px`;
+        }
+        const f = document.getElementById("crm-booking-widget");
+        if (f && data.height) {
+          f.style.height = `${data.height}px`;
         }
       }
     };
