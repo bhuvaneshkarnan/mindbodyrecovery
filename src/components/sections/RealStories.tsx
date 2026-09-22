@@ -377,13 +377,13 @@ export const RealStories: React.FC = () => {
             </SlideIn>
           </div>
 
-          {/* R2: Choi Review Note (Hong Kong) */}
+          {/* R2: Choi Review Note (Taiwan) */}
           <div className="absolute top-[20px] right-[12px] w-[190px] z-20">
             <SlideIn from="right" delay={0.18}>
               <ReviewNote
                 quote="Dealing with neck and shoulder stiffness from long hours. The team took time to understand and explained clearly. I felt much more relaxed after sessions."
                 author="Choi"
-                location="Hong Kong"
+                location="Taiwan"
                 tagline="Health Has No Borders."
                 tilt={-2}
                 clipPosition="top-left"
@@ -544,7 +544,7 @@ export const RealStories: React.FC = () => {
               <ReviewNote
                 quote="Dealing with neck and shoulder stiffness from long hours. The team took time to understand and explained clearly. I felt much more relaxed after sessions."
                 author="Choi"
-                location="Hong Kong"
+                location="Taiwan"
                 tagline="Health Has No Borders."
                 tilt={-2}
                 clipPosition="top-left"
