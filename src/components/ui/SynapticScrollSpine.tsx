@@ -165,10 +165,27 @@ export const SynapticScrollSpine: React.FC = () => {
 
     const mainRect = mainEl.getBoundingClientRect();
     const docWidth = window.innerWidth;
-    const docHeight = mainEl.scrollHeight || mainRect.height;
+
+    // Find footer & contact section boundaries so the spine gracefully terminates BEFORE the footer
+    const footerEl = mainEl.querySelector("footer");
+    const contactEl = document.getElementById("contact");
+
+    let terminalY = 0;
+    if (footerEl) {
+      const fRect = footerEl.getBoundingClientRect();
+      terminalY = Math.round(fRect.top - mainRect.top);
+    } else if (contactEl) {
+      const cRect = contactEl.getBoundingClientRect();
+      terminalY = Math.round(cRect.bottom - mainRect.top);
+    } else {
+      terminalY = Math.round(mainRect.height);
+    }
+
+    // Safety guard: guarantee the neural spine terminates 24px ABOVE the footer line
+    const safeTerminalY = Math.max(100, terminalY - 24);
 
     setSvgWidth(docWidth);
-    setSvgHeight(docHeight);
+    setSvgHeight(safeTerminalY);
 
     const isMobile = docWidth < 768;
 
@@ -265,7 +282,7 @@ export const SynapticScrollSpine: React.FC = () => {
 
     waypoints.push({
       x: Math.round(docWidth * 0.5),
-      y: docHeight,
+      y: safeTerminalY,
       theme: "dark",
       label: "terminal",
     });
@@ -479,11 +496,10 @@ export const SynapticScrollSpine: React.FC = () => {
         cancelAnimationFrame(resizeRaf);
         resizeRaf = requestAnimationFrame(() => {
           if (!containerRef.current?.parentElement) return;
-          const main = containerRef.current.parentElement;
-          const curH = main.scrollHeight;
           const curW = window.innerWidth;
-          if (Math.abs(curH - lastHeight) > 20 || Math.abs(curW - lastWidth) > 10) {
-            lastHeight = curH;
+          // Recompute exclusively on viewport width / orientation changes
+          // Prevents recursive infinite height expansion loops on mobile scroll
+          if (Math.abs(curW - lastWidth) > 15) {
             lastWidth = curW;
             buildNeuralNetwork();
           }
@@ -538,10 +554,11 @@ export const SynapticScrollSpine: React.FC = () => {
     <svg
       ref={containerRef}
       // z-[5] positions safely BELOW all content & image cards (which sit at z-10/z-20)
-      className="absolute inset-0 w-full h-full pointer-events-none z-[5] overflow-hidden"
+      className="absolute top-0 left-0 w-full pointer-events-none z-[5] overflow-hidden"
       style={{
         width: "100%",
-        height: svgHeight ? `${svgHeight}px` : "100%",
+        height: svgHeight ? `${svgHeight}px` : "auto",
+        maxHeight: svgHeight ? `${svgHeight}px` : "none",
         willChange: "transform",
         transform: "translateZ(0)",
         contain: "paint layout",
