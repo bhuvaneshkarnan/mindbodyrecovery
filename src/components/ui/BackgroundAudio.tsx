@@ -5,52 +5,45 @@ import clsx from "clsx";
 
 export function BackgroundAudio() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  // Enabled and ON by default as requested
+  // Default state is ON
   const [isPlaying, setIsPlaying] = useState<boolean>(true);
 
-  // Initialize and attempt low-volume ambient playback immediately on mount
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
 
-    // Standard low volume for ambient relaxation (18%)
-    audio.volume = 0.18;
+    // Pleasant soothing ambient volume level
+    audio.volume = 0.26;
+    audio.muted = false;
 
-    const userMutedPref = sessionStorage.getItem("mbr_audio_user_muted");
-    if (userMutedPref === "true") {
-      setIsPlaying(false);
-      audio.pause();
-      return;
-    }
+    const cleanupListeners = () => {
+      window.removeEventListener("pointerdown", handleUserUnlock);
+      window.removeEventListener("touchstart", handleUserUnlock);
+      window.removeEventListener("touchend", handleUserUnlock);
+      window.removeEventListener("click", handleUserUnlock);
+      window.removeEventListener("keydown", handleUserUnlock);
+      window.removeEventListener("scroll", handleUserUnlock);
+      window.removeEventListener("wheel", handleUserUnlock);
+    };
 
-    setIsPlaying(true);
-
-    const startPlayback = () => {
-      const currentPref = sessionStorage.getItem("mbr_audio_user_muted");
-      if (currentPref === "true" || !audioRef.current) return;
-
-      audioRef.current.volume = 0.18;
-      const promise = audioRef.current.play();
-      if (promise !== undefined) {
-        promise
+    const handleUserUnlock = () => {
+      if (!audioRef.current) return;
+      audioRef.current.muted = false;
+      audioRef.current.volume = 0.26;
+      const playPromise = audioRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise
           .then(() => {
             setIsPlaying(true);
             cleanupListeners();
           })
-          .catch(() => {});
+          .catch(() => {
+            // Still waiting for a qualifying user activation event
+          });
       }
     };
 
-    const cleanupListeners = () => {
-      window.removeEventListener("pointerdown", startPlayback);
-      window.removeEventListener("touchstart", startPlayback);
-      window.removeEventListener("scroll", startPlayback);
-      window.removeEventListener("wheel", startPlayback);
-      window.removeEventListener("click", startPlayback);
-      window.removeEventListener("keydown", startPlayback);
-    };
-
-    // Attempt direct autoplay
+    // 1. Attempt direct unmuted playback on load
     const initialPlay = audio.play();
     if (initialPlay !== undefined) {
       initialPlay
@@ -58,14 +51,19 @@ export function BackgroundAudio() {
           setIsPlaying(true);
         })
         .catch(() => {
-          // Modern browsers block unmuted audio until first user gesture (touch, scroll, click)
-          // Keep UI ON and trigger instant playback on the very first gesture without delay
-          window.addEventListener("pointerdown", startPlayback, { once: true, passive: true });
-          window.addEventListener("touchstart", startPlayback, { once: true, passive: true });
-          window.addEventListener("scroll", startPlayback, { once: true, passive: true });
-          window.addEventListener("wheel", startPlayback, { once: true, passive: true });
-          window.addEventListener("click", startPlayback, { once: true, passive: true });
-          window.addEventListener("keydown", startPlayback, { once: true, passive: true });
+          // Modern browsers restrict unmuted autoplay before the first user gesture.
+          // Pre-start muted so the audio buffer is warm and playing in sync,
+          // then instantly unmute on the very first gesture (touch, scroll, click, key).
+          audio.muted = true;
+          audio.play().catch(() => {});
+
+          window.addEventListener("pointerdown", handleUserUnlock, { passive: true });
+          window.addEventListener("touchstart", handleUserUnlock, { passive: true });
+          window.addEventListener("touchend", handleUserUnlock, { passive: true });
+          window.addEventListener("click", handleUserUnlock);
+          window.addEventListener("keydown", handleUserUnlock);
+          window.addEventListener("scroll", handleUserUnlock, { passive: true });
+          window.addEventListener("wheel", handleUserUnlock, { passive: true });
         });
     }
 
@@ -78,34 +76,38 @@ export function BackgroundAudio() {
     const audio = audioRef.current;
     if (!audio) return;
 
-    if (isPlaying) {
-      audio.pause();
-      setIsPlaying(false);
-      sessionStorage.setItem("mbr_audio_user_muted", "true");
-    } else {
-      audio.volume = 0.18;
+    // Check true underlying audio status rather than just state
+    if (audio.paused || audio.muted) {
+      audio.muted = false;
+      audio.volume = 0.26;
       audio
         .play()
         .then(() => {
           setIsPlaying(true);
-          sessionStorage.removeItem("mbr_audio_user_muted");
         })
         .catch((err) => {
           console.warn("Audio playback prevented:", err);
         });
+    } else {
+      audio.pause();
+      setIsPlaying(false);
     }
-  }, [isPlaying]);
+  }, []);
 
   return (
     <>
       <audio
         ref={audioRef}
         loop
-        preload="metadata"
+        autoPlay
+        playsInline
+        preload="auto"
         className="hidden"
+        onPlay={() => setIsPlaying(true)}
+        onPause={() => setIsPlaying(false)}
       >
-        <source src="/audio/bg-audio.webm" type="audio/webm" />
         <source src="/audio/bg-audio.mp3" type="audio/mpeg" />
+        <source src="/audio/bg-audio.webm" type="audio/webm" />
       </audio>
 
       {/* Luxury Ambient Sound Floating Badge */}
