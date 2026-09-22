@@ -6,6 +6,7 @@ import { ScrollProgressBar } from "@/components/ui/ScrollAnimations";
 import { Navbar } from "@/components/sections/Navbar";
 import { Hero } from "@/components/sections/Hero";
 import { BackgroundAudio } from "@/components/ui/BackgroundAudio";
+import { FloatingWhatsApp } from "@/components/ui/FloatingWhatsApp";
 
 // Dynamic imports with SSR enabled for maximum SEO & instant code splitting
 const RealStories = dynamic(
@@ -102,6 +103,9 @@ export default function HomePage() {
     <main className="relative min-h-screen bg-ink-950 text-parchment-50 selection:bg-gold-500/30 overflow-x-hidden">
       {/* Continuous Scroll-Driven Neuron Synaptic Spine (Flows from Top to End) */}
       <SynapticScrollSpine />
+
+      {/* Floating WhatsApp Quick Action (Directly above Ambient Audio) */}
+      <FloatingWhatsApp />
 
       {/* Ambient Low-Volume Background Audio with Floating Controls */}
       <BackgroundAudio />

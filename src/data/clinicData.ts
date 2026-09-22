@@ -61,6 +61,8 @@ export const clinicData = {
     facebook: "https://www.facebook.com/p/Tamilnadu-Therapist-100076794673204/?locale=ca_ES",
     youtube: "https://www.youtube.com/@tamilnadutherapist4345",
     whatsapp: "https://wa.me/919042561651",
+    whatsappAutomation: "https://wa.me/916374367559",
+    automationPhone: "+916374367559",
   },
   
   hero: {
