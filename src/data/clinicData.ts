@@ -100,7 +100,7 @@ export const clinicData = {
       {
         title: "Sharing Experience",
         description: "Decades of bodywork distilled into live mentorship.",
-        image: "/assets/purpose/rsw_1300h_800-1.webp",
+        image: "/assets/purpose/rsw_1300h_800-1-clean.webp?v=3",
         tag: "Mentorship",
       },
       {

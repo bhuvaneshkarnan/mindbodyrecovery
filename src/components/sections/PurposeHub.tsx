@@ -16,7 +16,7 @@ const CENTER_HERO = {
 const TOP_PHOTOS = [
   {
     id: "top-left",
-    image: "/assets/purpose/rsw_1300h_800-1.webp",
+    image: "/assets/purpose/rsw_1300h_800-1-clean.webp?v=3",
     alt: "Mind Body Recovery Mentorship & Training",
     rotation: -3.5,
     tapePosition: "top-left-bottom-right" as const,
