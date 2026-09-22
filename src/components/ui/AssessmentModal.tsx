@@ -3,6 +3,7 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
+import { CrmBookingWidget } from "@/components/ui/CrmBookingWidget";
 
 interface AssessmentModalProps {
   isOpen: boolean;
@@ -59,25 +60,7 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
           </div>
 
           {/* Boldlabs CRM Appointment Booking Form Embed */}
-          <div className="w-full flex justify-center rounded-xl overflow-hidden bg-white">
-            <iframe
-              src="https://crm.goboldlabs.com/mindbodyrecovery/book?mode=steps&source=website_modal&hide_header=true"
-              width="100%"
-              height="620"
-              frameBorder="0"
-              style={{
-                border: "none",
-                borderRadius: "12px",
-                maxWidth: "620px",
-                width: "100%",
-                minHeight: "580px",
-                boxShadow: "0 4px 20px rgba(0,0,0,0.06)",
-                background: "#FFFFFF",
-              }}
-              title="Book Appointment"
-              loading="lazy"
-            />
-          </div>
+          <CrmBookingWidget source="website_modal" className="rounded-xl overflow-hidden" />
         </motion.div>
       </div>
     </AnimatePresence>

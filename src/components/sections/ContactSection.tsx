@@ -4,6 +4,7 @@ import React from "react";
 import { clinicData } from "@/data/clinicData";
 import { Phone, Mail, MapPin, Navigation } from "lucide-react";
 import { SlideIn, BlurReveal } from "@/components/ui/ScrollAnimations";
+import { CrmBookingWidget } from "@/components/ui/CrmBookingWidget";
 
 interface ContactSectionProps {
   onOpenAssessment?: () => void;
@@ -33,25 +34,7 @@ export const ContactSection: React.FC<ContactSectionProps> = () => {
               </p>
 
               {/* Boldlabs CRM Appointment Booking Form Embed */}
-              <div className="w-full flex justify-center py-2">
-                <iframe
-                  src="https://crm.goboldlabs.com/mindbodyrecovery/book?mode=steps&source=website_form&hide_header=true"
-                  width="100%"
-                  height="620"
-                  frameBorder="0"
-                  style={{
-                    border: "none",
-                    borderRadius: "12px",
-                    maxWidth: "620px",
-                    width: "100%",
-                    minHeight: "580px",
-                    boxShadow: "0 4px 20px rgba(0,0,0,0.06)",
-                    background: "#FFFFFF",
-                  }}
-                  title="Book Appointment"
-                  loading="lazy"
-                />
-              </div>
+              <CrmBookingWidget source="website_form" className="py-2" />
             </div>
 
             <div className="pt-6 border-t border-[#231F19]/15 flex items-center justify-between text-xs text-[#231F19]/70 mt-6">
