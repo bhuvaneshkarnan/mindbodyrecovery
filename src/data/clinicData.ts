@@ -56,6 +56,13 @@ export const clinicData = {
   googleMapsUrl: "https://maps.google.com/?q=Shanta+Ayurveda+Hospital,+23A,+N+Boag+Rd,+Drivers+Colony,+T.+Nagar,+Chennai,+Tamil+Nadu+600017",
   embedMapsUrl: "https://maps.google.com/maps?q=Shanta+Ayurveda+Hospital,+23A,+N+Boag+Rd,+Drivers+Colony,+T.+Nagar,+Chennai,+Tamil+Nadu+600017&t=&z=16&ie=UTF8&iwloc=&output=embed",
   
+  socials: {
+    instagram: "https://www.instagram.com/mindbodyrecovery.in/",
+    facebook: "https://www.facebook.com/p/Tamilnadu-Therapist-100076794673204/?locale=ca_ES",
+    youtube: "https://www.youtube.com/@tamilnadutherapist4345",
+    whatsapp: "https://wa.me/919042561651",
+  },
+  
   hero: {
     headline: ["Relax", "Rethink", "Rebuild"],
     subhead: "I work with the mind, the body and the patterns connecting them.",

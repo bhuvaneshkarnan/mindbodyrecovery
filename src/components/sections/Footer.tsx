@@ -29,27 +29,29 @@ export const Footer: React.FC = () => {
 
             <div className="flex items-center space-x-4 pt-2">
               <a
-                href="https://wa.me/919042561651"
+                href={clinicData.socials.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-8 h-8 rounded-full border border-[#F6F1E4]/20 flex items-center justify-center text-[#F6F1E4]/70 hover:text-[#C79A45] hover:border-[#C79A45] transition-colors"
-                aria-label="WhatsApp Clinic"
+                aria-label="Instagram"
               >
                 <Instagram size={15} />
               </a>
               <a
-                href="mailto:tamilnadutherapist@gmail.com"
+                href={clinicData.socials.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-8 h-8 rounded-full border border-[#F6F1E4]/20 flex items-center justify-center text-[#F6F1E4]/70 hover:text-[#C79A45] hover:border-[#C79A45] transition-colors"
-                aria-label="Email Clinic"
+                aria-label="Facebook"
               >
                 <Facebook size={15} />
               </a>
               <a
-                href="https://www.youtube.com/shorts/Sye2NYdx6rk"
+                href={clinicData.socials.youtube}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-8 h-8 rounded-full border border-[#F6F1E4]/20 flex items-center justify-center text-[#F6F1E4]/70 hover:text-[#C79A45] hover:border-[#C79A45] transition-colors"
-                aria-label="YouTube Reviews"
+                aria-label="YouTube"
               >
                 <Youtube size={15} />
               </a>

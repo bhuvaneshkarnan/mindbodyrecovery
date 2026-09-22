@@ -149,7 +149,12 @@ export default function RootLayout({
                     "@type": "Person",
                     "name": "Sameer",
                     "jobTitle": "Founder & Integrative Therapist"
-                  }
+                  },
+                  "sameAs": [
+                    "https://www.instagram.com/mindbodyrecovery.in/",
+                    "https://www.facebook.com/p/Tamilnadu-Therapist-100076794673204/",
+                    "https://www.youtube.com/@tamilnadutherapist4345"
+                  ]
                 },
                 {
                   "@type": "WebSite",
