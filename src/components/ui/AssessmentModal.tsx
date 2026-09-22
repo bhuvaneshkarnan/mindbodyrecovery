@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Check, Calendar, Phone, Clock, ArrowLeft, MessageSquare } from "lucide-react";
+import { X } from "lucide-react";
 
 interface AssessmentModalProps {
   isOpen: boolean;
@@ -13,119 +13,18 @@ interface AssessmentModalProps {
 export const AssessmentModal: React.FC<AssessmentModalProps> = ({
   isOpen,
   onClose,
-  initialConcern,
 }) => {
-  const [step, setStep] = useState(1);
-  const [selectedConcerns, setSelectedConcerns] = useState<string[]>(
-    initialConcern ? [initialConcern] : ["Sleep Problems"]
-  );
-  const [selectedDuration, setSelectedDuration] = useState("1–3 Months");
-  const [fullName, setFullName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-
-  React.useEffect(() => {
-    if (initialConcern) {
-      setSelectedConcerns((prev) =>
-        prev.includes(initialConcern) ? prev : [initialConcern, ...prev]
-      );
-    }
-  }, [initialConcern]);
-
-  const toggleConcern = (item: string) => {
-    setSelectedConcerns((prev) => {
-      if (prev.includes(item)) {
-        return prev.filter((c) => c !== item);
-      } else {
-        return [...prev, item];
-      }
-    });
-  };
-
-  const concernsList = [
-    "Sleep Problems",
-    "Stress & Overthinking",
-    "Mental Fatigue & Low Energy",
-    "Pain & Body Tension",
-    "2-Day Reset Retreat",
-  ];
-
-  const durationOptions = [
-    "A few weeks",
-    "1–3 Months",
-    "6+ Months",
-    "Over a year",
-  ];
-
-  const handleNext = () => {
-    if (step === 1 && selectedConcerns.length === 0) return;
-    if (step < 3) setStep(step + 1);
-  };
-
-  const handleBack = () => {
-    if (step > 1) setStep(step - 1);
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setErrorMessage("");
-
-    if (!fullName.trim() || fullName.trim().length < 2) {
-      setErrorMessage("Please provide your full name (minimum 2 characters).");
-      return;
-    }
-
-    const cleanPhone = phone.replace(/[^\d+]/g, "");
-    if (cleanPhone.replace(/\D/g, "").length < 8) {
-      setErrorMessage("Please provide a valid phone number (at least 8 to 15 digits).");
-      return;
-    }
-
-    setIsSubmitting(true);
-    try {
-      await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          type: "assessment_modal",
-          name: fullName,
-          phone: phone,
-          concern: selectedConcerns.join(", "),
-          duration: selectedDuration,
-        }),
-      });
-    } catch (err) {
-      console.warn("API lead submission fallback to direct WhatsApp connection", err);
-    } finally {
-      setIsSubmitting(false);
-      setSubmitted(true);
-    }
-  };
-
-  const handleResetAndClose = () => {
-    setSubmitted(false);
-    setIsSubmitting(false);
-    setErrorMessage("");
-    setStep(1);
-    setSelectedConcerns(initialConcern ? [initialConcern] : ["Sleep Problems"]);
-    setFullName("");
-    setPhone("");
-    onClose();
-  };
-
   if (!isOpen) return null;
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
         {/* Backdrop */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          onClick={handleResetAndClose}
+          onClick={onClose}
           className="fixed inset-0 bg-ink-950/85 backdrop-blur-md"
         />
 
@@ -134,254 +33,51 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          transition={{ type: "spring", duration: 0.5 }}
-          className="relative w-full max-w-lg bg-[#1B1E15] border border-[#C79A45]/40 rounded-2xl p-6 sm:p-8 text-[#F6F1E4] shadow-2xl z-10 my-8"
+          transition={{ type: "spring", duration: 0.4 }}
+          className="relative w-full max-w-[660px] bg-[#141A10] border border-[#C79A45]/40 rounded-2xl p-4 sm:p-6 text-[#F6F1E4] shadow-2xl z-10 my-6"
         >
           {/* Close Button */}
           <button
-            onClick={handleResetAndClose}
-            className="absolute top-4 right-4 p-2 text-[#F6F1E4]/60 hover:text-[#F6F1E4] transition-colors focus:outline-none"
+            onClick={onClose}
+            className="absolute top-4 right-4 z-20 p-2 text-[#F6F1E4]/70 hover:text-white transition-colors focus:outline-none rounded-full bg-black/50 hover:bg-black/80"
             aria-label="Close modal"
           >
             <X size={20} />
           </button>
 
-          {!submitted ? (
-            <div>
-              {/* Header */}
-              <div className="mb-6">
-                <span className="text-[10px] uppercase tracking-widest text-[#C79A45] font-semibold block mb-1">
-                  Step 0{step} of 03 &middot; Assessment
-                </span>
-                <h3 className="font-display text-2xl sm:text-3xl text-[#F6F1E4] tracking-tight">
-                  Book Your Assessment
-                </h3>
-              </div>
+          {/* Header */}
+          <div className="mb-4 pr-10">
+            <span className="text-[10px] uppercase tracking-widest text-[#C79A45] font-semibold block mb-1">
+              Mind Body Recovery &middot; Sameer
+            </span>
+            <h3 className="font-display text-2xl sm:text-3xl text-[#F6F1E4] tracking-tight">
+              Book Your Appointment
+            </h3>
+            <p className="text-xs sm:text-sm text-[#F6F1E4]/70 font-sans mt-1">
+              Select your preferred date, time, and service at Shanta Ayurveda Hospital, Chennai.
+            </p>
+          </div>
 
-              {/* Progress Bar */}
-              <div className="w-full h-1 bg-[#12140D] rounded-full mb-8 overflow-hidden">
-                <motion.div
-                  className="h-full bg-[#C79A45]"
-                  initial={{ width: "33%" }}
-                  animate={{ width: `${(step / 3) * 100}%` }}
-                  transition={{ duration: 0.3 }}
-                />
-              </div>
-
-              {/* STEP 1: Concern Selection (Multi-select) */}
-              {step === 1 && (
-                <div className="space-y-4">
-                  <div>
-                    <p className="text-xs uppercase tracking-widest text-[#F6F1E4]/70 font-medium">
-                      What is the primary concern you want to address?
-                    </p>
-                    <p className="text-[11px] text-[#C79A45]/80 font-sans mt-1">
-                      (Select one or more concerns)
-                    </p>
-                  </div>
-                  <div className="space-y-2">
-                    {concernsList.map((item) => {
-                      const isSelected = selectedConcerns.includes(item);
-                      return (
-                        <button
-                          key={item}
-                          type="button"
-                          onClick={() => toggleConcern(item)}
-                          className={`w-full p-3.5 rounded-xl text-left text-sm font-sans flex items-center justify-between border transition-all ${
-                            isSelected
-                              ? "bg-[#12140D] border-[#C79A45] text-[#C79A45] font-medium shadow-[0_0_12px_rgba(199,154,69,0.12)]"
-                              : "bg-[#12140D]/60 border-[#F6F1E4]/10 text-[#F6F1E4]/80 hover:bg-[#12140D]"
-                          }`}
-                        >
-                          <span>{item}</span>
-                          {isSelected && <Check size={16} className="text-[#C79A45] shrink-0" />}
-                        </button>
-                      );
-                    })}
-                  </div>
-
-                  <div className="pt-6">
-                    <button
-                      onClick={handleNext}
-                      disabled={selectedConcerns.length === 0}
-                      className="group w-full py-3 bg-[#C79A45] hover:bg-[#D4A752] disabled:opacity-40 disabled:cursor-not-allowed text-[#12140D] text-xs uppercase tracking-widest font-semibold rounded-xl transition-all shadow-md active:scale-[0.98] flex items-center justify-center space-x-2"
-                    >
-                      <span>Continue</span>
-                      <span className="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
-                    </button>
-                    {selectedConcerns.length === 0 && (
-                      <p className="text-center text-[11px] text-[#C79A45]/70 mt-2">
-                        Please select at least one concern
-                      </p>
-                    )}
-                  </div>
-                </div>
-              )}
-
-              {/* STEP 2: Duration Experience */}
-              {step === 2 && (
-                <div className="space-y-4">
-                  <p className="text-xs uppercase tracking-widest text-[#F6F1E4]/70 font-medium">
-                    How long has your body carried this?
-                  </p>
-                  <div className="space-y-2">
-                    {durationOptions.map((opt) => (
-                      <button
-                        key={opt}
-                        type="button"
-                        onClick={() => setSelectedDuration(opt)}
-                        className={`w-full p-3.5 rounded-xl text-left text-sm font-sans flex items-center justify-between border transition-all ${
-                          selectedDuration === opt
-                            ? "bg-[#12140D] border-[#C79A45] text-[#C79A45] font-medium"
-                            : "bg-[#12140D]/60 border-[#F6F1E4]/10 text-[#F6F1E4]/80 hover:bg-[#12140D]"
-                        }`}
-                      >
-                        <span>{opt}</span>
-                        {selectedDuration === opt && <Check size={16} />}
-                      </button>
-                    ))}
-                  </div>
-
-                  <div className="pt-6 flex items-center space-x-3">
-                    <button
-                      onClick={handleBack}
-                      className="px-4 py-3 border border-[#F6F1E4]/20 text-[#F6F1E4]/70 hover:text-[#F6F1E4] text-xs uppercase tracking-widest font-medium rounded-xl flex items-center space-x-1 transition-colors"
-                    >
-                      <ArrowLeft size={14} />
-                      <span>Back</span>
-                    </button>
-                    <button
-                      onClick={handleNext}
-                      className="group flex-1 py-3 bg-[#C79A45] hover:bg-[#D4A752] text-[#12140D] text-xs uppercase tracking-widest font-semibold rounded-xl transition-all shadow-md active:scale-[0.98] flex items-center justify-center space-x-2"
-                    >
-                      <span>Continue</span>
-                      <span className="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
-                    </button>
-                  </div>
-                </div>
-              )}
-
-              {/* STEP 3: Contact & Booking */}
-              {step === 3 && (
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <p className="text-xs uppercase tracking-widest text-[#F6F1E4]/70 font-medium mb-1">
-                    Where should we confirm your appointment?
-                  </p>
-
-                  {errorMessage && (
-                    <div className="p-3 rounded-lg bg-red-900/40 border border-red-500/50 text-red-200 text-xs font-sans">
-                      {errorMessage}
-                    </div>
-                  )}
-
-                  <div className="p-3.5 bg-[#12140D] border border-[#F6F1E4]/10 rounded-xl text-xs text-[#F6F1E4]/70 space-y-1 mb-2">
-                    <p><span className="text-[#C79A45] font-medium">{selectedConcerns.length > 1 ? "Concerns:" : "Concern:"}</span> {selectedConcerns.join(", ")}</p>
-                    <p><span className="text-[#C79A45] font-medium">Duration:</span> {selectedDuration}</p>
-                  </div>
-
-                  <div>
-                    <label className="block text-xs uppercase tracking-wider text-[#F6F1E4]/70 mb-1 font-medium">
-                      Your Full Name
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      value={fullName}
-                      onChange={(e) => {
-                        setFullName(e.target.value);
-                        if (errorMessage) setErrorMessage("");
-                      }}
-                      placeholder="e.g. Ramesh Krishnan"
-                      className="w-full px-3.5 py-2.5 bg-[#12140D] border border-[#F6F1E4]/20 text-[#F6F1E4] text-sm rounded-xl focus:outline-none focus:border-[#C79A45]"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs uppercase tracking-wider text-[#F6F1E4]/70 mb-1 font-medium">
-                      Phone Number
-                    </label>
-                    <input
-                      type="tel"
-                      required
-                      value={phone}
-                      onChange={(e) => {
-                        setPhone(e.target.value);
-                        if (errorMessage) setErrorMessage("");
-                      }}
-                      placeholder="+91 98765 43210"
-                      className="w-full px-3.5 py-2.5 bg-[#12140D] border border-[#F6F1E4]/20 text-[#F6F1E4] text-sm rounded-xl focus:outline-none focus:border-[#C79A45]"
-                    />
-                  </div>
-
-                  <p className="text-[10.5px] text-[#F6F1E4]/60 font-sans leading-tight">
-                    Confidential intake. By continuing, you agree to receive appointment coordination via phone/WhatsApp. Integrative therapies support your well-being alongside regular medical care.
-                  </p>
-
-                  <div className="pt-3 flex items-center space-x-3">
-                    <button
-                      type="button"
-                      onClick={handleBack}
-                      className="px-4 py-3 border border-[#F6F1E4]/20 text-[#F6F1E4]/70 hover:text-[#F6F1E4] text-xs uppercase tracking-widest font-medium rounded-xl flex items-center space-x-1 transition-colors"
-                    >
-                      <ArrowLeft size={14} />
-                      <span>Back</span>
-                    </button>
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="group flex-1 py-3 bg-[#C79A45] hover:bg-[#D4A752] disabled:opacity-50 text-[#12140D] text-xs uppercase tracking-widest font-semibold rounded-xl transition-all shadow-md active:scale-[0.98] flex items-center justify-center space-x-2"
-                    >
-                      <Calendar size={14} />
-                      <span>{isSubmitting ? "Confirming..." : "Confirm Assessment"}</span>
-                      <span className="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
-                    </button>
-                  </div>
-                </form>
-              )}
-            </div>
-          ) : (
-            /* Submission Success Monograph */
-            <div className="text-center py-6 space-y-4">
-              <div className="w-14 h-14 bg-[#C79A45]/15 border border-[#C79A45] rounded-full flex items-center justify-center mx-auto text-[#C79A45]">
-                <Check size={28} />
-              </div>
-
-              <h3 className="font-display text-2xl sm:text-3xl text-[#F6F1E4]">
-                Assessment Requested
-              </h3>
-
-              <p className="text-sm text-[#F6F1E4]/80 font-sans max-w-sm mx-auto leading-relaxed">
-                Thank you, <span className="text-[#C79A45] font-medium">{fullName}</span>. We have recorded your request and will reach out to <span className="text-[#F6F1E4] font-medium">{phone}</span> to confirm your consultation slot.
-              </p>
-
-              {/* Direct WhatsApp Fast-Track */}
-              <div className="pt-2">
-                <a
-                  href={`https://wa.me/919042561651?text=${encodeURIComponent(
-                    `Hello Mind Body Recovery team, I have requested an assessment.\nName: ${fullName}\nPhone: ${phone}\nConcerns: ${selectedConcerns.join(", ")}\nDuration: ${selectedDuration}`
-                  )}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 w-full py-3 bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs uppercase tracking-wider font-semibold rounded-xl shadow-md transition-all active:scale-95"
-                >
-                  <MessageSquare size={16} />
-                  <span>Instant WhatsApp Confirmation</span>
-                </a>
-                <p className="text-[10.5px] text-[#F6F1E4]/50 mt-1.5">
-                  Tap to connect with Sameer&apos;s team directly on WhatsApp.
-                </p>
-              </div>
-
-              <div className="pt-3 border-t border-[#F6F1E4]/10">
-                <button
-                  onClick={handleResetAndClose}
-                  className="px-6 py-2.5 border border-[#C79A45]/50 text-[#C79A45] hover:bg-[#C79A45] hover:text-[#12140D] text-xs uppercase tracking-widest font-medium transition-colors rounded-xl"
-                >
-                  Close Window
-                </button>
-              </div>
-            </div>
-          )}
+          {/* Boldlabs CRM Appointment Booking Form Embed */}
+          <div className="w-full flex justify-center rounded-xl overflow-hidden bg-white">
+            <iframe
+              src="https://crm.goboldlabs.com/mindbodyrecovery/book?mode=steps&source=website_modal&hide_header=true"
+              width="100%"
+              height="620"
+              frameBorder="0"
+              style={{
+                border: "none",
+                borderRadius: "12px",
+                maxWidth: "620px",
+                width: "100%",
+                minHeight: "580px",
+                boxShadow: "0 4px 20px rgba(0,0,0,0.06)",
+                background: "#FFFFFF",
+              }}
+              title="Book Appointment"
+              loading="lazy"
+            />
+          </div>
         </motion.div>
       </div>
     </AnimatePresence>
