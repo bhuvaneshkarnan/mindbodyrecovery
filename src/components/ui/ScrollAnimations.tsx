@@ -453,13 +453,14 @@ export const SplitText: React.FC<SplitTextProps> = ({
 };
 
 /* ─── 10. COUNT UP NUMBER (Smooth quartic cubic easing) ───────────────────── */
-interface CountUpProps {
+export interface CountUpProps {
   end: number;
   prefix?: string;
   suffix?: string;
   duration?: number;
   delay?: number;
   className?: string;
+  format?: boolean;
 }
 
 export const CountUp: React.FC<CountUpProps> = ({
@@ -469,6 +470,7 @@ export const CountUp: React.FC<CountUpProps> = ({
   duration = 2.0,
   delay = 0,
   className = "",
+  format = true,
 }) => {
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-30px 0px" });
@@ -477,20 +479,26 @@ export const CountUp: React.FC<CountUpProps> = ({
   React.useEffect(() => {
     if (!isInView) return;
     let start: number | null = null;
+    let rafId: number;
     const step = (timestamp: number) => {
       if (!start) start = timestamp + delay * 1000;
       const elapsed = Math.max(0, timestamp - start);
       const progress = Math.min(elapsed / (duration * 1000), 1);
       const eased = 1 - Math.pow(1 - progress, 4); // Quartic ease out
       setCount(Math.round(eased * end));
-      if (progress < 1) requestAnimationFrame(step);
+      if (progress < 1) {
+        rafId = requestAnimationFrame(step);
+      }
     };
-    requestAnimationFrame(step);
+    rafId = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(rafId);
   }, [isInView, end, duration, delay]);
+
+  const displayCount = format ? count.toLocaleString() : count;
 
   return (
     <span ref={ref} className={className}>
-      {prefix}{count}{suffix}
+      {prefix}{displayCount}{suffix}
     </span>
   );
 };

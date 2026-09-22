@@ -1,11 +1,19 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
 import { clinicData } from "@/data/clinicData";
 import { Users, Award, Heart } from "lucide-react";
-import { ZoomReveal, SlideIn, FadeUp, BlurReveal } from "@/components/ui/ScrollAnimations";
+import { ZoomReveal, SlideIn, FadeUp, BlurReveal, CountUp } from "@/components/ui/ScrollAnimations";
 import { BandageFrame } from "@/components/ui/BandageFrame";
+
+function parseStatValue(val: string) {
+  const match = val.match(/^([^0-9]*)([\d,]+)(.*)$/);
+  if (!match) return { num: 0, prefix: "", suffix: val };
+  const prefix = match[1] || "";
+  const num = parseInt(match[2].replace(/,/g, ""), 10) || 0;
+  const suffix = match[3] || "";
+  return { num, prefix, suffix };
+}
 
 export const ProofStats: React.FC = () => {
   return (
@@ -185,31 +193,41 @@ export const ProofStats: React.FC = () => {
               </circle>
             </svg>
           </div>
-          {clinicData.proofStats.stats.map((stat, idx) => (
-            <BlurReveal
-              key={stat.label}
-              delay={idx * 0.12}
-              blur={14}
-              y={24}
-              className="p-6 bg-[#1B1E15] rounded-lg border-l-2 border-[#C79A45] border-t border-r border-b border-[#F6F1E4]/15 flex items-center justify-between group hover:bg-[#1B1E15]/80 transition-colors shadow-lg"
-            >
-              <div>
-                <span className="font-display text-4xl sm:text-5xl text-[#C79A45] font-semibold tracking-tight block mb-1">
-                  {stat.value}
-                </span>
-                <h3 className="font-display text-lg text-[#F6F1E4] font-medium">
-                  {stat.label}
-                </h3>
-                <p className="text-xs text-[#F6F1E4]/70 font-sans">
-                  {stat.sublabel}
-                </p>
-              </div>
+          {clinicData.proofStats.stats.map((stat, idx) => {
+            const { num, prefix, suffix } = parseStatValue(stat.value);
+            return (
+              <BlurReveal
+                key={stat.label}
+                delay={idx * 0.12}
+                blur={14}
+                y={24}
+                className="p-6 bg-[#1B1E15] rounded-lg border-l-2 border-[#C79A45] border-t border-r border-b border-[#F6F1E4]/15 flex items-center justify-between group hover:bg-[#1B1E15]/80 transition-colors shadow-lg"
+              >
+                <div>
+                  <span className="font-display text-4xl sm:text-5xl text-[#C79A45] font-semibold tracking-tight block mb-1">
+                    <CountUp
+                      end={num}
+                      prefix={prefix}
+                      suffix={suffix}
+                      duration={2.2}
+                      delay={idx * 0.15}
+                      format={true}
+                    />
+                  </span>
+                  <h3 className="font-display text-lg text-[#F6F1E4] font-medium">
+                    {stat.label}
+                  </h3>
+                  <p className="text-xs text-[#F6F1E4]/70 font-sans">
+                    {stat.sublabel}
+                  </p>
+                </div>
 
-              <div className="w-10 h-10 rounded-full bg-[#12140D] border border-[#F6F1E4]/20 flex items-center justify-center text-[#C79A45] shrink-0">
-                {idx === 0 ? <Users size={18} /> : idx === 1 ? <Award size={18} /> : <Heart size={18} />}
-              </div>
-            </BlurReveal>
-          ))}
+                <div className="w-10 h-10 rounded-full bg-[#12140D] border border-[#F6F1E4]/20 flex items-center justify-center text-[#C79A45] shrink-0">
+                  {idx === 0 ? <Users size={18} /> : idx === 1 ? <Award size={18} /> : <Heart size={18} />}
+                </div>
+              </BlurReveal>
+            );
+          })}
         </div>
 
       </div>
