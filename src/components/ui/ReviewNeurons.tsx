@@ -3,11 +3,21 @@
 import React from "react";
 
 export const ReviewNeurons: React.FC = () => {
+  const [isDesktop, setIsDesktop] = React.useState(false);
+
+  React.useEffect(() => {
+    if (window.innerWidth >= 768) {
+      setIsDesktop(true);
+    }
+  }, []);
+
+  if (!isDesktop) return null;
+
   return (
     <>
       {/* ─── LEFT NEURON ARBORIZATION (Multiple uneven curly lines with dynamic neural impulses) ─── */}
       <div
-        className="hidden md:block absolute left-0 lg:left-2 top-1/2 -translate-y-1/2 w-[280px] md:w-[320px] lg:w-[420px] h-[540px] pointer-events-none z-10 select-none"
+        className="absolute left-0 lg:left-2 top-1/2 -translate-y-1/2 w-[280px] md:w-[320px] lg:w-[420px] h-[540px] pointer-events-none z-10 select-none"
         aria-hidden="true"
       >
         <svg

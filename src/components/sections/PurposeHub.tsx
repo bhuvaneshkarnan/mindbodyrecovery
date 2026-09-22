@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
 import { BandageFrame } from "@/components/ui/BandageFrame";
 import { FadeUp, BlurReveal } from "@/components/ui/ScrollAnimations";
 

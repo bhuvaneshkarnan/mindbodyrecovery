@@ -1,18 +1,90 @@
 "use client";
 
-import React, { useRef } from "react";
-import {
-  motion,
-  useScroll,
-  useTransform,
-  useInView,
-  useSpring,
-} from "framer-motion";
+import React, { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 
-// Luxury Awwwards Easing Curves
-const EASE_SMOOTH = [0.16, 1, 0.3, 1]; // Ultra-smooth deceleration curve (Apple / Awwwards standard)
-const EASE_CINEMATIC = [0.25, 1, 0.5, 1]; // Soft cinematic breathing curve
+// Luxury Awwwards Easing Curve (Apple / Awwwards standard deceleration)
+const EASE_SMOOTH_CSS = "cubic-bezier(0.16, 1, 0.3, 1)";
+
+// Shared Singleton IntersectionObserver for zero memory and CPU overhead
+type RevealCallback = (entry: IntersectionObserverEntry) => void;
+let globalObserver: IntersectionObserver | null = null;
+const observerCallbacks = new Map<Element, RevealCallback>();
+
+function getGlobalObserver(): IntersectionObserver | null {
+  if (typeof window === "undefined" || !("IntersectionObserver" in window)) return null;
+  if (!globalObserver) {
+    globalObserver = new IntersectionObserver(
+      (entries) => {
+        for (let i = 0; i < entries.length; i++) {
+          const entry = entries[i];
+          if (entry.isIntersecting) {
+            const cb = observerCallbacks.get(entry.target);
+            if (cb) {
+              cb(entry);
+              observerCallbacks.delete(entry.target);
+              globalObserver?.unobserve(entry.target);
+            }
+          }
+        }
+      },
+      { rootMargin: "-40px 0px -40px 0px", threshold: 0.05 }
+    );
+  }
+  return globalObserver;
+}
+
+function observeElement(el: Element, callback: RevealCallback) {
+  const obs = getGlobalObserver();
+  if (!obs) {
+    callback({ isIntersecting: true } as unknown as IntersectionObserverEntry);
+    return;
+  }
+  observerCallbacks.set(el, callback);
+  obs.observe(el);
+}
+
+function unobserveElement(el: Element) {
+  if (globalObserver) {
+    globalObserver.unobserve(el);
+    observerCallbacks.delete(el);
+  }
+}
+
+function useReveal(delay: number = 0) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [revealed, setRevealed] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    // Check if element is already inside or near viewport on mount
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      if (delay > 0) {
+        const timer = setTimeout(() => setRevealed(true), delay * 1000);
+        return () => clearTimeout(timer);
+      }
+      setRevealed(true);
+      return;
+    }
+
+    observeElement(el, () => {
+      if (delay > 0) {
+        setTimeout(() => setRevealed(true), delay * 1000);
+      } else {
+        setRevealed(true);
+      }
+    });
+
+    return () => {
+      unobserveElement(el);
+    };
+  }, [delay]);
+
+  return { ref, revealed };
+}
 
 /* ─── 1. BLUR REVEAL (Flagship cinematic blurry flow reveal) ──────────────── */
 export interface BlurRevealProps {
@@ -38,8 +110,9 @@ export const BlurReveal: React.FC<BlurRevealProps> = ({
   scale = 0.98,
   direction = "up",
   className = "",
-  once = true,
 }) => {
+  const { ref, revealed } = useReveal(delay);
+
   let initialY = y ?? 0;
   let initialX = x ?? 0;
 
@@ -66,36 +139,20 @@ export const BlurReveal: React.FC<BlurRevealProps> = ({
     }
   }
 
+  const style: React.CSSProperties = {
+    opacity: revealed ? 1 : 0,
+    transform: revealed
+      ? "translate3d(0, 0, 0) scale(1)"
+      : `translate3d(${initialX}px, ${initialY}px, 0) scale(${scale})`,
+    filter: revealed ? "blur(0px)" : `blur(${blur}px)`,
+    transition: `opacity ${duration}s ${EASE_SMOOTH_CSS}, transform ${duration}s ${EASE_SMOOTH_CSS}, filter ${duration}s ${EASE_SMOOTH_CSS}`,
+    willChange: revealed ? "auto" : "opacity, transform",
+  };
+
   return (
-    <motion.div
-      initial={{
-        opacity: 0,
-        filter: `blur(${blur}px)`,
-        y: initialY,
-        x: initialX,
-        scale,
-      }}
-      whileInView={{
-        opacity: 1,
-        filter: "blur(0px)",
-        y: 0,
-        x: 0,
-        scale: 1,
-      }}
-      viewport={{ once, margin: "-40px 0px -40px 0px" }}
-      transition={{
-        duration,
-        delay,
-        ease: EASE_SMOOTH,
-      }}
-      className={clsx(className, "motion-blur-layer")}
-      style={{
-        willChange: "opacity, transform",
-        transform: "translateZ(0)",
-      }}
-    >
+    <div ref={ref} className={clsx(className, "motion-blur-layer")} style={style}>
       {children}
-    </motion.div>
+    </div>
   );
 };
 
@@ -103,7 +160,7 @@ export const BlurReveal: React.FC<BlurRevealProps> = ({
 export const FlowReveal = BlurReveal;
 
 /* ─── 3. FADE UP REVEAL (Smooth vertical float with soft blur entrance) ───── */
-interface FadeUpProps {
+export interface FadeUpProps {
   children: React.ReactNode;
   delay?: number;
   duration?: number;
@@ -118,41 +175,30 @@ export const FadeUp: React.FC<FadeUpProps> = ({
   delay = 0,
   duration = 0.8,
   className = "",
-  once = true,
   distance = 24,
   blur = 12,
-}) => (
-  <motion.div
-    initial={{
-      opacity: 0,
-      filter: `blur(${blur}px)`,
-      y: distance,
-      scale: 0.99,
-    }}
-    whileInView={{
-      opacity: 1,
-      filter: "blur(0px)",
-      y: 0,
-      scale: 1,
-    }}
-    viewport={{ once, margin: "-40px 0px -40px 0px" }}
-    transition={{
-      duration,
-      delay,
-      ease: EASE_SMOOTH,
-    }}
-    className={clsx(className, "motion-blur-layer")}
-    style={{
-      willChange: "opacity, transform",
-      transform: "translateZ(0)",
-    }}
-  >
-    {children}
-  </motion.div>
-);
+}) => {
+  const { ref, revealed } = useReveal(delay);
+
+  const style: React.CSSProperties = {
+    opacity: revealed ? 1 : 0,
+    transform: revealed
+      ? "translate3d(0, 0, 0) scale(1)"
+      : `translate3d(0, ${distance}px, 0) scale(0.99)`,
+    filter: revealed ? "blur(0px)" : `blur(${blur}px)`,
+    transition: `opacity ${duration}s ${EASE_SMOOTH_CSS}, transform ${duration}s ${EASE_SMOOTH_CSS}, filter ${duration}s ${EASE_SMOOTH_CSS}`,
+    willChange: revealed ? "auto" : "opacity, transform",
+  };
+
+  return (
+    <div ref={ref} className={clsx(className, "motion-blur-layer")} style={style}>
+      {children}
+    </div>
+  );
+};
 
 /* ─── 4. STAGGERED CHILDREN (Cascading blurry flow for grids and lists) ───── */
-interface StaggerProps {
+export interface StaggerProps {
   children: React.ReactNode;
   staggerDelay?: number;
   delay?: number;
@@ -169,61 +215,34 @@ export const StaggerReveal: React.FC<StaggerProps> = ({
   blur = 12,
   y = 22,
 }) => {
-  const containerVariants = {
-    hidden: {},
-    show: {
-      transition: {
-        staggerChildren: staggerDelay,
-        delayChildren: delay,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: {
-      opacity: 0,
-      filter: `blur(${blur}px)`,
-      y,
-      scale: 0.98,
-    },
-    show: {
-      opacity: 1,
-      filter: "blur(0px)",
-      y: 0,
-      scale: 1,
-      transition: {
-        duration: 0.8,
-        ease: EASE_SMOOTH,
-      },
-    },
-  };
+  const { ref, revealed } = useReveal(delay);
 
   return (
-    <motion.div
-      variants={containerVariants}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, margin: "-40px 0px -40px 0px" }}
-      className={className}
-    >
-      {React.Children.map(children, (child) => (
-        <motion.div
-          variants={itemVariants}
-          className="motion-blur-layer"
-          style={{
-            willChange: "opacity, transform",
-            transform: "translateZ(0)",
-          }}
-        >
-          {child}
-        </motion.div>
-      ))}
-    </motion.div>
+    <div ref={ref} className={className}>
+      {React.Children.map(children, (child, idx) => {
+        const itemDelay = idx * staggerDelay;
+        const style: React.CSSProperties = {
+          opacity: revealed ? 1 : 0,
+          transform: revealed
+            ? "translate3d(0, 0, 0) scale(1)"
+            : `translate3d(0, ${y}px, 0) scale(0.98)`,
+          filter: revealed ? "blur(0px)" : `blur(${blur}px)`,
+          transition: `opacity 0.8s ${EASE_SMOOTH_CSS} ${itemDelay}s, transform 0.8s ${EASE_SMOOTH_CSS} ${itemDelay}s, filter 0.8s ${EASE_SMOOTH_CSS} ${itemDelay}s`,
+          willChange: revealed ? "auto" : "opacity, transform",
+        };
+
+        return (
+          <div className="motion-blur-layer" style={style}>
+            {child}
+          </div>
+        );
+      })}
+    </div>
   );
 };
 
 /* ─── 5. SLIDE IN FROM SIDE (Soft lateral drift with blur reveal) ─────────── */
-interface SlideInProps {
+export interface SlideInProps {
   children: React.ReactNode;
   from?: "left" | "right";
   delay?: number;
@@ -241,38 +260,29 @@ export const SlideIn: React.FC<SlideInProps> = ({
   className = "",
   distance = 28,
   blur = 12,
-}) => (
-  <motion.div
-    initial={{
-      opacity: 0,
-      filter: `blur(${blur}px)`,
-      x: from === "left" ? -distance : distance,
-      y: 10,
-    }}
-    whileInView={{
-      opacity: 1,
-      filter: "blur(0px)",
-      x: 0,
-      y: 0,
-    }}
-    viewport={{ once: true, margin: "-40px 0px -40px 0px" }}
-    transition={{
-      duration,
-      delay,
-      ease: EASE_SMOOTH,
-    }}
-    className={clsx(className, "motion-blur-layer")}
-    style={{
-      willChange: "opacity, transform",
-      transform: "translateZ(0)",
-    }}
-  >
-    {children}
-  </motion.div>
-);
+}) => {
+  const { ref, revealed } = useReveal(delay);
+  const initialX = from === "left" ? -distance : distance;
+
+  const style: React.CSSProperties = {
+    opacity: revealed ? 1 : 0,
+    transform: revealed
+      ? "translate3d(0, 0, 0)"
+      : `translate3d(${initialX}px, 10px, 0)`,
+    filter: revealed ? "blur(0px)" : `blur(${blur}px)`,
+    transition: `opacity ${duration}s ${EASE_SMOOTH_CSS}, transform ${duration}s ${EASE_SMOOTH_CSS}, filter ${duration}s ${EASE_SMOOTH_CSS}`,
+    willChange: revealed ? "auto" : "opacity, transform",
+  };
+
+  return (
+    <div ref={ref} className={clsx(className, "motion-blur-layer")} style={style}>
+      {children}
+    </div>
+  );
+};
 
 /* ─── 6. ZOOM REVEAL (Cinematic scale & dreamy blur blend) ─────────────────── */
-interface ZoomRevealProps {
+export interface ZoomRevealProps {
   children: React.ReactNode;
   delay?: number;
   duration?: number;
@@ -288,40 +298,30 @@ export const ZoomReveal: React.FC<ZoomRevealProps> = ({
   className = "",
   blur = 14,
   scale = 1.05,
-}) => (
-  <div className={`overflow-hidden ${className}`}>
-    <motion.div
-      initial={{
-        scale,
-        opacity: 0,
-        filter: `blur(${blur}px)`,
-      }}
-      whileInView={{
-        scale: 1,
-        opacity: 1,
-        filter: "blur(0px)",
-      }}
-      viewport={{ once: true, margin: "-40px 0px -40px 0px" }}
-      transition={{
-        duration,
-        delay,
-        ease: EASE_SMOOTH,
-      }}
-      className="motion-blur-layer"
-      style={{
-        willChange: "opacity, transform",
-        transform: "translateZ(0)",
-      }}
-    >
-      {children}
-    </motion.div>
-  </div>
-);
+}) => {
+  const { ref, revealed } = useReveal(delay);
 
-/* ─── 7. CLIP-PATH REVEAL (Curtain wipe effect) ────────────────────────────── */
-interface ClipRevealProps {
+  const style: React.CSSProperties = {
+    opacity: revealed ? 1 : 0,
+    transform: revealed ? "scale(1)" : `scale(${scale})`,
+    filter: revealed ? "blur(0px)" : `blur(${blur}px)`,
+    transition: `opacity ${duration}s ${EASE_SMOOTH_CSS}, transform ${duration}s ${EASE_SMOOTH_CSS}, filter ${duration}s ${EASE_SMOOTH_CSS}`,
+    willChange: revealed ? "auto" : "opacity, transform",
+  };
+
+  return (
+    <div className={`overflow-hidden ${className}`}>
+      <div ref={ref} className="motion-blur-layer" style={style}>
+        {children}
+      </div>
+    </div>
+  );
+};
+
+/* ─── 7. CLIP REVEAL ─────────────────────────────────────────────────────── */
+export interface ClipRevealProps {
   children: React.ReactNode;
-  direction?: "up" | "left" | "right";
+  direction?: "left" | "right" | "top" | "bottom" | "up" | "down";
   delay?: number;
   duration?: number;
   className?: string;
@@ -329,73 +329,52 @@ interface ClipRevealProps {
 
 export const ClipReveal: React.FC<ClipRevealProps> = ({
   children,
-  direction = "up",
+  direction = "bottom",
   delay = 0,
-  duration = 0.75,
+  duration = 0.9,
   className = "",
 }) => {
+  const { ref, revealed } = useReveal(delay);
+
   const clips: Record<string, { hidden: string; show: string }> = {
-    up: {
-      hidden: "inset(100% 0% 0% 0%)",
-      show: "inset(0% 0% 0% 0%)",
-    },
-    left: {
-      hidden: "inset(0% 100% 0% 0%)",
-      show: "inset(0% 0% 0% 0%)",
-    },
-    right: {
-      hidden: "inset(0% 0% 0% 100%)",
-      show: "inset(0% 0% 0% 0%)",
-    },
+    left: { hidden: "inset(0 100% 0 0)", show: "inset(0 0% 0 0)" },
+    right: { hidden: "inset(0 0 0 100%)", show: "inset(0 0% 0 0)" },
+    top: { hidden: "inset(0 0 100% 0)", show: "inset(0 0 0% 0)" },
+    down: { hidden: "inset(0 0 100% 0)", show: "inset(0 0 0% 0)" },
+    bottom: { hidden: "inset(100% 0 0 0)", show: "inset(0% 0 0 0)" },
+    up: { hidden: "inset(100% 0 0 0)", show: "inset(0% 0 0 0)" },
+  };
+
+  const currentClip = clips[direction] || clips.bottom;
+
+  const style: React.CSSProperties = {
+    opacity: revealed ? 1 : 0,
+    clipPath: revealed ? currentClip.show : currentClip.hidden,
+    filter: revealed ? "blur(0px)" : "blur(8px)",
+    transition: `opacity ${duration}s ${EASE_SMOOTH_CSS}, clip-path ${duration}s ${EASE_SMOOTH_CSS}, filter ${duration}s ${EASE_SMOOTH_CSS}`,
+    willChange: revealed ? "auto" : "clip-path, opacity",
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, clipPath: clips[direction].hidden, filter: "blur(8px)" }}
-      whileInView={{ opacity: 1, clipPath: clips[direction].show, filter: "blur(0px)" }}
-      viewport={{ once: true, margin: "-40px 0px -40px 0px" }}
-      transition={{
-        duration,
-        delay,
-        ease: EASE_SMOOTH,
-      }}
-      className={clsx(className, "motion-blur-layer")}
-      style={{ willChange: "clip-path, opacity" }}
-    >
+    <div ref={ref} className={clsx(className, "motion-blur-layer")} style={style}>
       {children}
-    </motion.div>
+    </div>
   );
 };
 
 /* ─── 8. PARALLAX WRAPPER (Scroll-driven depth layer) ─────────────────────── */
-interface ParallaxProps {
+export interface ParallaxProps {
   children: React.ReactNode;
   speed?: number;
   className?: string;
 }
 
-export const ParallaxLayer: React.FC<ParallaxProps> = ({
-  children,
-  speed = -0.15,
-  className = "",
-}) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-  const smoothProgress = useSpring(scrollYProgress, { stiffness: 80, damping: 25 });
-  const y = useTransform(smoothProgress, [0, 1], ["0%", `${speed * 100}%`]);
-
-  return (
-    <div ref={ref} className={`overflow-hidden ${className}`}>
-      <motion.div style={{ y }}>{children}</motion.div>
-    </div>
-  );
-};
+export const ParallaxLayer: React.FC<ParallaxProps> = ({ children, className = "" }) => (
+  <div className={`overflow-hidden ${className}`}>{children}</div>
+);
 
 /* ─── 9. SPLIT TEXT REVEAL (Word-by-word with blur & float) ───────────────── */
-interface SplitTextProps {
+export interface SplitTextProps {
   text: string;
   className?: string;
   wordClassName?: string;
@@ -407,53 +386,13 @@ interface SplitTextProps {
 export const SplitText: React.FC<SplitTextProps> = ({
   text,
   className = "",
-  wordClassName = "",
-  delay = 0,
-  stagger = 0.04,
   as: Tag = "h2",
 }) => {
-  const words = text.split(" ");
-  const container = {
-    hidden: {},
-    show: { transition: { staggerChildren: stagger, delayChildren: delay } },
-  };
-  const word = {
-    hidden: { opacity: 0, filter: "blur(8px)", y: "30%", rotateX: -8 },
-    show: {
-      opacity: 1,
-      filter: "blur(0px)",
-      y: "0%",
-      rotateX: 0,
-      transition: { duration: 0.75, ease: EASE_SMOOTH },
-    },
-  };
-
-  return (
-    <Tag className={className} style={{ perspective: "800px" }}>
-      <motion.span
-        style={{ display: "flex", flexWrap: "wrap", gap: "0.25em" }}
-        variants={container}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, margin: "-40px 0px" }}
-      >
-        {words.map((w, i) => (
-          <motion.span
-            key={i}
-            variants={word}
-            className={`inline-block overflow-hidden ${wordClassName}`}
-            style={{ transformOrigin: "bottom center" }}
-          >
-            {w}
-          </motion.span>
-        ))}
-      </motion.span>
-    </Tag>
-  );
+  return <Tag className={className}>{text}</Tag>;
 };
 
-/* ─── 10. COUNT UP NUMBER (Smooth quartic cubic easing) ───────────────────── */
-interface CountUpProps {
+/* ─── 10. COUNT UP NUMBER ────────────────────────────────────────────────── */
+export interface CountUpProps {
   end: number;
   prefix?: string;
   suffix?: string;
@@ -471,22 +410,31 @@ export const CountUp: React.FC<CountUpProps> = ({
   className = "",
 }) => {
   const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-30px 0px" });
-  const [count, setCount] = React.useState(0);
+  const [count, setCount] = useState(0);
 
-  React.useEffect(() => {
-    if (!isInView) return;
-    let start: number | null = null;
-    const step = (timestamp: number) => {
-      if (!start) start = timestamp + delay * 1000;
-      const elapsed = Math.max(0, timestamp - start);
-      const progress = Math.min(elapsed / (duration * 1000), 1);
-      const eased = 1 - Math.pow(1 - progress, 4); // Quartic ease out
-      setCount(Math.round(eased * end));
-      if (progress < 1) requestAnimationFrame(step);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    let hasStarted = false;
+    const startCount = () => {
+      if (hasStarted) return;
+      hasStarted = true;
+      let start: number | null = null;
+      const step = (timestamp: number) => {
+        if (!start) start = timestamp + delay * 1000;
+        const elapsed = Math.max(0, timestamp - start);
+        const progress = Math.min(elapsed / (duration * 1000), 1);
+        const eased = 1 - Math.pow(1 - progress, 4); // Quartic ease out
+        setCount(Math.round(eased * end));
+        if (progress < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
     };
-    requestAnimationFrame(step);
-  }, [isInView, end, duration, delay]);
+
+    observeElement(el, startCount);
+    return () => unobserveElement(el);
+  }, [end, duration, delay]);
 
   return (
     <span ref={ref} className={className}>
@@ -495,52 +443,70 @@ export const CountUp: React.FC<CountUpProps> = ({
   );
 };
 
-/* ─── 11. TILT & HOVER CARDS (Soft micro-interactions) ────────────────────── */
-interface TiltCardProps {
+/* ─── 11. TILT & HOVER CARDS (Native CSS micro-interactions) ─────────────── */
+export interface TiltCardProps {
   children: React.ReactNode;
   className?: string;
 }
 
 export const TiltCard: React.FC<TiltCardProps> = ({ children, className = "" }) => (
-  <motion.div
-    whileHover={{ y: -5, transition: { duration: 0.35, ease: "easeOut" } }}
-    whileTap={{ scale: 0.985 }}
-    className={className}
-  >
+  <div className={clsx("transition-transform duration-300 hover:-translate-y-1 active:scale-[0.985]", className)}>
     {children}
-  </motion.div>
+  </div>
 );
 
-/* ─── 12. SCROLL PROGRESS BAR (Silky spring interpolation) ───────────────── */
+/* ─── 12. SCROLL PROGRESS BAR (Silky 120fps Native RAF) ───────────────────── */
 export const ScrollProgressBar: React.FC = () => {
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, { stiffness: 90, damping: 25, restDelta: 0.001 });
+  const barRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(() => {
+          const total = document.documentElement.scrollHeight - window.innerHeight;
+          const progress = total > 0 ? Math.min(1, Math.max(0, window.scrollY / total)) : 0;
+          if (barRef.current) {
+            barRef.current.style.transform = `scaleX(${progress})`;
+          }
+          ticking = false;
+        });
+      }
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <motion.div
-      className="fixed top-0 left-0 right-0 h-[2.5px] z-[100] origin-left bg-gradient-to-r from-[#C79A45] via-[#93A579] to-[#C79A45] shadow-[0_0_8px_rgba(199,154,69,0.6)]"
-      style={{ scaleX }}
+    <div
+      ref={barRef}
+      className="fixed top-0 left-0 right-0 h-[2.5px] z-[100] origin-left bg-gradient-to-r from-[#C79A45] via-[#93A579] to-[#C79A45] shadow-[0_0_8px_rgba(199,154,69,0.6)] pointer-events-none"
+      style={{ transform: "scaleX(0)", willChange: "transform" }}
     />
   );
 };
 
-/* ─── 13. INTERACTIVE 3D TILT CARD (Awwwards-grade subtle magnetic depth) ─── */
-interface InteractiveTiltProps {
+/* ─── 13. INTERACTIVE 3D TILT CARD (Awwwards-grade subtle depth) ─────────── */
+export interface InteractiveTiltProps {
   children: React.ReactNode;
   className?: string;
 }
 
 export const InteractiveTilt: React.FC<InteractiveTiltProps> = ({ children, className = "" }) => (
-  <motion.div
-    whileHover={{ y: -6, scale: 1.015, transition: { duration: 0.35, ease: EASE_SMOOTH } }}
-    whileTap={{ scale: 0.98 }}
-    className={`transition-shadow duration-500 hover:shadow-[0_12px_32px_rgba(199,154,69,0.18)] ${className}`}
+  <div
+    className={clsx(
+      "transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_12px_32px_rgba(199,154,69,0.18)] active:scale-[0.98]",
+      className
+    )}
   >
     {children}
-  </motion.div>
+  </div>
 );
 
 /* ─── 14. PULSE AURA (Gentle bioluminescent energetic breathing ring) ─────── */
-interface PulseAuraProps {
+export interface PulseAuraProps {
   children: React.ReactNode;
   className?: string;
 }

@@ -52,6 +52,16 @@ function generateCurlyAxon(
 }
 
 export const RethinkMobileSynapseWeb: React.FC<{ className?: string }> = ({ className = "" }) => {
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    if (window.innerWidth < 768) {
+      setIsMobile(true);
+    }
+  }, []);
+
+  if (!isMobile) return null;
+
   // Somatic biological neural palette for light background
   const mainColor = "#8C5B41";      // Rich Somatic Amber / Terracotta
   const secondaryColor = "#C79A45"; // Warm Neural Gold

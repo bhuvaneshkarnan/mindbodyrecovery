@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
 import { clinicData } from "@/data/clinicData";
 import { Users, Award, Heart } from "lucide-react";
 import { ZoomReveal, SlideIn, FadeUp, BlurReveal } from "@/components/ui/ScrollAnimations";

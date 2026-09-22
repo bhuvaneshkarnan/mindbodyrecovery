@@ -48,6 +48,16 @@ function generateCurlyAxon(
 }
 
 export const RethinkSynapseWeb: React.FC<{ className?: string }> = ({ className = "" }) => {
+  const [isDesktop, setIsDesktop] = React.useState(false);
+
+  React.useEffect(() => {
+    if (window.innerWidth >= 768) {
+      setIsDesktop(true);
+    }
+  }, []);
+
+  if (!isDesktop) return null;
+
   const mainColor = "#8C5B41";
   const secondaryColor = "#C79A45";
   const faintColor = "rgba(140, 91, 65, 0.22)";

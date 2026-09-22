@@ -107,37 +107,28 @@ export const NeuronHeadingConnector: React.FC<NeuronHeadingConnectorProps> = ({
   }, [headingId, somaId, amplitude, cycles]);
 
   useEffect(() => {
-    calculateWave();
-
-    const handleResize = () => calculateWave();
-    window.addEventListener("resize", handleResize);
-    window.addEventListener("scroll", handleResize, { passive: true });
-
-    let observer: ResizeObserver | null = null;
-    if (typeof ResizeObserver !== "undefined" && containerRef.current?.parentElement) {
-      observer = new ResizeObserver(() => calculateWave());
-      observer.observe(containerRef.current.parentElement);
+    if (typeof window === "undefined" || window.innerWidth < 768) {
+      return;
     }
 
-    // Small delay to recalculate after layout animations settle
-    const timer = setTimeout(calculateWave, 350);
+    const timer = setTimeout(calculateWave, 300);
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        calculateWave();
+      } else {
+        setPathData(null);
+      }
+    };
+    window.addEventListener("resize", handleResize, { passive: true });
 
     return () => {
       window.removeEventListener("resize", handleResize);
-      window.removeEventListener("scroll", handleResize);
-      if (observer) observer.disconnect();
       clearTimeout(timer);
     };
   }, [calculateWave]);
 
   if (!pathData) {
-    return (
-      <svg
-        ref={containerRef}
-        className={`absolute inset-0 w-full h-full pointer-events-none z-10 ${className}`}
-        aria-hidden="true"
-      />
-    );
+    return null;
   }
 
   const gradId = `heading-wave-grad-${headingId}-${variant}`;

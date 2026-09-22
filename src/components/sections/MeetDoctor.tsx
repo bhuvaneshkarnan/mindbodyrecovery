@@ -1,11 +1,10 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
 import { clinicData } from "@/data/clinicData";
 import { BandageFrame } from "@/components/ui/BandageFrame";
 import { Calendar } from "lucide-react";
-import { ClipReveal, FadeUp, BlurReveal } from "@/components/ui/ScrollAnimations";
+import { FadeUp, BlurReveal, SlideIn } from "@/components/ui/ScrollAnimations";
 
 interface MeetDoctorProps {
   onOpenAssessment: () => void;
@@ -40,11 +39,9 @@ export const MeetDoctor: React.FC<MeetDoctorProps> = ({ onOpenAssessment }) => {
           </FadeUp>
 
           {/* Right Column: Sourced Narrative Bio (7 cols) */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+          <SlideIn
+            from="right"
+            delay={0.15}
             className="lg:col-span-7 space-y-6 relative z-20"
           >
             <BlurReveal delay={0.1}>
@@ -91,7 +88,7 @@ export const MeetDoctor: React.FC<MeetDoctorProps> = ({ onOpenAssessment }) => {
                 <span className="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
               </button>
             </div>
-          </motion.div>
+          </SlideIn>
 
         </div>
 
