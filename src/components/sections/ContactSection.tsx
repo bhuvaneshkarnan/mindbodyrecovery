@@ -130,7 +130,7 @@ export const ContactSection: React.FC<ContactSectionProps> = () => {
             </div>
 
             <div className="pt-8 border-t border-[#231F19]/15 flex items-center justify-between text-xs text-[#231F19]/70">
-              <span>T Nagar, Chennai, Tamil Nadu</span>
+              <span>Shanta Ayurveda Hospital &middot; T. Nagar, Chennai</span>
             </div>
           </SlideIn>
         </div>
@@ -142,11 +142,34 @@ export const ContactSection: React.FC<ContactSectionProps> = () => {
 
           <SlideIn from="right" delay={0.15} className="relative z-10 text-[#F6F1E4] flex flex-col justify-between h-full">
             <div>
+            {/* Live Location Map */}
             <div className="mb-8 space-y-2">
-              <img src="/assets/brand/logo-trimmed.webp" alt="Mind Body Recovery" width={125} height={48} loading="lazy" decoding="async" className="h-12 w-auto object-contain" />
-              <p className="text-xs text-[#F6F1E4]/60 uppercase tracking-widest font-sans">
-                {clinicData.tagline}
-              </p>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                  </span>
+                  <span className="text-[11px] uppercase tracking-widest text-[#C79A45] font-medium font-sans">
+                    Live Clinic Location
+                  </span>
+                </div>
+                <span className="text-[11px] text-[#F6F1E4]/50 font-sans">T. Nagar, Chennai</span>
+              </div>
+
+              <div className="relative w-full h-[200px] sm:h-[220px] rounded-xl overflow-hidden border border-[#F6F1E4]/15 shadow-xl bg-[#1B1E15]">
+                <iframe
+                  title="Mind Body Recovery Location - Shanta Ayurveda Hospital, T. Nagar, Chennai"
+                  src={clinicData.embedMapsUrl}
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen={false}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="w-full h-full object-cover"
+                />
+              </div>
             </div>
 
             {/* Contact Information */}

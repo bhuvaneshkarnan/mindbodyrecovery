@@ -51,9 +51,10 @@ export const clinicData = {
   phone: "+919042561651",
   phoneDisplay: "+91 90425 61651",
   email: "tamilnadutherapist@gmail.com",
-  address: "T Nagar, Chennai, Tamil Nadu",
+  address: "Shanta Ayurveda Hospital, 23A, N Boag Rd, Drivers Colony, T. Nagar, Chennai, Tamil Nadu 600017",
   addressPlaceholder: "",
-  googleMapsUrl: "https://maps.google.com/?q=T+Nagar+Chennai+Tamil+Nadu",
+  googleMapsUrl: "https://maps.google.com/?q=Shanta+Ayurveda+Hospital,+23A,+N+Boag+Rd,+Drivers+Colony,+T.+Nagar,+Chennai,+Tamil+Nadu+600017",
+  embedMapsUrl: "https://maps.google.com/maps?q=Shanta+Ayurveda+Hospital,+23A,+N+Boag+Rd,+Drivers+Colony,+T.+Nagar,+Chennai,+Tamil+Nadu+600017&t=&z=16&ie=UTF8&iwloc=&output=embed",
   
   hero: {
     headline: ["Relax", "Rethink", "Rebuild"],
