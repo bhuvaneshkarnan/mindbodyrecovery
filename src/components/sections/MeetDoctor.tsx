@@ -1,11 +1,10 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
 import { clinicData } from "@/data/clinicData";
 import { BandageFrame } from "@/components/ui/BandageFrame";
 import { Calendar } from "lucide-react";
-import { ClipReveal, FadeUp, BlurReveal } from "@/components/ui/ScrollAnimations";
+import { SlideIn, FadeUp, BlurReveal } from "@/components/ui/ScrollAnimations";
 
 interface MeetDoctorProps {
   onOpenAssessment: () => void;
@@ -40,13 +39,7 @@ export const MeetDoctor: React.FC<MeetDoctorProps> = ({ onOpenAssessment }) => {
           </FadeUp>
 
           {/* Right Column: Sourced Narrative Bio (7 cols) */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="lg:col-span-7 space-y-6 relative z-20"
-          >
+          <SlideIn from="right" delay={0.15} className="lg:col-span-7 space-y-6 relative z-20">
             <BlurReveal delay={0.1}>
               <h2 className="font-display text-4xl sm:text-5xl text-[#231F19] font-semibold tracking-tight leading-tight">
                 Meet the Founder
@@ -80,8 +73,18 @@ export const MeetDoctor: React.FC<MeetDoctorProps> = ({ onOpenAssessment }) => {
               </p>
             </div>
 
+            {/* Credentials & Facility Context */}
+            <div className="space-y-1.5 pt-2 border-t border-[#E5E7EB] max-w-md">
+              <p className="text-xs uppercase tracking-wider font-semibold text-[#8C5B41]">
+                {clinicData.doctor.credentials}
+              </p>
+              <p className="text-xs text-[#5A6351] font-sans leading-relaxed">
+                {clinicData.doctor.facilityContext}
+              </p>
+            </div>
+
             {/* CTA in Gold */}
-            <div className="pt-4">
+            <div className="pt-2">
               <button
                 onClick={onOpenAssessment}
                 className="inline-flex items-center gap-2.5 px-5 py-2.5 sm:px-6 sm:py-3 bg-[#C79A45] hover:bg-[#D4A752] text-[#12140D] font-semibold text-xs uppercase tracking-wider rounded-xl transition-all duration-300 shadow-md active:scale-95 group"
@@ -91,7 +94,7 @@ export const MeetDoctor: React.FC<MeetDoctorProps> = ({ onOpenAssessment }) => {
                 <span className="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
               </button>
             </div>
-          </motion.div>
+          </SlideIn>
 
         </div>
 

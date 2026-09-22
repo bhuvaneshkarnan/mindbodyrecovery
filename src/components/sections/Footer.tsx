@@ -11,7 +11,7 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-16 border-b border-[#F6F1E4]/10">
           {/* Brand Column (2 cols) */}
           <div className="lg:col-span-2 space-y-4">
-            <a href="#" className="inline-block focus:outline-none" aria-label="Mind Body Recovery">
+            <a href="/" className="inline-block focus:outline-none" aria-label="Mind Body Recovery Home">
               <img
                 src="/assets/brand/logo-trimmed.webp"
                 alt="Mind Body Recovery"
@@ -24,28 +24,32 @@ export const Footer: React.FC = () => {
             </a>
 
             <p className="text-xs sm:text-sm text-[#F6F1E4]/70 font-sans leading-relaxed max-w-sm">
-              An integrative sanctuary combining therapeutic bodywork, somatic inquiry, and immersive recovery retreats.
+              An integrative sanctuary combining therapeutic bodywork, somatic inquiry, and immersive recovery retreats at Shanta Ayurveda Hospital, Chennai.
             </p>
 
             <div className="flex items-center space-x-4 pt-2">
               <a
-                href="#"
+                href="https://wa.me/919042561651"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-8 h-8 rounded-full border border-[#F6F1E4]/20 flex items-center justify-center text-[#F6F1E4]/70 hover:text-[#C79A45] hover:border-[#C79A45] transition-colors"
-                aria-label="Instagram"
+                aria-label="WhatsApp Clinic"
               >
                 <Instagram size={15} />
               </a>
               <a
-                href="#"
+                href="mailto:tamilnadutherapist@gmail.com"
                 className="w-8 h-8 rounded-full border border-[#F6F1E4]/20 flex items-center justify-center text-[#F6F1E4]/70 hover:text-[#C79A45] hover:border-[#C79A45] transition-colors"
-                aria-label="Facebook"
+                aria-label="Email Clinic"
               >
                 <Facebook size={15} />
               </a>
               <a
-                href="#"
+                href="https://www.youtube.com/shorts/Sye2NYdx6rk"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-8 h-8 rounded-full border border-[#F6F1E4]/20 flex items-center justify-center text-[#F6F1E4]/70 hover:text-[#C79A45] hover:border-[#C79A45] transition-colors"
-                aria-label="YouTube"
+                aria-label="YouTube Reviews"
               >
                 <Youtube size={15} />
               </a>
@@ -59,27 +63,27 @@ export const Footer: React.FC = () => {
             </p>
             <ul className="space-y-2 text-xs sm:text-sm font-sans">
               <li>
-                <a href="#about" className="hover:text-[#C79A45] transition-colors">
+                <a href="/#about" className="hover:text-[#C79A45] transition-colors">
                   About Us
                 </a>
               </li>
               <li>
-                <a href="#purpose" className="hover:text-[#C79A45] transition-colors">
+                <a href="/#purpose" className="hover:text-[#C79A45] transition-colors">
                   Our Approach
                 </a>
               </li>
               <li>
-                <a href="#relax" className="hover:text-[#C79A45] transition-colors">
+                <a href="/#relax" className="hover:text-[#C79A45] transition-colors">
                   Therapies
                 </a>
               </li>
               <li>
-                <a href="#rebuild" className="hover:text-[#C79A45] transition-colors">
+                <a href="/#rebuild" className="hover:text-[#C79A45] transition-colors">
                   2-Day Reset Retreat
                 </a>
               </li>
               <li>
-                <a href="#stories" className="hover:text-[#C79A45] transition-colors">
+                <a href="/#stories" className="hover:text-[#C79A45] transition-colors">
                   Stories
                 </a>
               </li>
@@ -94,7 +98,7 @@ export const Footer: React.FC = () => {
             <ul className="space-y-2 text-xs sm:text-sm font-sans">
               {clinicData.therapiesList.map((t) => (
                 <li key={t.name}>
-                  <a href="#relax" className="hover:text-[#C79A45] transition-colors">
+                  <a href="/#relax" className="hover:text-[#C79A45] transition-colors">
                     {t.name}
                   </a>
                 </li>
@@ -110,7 +114,7 @@ export const Footer: React.FC = () => {
             <ul className="space-y-2 text-xs sm:text-sm font-sans">
               {clinicData.retreatHighlights.map((r) => (
                 <li key={r}>
-                  <a href="#rebuild" className="hover:text-[#C79A45] transition-colors">
+                  <a href="/#rebuild" className="hover:text-[#C79A45] transition-colors">
                     {r}
                   </a>
                 </li>
@@ -122,16 +126,16 @@ export const Footer: React.FC = () => {
         {/* Bottom Bar with Single Unified Year 2026 */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#F6F1E4]/50">
           <p>
-            &copy; 2026 Mind Body Recovery. All Rights Reserved.
+            &copy; 2026 Mind Body Recovery. All Rights Reserved. &middot; Shanta Ayurveda Hospital, T. Nagar, Chennai
           </p>
 
           <div className="flex items-center space-x-6">
-            <a href="#" className="hover:text-[#F6F1E4] transition-colors">
+            <a href="/privacy" className="hover:text-[#C79A45] transition-colors">
               Privacy Policy
             </a>
             <span>&middot;</span>
-            <a href="#" className="hover:text-[#F6F1E4] transition-colors">
-              Terms & Conditions
+            <a href="/terms" className="hover:text-[#C79A45] transition-colors">
+              Terms &amp; Conditions
             </a>
           </div>
         </div>

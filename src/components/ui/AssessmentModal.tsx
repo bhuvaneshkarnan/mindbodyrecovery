@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Check, Calendar, Phone, Clock, ArrowLeft } from "lucide-react";
+import { X, Check, Calendar, Phone, Clock, ArrowLeft, MessageSquare } from "lucide-react";
 
 interface AssessmentModalProps {
   isOpen: boolean;
@@ -22,6 +22,8 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
   const [selectedDuration, setSelectedDuration] = useState("1–3 Months");
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
   React.useEffect(() => {
@@ -66,14 +68,46 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
     if (step > 1) setStep(step - 1);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!fullName || !phone) return;
-    setSubmitted(true);
+    setErrorMessage("");
+
+    if (!fullName.trim() || fullName.trim().length < 2) {
+      setErrorMessage("Please provide your full name (minimum 2 characters).");
+      return;
+    }
+
+    const cleanPhone = phone.replace(/[^\d+]/g, "");
+    if (cleanPhone.replace(/\D/g, "").length < 8) {
+      setErrorMessage("Please provide a valid phone number (at least 8 to 15 digits).");
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "assessment_modal",
+          name: fullName,
+          phone: phone,
+          concern: selectedConcerns.join(", "),
+          duration: selectedDuration,
+        }),
+      });
+    } catch (err) {
+      console.warn("API lead submission fallback to direct WhatsApp connection", err);
+    } finally {
+      setIsSubmitting(false);
+      setSubmitted(true);
+    }
   };
 
   const handleResetAndClose = () => {
     setSubmitted(false);
+    setIsSubmitting(false);
+    setErrorMessage("");
     setStep(1);
     setSelectedConcerns(initialConcern ? [initialConcern] : ["Sleep Problems"]);
     setFullName("");
@@ -234,6 +268,12 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
                     Where should we confirm your appointment?
                   </p>
 
+                  {errorMessage && (
+                    <div className="p-3 rounded-lg bg-red-900/40 border border-red-500/50 text-red-200 text-xs font-sans">
+                      {errorMessage}
+                    </div>
+                  )}
+
                   <div className="p-3.5 bg-[#12140D] border border-[#F6F1E4]/10 rounded-xl text-xs text-[#F6F1E4]/70 space-y-1 mb-2">
                     <p><span className="text-[#C79A45] font-medium">{selectedConcerns.length > 1 ? "Concerns:" : "Concern:"}</span> {selectedConcerns.join(", ")}</p>
                     <p><span className="text-[#C79A45] font-medium">Duration:</span> {selectedDuration}</p>
@@ -247,7 +287,10 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
                       type="text"
                       required
                       value={fullName}
-                      onChange={(e) => setFullName(e.target.value)}
+                      onChange={(e) => {
+                        setFullName(e.target.value);
+                        if (errorMessage) setErrorMessage("");
+                      }}
                       placeholder="e.g. Ramesh Krishnan"
                       className="w-full px-3.5 py-2.5 bg-[#12140D] border border-[#F6F1E4]/20 text-[#F6F1E4] text-sm rounded-xl focus:outline-none focus:border-[#C79A45]"
                     />
@@ -261,13 +304,20 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
                       type="tel"
                       required
                       value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
+                      onChange={(e) => {
+                        setPhone(e.target.value);
+                        if (errorMessage) setErrorMessage("");
+                      }}
                       placeholder="+91 98765 43210"
                       className="w-full px-3.5 py-2.5 bg-[#12140D] border border-[#F6F1E4]/20 text-[#F6F1E4] text-sm rounded-xl focus:outline-none focus:border-[#C79A45]"
                     />
                   </div>
 
-                  <div className="pt-4 flex items-center space-x-3">
+                  <p className="text-[10.5px] text-[#F6F1E4]/60 font-sans leading-tight">
+                    Confidential intake. By continuing, you agree to receive appointment coordination via phone/WhatsApp. Integrative therapies support your well-being alongside regular medical care.
+                  </p>
+
+                  <div className="pt-3 flex items-center space-x-3">
                     <button
                       type="button"
                       onClick={handleBack}
@@ -278,10 +328,11 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
                     </button>
                     <button
                       type="submit"
-                      className="group flex-1 py-3 bg-[#C79A45] hover:bg-[#D4A752] text-[#12140D] text-xs uppercase tracking-widest font-semibold rounded-xl transition-all shadow-md active:scale-[0.98] flex items-center justify-center space-x-2"
+                      disabled={isSubmitting}
+                      className="group flex-1 py-3 bg-[#C79A45] hover:bg-[#D4A752] disabled:opacity-50 text-[#12140D] text-xs uppercase tracking-widest font-semibold rounded-xl transition-all shadow-md active:scale-[0.98] flex items-center justify-center space-x-2"
                     >
                       <Calendar size={14} />
-                      <span>Confirm Assessment</span>
+                      <span>{isSubmitting ? "Confirming..." : "Confirm Assessment"}</span>
                       <span className="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
                     </button>
                   </div>
@@ -300,10 +351,28 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
               </h3>
 
               <p className="text-sm text-[#F6F1E4]/80 font-sans max-w-sm mx-auto leading-relaxed">
-                Thank you, <span className="text-[#C79A45] font-medium">{fullName}</span>. We will reach out to <span className="text-[#F6F1E4] font-medium">{phone}</span> to confirm your quiet consultation slot.
+                Thank you, <span className="text-[#C79A45] font-medium">{fullName}</span>. We have recorded your request and will reach out to <span className="text-[#F6F1E4] font-medium">{phone}</span> to confirm your consultation slot.
               </p>
 
-              <div className="pt-4">
+              {/* Direct WhatsApp Fast-Track */}
+              <div className="pt-2">
+                <a
+                  href={`https://wa.me/919042561651?text=${encodeURIComponent(
+                    `Hello Mind Body Recovery team, I have requested an assessment.\nName: ${fullName}\nPhone: ${phone}\nConcerns: ${selectedConcerns.join(", ")}\nDuration: ${selectedDuration}`
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 w-full py-3 bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs uppercase tracking-wider font-semibold rounded-xl shadow-md transition-all active:scale-95"
+                >
+                  <MessageSquare size={16} />
+                  <span>Instant WhatsApp Confirmation</span>
+                </a>
+                <p className="text-[10.5px] text-[#F6F1E4]/50 mt-1.5">
+                  Tap to connect with Sameer&apos;s team directly on WhatsApp.
+                </p>
+              </div>
+
+              <div className="pt-3 border-t border-[#F6F1E4]/10">
                 <button
                   onClick={handleResetAndClose}
                   className="px-6 py-2.5 border border-[#C79A45]/50 text-[#C79A45] hover:bg-[#C79A45] hover:text-[#12140D] text-xs uppercase tracking-widest font-medium transition-colors rounded-xl"

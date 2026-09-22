@@ -296,10 +296,10 @@ export const RealStories: React.FC = () => {
           <div className="absolute top-[20px] left-[145px] w-[195px] z-20">
             <SlideIn from="left" delay={0.18}>
               <ReviewNote
-                quote="After consulting Sameer, my stress levels reduced. With his guidance, our IVF treatment was successful. Really grateful for his help."
+                quote="Preparing for IVF was overwhelming. Working with Sameer helped reduce my stress and support my body naturally through the journey. So grateful for his guidance."
                 author="Tala Rashid"
                 location="Mauritius"
-                tagline="Healing is possible."
+                tagline="Holistic support"
                 tilt={2}
                 clipPosition="top-right"
               />
@@ -324,10 +324,10 @@ export const RealStories: React.FC = () => {
           <div className="absolute top-[215px] left-[230px] w-[210px] z-20">
             <SlideIn from="left" delay={0.3}>
               <ReviewNote
-                quote="I had excruciating knee pain and hormonal liver imbalance. Thanks to Sameer, my doctor stopped my liver medication! I even walked to temples on foot in Karaikudi."
+                quote="With severe knee pain and liver concerns, Sameer's integrative bodywork brought incredible relief. My mobility returned, and under my doctor's guidance, my liver medications were safely tapered!"
                 author="Saradha Arjun"
                 location="Karaikudi"
-                tagline="Rediscovered health"
+                tagline="Restored mobility"
                 tilt={2.5}
                 variant="parchment"
                 clipPosition="top-right"
@@ -410,10 +410,10 @@ export const RealStories: React.FC = () => {
           <div className="absolute top-[200px] right-[15px] w-[205px] z-20">
             <SlideIn from="right" delay={0.3}>
               <ReviewNote
-                quote="Struggling with diabetes for years, I never thought I’d find a solution. With Sameer’s foot reflexology, my HbA1c levels dropped dramatically and I feel better than in years."
+                quote="Managing chronic stress and diabetes for years left me exhausted. With Sameer’s reflexology and lifestyle guidance, my energy returned and my HbA1c showed consistent, positive progress."
                 author="Verified Client"
                 location="Tamil Nadu"
-                tagline="HbA1c dropped dramatically"
+                tagline="Vitality restored"
                 tilt={2.5}
                 clipPosition="top-right"
               />
@@ -475,10 +475,10 @@ export const RealStories: React.FC = () => {
 
             <FadeUp delay={0.16}>
               <ReviewNote
-                quote="After consulting Sameer, my stress levels reduced. With his guidance, our IVF treatment was successful. Really grateful for his help."
+                quote="Preparing for IVF was overwhelming. Working with Sameer helped reduce my stress and support my body naturally through the journey. So grateful for his guidance."
                 author="Tala Rashid"
                 location="Mauritius"
-                tagline="Healing is possible."
+                tagline="Holistic support"
                 tilt={1.5}
                 clipPosition="top-right"
               />
@@ -508,10 +508,10 @@ export const RealStories: React.FC = () => {
 
             <FadeUp delay={0.28}>
               <ReviewNote
-                quote="I had excruciating knee pain and hormonal liver imbalance. Thanks to Sameer, my doctor stopped my liver medication! I even walked to temples on foot in Karaikudi."
+                quote="With severe knee pain and liver concerns, Sameer's integrative bodywork brought incredible relief. My mobility returned, and under my doctor's guidance, my liver medications were safely tapered!"
                 author="Saradha Arjun"
                 location="Karaikudi"
-                tagline="Rediscovered health"
+                tagline="Restored mobility"
                 tilt={1.5}
                 variant="parchment"
                 clipPosition="top-right"
@@ -565,10 +565,10 @@ export const RealStories: React.FC = () => {
 
             <FadeUp delay={0.48}>
               <ReviewNote
-                quote="Struggling with diabetes for years, I never thought I’d find a solution. With Sameer’s foot reflexology, my HbA1c levels dropped dramatically and I feel better than in years."
+                quote="Managing chronic stress and diabetes for years left me exhausted. With Sameer’s reflexology and lifestyle guidance, my energy returned and my HbA1c showed consistent, positive progress."
                 author="Verified Client"
                 location="Tamil Nadu"
-                tagline="HbA1c dropped dramatically"
+                tagline="Vitality restored"
                 tilt={-1.5}
                 clipPosition="top-right"
               />
@@ -599,6 +599,16 @@ export const RealStories: React.FC = () => {
           </div>
 
         </div>
+
+        {/* Clinical Wellness & Health Outcomes Disclaimer */}
+        <FadeUp delay={0.2} className="mt-12 sm:mt-16 max-w-4xl mx-auto p-4 sm:p-5 rounded-2xl bg-white/90 border border-[#E5E7EB] text-center space-y-1.5 shadow-sm">
+          <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-[#8C5B41]">
+            Clinical Wellness Disclaimer
+          </p>
+          <p className="text-[10.5px] sm:text-[11.5px] text-[#5A6351] font-sans leading-relaxed">
+            Testimonials and patient reflections represent individual journeys; outcomes vary according to personal physiology, health history, and adherence. Mind Body Recovery provides complementary integrative therapies (acupuncture, cupping, reflexology, and Ayurvedic bodywork) to support natural vitality and bodily relaxation alongside conventional healthcare. These modalities do not replace medical diagnosis, prescription medications, or physician care. Always consult your medical doctor regarding medical conditions or medication alterations.
+          </p>
+        </FadeUp>
 
       </div>
     </section>

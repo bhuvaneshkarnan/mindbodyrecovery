@@ -67,22 +67,22 @@ export const clinicData = {
 
   proofStats: {
     headline: "A Stronger Team. A Greater Impact.",
-    subhead: "Grounding mastery in collective care and dedication.",
+    subhead: "Decades of collective therapeutic practice, mentorship academies, and clinical partnerships across Tamil Nadu.",
     stats: [
       {
         value: "30+",
         label: "Therapists",
-        sublabel: "compassionate, trained hands",
+        sublabel: "mentored & trained in clinical bodywork",
       },
       {
         value: "10+",
         label: "Experts",
-        sublabel: "experienced minds guiding care",
+        sublabel: "consulting specialists in holistic health",
       },
       {
         value: "25,000+",
         label: "Lives changing",
-        sublabel: "real transformations",
+        sublabel: "sessions & community outreach touched",
       },
     ] as ProofStat[],
     teamPhoto: "/assets/team/20260826_153026.webp",
@@ -286,6 +286,8 @@ export const clinicData = {
     fullName: "Sameer",
     role: "Mind-Body Recovery Specialist",
     title: "Founder & Lead Integrative Practitioner",
+    credentials: "Integrative Bodywork Specialist & Somatic Recovery Mentor",
+    facilityContext: "Clinical practice & residential retreats hosted at Shanta Ayurveda Hospital, T. Nagar, Chennai.",
     portraitBanner: "/assets/doctor/sameer-banner@2x.webp",
     portrait: "/assets/doctor/drsameer.webp",
     headline: "Meet the Founder",
