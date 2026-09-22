@@ -54,9 +54,9 @@ export const Footer: React.FC = () => {
 
           {/* Quick Links */}
           <div className="space-y-3">
-            <h4 className="text-xs uppercase tracking-widest text-[#C79A45] font-semibold">
+            <p className="text-xs uppercase tracking-widest text-[#C79A45] font-semibold">
               Quick Links
-            </h4>
+            </p>
             <ul className="space-y-2 text-xs sm:text-sm font-sans">
               <li>
                 <a href="#about" className="hover:text-[#C79A45] transition-colors">
@@ -88,9 +88,9 @@ export const Footer: React.FC = () => {
 
           {/* Therapies */}
           <div className="space-y-3">
-            <h4 className="text-xs uppercase tracking-widest text-[#C79A45] font-semibold">
+            <p className="text-xs uppercase tracking-widest text-[#C79A45] font-semibold">
               Therapies
-            </h4>
+            </p>
             <ul className="space-y-2 text-xs sm:text-sm font-sans">
               {clinicData.therapiesList.map((t) => (
                 <li key={t.name}>
@@ -104,9 +104,9 @@ export const Footer: React.FC = () => {
 
           {/* Retreat & Academy */}
           <div className="space-y-3">
-            <h4 className="text-xs uppercase tracking-widest text-[#C79A45] font-semibold">
+            <p className="text-xs uppercase tracking-widest text-[#C79A45] font-semibold">
               The Retreat
-            </h4>
+            </p>
             <ul className="space-y-2 text-xs sm:text-sm font-sans">
               {clinicData.retreatHighlights.map((r) => (
                 <li key={r}>

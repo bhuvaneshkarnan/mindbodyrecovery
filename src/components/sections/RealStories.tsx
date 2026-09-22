@@ -154,9 +154,9 @@ const ReviewNote: React.FC<ReviewNoteProps> = ({
       {/* Author and Tagline */}
       <div className="flex items-end justify-between">
         <div>
-          <h5 className="font-display font-semibold text-[11px] text-[#1A2218] tracking-tight">
+          <p className="font-display font-semibold text-[11px] text-[#1A2218] tracking-tight">
             {author}
-          </h5>
+          </p>
         </div>
         {tagline && (
           <span className="font-serif italic text-[10px] text-[#3E5336] tracking-wide select-none">

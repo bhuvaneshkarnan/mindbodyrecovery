@@ -47,15 +47,19 @@ export const ContactSection: React.FC<ContactSectionProps> = () => {
               </p>
 
               {!submitted ? (
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit} data-webmcp-form="assessment-intake" aria-label="Clinical Assessment Inquiry Form" className="space-y-4">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs uppercase tracking-wider text-[#231F19]/80 font-medium mb-1">
+                      <label htmlFor="name-input" className="block text-xs uppercase tracking-wider text-[#231F19]/80 font-medium mb-1">
                         Your Name
                       </label>
                       <input
+                        id="name-input"
+                        name="name"
+                        autoComplete="name"
                         type="text"
                         required
+                        data-webmcp-input="name"
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         placeholder="e.g. Aditi Sharma"
@@ -64,12 +68,16 @@ export const ContactSection: React.FC<ContactSectionProps> = () => {
                     </div>
 
                     <div>
-                      <label className="block text-xs uppercase tracking-wider text-[#231F19]/80 font-medium mb-1">
+                      <label htmlFor="phone-input" className="block text-xs uppercase tracking-wider text-[#231F19]/80 font-medium mb-1">
                         Phone Number
                       </label>
                       <input
+                        id="phone-input"
+                        name="phone"
+                        autoComplete="tel"
                         type="tel"
                         required
+                        data-webmcp-input="phone"
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         placeholder="+91 98765 43210"
@@ -79,28 +87,35 @@ export const ContactSection: React.FC<ContactSectionProps> = () => {
                   </div>
 
                   <div>
-                    <label className="block text-xs uppercase tracking-wider text-[#231F19]/80 font-medium mb-1">
+                    <label htmlFor="concern-select" className="block text-xs uppercase tracking-wider text-[#231F19]/80 font-medium mb-1">
                       Primary Area of Concern
                     </label>
                     <select
+                      id="concern-select"
+                      name="concern"
+                      aria-label="Primary Area of Concern"
+                      data-webmcp-input="concern"
                       value={formData.concern}
                       onChange={(e) => setFormData({ ...formData, concern: e.target.value })}
                       className="w-full px-4 py-3 bg-[#FFFFFF] border border-[#E5E7EB] text-[#231F19] text-sm rounded-md focus:outline-none focus:border-[#C79A45] transition-colors"
                     >
-                      <option>Sleep Problems</option>
-                      <option>Stress & Overthinking</option>
-                      <option>Mental Fatigue & Low Energy</option>
-                      <option>Pain & Body Tension</option>
-                      <option>2-Day Rebuild Reset Retreat</option>
+                      <option value="Sleep Problems">Sleep Problems</option>
+                      <option value="Stress & Overthinking">Stress &amp; Overthinking</option>
+                      <option value="Mental Fatigue & Low Energy">Mental Fatigue &amp; Low Energy</option>
+                      <option value="Pain & Body Tension">Pain &amp; Body Tension</option>
+                      <option value="2-Day Rebuild Reset Retreat">2-Day Rebuild Reset Retreat</option>
                     </select>
                   </div>
 
                   <div>
-                    <label className="block text-xs uppercase tracking-wider text-[#231F19]/80 font-medium mb-1">
+                    <label htmlFor="message-input" className="block text-xs uppercase tracking-wider text-[#231F19]/80 font-medium mb-1">
                       Brief Note (Optional)
                     </label>
                     <textarea
+                      id="message-input"
+                      name="message"
                       rows={3}
+                      data-webmcp-input="message"
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       placeholder="Tell us what you're experiencing or looking to resolve..."

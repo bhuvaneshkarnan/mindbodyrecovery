@@ -1,0 +1,22 @@
+{
+  "$schema": "https://agenticresourcediscovery.org/schema/v1/ai-catalog.json",
+  "name": "Mind Body Recovery",
+  "description": "Integrative clinical wellness sanctuary, somatic inquiry, 2-day reset retreat, and practitioner mentorship training academy in Chennai, India.",
+  "provider": {
+    "name": "Mind Body Recovery",
+    "url": "https://mindbodyrecovery.in"
+  },
+  "endpoints": [
+    {
+      "name": "Clinical Intake Assessment",
+      "description": "Schedule a personalized clinical assessment or retreat reservation inquiry.",
+      "url": "https://mindbodyrecovery.in/#contact",
+      "method": "POST"
+    }
+  ],
+  "contact": {
+    "email": "tamilnadutherapist@gmail.com",
+    "phone": "+919042561651",
+    "address": "Shanta Ayurveda Hospital, 23A, N Boag Rd, Drivers Colony, T. Nagar, Chennai, Tamil Nadu 600017"
+  }
+}

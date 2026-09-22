@@ -12,25 +12,58 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAssessment }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [videoLoaded, setVideoLoaded] = useState(false);
 
-  // Force immediate autoplay without waiting for deferred timers
+  // Guarantee immediate autoplay across mobile Safari, iOS Low Power Mode, and Android Chrome
   useEffect(() => {
-    if (videoRef.current) {
-      if (videoRef.current.readyState >= 2) {
-        setVideoLoaded(true);
-      }
-      videoRef.current.muted = true;
-      const playPromise = videoRef.current.play();
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.muted = true;
+    video.defaultMuted = true;
+    video.playsInline = true;
+    video.setAttribute("muted", "");
+    video.setAttribute("playsinline", "");
+    video.setAttribute("webkit-playsinline", "true");
+
+    const handlePlaySuccess = () => {
+      setVideoLoaded(true);
+    };
+
+    const tryPlay = () => {
+      if (!video) return;
+      video.muted = true;
+      const playPromise = video.play();
       if (playPromise !== undefined) {
-        playPromise
-          .then(() => setVideoLoaded(true))
-          .catch(() => {
-            if (videoRef.current) {
-              videoRef.current.muted = true;
-              videoRef.current.play().catch(() => {});
-            }
-          });
+        playPromise.then(handlePlaySuccess).catch(() => {
+          // If initially blocked by mobile browser (e.g. Low Power Mode), wait for first touch/scroll
+        });
       }
-    }
+    };
+
+    // Ensure source media query is evaluated and loaded by mobile WebKit
+    video.load();
+    tryPlay();
+
+    // User gesture fallback for mobile devices that restrict initial auto-execution
+    const onUserInteraction = () => {
+      tryPlay();
+      cleanupListeners();
+    };
+
+    const cleanupListeners = () => {
+      window.removeEventListener("touchstart", onUserInteraction);
+      window.removeEventListener("pointerdown", onUserInteraction);
+      window.removeEventListener("scroll", onUserInteraction);
+      window.removeEventListener("click", onUserInteraction);
+    };
+
+    window.addEventListener("touchstart", onUserInteraction, { passive: true, once: true });
+    window.addEventListener("pointerdown", onUserInteraction, { passive: true, once: true });
+    window.addEventListener("scroll", onUserInteraction, { passive: true, once: true });
+    window.addEventListener("click", onUserInteraction, { passive: true, once: true });
+
+    return () => {
+      cleanupListeners();
+    };
   }, []);
 
   return (
@@ -50,7 +83,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAssessment }) => {
           className="absolute inset-0 w-full h-full object-cover opacity-90 filter saturate-100 contrast-105"
         />
 
-        {/* 2. Instant Background Video Montage (Preload auto, faststart moov at byte 32) */}
+        {/* 2. Instant Background Video Montage (Mobile + FastStart Desktop) */}
         <video
           ref={videoRef}
           autoPlay
@@ -61,12 +94,14 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAssessment }) => {
           onLoadedData={() => setVideoLoaded(true)}
           onCanPlay={() => setVideoLoaded(true)}
           onPlaying={() => setVideoLoaded(true)}
+          onTimeUpdate={() => setVideoLoaded(true)}
           className={`absolute inset-0 w-full h-full object-cover filter saturate-100 contrast-105 transition-opacity duration-500 ${
             videoLoaded ? "opacity-90" : "opacity-0"
           }`}
         >
-          <source src="/assets/hero/hero-mobile.mp4" media="(max-width: 640px)" type="video/mp4" />
-          <source src="/assets/hero/hero-main.mp4" type="video/mp4" />
+          <source src="/assets/hero/hero-mobile.mp4" media="(max-width: 768px)" type="video/mp4" />
+          <source src="/assets/hero/hero-main-opt.mp4" type="video/mp4" />
+          <track kind="captions" srcLang="en" label="English" default={false} />
         </video>
 
         {/* Dedicated Top Gradient Scrim to guarantee crystal-clear header visibility */}
