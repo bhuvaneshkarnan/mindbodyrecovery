@@ -4,13 +4,13 @@ import React, { useState } from "react";
 import { clinicData } from "@/data/clinicData";
 import { FadeUp, SlideIn, ZoomReveal, BlurReveal } from "@/components/ui/ScrollAnimations";
 import { ReviewNeurons } from "@/components/ui/ReviewNeurons";
-import { BandageStrip } from "@/components/ui/BandageFrame";
+import { PinClip } from "@/components/ui/PinClip";
 import clsx from "clsx";
 
 const YOUTUBE_SHORTS_ID = "Sye2NYdx6rk";
 
 /**
- * Small authentic Polaroid snapshot with corner adhesive tape
+ * Small authentic Polaroid snapshot with metallic gold pin clip
  */
 interface PhotoPolaroidProps {
   src: string;
@@ -18,7 +18,7 @@ interface PhotoPolaroidProps {
   caption: string;
   tilt?: number;
   className?: string;
-  tapeCorner?: "top-left" | "top-right" | "top-center";
+  clipPosition?: "top-left" | "top-right" | "top-center";
 }
 
 const PhotoPolaroid: React.FC<PhotoPolaroidProps> = ({
@@ -27,7 +27,7 @@ const PhotoPolaroid: React.FC<PhotoPolaroidProps> = ({
   caption,
   tilt = 0,
   className = "",
-  tapeCorner = "top-left",
+  clipPosition = "top-left",
 }) => {
   return (
     <div
@@ -39,20 +39,20 @@ const PhotoPolaroid: React.FC<PhotoPolaroidProps> = ({
         transform: `rotate(${tilt}deg)`,
       }}
     >
-      {/* Tape Plaster Accent */}
-      {tapeCorner === "top-left" && (
-        <div className="absolute -top-2.5 -left-3 z-30 -rotate-45 pointer-events-none scale-65">
-          <BandageStrip variant="gold" />
+      {/* Metallic Gold Pin Clip Accent */}
+      {clipPosition === "top-left" && (
+        <div className="absolute -top-3.5 left-3 z-30 -rotate-6 pointer-events-none">
+          <PinClip variant="gold" />
         </div>
       )}
-      {tapeCorner === "top-right" && (
-        <div className="absolute -top-2.5 -right-3 z-30 rotate-45 pointer-events-none scale-65">
-          <BandageStrip variant="gold" />
+      {clipPosition === "top-right" && (
+        <div className="absolute -top-3.5 right-3 z-30 rotate-6 pointer-events-none">
+          <PinClip variant="gold" />
         </div>
       )}
-      {tapeCorner === "top-center" && (
-        <div className="absolute -top-2 left-1/2 -translate-x-1/2 z-30 pointer-events-none scale-65">
-          <BandageStrip variant="gold" />
+      {clipPosition === "top-center" && (
+        <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-30 pointer-events-none">
+          <PinClip variant="gold" />
         </div>
       )}
 
@@ -88,7 +88,7 @@ interface ReviewNoteProps {
   tilt?: number;
   className?: string;
   variant?: "white" | "parchment";
-  tapeCorner?: "top-left" | "top-right";
+  clipPosition?: "top-left" | "top-right";
 }
 
 const ReviewNote: React.FC<ReviewNoteProps> = ({
@@ -99,7 +99,7 @@ const ReviewNote: React.FC<ReviewNoteProps> = ({
   tilt = 0,
   className = "",
   variant = "white",
-  tapeCorner,
+  clipPosition,
 }) => {
   const isParchment = variant === "parchment";
 
@@ -116,15 +116,15 @@ const ReviewNote: React.FC<ReviewNoteProps> = ({
         transform: `rotate(${tilt}deg)`,
       }}
     >
-      {/* Optional Tape Plaster */}
-      {tapeCorner === "top-left" && (
-        <div className="absolute -top-2 -left-2.5 z-30 -rotate-45 pointer-events-none scale-60">
-          <BandageStrip variant="gold" />
+      {/* Metallic Gold Pin Clip Accent */}
+      {clipPosition === "top-left" && (
+        <div className="absolute -top-3.5 left-4 z-30 -rotate-6 pointer-events-none">
+          <PinClip variant="gold" />
         </div>
       )}
-      {tapeCorner === "top-right" && (
-        <div className="absolute -top-2 -right-2.5 z-30 rotate-45 pointer-events-none scale-60">
-          <BandageStrip variant="gold" />
+      {clipPosition === "top-right" && (
+        <div className="absolute -top-3.5 right-4 z-30 rotate-6 pointer-events-none">
+          <PinClip variant="gold" />
         </div>
       )}
 
@@ -210,12 +210,9 @@ const YouTubeFacade: React.FC = () => {
       {/* Soft gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/30 pointer-events-none" />
 
-      {/* Band Plaster Corner Accents on Featured Video */}
-      <div className="absolute -top-2 -left-3 z-20 -rotate-12 pointer-events-none scale-85">
-        <BandageStrip variant="gold" />
-      </div>
-      <div className="absolute -bottom-2 -right-3 z-20 -rotate-12 pointer-events-none scale-85">
-        <BandageStrip variant="gold" />
+      {/* Metallic Gold Pin Clip Accent on Featured Video */}
+      <div className="absolute -top-3.5 left-6 z-20 -rotate-6 pointer-events-none">
+        <PinClip variant="gold" />
       </div>
 
       {/* Brand Play Button */}
@@ -290,7 +287,7 @@ export const RealStories: React.FC = () => {
                 alt="Sameer with patient from Mauritius"
                 caption="Mauritius"
                 tilt={-4}
-                tapeCorner="top-left"
+                clipPosition="top-left"
               />
             </SlideIn>
           </div>
@@ -316,7 +313,7 @@ export const RealStories: React.FC = () => {
                 alt="Sameer with patient from Japan"
                 caption="Japan"
                 tilt={3}
-                tapeCorner="top-right"
+                clipPosition="top-right"
               />
             </SlideIn>
           </div>
@@ -331,7 +328,7 @@ export const RealStories: React.FC = () => {
                 tagline="Calmer & lighter"
                 tilt={-2}
                 variant="parchment"
-                tapeCorner="top-right"
+                clipPosition="top-right"
               />
             </SlideIn>
           </div>
@@ -346,7 +343,7 @@ export const RealStories: React.FC = () => {
                 alt="Sameer with Choi from Hong Kong"
                 caption="Hong Kong"
                 tilt={4}
-                tapeCorner="top-right"
+                clipPosition="top-right"
               />
             </SlideIn>
           </div>
@@ -373,7 +370,7 @@ export const RealStories: React.FC = () => {
                 location="Singapore"
                 tagline="People. Progress. Wellness."
                 tilt={2.5}
-                tapeCorner="top-left"
+                clipPosition="top-left"
               />
             </SlideIn>
           </div>
@@ -386,7 +383,7 @@ export const RealStories: React.FC = () => {
                 alt="Sameer with Wright from Singapore"
                 caption="Singapore"
                 tilt={-3.5}
-                tapeCorner="top-left"
+                clipPosition="top-left"
               />
             </SlideIn>
           </div>
@@ -412,7 +409,7 @@ export const RealStories: React.FC = () => {
                 alt="Sameer with patient from Mauritius"
                 caption="Mauritius"
                 tilt={-2}
-                tapeCorner="top-left"
+                clipPosition="top-left"
                 className="max-w-[180px] mx-auto"
               />
             </FadeUp>
@@ -433,7 +430,7 @@ export const RealStories: React.FC = () => {
                 alt="Sameer with patient from Japan"
                 caption="Japan"
                 tilt={2}
-                tapeCorner="top-right"
+                clipPosition="top-right"
                 className="max-w-[180px] mx-auto"
               />
             </FadeUp>
@@ -446,7 +443,7 @@ export const RealStories: React.FC = () => {
                 tagline="Calmer & lighter"
                 tilt={-1.5}
                 variant="parchment"
-                tapeCorner="top-right"
+                clipPosition="top-right"
               />
             </FadeUp>
 
@@ -456,7 +453,7 @@ export const RealStories: React.FC = () => {
                 alt="Sameer with Choi from Hong Kong"
                 caption="Hong Kong"
                 tilt={2.5}
-                tapeCorner="top-right"
+                clipPosition="top-right"
                 className="max-w-[180px] mx-auto"
               />
             </FadeUp>
@@ -477,7 +474,7 @@ export const RealStories: React.FC = () => {
                 alt="Sameer with Wright from Singapore"
                 caption="Singapore"
                 tilt={-2.5}
-                tapeCorner="top-left"
+                clipPosition="top-left"
                 className="max-w-[180px] mx-auto"
               />
             </FadeUp>
@@ -489,6 +486,7 @@ export const RealStories: React.FC = () => {
                 location="Singapore"
                 tagline="People. Progress. Wellness."
                 tilt={2}
+                clipPosition="top-left"
               />
             </FadeUp>
 
