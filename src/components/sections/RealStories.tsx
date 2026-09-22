@@ -32,7 +32,7 @@ const PhotoPolaroid: React.FC<PhotoPolaroidProps> = ({
   return (
     <div
       className={clsx(
-        "relative p-2 bg-white rounded-xl shadow-md hover:shadow-xl border border-[#E5E7EB] transition-all duration-300 hover:scale-105 group select-none",
+        "relative p-1.5 pb-1 bg-white rounded-xl shadow-md hover:shadow-xl border border-[#E5E7EB] transition-all duration-300 hover:scale-105 group select-none",
         className
       )}
       style={{
@@ -41,12 +41,12 @@ const PhotoPolaroid: React.FC<PhotoPolaroidProps> = ({
     >
       {/* Metallic Gold Pin Clip Accent */}
       {clipPosition === "top-left" && (
-        <div className="absolute -top-3.5 left-3 z-30 -rotate-6 pointer-events-none">
+        <div className="absolute -top-3.5 left-2.5 z-30 -rotate-6 pointer-events-none">
           <PinClip variant="gold" />
         </div>
       )}
       {clipPosition === "top-right" && (
-        <div className="absolute -top-3.5 right-3 z-30 rotate-6 pointer-events-none">
+        <div className="absolute -top-3.5 right-2.5 z-30 rotate-6 pointer-events-none">
           <PinClip variant="gold" />
         </div>
       )}
@@ -68,8 +68,8 @@ const PhotoPolaroid: React.FC<PhotoPolaroidProps> = ({
       </div>
 
       {/* Polaroid Caption */}
-      <div className="pt-1.5 pb-0.5 text-center">
-        <span className="font-serif italic text-[11px] text-[#4A5D45] tracking-tight block">
+      <div className="pt-1 text-center">
+        <span className="font-serif italic text-[10px] text-[#4A5D45] tracking-tight block font-medium">
           {caption}
         </span>
       </div>
@@ -106,7 +106,7 @@ const ReviewNote: React.FC<ReviewNoteProps> = ({
   return (
     <div
       className={clsx(
-        "relative p-3.5 sm:p-4 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 hover:scale-102 group select-none",
+        "relative p-3 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 hover:scale-102 group select-none",
         isParchment
           ? "bg-[#FAF7F2] border border-[#E4DEC9]"
           : "bg-white/95 backdrop-blur-sm border border-[#E5E7EB]",
@@ -118,48 +118,48 @@ const ReviewNote: React.FC<ReviewNoteProps> = ({
     >
       {/* Metallic Gold Pin Clip Accent */}
       {clipPosition === "top-left" && (
-        <div className="absolute -top-3.5 left-4 z-30 -rotate-6 pointer-events-none">
+        <div className="absolute -top-3.5 left-3.5 z-30 -rotate-6 pointer-events-none">
           <PinClip variant="gold" />
         </div>
       )}
       {clipPosition === "top-right" && (
-        <div className="absolute -top-3.5 right-4 z-30 rotate-6 pointer-events-none">
+        <div className="absolute -top-3.5 right-3.5 z-30 rotate-6 pointer-events-none">
           <PinClip variant="gold" />
         </div>
       )}
 
       {/* Quote Mark & Location Pill */}
-      <div className="flex items-center justify-between mb-2">
-        <div className="w-5 h-5 rounded-full bg-[#3E5336] text-white flex items-center justify-center shadow-xs">
-          <svg className="w-2.5 h-2.5 fill-current" viewBox="0 0 24 24">
+      <div className="flex items-center justify-between mb-1.5">
+        <div className="w-4 h-4 rounded-full bg-[#3E5336] text-white flex items-center justify-center shadow-xs">
+          <svg className="w-2 h-2 fill-current" viewBox="0 0 24 24">
             <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
           </svg>
         </div>
 
         {location && (
-          <span className="text-[10px] text-[#5A6855] font-sans font-medium px-2 py-0.5 rounded-full bg-[#EBF2E8]">
+          <span className="text-[9.5px] text-[#5A6855] font-sans font-medium px-2 py-0.5 rounded-full bg-[#EBF2E8]">
             {location}
           </span>
         )}
       </div>
 
       {/* Quote text */}
-      <p className="text-[11.5px] leading-relaxed text-[#2C3028] font-sans">
+      <p className="text-[11px] leading-[1.45] text-[#2C3028] font-sans">
         &ldquo;{quote}&rdquo;
       </p>
 
       {/* Divider */}
-      <div className="w-6 h-0.5 bg-[#3E5336]/20 my-2" />
+      <div className="w-5 h-0.5 bg-[#3E5336]/20 my-1.5" />
 
       {/* Author and Tagline */}
       <div className="flex items-end justify-between">
         <div>
-          <h5 className="font-display font-semibold text-xs text-[#1A2218] tracking-tight">
+          <h5 className="font-display font-semibold text-[11px] text-[#1A2218] tracking-tight">
             {author}
           </h5>
         </div>
         {tagline && (
-          <span className="font-serif italic text-[10.5px] text-[#3E5336] tracking-wide select-none">
+          <span className="font-serif italic text-[10px] text-[#3E5336] tracking-wide select-none">
             {tagline}
           </span>
         )}
@@ -268,10 +268,10 @@ export const RealStories: React.FC = () => {
         </BlurReveal>
 
         {/* ───────────────── DESKTOP SCATTERED STAGE (Same / Lower Height Than Video Review) ───────────────── */}
-        <div className="relative w-full h-[540px] max-w-[1200px] mx-auto hidden lg:block">
+        <div className="relative w-full h-[620px] max-w-[1260px] mx-auto hidden lg:block">
 
-          {/* CENTER VIDEO REVIEW (w=280px, h=498px — Anchors the stage) */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] z-20">
+          {/* CENTER VIDEO REVIEW (w=270px, h=480px — Anchors the stage) */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[270px] z-20">
             <ZoomReveal delay={0.15}>
               <YouTubeFacade />
             </ZoomReveal>
@@ -280,7 +280,7 @@ export const RealStories: React.FC = () => {
           {/* ─── LEFT SCATTERED ELEMENTS (Small, uneven, separate photos & review notes with zero overlap) ─── */}
           
           {/* L1: Tala & Sameer Polaroid Photo (Mauritius) */}
-          <div className="absolute top-[15px] left-[15px] w-[140px] z-20 hover:z-30">
+          <div className="absolute top-[15px] left-[15px] w-[115px] z-20 hover:z-30">
             <SlideIn from="left" delay={0.1}>
               <PhotoPolaroid
                 src="/assets/reviews/review-tala.webp"
@@ -293,21 +293,51 @@ export const RealStories: React.FC = () => {
           </div>
 
           {/* L2: Tala Rashid Review Note (Mauritius) */}
-          <div className="absolute top-[40px] left-[180px] w-[215px] z-20">
-            <SlideIn from="left" delay={0.2}>
+          <div className="absolute top-[20px] left-[145px] w-[195px] z-20">
+            <SlideIn from="left" delay={0.18}>
               <ReviewNote
-                quote="I was going through a very stressful phase and struggling with infertility. After consulting Sameer, my stress levels reduced. With his guidance, our IVF treatment was successful. Really grateful for his help."
+                quote="After consulting Sameer, my stress levels reduced. With his guidance, our IVF treatment was successful. Really grateful for his help."
                 author="Tala Rashid"
                 location="Mauritius"
                 tagline="Healing is possible."
                 tilt={2}
+                clipPosition="top-right"
               />
             </SlideIn>
           </div>
 
-          {/* L3: Japan Patient & Sameer Polaroid Photo (Japan) */}
-          <div className="absolute top-[305px] left-[20px] w-[140px] z-20 hover:z-30">
+          {/* L3: Nihaza Review Note (Sri Lanka) */}
+          <div className="absolute top-[205px] left-[15px] w-[200px] z-20">
+            <SlideIn from="left" delay={0.25}>
+              <ReviewNote
+                quote="I struggled with mood swings and insomnia for years. After foot reflexology sessions with Sameer, I saw a remarkable improvement in my symptoms. Truly grateful!"
+                author="Nihaza"
+                location="Sri Lanka"
+                tagline="Remarkable improvement"
+                tilt={-2}
+                clipPosition="top-left"
+              />
+            </SlideIn>
+          </div>
+
+          {/* L4: Saradha Arjun Review Note (Karaikudi) */}
+          <div className="absolute top-[215px] left-[230px] w-[210px] z-20">
             <SlideIn from="left" delay={0.3}>
+              <ReviewNote
+                quote="I had excruciating knee pain and hormonal liver imbalance. Thanks to Sameer, my doctor stopped my liver medication! I even walked to temples on foot in Karaikudi."
+                author="Saradha Arjun"
+                location="Karaikudi"
+                tagline="Rediscovered health"
+                tilt={2.5}
+                variant="parchment"
+                clipPosition="top-right"
+              />
+            </SlideIn>
+          </div>
+
+          {/* L5: Japan Patient & Sameer Polaroid Photo (Japan) */}
+          <div className="absolute top-[415px] left-[20px] w-[115px] z-20 hover:z-30">
+            <SlideIn from="left" delay={0.35}>
               <PhotoPolaroid
                 src="/assets/reviews/review-japan.webp"
                 alt="Sameer with patient from Japan"
@@ -318,17 +348,16 @@ export const RealStories: React.FC = () => {
             </SlideIn>
           </div>
 
-          {/* L4: Personal Emotional Recovery Story Note (Chennai) */}
-          <div className="absolute top-[260px] left-[180px] w-[225px] z-20">
-            <SlideIn from="left" delay={0.35}>
+          {/* L6: IT Professional Review Note (Chennai) */}
+          <div className="absolute top-[410px] left-[150px] w-[220px] z-20">
+            <SlideIn from="left" delay={0.4}>
               <ReviewNote
-                quote="After my divorce, I found myself carrying emotional stress and couldn't sleep. Mind Body Recovery Center didn't rush—they listened and gave me a personalised plan. Every session left me calmer, lighter, and at peace."
+                quote="Struggled with stress, insomnia, and leg pain from long hours at my IT company. Tension eased and sleep became deeply restful. Made a world of difference!"
                 author="Verified Client"
-                location="Chennai"
-                tagline="Calmer & lighter"
-                tilt={-2}
-                variant="parchment"
-                clipPosition="top-right"
+                location="Chennai • IT"
+                tagline="Deeply restful sleep"
+                tilt={-1.5}
+                clipPosition="top-left"
               />
             </SlideIn>
           </div>
@@ -336,7 +365,7 @@ export const RealStories: React.FC = () => {
           {/* ─── RIGHT SCATTERED ELEMENTS (Small, uneven, separate photos & review notes with zero overlap) ─── */}
 
           {/* R1: Choi & Sameer Polaroid Photo (Hong Kong) */}
-          <div className="absolute top-[15px] right-[245px] w-[145px] z-20 hover:z-30">
+          <div className="absolute top-[15px] right-[215px] w-[115px] z-20 hover:z-30">
             <SlideIn from="right" delay={0.1}>
               <PhotoPolaroid
                 src="/assets/reviews/review-choi.webp"
@@ -349,40 +378,70 @@ export const RealStories: React.FC = () => {
           </div>
 
           {/* R2: Choi Review Note (Hong Kong) */}
-          <div className="absolute top-[40px] right-[12px] w-[215px] z-20">
-            <SlideIn from="right" delay={0.2}>
+          <div className="absolute top-[20px] right-[12px] w-[190px] z-20">
+            <SlideIn from="right" delay={0.18}>
               <ReviewNote
-                quote="Dealing with neck and shoulder stiffness from long hours. The team took time to understand and explained clearly. I felt much more relaxed after sessions and definitely recommend."
+                quote="Dealing with neck and shoulder stiffness from long hours. The team took time to understand and explained clearly. I felt much more relaxed after sessions."
                 author="Choi"
                 location="Hong Kong"
                 tagline="Health Has No Borders."
                 tilt={-2}
-              />
-            </SlideIn>
-          </div>
-
-          {/* R3: Wright Review Note (Singapore) */}
-          <div className="absolute top-[260px] right-[225px] w-[210px] z-20">
-            <SlideIn from="right" delay={0.25}>
-              <ReviewNote
-                quote="I was feeling quite stressed and mentally tired. Sameer took the time to understand what I was going through. The sessions were very calming, and I left feeling much more relaxed."
-                author="Wright"
-                location="Singapore"
-                tagline="People. Progress. Wellness."
-                tilt={2.5}
                 clipPosition="top-left"
               />
             </SlideIn>
           </div>
 
-          {/* R4: Wright & Sameer Polaroid Photo (Singapore) */}
-          <div className="absolute top-[305px] right-[25px] w-[140px] z-20 hover:z-30">
+          {/* R3: Dilija Review Note (Chennai) */}
+          <div className="absolute top-[210px] right-[235px] w-[195px] z-20">
+            <SlideIn from="right" delay={0.25}>
+              <ReviewNote
+                quote="Such a peaceful place! I felt relaxed the moment I walked in. The personalised care and calming environment made a real difference. Highly recommend!"
+                author="Dilija"
+                location="Chennai"
+                tagline="Peaceful & calming"
+                tilt={-2.5}
+                variant="parchment"
+                clipPosition="top-left"
+              />
+            </SlideIn>
+          </div>
+
+          {/* R4: Diabetes HbA1c Review Note (Tamil Nadu) */}
+          <div className="absolute top-[200px] right-[15px] w-[205px] z-20">
             <SlideIn from="right" delay={0.3}>
+              <ReviewNote
+                quote="Struggling with diabetes for years, I never thought I’d find a solution. With Sameer’s foot reflexology, my HbA1c levels dropped dramatically and I feel better than in years."
+                author="Verified Client"
+                location="Tamil Nadu"
+                tagline="HbA1c dropped dramatically"
+                tilt={2.5}
+                clipPosition="top-right"
+              />
+            </SlideIn>
+          </div>
+
+          {/* R5: Wright Review Note (Singapore) */}
+          <div className="absolute top-[410px] right-[155px] w-[205px] z-20">
+            <SlideIn from="right" delay={0.35}>
+              <ReviewNote
+                quote="I was feeling quite stressed and mentally tired. Sameer took the time to understand what I was going through. The sessions were very calming, and I left feeling relaxed."
+                author="Wright"
+                location="Singapore"
+                tagline="People. Progress. Wellness."
+                tilt={-2}
+                clipPosition="top-left"
+              />
+            </SlideIn>
+          </div>
+
+          {/* R6: Wright & Sameer Polaroid Photo (Singapore) */}
+          <div className="absolute top-[415px] right-[25px] w-[115px] z-20 hover:z-30">
+            <SlideIn from="right" delay={0.4}>
               <PhotoPolaroid
                 src="/assets/reviews/review-wright.webp"
                 alt="Sameer with Wright from Singapore"
                 caption="Singapore"
-                tilt={-3.5}
+                tilt={3.5}
                 clipPosition="top-left"
               />
             </SlideIn>
@@ -401,60 +460,83 @@ export const RealStories: React.FC = () => {
           </div>
 
           {/* Scattered Mobile Grid of Small Photos & Reviews */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl mx-auto px-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto px-2">
             
-            <FadeUp delay={0.15}>
+            <FadeUp delay={0.12}>
               <PhotoPolaroid
                 src="/assets/reviews/review-tala.webp"
                 alt="Sameer with patient from Mauritius"
                 caption="Mauritius"
                 tilt={-2}
                 clipPosition="top-left"
-                className="max-w-[180px] mx-auto"
+                className="max-w-[150px] mx-auto"
               />
             </FadeUp>
 
-            <FadeUp delay={0.2}>
+            <FadeUp delay={0.16}>
               <ReviewNote
                 quote="After consulting Sameer, my stress levels reduced. With his guidance, our IVF treatment was successful. Really grateful for his help."
                 author="Tala Rashid"
                 location="Mauritius"
                 tagline="Healing is possible."
                 tilt={1.5}
+                clipPosition="top-right"
               />
             </FadeUp>
 
-            <FadeUp delay={0.25}>
+            <FadeUp delay={0.2}>
+              <ReviewNote
+                quote="I struggled with mood swings and insomnia for years. After foot reflexology sessions with Sameer, I saw a remarkable improvement in my symptoms. Truly grateful!"
+                author="Nihaza"
+                location="Sri Lanka"
+                tagline="Remarkable improvement"
+                tilt={-1.5}
+                clipPosition="top-left"
+              />
+            </FadeUp>
+
+            <FadeUp delay={0.24}>
               <PhotoPolaroid
                 src="/assets/reviews/review-japan.webp"
                 alt="Sameer with patient from Japan"
                 caption="Japan"
                 tilt={2}
                 clipPosition="top-right"
-                className="max-w-[180px] mx-auto"
+                className="max-w-[150px] mx-auto"
               />
             </FadeUp>
 
-            <FadeUp delay={0.3}>
+            <FadeUp delay={0.28}>
               <ReviewNote
-                quote="After my divorce, I found myself carrying emotional stress and couldn't sleep. Mind Body Recovery Center didn't rush—they listened and gave me a personalised plan. Every session left me calmer, lighter, and at peace."
-                author="Verified Client"
-                location="Chennai"
-                tagline="Calmer & lighter"
-                tilt={-1.5}
+                quote="I had excruciating knee pain and hormonal liver imbalance. Thanks to Sameer, my doctor stopped my liver medication! I even walked to temples on foot in Karaikudi."
+                author="Saradha Arjun"
+                location="Karaikudi"
+                tagline="Rediscovered health"
+                tilt={1.5}
                 variant="parchment"
                 clipPosition="top-right"
               />
             </FadeUp>
 
-            <FadeUp delay={0.35}>
+            <FadeUp delay={0.32}>
+              <ReviewNote
+                quote="Struggled with stress, insomnia, and leg pain from long hours at my IT company. Tension eased and sleep became deeply restful. Made a world of difference!"
+                author="Verified Client"
+                location="Chennai • IT"
+                tagline="Deeply restful sleep"
+                tilt={-1.5}
+                clipPosition="top-left"
+              />
+            </FadeUp>
+
+            <FadeUp delay={0.36}>
               <PhotoPolaroid
                 src="/assets/reviews/review-choi.webp"
                 alt="Sameer with Choi from Hong Kong"
                 caption="Hong Kong"
                 tilt={2.5}
                 clipPosition="top-right"
-                className="max-w-[180px] mx-auto"
+                className="max-w-[150px] mx-auto"
               />
             </FadeUp>
 
@@ -465,23 +547,47 @@ export const RealStories: React.FC = () => {
                 location="Hong Kong"
                 tagline="Health Has No Borders."
                 tilt={-2}
+                clipPosition="top-left"
               />
             </FadeUp>
 
-            <FadeUp delay={0.45}>
+            <FadeUp delay={0.44}>
+              <ReviewNote
+                quote="Such a peaceful place! I felt relaxed the moment I walked in. The personalised care and calming environment made a real difference. Highly recommend!"
+                author="Dilija"
+                location="Chennai"
+                tagline="Peaceful & calming"
+                tilt={2}
+                variant="parchment"
+                clipPosition="top-left"
+              />
+            </FadeUp>
+
+            <FadeUp delay={0.48}>
+              <ReviewNote
+                quote="Struggling with diabetes for years, I never thought I’d find a solution. With Sameer’s foot reflexology, my HbA1c levels dropped dramatically and I feel better than in years."
+                author="Verified Client"
+                location="Tamil Nadu"
+                tagline="HbA1c dropped dramatically"
+                tilt={-1.5}
+                clipPosition="top-right"
+              />
+            </FadeUp>
+
+            <FadeUp delay={0.52}>
               <PhotoPolaroid
                 src="/assets/reviews/review-wright.webp"
                 alt="Sameer with Wright from Singapore"
                 caption="Singapore"
                 tilt={-2.5}
                 clipPosition="top-left"
-                className="max-w-[180px] mx-auto"
+                className="max-w-[150px] mx-auto"
               />
             </FadeUp>
 
-            <FadeUp delay={0.5}>
+            <FadeUp delay={0.56}>
               <ReviewNote
-                quote="I was feeling quite stressed and mentally tired. Sameer took the time to understand what I was going through. The sessions were very calming."
+                quote="I was feeling quite stressed and mentally tired. Sameer took the time to understand what I was going through. The sessions were very calming, and I left feeling relaxed."
                 author="Wright"
                 location="Singapore"
                 tagline="People. Progress. Wellness."
