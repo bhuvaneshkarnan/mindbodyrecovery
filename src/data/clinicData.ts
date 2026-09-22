@@ -35,7 +35,7 @@ export interface TestimonialMedia {
   type: "video" | "photo";
   thumbnail: string;
   videoSrc?: string;
-  captionPlaceholder: string;
+  caption?: string;
 }
 
 export interface RetreatPillar {
@@ -285,7 +285,7 @@ export const clinicData = {
 
   mindfulReflection: {
     headline: "What are you fighting with?",
-    placeholderNotice: "[TODO: awaiting final copy — see §6.2]",
+    reflectionText: "Most chronic tension is not just in the muscles — it is stress held against life, workload, and exhaustion. When the nervous system feels safe to downregulate, true recovery begins.",
   },
 
   doctor: {
@@ -315,26 +315,26 @@ export const clinicData = {
         type: "video",
         thumbnail: "/assets/relax/shirodhara.webp",
         videoSrc: "/assets/hero/nodding head Sunitha vinod_1.mp4",
-        captionPlaceholder: "[TODO: real client quote / story to be confirmed]",
+        caption: "Sunitha Vinod • Restorative patient review",
       },
       {
         id: "media-2",
         type: "photo",
         thumbnail: "/assets/rebuild/peaceful-stay.webp",
-        captionPlaceholder: "[TODO: real client quote / story to be confirmed]",
+        caption: "Residential sanctuary & retreat environment at Shanta Ayurveda Hospital",
       },
       {
         id: "media-3",
         type: "photo",
         thumbnail: "/assets/relax/cupping.webp",
-        captionPlaceholder: "[TODO: real client quote / story to be confirmed]",
+        caption: "Clinical cupping & myofascial decompression session",
       },
       {
         id: "media-4",
         type: "video",
         thumbnail: "/assets/hero/hero-poster.webp",
         videoSrc: "/assets/hero/20260722_191757_1.mp4",
-        captionPlaceholder: "[TODO: real client quote / story to be confirmed]",
+        caption: "Hands-on somatic therapy & therapeutic bodywork",
       },
     ] as TestimonialMedia[],
   },
