@@ -282,39 +282,52 @@ export const RealStories: React.FC = () => {
 
           {/* ─── LEFT SCATTERED ELEMENTS (Small, uneven, separate photos & review notes with zero overlap) ─── */}
           
-          {/* L1: Tala & Sameer Polaroid Photo */}
-          <div className="absolute top-[20px] left-[20px] w-[145px] z-20 hover:z-30">
+          {/* L1: Tala & Sameer Polaroid Photo (Mauritius) */}
+          <div className="absolute top-[15px] left-[15px] w-[140px] z-20 hover:z-30">
             <SlideIn from="left" delay={0.1}>
               <PhotoPolaroid
                 src="/assets/reviews/review-tala.webp"
-                alt="Sameer with Tala Rashid"
-                caption="Tala & Sameer"
+                alt="Sameer with patient from Mauritius"
+                caption="Mauritius"
                 tilt={-4}
                 tapeCorner="top-left"
               />
             </SlideIn>
           </div>
 
-          {/* L2: Tala Rashid Review Note */}
-          <div className="absolute top-[55px] left-[195px] w-[215px] z-20">
+          {/* L2: Tala Rashid Review Note (Mauritius) */}
+          <div className="absolute top-[40px] left-[180px] w-[215px] z-20">
             <SlideIn from="left" delay={0.2}>
               <ReviewNote
                 quote="I was going through a very stressful phase and struggling with infertility. After consulting Sameer, my stress levels reduced. With his guidance, our IVF treatment was successful. Really grateful for his help."
                 author="Tala Rashid"
-                location="Oman"
+                location="Mauritius"
                 tagline="Healing is possible."
                 tilt={2}
               />
             </SlideIn>
           </div>
 
-          {/* L3: Personal Emotional Recovery Story Note (Chennai Visit) */}
-          <div className="absolute top-[320px] left-[55px] w-[235px] z-20">
+          {/* L3: Japan Patient & Sameer Polaroid Photo (Japan) */}
+          <div className="absolute top-[305px] left-[20px] w-[140px] z-20 hover:z-30">
             <SlideIn from="left" delay={0.3}>
+              <PhotoPolaroid
+                src="/assets/reviews/review-japan.webp"
+                alt="Sameer with patient from Japan"
+                caption="Japan"
+                tilt={3}
+                tapeCorner="top-right"
+              />
+            </SlideIn>
+          </div>
+
+          {/* L4: Personal Emotional Recovery Story Note (Chennai) */}
+          <div className="absolute top-[260px] left-[180px] w-[225px] z-20">
+            <SlideIn from="left" delay={0.35}>
               <ReviewNote
                 quote="After my divorce, I found myself carrying emotional stress and couldn't sleep. Mind Body Recovery Center didn't rush—they listened and gave me a personalised plan. Every session left me calmer, lighter, and at peace."
                 author="Verified Client"
-                location="Chennai Visit"
+                location="Chennai"
                 tagline="Calmer & lighter"
                 tilt={-2}
                 variant="parchment"
@@ -325,39 +338,39 @@ export const RealStories: React.FC = () => {
 
           {/* ─── RIGHT SCATTERED ELEMENTS (Small, uneven, separate photos & review notes with zero overlap) ─── */}
 
-          {/* R1: Choi & Sameer Polaroid Photo (Clear of Choi review card) */}
-          <div className="absolute top-[20px] right-[245px] w-[145px] z-20 hover:z-30">
+          {/* R1: Choi & Sameer Polaroid Photo (Hong Kong) */}
+          <div className="absolute top-[15px] right-[245px] w-[145px] z-20 hover:z-30">
             <SlideIn from="right" delay={0.1}>
               <PhotoPolaroid
                 src="/assets/reviews/review-choi.webp"
-                alt="Sameer with Choi from Seoul, Korea"
-                caption="Choi & Sameer"
+                alt="Sameer with Choi from Hong Kong"
+                caption="Hong Kong"
                 tilt={4}
                 tapeCorner="top-right"
               />
             </SlideIn>
           </div>
 
-          {/* R2: Choi Review Note (Positioned to the right of Choi Polaroid so faces are 100% visible) */}
-          <div className="absolute top-[45px] right-[12px] w-[215px] z-20">
+          {/* R2: Choi Review Note (Hong Kong) */}
+          <div className="absolute top-[40px] right-[12px] w-[215px] z-20">
             <SlideIn from="right" delay={0.2}>
               <ReviewNote
-                quote="Dealing with neck and shoulder stiffness from long hours. The team took time to understand and explained everything clearly. I felt much more relaxed after sessions and definitely recommend."
+                quote="Dealing with neck and shoulder stiffness from long hours. The team took time to understand and explained clearly. I felt much more relaxed after sessions and definitely recommend."
                 author="Choi"
-                location="Seoul, Korea"
+                location="Hong Kong"
                 tagline="Health Has No Borders."
                 tilt={-2}
               />
             </SlideIn>
           </div>
 
-          {/* R3: Wright Review Note */}
-          <div className="absolute top-[265px] right-[220px] w-[210px] z-20">
+          {/* R3: Wright Review Note (Singapore) */}
+          <div className="absolute top-[260px] right-[225px] w-[210px] z-20">
             <SlideIn from="right" delay={0.25}>
               <ReviewNote
                 quote="I was feeling quite stressed and mentally tired. Sameer took the time to understand what I was going through. The sessions were very calming, and I left feeling much more relaxed."
                 author="Wright"
-                location="Restorative Care"
+                location="Singapore"
                 tagline="People. Progress. Wellness."
                 tilt={2.5}
                 tapeCorner="top-left"
@@ -365,13 +378,13 @@ export const RealStories: React.FC = () => {
             </SlideIn>
           </div>
 
-          {/* R4: Wright & Sameer Polaroid Photo (Clear of Wright review card) */}
-          <div className="absolute top-[310px] right-[30px] w-[140px] z-20 hover:z-30">
+          {/* R4: Wright & Sameer Polaroid Photo (Singapore) */}
+          <div className="absolute top-[305px] right-[25px] w-[140px] z-20 hover:z-30">
             <SlideIn from="right" delay={0.3}>
               <PhotoPolaroid
                 src="/assets/reviews/review-wright.webp"
-                alt="Sameer with Wright"
-                caption="Wright & Sameer"
+                alt="Sameer with Wright from Singapore"
+                caption="Singapore"
                 tilt={-3.5}
                 tapeCorner="top-left"
               />
@@ -396,8 +409,8 @@ export const RealStories: React.FC = () => {
             <FadeUp delay={0.15}>
               <PhotoPolaroid
                 src="/assets/reviews/review-tala.webp"
-                alt="Sameer with Tala Rashid"
-                caption="Tala & Sameer"
+                alt="Sameer with patient from Mauritius"
+                caption="Mauritius"
                 tilt={-2}
                 tapeCorner="top-left"
                 className="max-w-[180px] mx-auto"
@@ -408,7 +421,7 @@ export const RealStories: React.FC = () => {
               <ReviewNote
                 quote="After consulting Sameer, my stress levels reduced. With his guidance, our IVF treatment was successful. Really grateful for his help."
                 author="Tala Rashid"
-                location="Oman"
+                location="Mauritius"
                 tagline="Healing is possible."
                 tilt={1.5}
               />
@@ -416,10 +429,10 @@ export const RealStories: React.FC = () => {
 
             <FadeUp delay={0.25}>
               <PhotoPolaroid
-                src="/assets/reviews/review-choi.webp"
-                alt="Sameer with Choi"
-                caption="Choi & Sameer"
-                tilt={2.5}
+                src="/assets/reviews/review-japan.webp"
+                alt="Sameer with patient from Japan"
+                caption="Japan"
+                tilt={2}
                 tapeCorner="top-right"
                 className="max-w-[180px] mx-auto"
               />
@@ -427,45 +440,55 @@ export const RealStories: React.FC = () => {
 
             <FadeUp delay={0.3}>
               <ReviewNote
-                quote="Dealing with neck and shoulder stiffness from long hours. The team took time to understand and explained clearly. I felt much more relaxed after sessions."
-                author="Choi"
-                location="Seoul, Korea"
-                tagline="Health Has No Borders."
-                tilt={-2}
+                quote="After my divorce, I found myself carrying emotional stress and couldn't sleep. Mind Body Recovery Center didn't rush—they listened and gave me a personalised plan. Every session left me calmer, lighter, and at peace."
+                author="Verified Client"
+                location="Chennai"
+                tagline="Calmer & lighter"
+                tilt={-1.5}
+                variant="parchment"
+                tapeCorner="top-right"
               />
             </FadeUp>
 
             <FadeUp delay={0.35}>
               <PhotoPolaroid
-                src="/assets/reviews/review-wright.webp"
-                alt="Sameer with Wright"
-                caption="Wright & Sameer"
-                tilt={-2.5}
-                tapeCorner="top-left"
+                src="/assets/reviews/review-choi.webp"
+                alt="Sameer with Choi from Hong Kong"
+                caption="Hong Kong"
+                tilt={2.5}
+                tapeCorner="top-right"
                 className="max-w-[180px] mx-auto"
               />
             </FadeUp>
 
             <FadeUp delay={0.4}>
               <ReviewNote
-                quote="I was feeling quite stressed and mentally tired. Sameer took the time to understand what I was going through. The sessions were very calming."
-                author="Wright"
-                location="Restorative Care"
-                tagline="People. Progress. Wellness."
-                tilt={2}
+                quote="Dealing with neck and shoulder stiffness from long hours. The team took time to understand and explained clearly. I felt much more relaxed after sessions."
+                author="Choi"
+                location="Hong Kong"
+                tagline="Health Has No Borders."
+                tilt={-2}
               />
             </FadeUp>
 
-            <FadeUp delay={0.45} className="sm:col-span-2">
+            <FadeUp delay={0.45}>
+              <PhotoPolaroid
+                src="/assets/reviews/review-wright.webp"
+                alt="Sameer with Wright from Singapore"
+                caption="Singapore"
+                tilt={-2.5}
+                tapeCorner="top-left"
+                className="max-w-[180px] mx-auto"
+              />
+            </FadeUp>
+
+            <FadeUp delay={0.5}>
               <ReviewNote
-                quote="After my divorce, I found myself carrying emotional stress and couldn't sleep. Mind Body Recovery Center didn't rush—they listened and gave me a personalised plan. Every session left me calmer, lighter, and at peace."
-                author="Verified Client"
-                location="Chennai Visit"
-                tagline="Calmer & lighter"
-                tilt={-1}
-                variant="parchment"
-                tapeCorner="top-right"
-                className="max-w-md mx-auto"
+                quote="I was feeling quite stressed and mentally tired. Sameer took the time to understand what I was going through. The sessions were very calming."
+                author="Wright"
+                location="Singapore"
+                tagline="People. Progress. Wellness."
+                tilt={2}
               />
             </FadeUp>
 

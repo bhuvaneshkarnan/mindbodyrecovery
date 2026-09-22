@@ -59,6 +59,23 @@ async function process() {
     .webp({ quality: 95 })
     .toFile(path.join(outDir, 'thumb-tala.webp'));
 
+  // 4. Japan Patient & Sameer (1496 x 1440) - Square framing (600x600):
+  // Captures both faces completely with zero cut-off
+  await sharp(path.join(inDir, '4.jpeg'))
+    .rotate()
+    .extract({ left: 30, top: 20, width: 1420, height: 1420 })
+    .resize(600, 600)
+    .webp({ quality: 95 })
+    .toFile(path.join(outDir, 'review-japan.webp'));
+  console.log('Processed review-japan.webp');
+
+  await sharp(path.join(inDir, '4.jpeg'))
+    .rotate()
+    .extract({ left: 30, top: 20, width: 1420, height: 1420 })
+    .resize(600, 600)
+    .webp({ quality: 95 })
+    .toFile(path.join(outDir, 'thumb-japan.webp'));
+
   console.log('All review assets generated successfully with 100% full faces!');
 }
 
